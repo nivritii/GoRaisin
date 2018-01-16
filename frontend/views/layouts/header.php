@@ -16,7 +16,7 @@ frontend\assets\HomePageAsset::register($this);
                             <div class="top_bar_left clearfix" style="width: 1120px;">
                                 <!-- Logo-->
                                 <div class="logo">
-                                    <a id="logo" href="index-blogger2.html" title="BeBlogger 2 - BeTheme">
+                                    <a id="logo" href="<?=Url::to(['/site/index'])?>" title="BeBlogger 2 - BeTheme">
                                         <p><?= Html::img('@web/images/blogger2.png', ['alt'=>'GoRaisin', 'class'=>'logo-main scale-with-grid']);?></p>
                                         <p><?= Html::img('@web/images/blogger2.png', ['alt'=>'GoRaisin', 'class'=>'logo-sticky scale-with-grid']);?></p>
                                         <p><?= Html::img('@web/images/blogger2.png', ['alt'=>'GoRaisin', 'class'=>'logo-mobile scale-with-grid']);?></p>
@@ -35,7 +35,7 @@ frontend\assets\HomePageAsset::register($this);
                                             </li>
                                             <?php if(Yii::$app->user->isGuest){ ?>
                                             <li>
-                                                <a class="btn btn-info btn-xs" href="<?=Url::to(['/campaign/create'])?>"><span><span style="padding: 0; color: #d30000;">Start Campaign</span></span></a>
+                                                <a target="_blank" href="<?=Url::to(['/campaign/create'])?>"><span><span style="padding: 0; color: #d30000;">Start Campaign</span></span></a>
 <!--                                                <a target="_blank" href="'.Url::to(['/campaign/create']).'"><span><span style="padding: 0; color: #d30000;">Buy now</span></span></a>-->
                                             </li>
                                             <li>

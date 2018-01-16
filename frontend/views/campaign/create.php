@@ -4,8 +4,9 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use frontend\models\Campaign;
 use frontend\models\Reward;
+use frontend\assets\HomePageAsset;
 
-
+HomePageAsset::register($this);
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
 
@@ -17,14 +18,18 @@ $model = new Campaign();
 $reward = new Reward();
 
 ?>
-<div class="campaign-create">
 
-<div class="campaign-create">
-       
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-preview">
+<body class="archive category layout-full-width nice-scroll-on mobile-tb-left button-flat header-classic minimalist-header sticky-header sticky-white ab-hide subheader-both-left menu-line-below-80-1 menuo-right menuo-no-borders footer-copy-center">
+    <!-- Main Theme Wrapper -->
+    <div id="Wrapper">
+        <!-- Header Wrapper -->
+        <!-- Main Content -->
+<!--        <div id="Content">-->
+            <div class="content_wrapper clearfix">
+                <div class="sections_group">
+                    <div class="section">
+                        <div class="section_wrapper clearfix">
+
     <?php
     
     $form = ActiveForm::begin([
@@ -116,11 +121,48 @@ $reward = new Reward();
 //    Html::submitButton('Save', ['class' => 'btn btn-success']);
     ActiveForm::end();
 ?>
-          </div>
-        </div>
-      </div>
-    </div>
-   
-</div>
 
-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!--        </div>-->
+    </div>
+    
+    <script>
+$(document).ready(function () {
+    //Initialize tooltips
+    $('.nav-tabs > li a[title]').tooltip();
+    
+    //Wizard
+    $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+        var $target = $(e.target);
+    
+        if ($target.parent().hasClass('disabled')) {
+            return false;
+        }
+    });
+
+    $(".next-step").click(function (e) {
+
+        var $active = $('.wizard .nav-tabs li.active');
+        $active.next().removeClass('disabled');
+        nextTab($active);
+
+    });
+    $(".prev-step").click(function (e) {
+
+        var $active = $('.wizard .nav-tabs li.active');
+        prevTab($active);
+
+    });
+});
+
+function nextTab(elem) {
+    $(elem).next().find('a[data-toggle="tab"]').click();
+}
+function prevTab(elem) {
+    $(elem).prev().find('a[data-toggle="tab"]').click();
+}
+</script>
