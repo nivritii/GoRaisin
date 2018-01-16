@@ -35,7 +35,8 @@ frontend\assets\HomePageAsset::register($this);
                                             </li>
                                             <?php if(Yii::$app->user->isGuest){ ?>
                                             <li>
-                                                <a class="btn btn-info btn-xs" href="<?=Url::to(['/campaign/create'])?>">Start a Campaign</a>
+                                                <a class="btn btn-info btn-xs" href="<?=Url::to(['/campaign/create'])?>"><span><span style="padding: 0; color: #d30000;">Start Campaign</span></span></a>
+<!--                                                <a target="_blank" href="'.Url::to(['/campaign/create']).'"><span><span style="padding: 0; color: #d30000;">Buy now</span></span></a>-->
                                             </li>
                                             <li>
                                                 <a href="<?=Url::to(['/site/login'])?>"><span>Login</span></a>
@@ -46,8 +47,8 @@ frontend\assets\HomePageAsset::register($this);
                                             <?php } else {
                                                 echo'<li><a target="_blank" href="'.Url::to(['/campaign/create']).'"><span><span style="padding: 0; color: #d30000;">Start a campaign</span></span></a>';
                                             ?>
-                                            <nav class="menu">
-                                            <ul class="clearfix">
+                                            <nav class="menu-main-menu-container">
+                                            <ul class="menu">
                       <li><a>
                           <p><?=Html::img(Url::to('@web/uploads/user/'.Yii::$app->user->identity->image),['class' => 'mg-circle'],['width'=>'40'],['height'=>'40'])?></p>
                           </a>
