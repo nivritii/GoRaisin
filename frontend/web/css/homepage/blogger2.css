@@ -768,6 +768,12 @@ a.mfn-link-6:before {
 #Top_bar .menu>li>a {
 	color: #888888;
 }
+#Top_bar .menu>li>a>img {
+	vertical-align: middle;
+	border-radius: 30px;
+	width: 30px;
+	height: 30px;
+}
 #Top_bar .menu>li.current-menu-item>a, #Top_bar .menu>li.current_page_item>a, #Top_bar .menu>li.current-menu-parent>a, #Top_bar .menu>li.current-page-parent>a, #Top_bar .menu>li.current-menu-ancestor>a, #Top_bar .menu>li.current-page-ancestor>a, #Top_bar .menu>li.current_page_ancestor>a, #Top_bar .menu>li.hover>a {
 	color: #000;
 }
