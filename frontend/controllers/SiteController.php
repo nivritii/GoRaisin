@@ -12,6 +12,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\Campaign;
+use frontend\models\Fund;
 
 /**
  * Site controller
@@ -72,7 +74,31 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+          $limit = 1;
+          $model = Campaign::find()->limit($limit)->all();
+//          $model = Campaign::find()->joinWith('Category')->where('id')->one();
+//          $model = Campaign::find()->leftJoin('category', 'category.id=campaign.c_cat_id')->limit($limit)->all();
+//          $rows = (new \yii\db\Query())
+//                ->select(['id', 'email'])
+//                ->from('user')
+//                ->where(['last_name' => 'Smith'])
+//                ->limit(10)
+//                ->all();
+          
+          $exploreModel = Campaign::find()->where(['c_status'=>'published'])->all();
+          $fund = new Fund();
+          if(Yii::$app->request->post()){
+            $fund->fund_user_id = Yii::$app->user->identity->getId();
+            $fund->save();
+            return $this->render('index',['model'=>$model]);
+              
+          }else{
+               return $this->render('index',[
+                        'model'=>$model,
+                        'exploreModel'=>$exploreModel,
+                   ]);
+          }
+//        return $this->render('index');
     }
 
     /**
