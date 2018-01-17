@@ -3,6 +3,7 @@
 /* @var $this yii\web\View */
 use frontend\assets\HomePageAsset;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 HomePageAsset::register($this);
 $this->title = 'GoRaisin';
@@ -13,61 +14,7 @@ $this->title = 'GoRaisin';
     <div id="Wrapper">
         <!-- Header Wrapper -->
         <div id="Header_wrapper">
-            <!-- Header -->
-            <header id="Header">
-
-                <!-- Header -  Logo and Menu area -->
-<!--                <div id="Top_bar">
-                    <div class="container">
-                        <div class="column one">
-                            <div class="top_bar_left clearfix">
-                                 Logo
-                                <div class="logo">
-                                    <a id="logo" href="index-blogger2.html" title="BeBlogger 2 - BeTheme"><img class="logo-main scale-with-grid" src="content/blogger2/images/blogger2.png" alt="BeBlogger 2 - BeTheme" /><img class="logo-sticky scale-with-grid" src="content/blogger2/images/blogger2.png" alt=""><img class="logo-mobile scale-with-grid" src="content/blogger2/images/blogger2.png" alt="">
-                                    </a>
-                                </div>
-                                 Main menu
-                                <div class="menu_wrapper">
-                                    <nav id="menu" class="menu-main-menu-container">
-                                        <ul id="menu-main-menu" class="menu">
-                                            <li class="current_page_item">
-                                                <a href="index-blogger2.html"><span>Home</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="content/blogger2/category-page.html"><span>News</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="content/blogger2/category-page.html"><span>Lifestyle</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="content/blogger2/category-page.html"><span>Places</span></a>
-                                            </li>
-                                            <li>
-                                                <a href="content/blogger2/about-us.html"><span>About us</span></a>
-                                            </li>
-                                            <li>
-                                                <a target="_blank" href="http://bit.ly/1M6lijQ"><span><span style="padding: 0; color: #d30000;">Buy now</span></span></a>
-                                            </li>
-                                        </ul>
-                                    </nav><a class="responsive-menu-toggle" href="#"><i class="icon-menu"></i></a>
-                                </div>
-                                 Secondary menu area - only for certain pages 
-                                <div class="secondary_menu_wrapper"></div>
-                                 Banner area - only for certain pages
-                                <div class="banner_wrapper"></div>
-                                 Header Searchform area
-                                <div class="search_wrapper">
-                                    <form method="get" id="searchform" action="#">
-                                        <i class="icon_search icon-search"></i><a href="#" class="icon_close"><i class="icon-cancel"></i></a>
-                                        <input type="text" class="field" name="s" id="s" placeholder="Enter your search" />
-                                        <input type="submit" class="submit" value="" style="display:none;" />
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-            </header>
+            <!-- Header -->       
         </div>
         <!-- Main Content -->
         <div id="Content">
@@ -78,6 +25,7 @@ $this->title = 'GoRaisin';
                             <div class="section_wrapper mcb-section-inner">
                                 <div class="wrap mcb-wrap one clearfix">
                                     <!-- One Full Row-->
+                                    <?php foreach ($model as $campaign) { ?>
                                     <div class="column mcb-column one column_blog ">
                                         <div class="column_filters">
                                             <div class="blog_wrapper isotope_wrapper clearfix">
@@ -88,10 +36,10 @@ $this->title = 'GoRaisin';
                                                         </div>
                                                         <div class="image_frame post-photo-wrapper scale-with-grid">
                                                             <div class="image_wrapper">
-                                                                <a href="content/blogger2/item-1.html">
+                                                                <a href="<?= Url::to(['campaign/view', 'id' => $campaign->c_id])?>">
                                                                     <div class="mask"></div>
-                                                                    <p><?= Html::img('@web/images/home_blogger2_hotnews-1200x480.jpg', ['alt'=>'GoRaisin', 'class'=>'scale-with-grid wp-post-image wp-post-image', 'width'=>'1200','height'=>'480']);?></p>
-<!--                                                                    <img width="1200" height="480" src="content/blogger2/images/home_blogger2_hotnews-1200x480.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_hotnews" itemprop="image" />-->
+                                                                    <p><?= Html::img(Url::to('@web/images/uploads/' . $campaign->c_image), ['class' => 'img-fluid rounded mb-3 mb-md-0'], ['alt' => 'Image'], ['align' => 'left'], ['width' => '1200'], ['height' => '480']) ?></p>
+<!--                                                                    <img width="1200" height="480" src="images/home_blogger2_hotnews-1200x480.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_hotnews" itemprop="image" />-->
                                                                 </a>
                                                                 <div class="image_links double">
                                                                     <a href="content/blogger2/images/home_blogger2_hotnews-1200x800.jpg" class="zoom" rel="prettyphoto"><i class="icon-search"></i></a><a href="content/blogger2/item-1.html" class="link"><i class="icon-link"></i></a>
@@ -103,10 +51,10 @@ $this->title = 'GoRaisin';
                                                                 <div class="post-head">
                                                                     <div class="post-meta clearfix">
                                                                         <div class="author-date">
-                                                                            <span class="vcard author post-author"><span class="label">Published by </span><?= Html::a('<i class="icon-user"></i>')?><a>Muffin Group</a></span></span><span class="date"><span class="label">at </span><i class="icon-clock"></i> <span class="post-date updated">March 12, 2014</span></span>
+                                                                            <span class="vcard author post-author"><span class="label">Published by </span><?= Html::a('<i class="icon-user"></i>')?><a><?= $campaign->cAuthor->username?></a></span></span><span class="date"><span class="label">at </span><i class="icon-clock"></i> <span class="post-date updated"><?= $campaign->c_created_at?></span></span>
                                                                         </div>
                                                                         <div class="category">
-                                                                            <span class="cat-btn">Categories <i class="icon-down-dir"></i></span>
+                                                                            <span class="cat-btn"><?= $campaign->cCat->name ?><i class="icon-down-dir"></i></span>
                                                                             <div class="cat-wrapper">
                                                                                 <ul class="post-categories">
                                                                                     <li>
@@ -121,15 +69,15 @@ $this->title = 'GoRaisin';
                                                                             <span class="love-text">Do you like it?</span><a href="#" class="mfn-love " data-id="2269"><span class="icons-wrapper"><i class="icon-heart-empty-fa"></i><i class="icon-heart-fa"></i></span><span class="label">138</span></a>
                                                                         </div>
                                                                         <div class="post-links">
-                                                                            <i class="icon-doc-text"></i><a href="content/blogger2/item-1.html" class="post-more">Read more</a>
+                                                                            <i class="icon-doc-text"></i><a href="<?= Url::to(['campaign/view', 'id' => $campaign->c_id])?>" class="post-more">Read more</a>
                                                                         </div>
                                                                     </div>
                                                                 </div>
                                                                 <div class="post-title">
-                                                                    <h2 class="entry-title" itemprop="headline"><a href="content/blogger2/item-1.html">Aenean ligula mol stie viverra quae melesua porta</a></h2>
+                                                                    <h2 class="entry-title" itemprop="headline"><a href="<?= Url::to(['campaign/view', 'id' => $campaign->c_id])?>"><?=$campaign->c_title?></a></h2>
                                                                 </div>
                                                                 <div class="post-excerpt">
-                                                                    Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra dapibus at.
+                                                                    <?=$campaign->c_description?>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -139,6 +87,7 @@ $this->title = 'GoRaisin';
                                         </div>
                                     </div>
                                 </div>
+                                <?php } ?>
                                 <div class="wrap mcb-wrap one clearfix">
                                     <!-- One Full Row-->
                                     <div class="column mcb-column one column_column column-margin-20px">
@@ -469,93 +418,6 @@ $this->title = 'GoRaisin';
                 </div>
             </div>
         </div>
-        <!-- Footer-->
-<!--        <footer id="Footer" class="clearfix">
-            <div class="widgets_wrapper" style="padding:60px 0 30px;">
-                <div class="container">
-                     One Fourth (1/4) Column 
-                    <div class="column one-fourth">
-                         Meta Links Area 
-                        <aside id="meta-2" class="widget widget_meta">
-                            <h4>Useful links</h4>
-                            <ul>
-                                <li>
-                                    <a href="content/blogger2/wp-login.html">Log in</a>
-                                </li>
-                                <li>
-                                    <a href="#">Entries <abbr title="Really Simple Syndication">RSS</abbr></a>
-                                </li>
-                                <li>
-                                    <a href="content/blogger2/comments/#">Comments <abbr title="Really Simple Syndication">RSS</abbr></a>
-                                </li>
-                                <li>
-                                    <a href="https://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a>
-                                </li>
-                            </ul>
-                        </aside>
-                    </div>
-                     One Fourth (1/4) Column 
-                    <div class="column one-fourth">
-                         Recent Comments Area 
-                        <aside class="widget widget_mfn_recent_comments">
-                            <h4>Latest comments</h4>
-                            <div class="Recent_comments">
-                                <ul>
-                                    <li>
-                                        <span class="date_label">November 17, 2014</span>
-                                        <p>
-                                            <i class="icon-user"></i><strong>admin</strong> commented on <a href="content/blogger2/item-1.html#comment-5" title="admin | Aenean ligula mol stie viverra quae melesua porta">Aenean ligula mol stie viverra quae melesua porta</a>
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <span class="date_label">November 17, 2014</span>
-                                        <p>
-                                            <i class="icon-user"></i><strong>admin</strong> commented on <a href="content/blogger2/item-1.html#comment-4" title="admin | Aenean ligula mol stie viverra quae melesua porta">Aenean ligula mol stie viverra quae melesua porta</a>
-                                        </p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </aside>
-                    </div>
-                     One Fourth (1/4) Column 
-                    <div class="column one-fourth">
-                         Text Area 
-                        <aside class="widget widget_text">
-                            <h4>About us</h4>
-                            <div class="textwidget">
-                                <h6>Nulla risus ante, luctus et placerat quis, efficitur nec nisl. Cras iaculis tristique.</h6>
-                                <p>
-                                    Etiam at nibh turpis! Vestibulum mattis risus eget dolor finibus, ut luctus est congue. Ut sit amet interdum erat; quis malesuada lacus. Sed mauris diam, sodales a imperdiet ut.
-                                </p>
-                            </div>
-                        </aside>
-                    </div>
-                     One Fourth (1/4) Column 
-                    <div class="column one-fourth">
-                        Tag Cloud 
-                        <aside class="widget widget_tag_cloud">
-                            <h4>Tags</h4>
-                            <div class="tagcloud">
-                                <a href='content/blogger2/tag-page.html' class='tag-link-7' title='2 topics' style='font-size: 8pt;'>Design</a><a href='content/blogger2/tag-page.html' class='tag-link-3' title='3 topics' style='font-size: 13.6pt;'>Framework</a><a href='content/blogger2/tag-page.html' class='tag-link-8' title='3 topics' style='font-size: 13.6pt;'>Motion</a><a href='content/blogger2/tag-page.html' class='tag-link-5' title='4 topics' style='font-size: 18.266666666667pt;'>Themeforest</a><a href='content/blogger2/tag-page.html' class='tag-link-9' title='3 topics' style='font-size: 13.6pt;'>Video</a><a href='content/blogger2/tag-page.html' class='tag-link-6' title='5 topics' style='font-size: 22pt;'>Wordpress</a>
-                            </div>
-                        </aside>
-                    </div>
-                </div>
-            </div>
-             Footer copyright
-            <div class="footer_copy">
-                <div class="container">
-                    <div class="column one">
-
-                        <div class="copyright">
-                            &copy; 2017 BeBlogger 2 - BeTheme. Muffin group - HTML by <a target="_blank" rel="nofollow" href="http://bit.ly/1M6lijQ">BeantownThemes</a>
-                        </div>
-                        Social info area
-                        <ul class="social"></ul>
-                    </div>
-                </div>
-            </div>
-        </footer>-->
     </div>
 
     <!-- JS -->
