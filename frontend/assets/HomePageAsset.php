@@ -16,21 +16,23 @@ class HomePageAsset extends AssetBundle
         'http://fonts.googleapis.com/css?family=Patua+One:100,300,400,400italic,700',
         'http://fonts.googleapis.com/css?family=Lato:300,400,400italic,700,700italic',
         'http://fonts.googleapis.com/css?family=Raleway:300,400,400italic,700,700italic',
-        'homepage/css/global.css',
-        'homepage/css/structure.css',
-        'homepage/css/blogger2.css',
-        'homepage/css/custom.css',
+        'css/homepage/global.css',
+        'css/homepage/structure.css',
+        'css/homepage/blogger2.css',
+        'css/homepage/custom.css',
     ];
     public $js = [
-        'homepage/js/jquery-2.1.4.min.js',
-        'homepage/js/mfn.menu.js',
-        'homepage/js/jquery.plugins.js',
-        'homepage/js/jquery.jplayer.min.js',
-        'homepage/js/animations.js',
-        'homepage/js/scripts.js',
+        'js/homepage/jquery-2.1.4.min.js',
+        'js/homepage/mfn.menu.js',
+        'js/homepage/jquery.plugins.js',
+        'js/homepage/jquery.jplayer.min.js',
+        'js/homepage/animations.js',
+        'js/homepage/scripts.js',
+        'js/homepage/jquery-ui.min',
+        'js/homepage/jquery.ui.tabs',
     ];
     public $depends = [
-//        'yii\web\YiiAsset',
+        'yii\web\YiiAsset',
 //        'yii\bootstrap\BootstrapAsset',
     ];
 }

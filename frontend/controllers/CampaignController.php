@@ -9,6 +9,8 @@ use frontend\models\Reward;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\models\Category;
+use frontend\models\Comment;
 
 /**
  * CampaignController implements the CRUD actions for Campaign model.
@@ -53,8 +55,27 @@ class CampaignController extends Controller
      */
     public function actionView($id)
     {
+        $categories= Category::find()-> all();
+        
+        $comment = new Comment();
+        $comments = Comment::find()->where(['comment_camp_id'=>$id])->all();
+        
+        if($comment->load(Yii::$app->request->post())){
+            $comment->comment_camp_id = $id;
+            $comment->comment_user_id = Yii::$app->user->identity->getId();
+            
+            if($comment->save(false)){
+            $comments = Comment::find()->where(['comment_camp_id'=>$id])->all();
+            return $this->render('view', [
+            'model' => $this->findModel($id),
+            'comments' => $comments,
+            ]);
+            }
+        }
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'categories' => $categories,
+            'comments' => $comments,
         ]);
     }
 
@@ -112,6 +133,32 @@ class CampaignController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
+    }
+    
+    public function actionShow($id)
+    {        
+        $model = Campaign::find()->all();
+        $categories = Category::find()->all();
+        
+        if($id!='NULL'){
+            
+            $model = Campaign::find()->where(['c_cat_id'=>$id])->all();            
+            return $this->render('show',[
+            'model'=>$model,
+            'categories'=>$categories,
+            ]);
+            
+        }else{
+            return $this->render('show',[
+            'model'=>$model,
+            'categories'=>$categories,
+            ]);
+        }
+    }
+    
+    public function actionFund()
+    {
+        return $this->render('fund');
     }
 
     /**

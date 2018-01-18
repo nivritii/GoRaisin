@@ -14,6 +14,7 @@ use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\Campaign;
 use frontend\models\Fund;
+use frontend\models\Category;
 
 /**
  * Site controller
@@ -76,16 +77,12 @@ class SiteController extends Controller
     {
           $limit = 1;
           $model = Campaign::find()->limit($limit)->all();
-//          $model = Campaign::find()->joinWith('Category')->where('id')->one();
-//          $model = Campaign::find()->leftJoin('category', 'category.id=campaign.c_cat_id')->limit($limit)->all();
-//          $rows = (new \yii\db\Query())
-//                ->select(['id', 'email'])
-//                ->from('user')
-//                ->where(['last_name' => 'Smith'])
-//                ->limit(10)
-//                ->all();
+          $categories = Category::find()->all();
           
-          $exploreModel = Campaign::find()->where(['c_status'=>'published'])->all();
+          $category1 = Campaign::find()->where(['c_cat_id'=>'11'])->limit(3)->all();
+          $category2 = Campaign::find()->where(['c_cat_id'=>'10'])->limit(2)->all();
+          $category3 = Campaign::find()->where(['c_cat_id'=>'8'])->limit(2)->all();
+                    
           $fund = new Fund();
           if(Yii::$app->request->post()){
             $fund->fund_user_id = Yii::$app->user->identity->getId();
@@ -95,7 +92,10 @@ class SiteController extends Controller
           }else{
                return $this->render('index',[
                         'model'=>$model,
-                        'exploreModel'=>$exploreModel,
+                        'categories'=>$categories,
+                        'category1' => $category1,
+                        'category2' => $category2,
+                        'category3' => $category3,
                    ]);
           }
 //        return $this->render('index');

@@ -31,7 +31,7 @@ frontend\assets\HomePageAsset::register($this);
                                                 <a href="<?=Url::to(['/site/index'])?>"><span>Home</span></a>
                                             </li>
                                             <li>
-                                                <a href="<?=Url::to(['/site/index'])?>"><span>Explore</span></a>
+                                                <a href="<?=Url::to(['/campaign/show','id'=>'NULL'])?>"><span>Explore</span></a>
                                             </li>
                                             <?php if(Yii::$app->user->isGuest){ ?>
                                             <li>
