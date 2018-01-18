@@ -42,7 +42,7 @@ frontend\assets\HomePageAsset::register($this);
                                                 <a href="<?=Url::to(['/site/login'])?>"><span>Login</span></a>
                                             </li>
                                             <li>
-                                                <a href="<?=Url::to(['/site/signup'])?>"><span>Register</span></a>
+                                                <a href="<?=Url::to(['/site/signup'])?>"><span>Sign up</span></a>
                                             </li>
                                         <?php } else { ?>
                                             <li>
@@ -50,6 +50,7 @@ frontend\assets\HomePageAsset::register($this);
                                                 <!--<img class="user-image" src="<?php /*$imagePath = '/'.Yii::$app->user->identity->image;
                       echo Yii::$app->request->baseUrl.$imagePath*/?>">-->
                                                 <div class="image-div">
+                                                    <span><span>
                                                     <img class="user-image" src="<?php $imagePath = '/'.Yii::$app->user->identity->image;
                                                     echo Yii::$app->request->baseUrl.$imagePath?>">
                                                     <div class="image-div2">
@@ -67,6 +68,7 @@ frontend\assets\HomePageAsset::register($this);
                                                                 'text-decoration' => 'none','padding-left' => '15px','font-weight' => '800']
                                                         ) ?>
                                                     </div>
+                                                    </span></span>
                                                 </div>
                                                 <!--</a>-->
                                             </li>
