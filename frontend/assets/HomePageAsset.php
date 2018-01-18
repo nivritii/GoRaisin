@@ -30,7 +30,7 @@ class HomePageAsset extends AssetBundle
         'js/homepage/scripts.js',
     ];
     public $depends = [
-//        'yii\web\YiiAsset',
+        'yii\web\YiiAsset',
 //        'yii\bootstrap\BootstrapAsset',
     ];
 }
