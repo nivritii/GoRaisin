@@ -36,19 +36,19 @@ $imagePath = '/'.Yii::$app->user->identity->image;
                             <h4 style="text-align: center">Basic Information</h4>
                             <br>
                             <div style="display: inline-block;padding-left: 20%">
-                            <div style="float: left;">
-                            <h5 class="item-title">User Name</h5>
-                            <?= $form->field($model, 'username')
-                                ->label(false)
-                                ->textInput(['maxlength' => true, 'style' => 'width: 400px']) ?>
-                            </div>
-                            <div style="float: left;margin: 0 0 0 70px">
-                            <h5 class="item-title">Email Address</h5>
-                            <?= $form->field($model, 'email')
-                                ->label(false)
-                                ->textInput(['maxlength' => true, 'style' => 'width: 400px']) ?>
-                            </div>
-                            <br />
+                                <div style="float: left;">
+                                    <h5 class="item-title">User Name</h5>
+                                    <?= $form->field($model, 'username')
+                                        ->label(false)
+                                        ->textInput(['maxlength' => true, 'style' => 'width: 400px']) ?>
+                                </div>
+                                <div style="float: left;margin: 0 0 0 70px">
+                                    <h5 class="item-title">Email Address</h5>
+                                    <?= $form->field($model, 'email')
+                                        ->label(false)
+                                        ->textInput(['maxlength' => true, 'style' => 'width: 400px']) ?>
+                                </div>
+                                <br />
                             </div>
                             <div style="display: inline-block;padding-left: 20%">
                                 <div style="float: left;">
@@ -72,9 +72,9 @@ $imagePath = '/'.Yii::$app->user->identity->image;
                             </div>
                             <br><br>
                             <div id="image-div">
-                            <?= $form->field($model, 'image')
-                                ->label(false)
-                                ->fileInput(['class' => 'btn btn-primary']) ?>
+                                <?= $form->field($model, 'image')
+                                    ->label(false)
+                                    ->fileInput(['class' => 'btn btn-primary']) ?>
                             </div>
                             <br />
                         </div>
@@ -86,16 +86,16 @@ $imagePath = '/'.Yii::$app->user->identity->image;
                             <br>
                             <div style="display: inline-block;padding-left: 20%">
                                 <div style="float: left;">
-                            <h5 class="item-title">Company Name</h5>
-                            <?= $form->field($model, 'companyName')
-                                ->label(false)
-                                ->textInput(['maxlength' => true,'style' => 'float:left; width: 400px;']) ?>
+                                    <h5 class="item-title">Company Name</h5>
+                                    <?= $form->field($model, 'companyName')
+                                        ->label(false)
+                                        ->textInput(['maxlength' => true,'style' => 'float:left; width: 400px;']) ?>
                                 </div>
                                 <div style="float: left;margin: 0 0 0 70px">
-                            <h5 class="item-title">Wallet Address</h5>
-                            <?= $form->field($model, 'walletAddress')
-                                ->label(false)
-                                ->textInput(['maxlength' => true, 'style' => 'float:left; width: 400px;']) ?>
+                                    <h5 class="item-title">Wallet Address</h5>
+                                    <?= $form->field($model, 'walletAddress')
+                                        ->label(false)
+                                        ->textInput(['maxlength' => true, 'style' => 'float:left; width: 400px;']) ?>
                                 </div>
                             </div>
                             <div style="display: inline-block;padding-left: 20%">
@@ -118,17 +118,16 @@ $imagePath = '/'.Yii::$app->user->identity->image;
                     <br>
                     <div class="form-group">
                         <div id="image-div">
-                        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Save Profile', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary','style' => 'background-color: #FF0000;border-radius: 10px;width: 9%;height: 30%;color: #ffffff;font-size: 20px;border: none;padding: 5px;']) ?>
-                        <?=
-                        Html::a('View Profile',['index'],[
-                            'class' => 'btn btn-default',
-                            'id' => 'cancel',
-                        ])
-                        ?>
+                            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Save Profile', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary','style' => 'background-color: #FF0000;border-radius: 10px;width: 9%;height: 30%;color: #ffffff;font-size: 20px;border: none;padding: 5px;']) ?>
+                            <?=
+                            Html::a('View Profile',['index'],[
+                                'class' => 'btn btn-default',
+                                'id' => 'cancel',
+                            ])
+                            ?>
                         </div>
                     </div>
                     <?php ActiveForm::end(); ?>
-
                 </div>
                 <hr>
             </div>
