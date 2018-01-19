@@ -40,14 +40,14 @@ $userId = Yii::$app->user->identity->id;
                                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                    <p class="item-content"><?= yii::$app->user->identity->username?></p>
+                                    <p class="item-content"><?php echo yii::$app->user->identity->username?></p>
                                 </div>
                                 <br />
                                 <div class="content-div">
                                     <h5 class="item-title">Email Address</h5>&nbsp&nbsp&nbsp&nbsp
                                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                    &nbsp<p class="item-content"><?= yii::$app->user->identity->email?></p>
+                                    &nbsp<p class="item-content"><?php echo yii::$app->user->identity->email?></p>
                                 </div>
                                 <br />
                                 <div class="content-div">
@@ -85,7 +85,7 @@ $userId = Yii::$app->user->identity->id;
                                     <p class="item-content">&nbsp&nbsp&nbsp&nbsp
                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                        &nbsp&nbsp&nbsp&nbsp<?php Yii::$app->user->identity->companyName?></p>
+                                        &nbsp&nbsp&nbsp&nbsp<?php echo Yii::$app->user->identity->companyName?></p>
                                 </div>
                                 <br />
                                 <div class="content-div">
@@ -109,7 +109,7 @@ $userId = Yii::$app->user->identity->id;
                                 <div class="content-div">
                                     <h5 class="item-title">Wallet Address</h5>
                                     <p class="item-content">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<?php Yii::$app->user->identity->walletAddress?></p>
+                                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<?php echo Yii::$app->user->identity->walletAddress?></p>
                                 </div>
                                 <br />
                             </form>
