@@ -75,13 +75,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <div class="column one single-photo-wrapper image">
                                     <div class="image_frame scale-with-grid ">
                                         <div class="image_wrapper">
-                                            <a href="<?= Url::to(['campaign/fund'])?>" rel="prettyphoto">
+                                            <a href="#" rel="prettyphoto">
                                                 <div class="mask"></div>
                                                 <?=Html::img(Url::to('@web/images/uploads/'.$model->c_image),['class' => 'attachment-blog-navi size-blog-navi wp-post-image'],['alt'=>'Image'],['align'=>'left'],['width'=>'80'],['height'=>'80'])?>
 <!--                                                <img width="1200" height="480" src="images/home_blogger2_hotnews-1200x480.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_hotnews" itemprop="image" />-->
                                             </a>
                                             <div class="image_links">
-                                                <a href="<?= Url::to(['campaign/fund'])?>" class="zoom" rel="prettyphoto"><i class="icon-search"></i></a>
+                                                <a href="<?= Url::to(['campaign/fund'])?>" class="link"><i class="icon-link"></i></a>
                                             </div>
                                         </div>
                                     </div>

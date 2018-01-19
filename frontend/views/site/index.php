@@ -43,7 +43,7 @@ $this->title = 'GoRaisin';
 <!--                                                                    <img width="1200" height="480" src="images/home_blogger2_hotnews-1200x480.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_hotnews" itemprop="image" />-->
                                                                 </a>
                                                                 <div class="image_links double">
-                                                                    <a href="content/blogger2/images/home_blogger2_hotnews-1200x800.jpg" class="zoom" rel="prettyphoto"><i class="icon-search"></i></a><a href="content/blogger2/item-1.html" class="link"><i class="icon-link"></i></a>
+                                                                    <a href="content/blogger2/images/home_blogger2_hotnews-1200x800.jpg" class="zoom" rel="prettyphoto"><i class="icon-search"></i></a><a href="<?= Url::to(['campaign/fund'])?>" class="link"><i class="icon-link"></i></a>
                                                                 </div>
                                                             </div>
                                                         </div>

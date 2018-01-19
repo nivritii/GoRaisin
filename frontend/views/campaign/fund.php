@@ -29,7 +29,31 @@ $reward = new Reward();
                 <div class="sections_group">
                     <div class="section">
                         <div class="section_wrapper clearfix">
+                            <div class="fund-form">
+<div class="container">
+    <div class="text-center">
+        <div class="form-group">
+    <?php $form = ActiveForm::begin(); ?>
 
+    <?= $form->field($fund, 'fund_c_id')->textInput() ?>
+
+    <?= $form->field($fund, 'fund_user_id')->textInput() ?>
+
+    <?= $form->field($fund, 'fund_amt')->textInput() ?>
+
+    <?= $form->field($fund, 'fund_note')->textarea(['rows' => 6]) ?>
+
+    <div class="form-group">
+        <?= Html::submitButton($fund->isNewRecord ? 'Create' : 'Update', ['class' => $fund->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+        </div>
+    </div>
+</div>
+
+
+</div>
                         </div>
                     </div>
                 </div>

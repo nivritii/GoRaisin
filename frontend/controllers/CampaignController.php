@@ -11,7 +11,7 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\models\Category;
 use frontend\models\Comment;
-
+use frontend\models\Fund;
 /**
  * CampaignController implements the CRUD actions for Campaign model.
  */
@@ -28,6 +28,16 @@ class CampaignController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+            'access' => [
+                'class' => 'yii\filters\AccessControl',
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ]
+
             ],
         ];
     }
@@ -158,7 +168,10 @@ class CampaignController extends Controller
     
     public function actionFund()
     {
-        return $this->render('fund');
+        $fund = new Fund();
+        return $this->render('fund',[
+            'fund'=>$fund,
+        ]);
     }
 
     /**
