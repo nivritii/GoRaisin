@@ -22,6 +22,8 @@ use yii\web\IdentityInterface;
  * @property string $companyName
  * @property string $walletAddress
  * @property string $location;
+ * @property string $website;
+ * @property string $biography;
  * @property Campaign[] $campaigns
  * @property Fund[] $funds
  */
@@ -47,7 +49,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['username', 'password_hash', 'password_reset_token', 'email', 'image', 'walletAddress'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['companyName'], 'string', 'max' => 50],
-            [['walletAddress','location'], 'string', 'max' => 255],
+            [['biography'],'string','max' => 500],
+            [['walletAddress','location','website'], 'string', 'max' => 255],
             [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png,jpg,gif,jpeg,bmp'],
             [['username'], 'unique'],
             [['email'], 'unique'],
@@ -74,6 +77,8 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'companyName' => 'Company Name',
             'walletAddress' => 'Wallet Address',
             'location' => 'Location',
+            'webiste' => 'Website',
+            'biography' => 'Biography',
         ];
     }
 

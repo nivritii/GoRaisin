@@ -94,7 +94,7 @@ $userId = Yii::$app->user->identity->id;
                                 <p class="item-content">&nbsp&nbsp&nbsp&nbsp
                                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                    &nbsp&nbsp&nbsp&nbsp<?= yii::$app->user->identity->companyName?></p>
+                                    &nbsp&nbsp&nbsp&nbsp<?php Yii::$app->user->identity->companyName?></p>
                                 </div>
                                 <br />
                                 <div class="content-div">
@@ -104,7 +104,7 @@ $userId = Yii::$app->user->identity->id;
                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                         &nbsp&nbsp
-                                        isjdge djaisds dsjfhdsj dasjfhkjsfe dsfjhdsj</p>
+                                        <?php echo Yii::$app->user->identity->biography ?></p>
                                 </div>
                                 <br />
                                 <!--<input type="text" class="form-control" id="First_name" placeholder="John" value="John">-->
@@ -115,14 +115,14 @@ $userId = Yii::$app->user->identity->id;
                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                         &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                        www.google.com</p>
+                                        <?php echo Yii::$app->user->identity->website ?></p>
                                 </div>
                                 <br />
                                 <div class="content-div">
                                 <h5 class="item-title">Wallet Address</h5>
                                 <!--<label for="Last_name" style="font-size: 20px">Email Address</label>-->
                                 <p class="item-content">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<?= yii::$app->user->identity->walletAddress?></p>
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<?php Yii::$app->user->identity->walletAddress?></p>
                                 </div>
                                 <br />
                                 <!--<input type="email" class="form-control" id="Last_name" placeholder="Doe" value="Doe">-->

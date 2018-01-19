@@ -101,13 +101,13 @@ $imagePath = '/'.Yii::$app->user->identity->image;
                             <div style="display: inline-block;padding-left: 20%">
                                 <div style="float: left;">
                                     <h5 class="item-title">Biography</h5>
-                                    <?= $form->field($model, 'companyName')
+                                    <?= $form->field($model, 'biography')
                                         ->label(false)
-                                        ->textInput(['maxlength' => true,'style' => 'float:left; width: 400px;']) ?>
+                                        ->textarea(['row' => 10,'maxlength' => true,'style' => 'float:left; width: 400px;']) ?>
                                 </div>
                                 <div style="float: left;margin: 0 0 0 70px">
                                     <h5 class="item-title">Website</h5>
-                                    <?= $form->field($model, 'walletAddress')
+                                    <?= $form->field($model, 'website')
                                         ->label(false)
                                         ->textInput(['maxlength' => true, 'style' => 'float:left; width: 400px;']) ?>
                                 </div>

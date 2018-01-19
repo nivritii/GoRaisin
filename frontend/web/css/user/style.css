@@ -378,7 +378,9 @@ main content basic style
     width: 40%;
     height: 30%;
     color: #ffffff;
-    font-size: 25px;
+    font-size: 20px;
+    border: none;
+    padding: 5px;
 }
 .edit-button:hover {
     color: #ffffff;
