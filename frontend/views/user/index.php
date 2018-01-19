@@ -24,6 +24,10 @@ $userId = Yii::$app->user->identity->id;
                         <div style="margin: 20px auto; width: 200px; text-align: center;">
                             <h1 class="page-title">Basic Profile</h1>
                         </div>
+                        <div class="button-div">
+                            <?= Html::a('Edit Profile',['update', 'id' => $userId], ['class' => 'edit-button']) ?>
+                        </div>
+                        <br />
                     </div>
                     <hr>
                     <div class="panel panel-default">
@@ -52,7 +56,7 @@ $userId = Yii::$app->user->identity->id;
                                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                                     &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<p class="item-content">China</p>
+                                    &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<p class="item-content"><?php echo Yii::$app->user->identity->location ?></p>
                                 </div>
                                 <!--<label for="Last_name" style="font-size: 20px">Email Address</label>-->
 
@@ -69,7 +73,7 @@ $userId = Yii::$app->user->identity->id;
                                 <div class="col-lg-12 col-md-12">
                                     <img src="<?php
                                     $imagePath = '/'.Yii::$app->user->identity->image;
-                                    echo Yii::$app->request->baseUrl.$imagePath?>" width="120" height="120" class="img-circle"/>
+                                    echo Yii::$app->request->baseUrl.$imagePath?>" class="user-image"/>
                                 </div>
                                 <!--<div class="col-lg-12 col-md-12">
                                     <button class="btn btn-primary"><i class="fa fa-upload" aria-hidden="true"></i> Upload a new profile photo!</button>
@@ -124,9 +128,6 @@ $userId = Yii::$app->user->identity->id;
                                 <!--<input type="email" class="form-control" id="Last_name" placeholder="Doe" value="Doe">-->
                             </form>
                         </div>
-                    </div>
-                    <div class="button-div">
-                    <?= Html::a('Edit Profile',['update', 'id' => $userId], ['class' => 'edit-button']) ?>
                     </div>
                 </div>
                 <hr>

@@ -16,13 +16,6 @@ $userId = Yii::$app->user->identity->id;
 $imagePath = '/'.Yii::$app->user->identity->image;
 ?>
 <div class="user-update">
-
-    <html lang="en" class="no-js">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    </head>
     <body>
 
     <main class="cd-main-content">
@@ -36,96 +29,103 @@ $imagePath = '/'.Yii::$app->user->identity->image;
                             <h1 class="page-title">Edit Profile</h1>
                         </div>
                     </div>
+                    <hr>
                     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <h4 style="text-align: center">Basic Information</h4>
                             <br>
-
-                            <?php /*$form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); */?>
-
-                            <h6>User Name</h6>
+                            <div style="display: inline-block;padding-left: 20%">
+                            <div style="float: left;">
+                            <h5 class="item-title">User Name</h5>
                             <?= $form->field($model, 'username')
                                 ->label(false)
-                                ->textInput(['maxlength' => true, 'style' => 'float:left;width:500px;']) ?>
-
-                            <br><br>
-                            <h6>Email Address</h6>
+                                ->textInput(['maxlength' => true, 'style' => 'width: 400px']) ?>
+                            </div>
+                            <div style="float: left;margin: 0 0 0 70px">
+                            <h5 class="item-title">Email Address</h5>
                             <?= $form->field($model, 'email')
                                 ->label(false)
-                                ->textInput(['maxlength' => true, 'style' => 'float:left; width: 500px;']) ?>
-
-                            <!--<br>
-                            <h6>Company Name</h6>
-                            <?/*= $form->field($model, 'companyName')
-                                ->label(false)
-                                ->textInput(['maxlength' => true,'style' => 'float:left; width: 500px;']) */?>
-
-                            <br><br>
-                            <h6>Wallet Address</h6>
-                            --><?/*= $form->field($model, 'walletAddress')
-                                ->label(false)
-                                ->textInput(['maxlength' => true, 'style' => 'float:left; width: 500px;']) */?>
-
-                            <!--<br><br>
-                            <div class="form-group">
-                                <?/*= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) */?>
-                                <?/*=
-                                Html::a('Cancel',['header'],[
-                                    'class' => 'btn btn-default',
-                                    'id' => 'cancel',
-                                ])
-                                */?>
+                                ->textInput(['maxlength' => true, 'style' => 'width: 400px']) ?>
                             </div>
-
-                            --><?php /*ActiveForm::end(); */?>
+                            <br />
+                            </div>
+                            <div style="display: inline-block;padding-left: 20%">
+                                <div style="float: left;">
+                                    <h5 class="item-title">Location</h5>
+                                    <?= $form->field($model, 'location')
+                                        ->label(false)
+                                        ->textInput(['maxlength' => true, 'style' => 'width: 400px']) ?>
+                                </div>
+                                <br />
+                            </div>
                         </div>
                     </div>
-
+                    <hr>
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <h4 style="text-align: center">Your Image</h4>
-                            <br><br>
+                            <br>
                             <div class="col-lg-12 col-md-12" align="center">
-                                <img src="<?php echo Yii::$app->request->baseUrl.$imagePath?>" width="120" height="120" class="img-circle"/>
+                                <img src="<?php echo Yii::$app->request->baseUrl.$imagePath?>" class="user-image"/>
                                 <br><br>
                             </div>
                             <br><br>
+                            <div id="image-div">
                             <?= $form->field($model, 'image')
                                 ->label(false)
-                                ->fileInput() ?>
+                                ->fileInput(['class' => 'btn btn-primary']) ?>
+                            </div>
+                            <br />
                         </div>
                     </div>
-
+                    <hr>
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <h4 style="text-align: center">Extend Profile</h4>
                             <br>
-
-                            <br>
-                            <h6>Company Name</h6>
+                            <div style="display: inline-block;padding-left: 20%">
+                                <div style="float: left;">
+                            <h5 class="item-title">Company Name</h5>
                             <?= $form->field($model, 'companyName')
                                 ->label(false)
-                                ->textInput(['maxlength' => true,'style' => 'float:left; width: 500px;']) ?>
-
-
-                            <br><br>
-                            <h6>Wallet Address</h6>
+                                ->textInput(['maxlength' => true,'style' => 'float:left; width: 400px;']) ?>
+                                </div>
+                                <div style="float: left;margin: 0 0 0 70px">
+                            <h5 class="item-title">Wallet Address</h5>
                             <?= $form->field($model, 'walletAddress')
                                 ->label(false)
-                                ->textInput(['maxlength' => true, 'style' => 'float:left; width: 500px;']) ?>
+                                ->textInput(['maxlength' => true, 'style' => 'float:left; width: 400px;']) ?>
+                                </div>
+                            </div>
+                            <div style="display: inline-block;padding-left: 20%">
+                                <div style="float: left;">
+                                    <h5 class="item-title">Biography</h5>
+                                    <?= $form->field($model, 'companyName')
+                                        ->label(false)
+                                        ->textInput(['maxlength' => true,'style' => 'float:left; width: 400px;']) ?>
+                                </div>
+                                <div style="float: left;margin: 0 0 0 70px">
+                                    <h5 class="item-title">Website</h5>
+                                    <?= $form->field($model, 'walletAddress')
+                                        ->label(false)
+                                        ->textInput(['maxlength' => true, 'style' => 'float:left; width: 400px;']) ?>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <br>
                     <div class="form-group">
-                        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+                        <div id="image-div">
+                        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Save Profile', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
                         <?=
-                        Html::a('Cancel',['index'],[
+                        Html::a('View Profile',['index'],[
                             'class' => 'btn btn-default',
                             'id' => 'cancel',
                         ])
                         ?>
+                        </div>
                     </div>
                     <?php ActiveForm::end(); ?>
 

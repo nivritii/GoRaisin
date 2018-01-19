@@ -28,9 +28,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'updated_at')->textInput() ?>
 
-    <?= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'image')->fileInput() ?>
 
     <?= $form->field($model, 'companyName')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'walletAddress')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'location')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
