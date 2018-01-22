@@ -6,34 +6,48 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+frontend\assets\LoginAsset::register($this);
 
-$this->title = 'Login';
+$this->title = 'Log in - GoRaisin';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <div id="login-div">
+        <p class="form-title">Log in</p>
+        <div class="row">
+            <div style="margin-left: 3%;margin-top: 9%;margin-right: 3%;">
+                <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
-    <p>Please fill out the following fields to login:</p>
+                <?= $form->field($model, 'username')
+                    ->textInput(['autofocus' => true,'style' => 'width:380px','placeholder' => 'Username'])
+                    ->label(false)
+                ?>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-                <?= $form->field($model, 'password')->passwordInput() ?>
-
-                <?= $form->field($model, 'rememberMe')->checkbox() ?>
+                <?= $form->field($model, 'password')
+                    ->passwordInput(['style' => 'width:380px','placeholder' => 'Password'])
+                    ->label(false)
+                ?>
 
                 <div style="color:#999;margin:1em 0">
-                    If you forgot your password you can <?= Html::a('reset it', ['site/request-password-reset']) ?>.
+                    <?= Html::a('Forgot your password?', ['site/request-password-reset'],['class' => 'forget-password']) ?>
                 </div>
 
-                <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                </div>
+                <?= Html::submitButton('Log in', ['class' => 'login-button', 'name' => 'login-button']) ?>
 
-            <?php ActiveForm::end(); ?>
+                <?= $form->field($model, 'rememberMe')->checkbox() ?>
+                <?php ActiveForm::end(); ?>
+
+                <fieldset class="title">
+                    <legend>Or</legend>
+                </fieldset>
+                <br />
+
+                <?= Html::submitButton('<i class="fa fa-facebook-square fa-lg"></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspLog in with Facebook', ['class' => 'login-facebook', 'name' => 'login-button']) ?>
+                <p class="notice-facebook">We'll never post anything on Facebook without your permission.</p>
+
+                <hr />
+                <p class="signup-notice">New to GoRaisin?<?= Html::a('Sign up', ['site/signup'],['class' => 'signup-a']) ?></p>
+            </div>
         </div>
     </div>
 </div>

@@ -12,6 +12,7 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
+    public $repeat_password;
 
 
     /**
@@ -33,6 +34,9 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+
+            ['repeat_password','required'],
+            ['repeat_password','compare','compareAttribute'=>'password','message'=>"Passwords don't match"],
         ];
     }
 
