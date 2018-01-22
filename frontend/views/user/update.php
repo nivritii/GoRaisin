@@ -74,7 +74,7 @@ $imagePath = '/'.Yii::$app->user->identity->image;
                             <div id="image-div">
                                 <?= $form->field($model, 'image')
                                     ->label(false)
-                                    ->fileInput(['class' => 'btn btn-primary']) ?>
+                                    ->fileInput(['style' => 'color:#d30000;padding-left:5%']) ?>
                             </div>
                             <br />
                         </div>
@@ -118,10 +118,11 @@ $imagePath = '/'.Yii::$app->user->identity->image;
                     <br>
                     <div class="form-group">
                         <div id="image-div">
-                            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Save Profile', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary','style' => 'background-color: #FF0000;border-radius: 10px;width: 9%;height: 30%;color: #ffffff;font-size: 20px;border: none;padding: 5px;']) ?>
+                            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Save Profile', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary','style' => 'background-color: #d30000;border-radius: 10px;width: 9%;height: 30%;color: #ffffff;font-size: 20px;border: none;padding: 5px;']) ?>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
                             <?=
                             Html::a('View Profile',['index'],[
-                                'class' => 'btn btn-default',
+                                'class' => 'view-profile',
                                 'id' => 'cancel',
                             ])
                             ?>

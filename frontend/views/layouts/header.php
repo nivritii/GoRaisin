@@ -56,17 +56,13 @@ frontend\assets\HomePageAsset::register($this);
                                                     <div class="image-div2">
                                                         <p class="user-name"><?php echo Yii::$app->user->identity->username?></p>
                                                         <hr />
-                                                        <?= Html::a('Profile',['user/index'],['class' => 'image-a'])?>
+                                                        <?php $userId = Yii::$app->user->identity->id; ?>
+                                                        <?= Html::a('Profile',['user/update','id' => $userId],['class' => 'image-a'])?>
                                                         <!--<a class="image-a">Profile</a>-->
                                                         <a class="image-a">Campaign</a>
                                                         <a class="image-a">Wallet</a>
                                                         <hr />
-                                                        <?= Html::a(
-                                                            'Log out',
-                                                            ['/site/logout'],
-                                                            ['data-method' => 'post', 'class' => 'btn btn-default btn-flat',
-                                                                'text-decoration' => 'none','padding-left' => '15px','font-weight' => '800']
-                                                        ) ?>
+                                                        <?= Html::a('Log out', ['/site/logout'], ['data-method' => 'post', 'class' => 'logout-a']) ?>
                                                     </div>
                                                     </span></span>
                                                 </div>
