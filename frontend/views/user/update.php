@@ -40,13 +40,13 @@ $imagePath = '/'.Yii::$app->user->identity->image;
                                     <h5 class="item-title">User Name</h5>
                                     <?= $form->field($model, 'username')
                                         ->label(false)
-                                        ->textInput(['maxlength' => true, 'style' => 'width: 400px']) ?>
+                                        ->textInput(['maxlength' => true, 'style' => 'width: 400px;font-size:20px']) ?>
                                 </div>
                                 <div style="float: left;margin: 0 0 0 70px">
                                     <h5 class="item-title">Email Address</h5>
                                     <?= $form->field($model, 'email')
                                         ->label(false)
-                                        ->textInput(['maxlength' => true, 'style' => 'width: 400px']) ?>
+                                        ->textInput(['maxlength' => true, 'style' => 'width: 400px;font-size:20px']) ?>
                                 </div>
                                 <br />
                             </div>
@@ -55,7 +55,7 @@ $imagePath = '/'.Yii::$app->user->identity->image;
                                     <h5 class="item-title">Location</h5>
                                     <?= $form->field($model, 'location')
                                         ->label(false)
-                                        ->textInput(['maxlength' => true, 'style' => 'width: 400px']) ?>
+                                        ->textInput(['maxlength' => true, 'style' => 'width: 400px;font-size:20px']) ?>
                                 </div>
                                 <br />
                             </div>
@@ -89,13 +89,13 @@ $imagePath = '/'.Yii::$app->user->identity->image;
                                     <h5 class="item-title">Company Name</h5>
                                     <?= $form->field($model, 'companyName')
                                         ->label(false)
-                                        ->textInput(['maxlength' => true,'style' => 'float:left; width: 400px;']) ?>
+                                        ->textInput(['maxlength' => true,'style' => 'float:left; width: 400px;font-size:20px']) ?>
                                 </div>
                                 <div style="float: left;margin: 0 0 0 70px">
                                     <h5 class="item-title">Wallet Address</h5>
                                     <?= $form->field($model, 'walletAddress')
                                         ->label(false)
-                                        ->textInput(['maxlength' => true, 'style' => 'float:left; width: 400px;']) ?>
+                                        ->textInput(['maxlength' => true, 'style' => 'float:left; width: 400px;font-size:20px']) ?>
                                 </div>
                             </div>
                             <div style="display: inline-block;padding-left: 20%">
@@ -103,13 +103,13 @@ $imagePath = '/'.Yii::$app->user->identity->image;
                                     <h5 class="item-title">Biography</h5>
                                     <?= $form->field($model, 'biography')
                                         ->label(false)
-                                        ->textarea(['row' => 10,'maxlength' => true,'style' => 'float:left; width: 400px;']) ?>
+                                        ->textarea(['row' => 10,'maxlength' => true,'style' => 'float:left; width: 400px;font-size:20px']) ?>
                                 </div>
                                 <div style="float: left;margin: 0 0 0 70px">
                                     <h5 class="item-title">Website</h5>
                                     <?= $form->field($model, 'website')
                                         ->label(false)
-                                        ->textInput(['maxlength' => true, 'style' => 'float:left; width: 400px;']) ?>
+                                        ->textInput(['maxlength' => true, 'style' => 'float:left; width: 400px;font-size:20px']) ?>
                                 </div>
                             </div>
                         </div>
