@@ -1,0 +1,62 @@
+#login-div {
+    margin:0 auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background-color: #ffffff;
+    width: 400px;
+}
+.form-title {
+    font-size: 30px;
+    color: black;
+    padding-left: 3%;
+    padding-top: 4%;
+}
+.forget-password {
+    color: #d30000;
+}
+.forget-password:hover {
+    text-decoration: none;
+    color: #505050;
+}
+.login-button {
+    font-size: 15px;
+    width: 380px;
+}
+fieldset.title {
+    border-top: 1px solid #aaa;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    display: block;
+    text-align: center;
+}
+
+fieldset.title legend {
+    padding: 5px 10px;
+}
+.login-facebook {
+    font-size: 15px;
+    width: 380px;
+    background-color: #3b5998;
+}
+.notice-facebook {
+    font-size: 13px;
+}
+.signup-notice {
+    text-align: center;
+    padding-bottom: 14px;
+}
+.signup-a {
+    font-weight: 600;
+}
+.login-notice {
+    text-align: center;
+    padding-top: 14px;
+}
+.notice-facebook2 {
+    font-size: 13px;
+    padding-bottom: 14px;
+}
+.policy-a {
+    font-weight: 100;
+}
