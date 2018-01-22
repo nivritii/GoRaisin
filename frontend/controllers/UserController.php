@@ -113,7 +113,7 @@ class UserController extends Controller
             if (!empty($model->file) && $model->file->size !== 0) {
                 $model->file->saveAs('uploads/user/' . $imageName . '.' .
                     $model->file->extension);
-                $model->image = 'uploads/user' . $imageName . '.' .
+                $model->image = 'uploads/user/' . $imageName . '.' .
                     $model->file->extension;
             } else {
                 $model->image = $current_image;
