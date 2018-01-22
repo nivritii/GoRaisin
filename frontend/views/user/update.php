@@ -70,7 +70,7 @@ $imagePath = '/'.Yii::$app->user->identity->image;
                                 <img src="<?php echo Yii::$app->request->baseUrl.$imagePath?>" class="user-image"/>
                                 <br><br>
                             </div>
-                            <br><br>
+                            <br>
                             <div id="image-div">
                                 <?= $form->field($model, 'image')
                                     ->label(false)
