@@ -46,6 +46,7 @@ use yii\helpers\ArrayHelper;
 
 <div class="container">
 <div class="text-left">
+    <h1>Basics</h1>
     <div class="form-group">
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
