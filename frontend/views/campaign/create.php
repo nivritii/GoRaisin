@@ -6,8 +6,8 @@ use frontend\models\Campaign;
 use frontend\models\CampaignReward;
 use frontend\models\RewardItem;
 use frontend\assets\HomePageAsset;
+use frontend\assets\CampaignAsset;
 
-HomePageAsset::register($this);
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
 
@@ -16,17 +16,6 @@ $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
-
-<body class="archive category layout-full-width nice-scroll-on mobile-tb-left button-flat header-classic minimalist-header sticky-header sticky-white ab-hide subheader-both-left menu-line-below-80-1 menuo-right menuo-no-borders footer-copy-center">
-    <!-- Main Theme Wrapper -->
-    <div id="Wrapper">
-        <!-- Header Wrapper -->
-        <!-- Main Content -->
-<!--        <div id="Content">-->
-            <div class="content_wrapper clearfix">
-                <div class="sections_group">
-                    <div class="section">
-                        <div class="section_wrapper clearfix">
 
     <?php
     
@@ -37,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
     
     $wizard_config = [
 	'steps' => [
-		'1' => [
+		1 => [
 			'title' => 'Start your campaign',
 			'icon' => 'glyphicon glyphicon-briefcase',
 			'content' => $this->render('_form_1',['model' => $model,]),
@@ -50,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				 ],
 			 ],
 		],
-       		'2' => [
+       		3 => [
 			'title' => 'Rewards',
 			'icon' => 'glyphicon glyphicon-gift',
 			'content' => $this->render('_reward',['c_reward' => $c_reward, 'rewardsItem' =>$rewardsItem]),
@@ -70,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ]
 			 ],
                 ],
-		'3' => [
+		2 => [
 			'title' => 'The Story',
 			'icon' => 'glyphicon glyphicon-film',
 			'content' => $this->render('_form_2',['model' => $model,]),
@@ -90,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 ]
 			 ],
                 ],
-                '4' => [
+                4 => [
 			'title' => 'The Profile',
 			'icon' => 'glyphicon glyphicon-user',
 			'content' => $this->render('_form_3',['model' => $model, ]),
@@ -111,7 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	],
 	
 //        'complete_content' => "You are done!", // Optional final screen
-	'start_step' => 1, // Optional, start with a specific step
+	//'start_step' => 1, // Optional, start with a specific step
 ];
 ?>
 
@@ -120,12 +109,6 @@ $this->params['breadcrumbs'][] = $this->title;
     ActiveForm::end();
 ?>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-<!--        </div>-->
-    </div>
     
     <script>
 $(document).ready(function () {
