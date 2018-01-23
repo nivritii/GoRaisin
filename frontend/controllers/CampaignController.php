@@ -105,21 +105,9 @@ class CampaignController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             $model-> c_author = Yii::$app->user->identity->getId();
-            
-//            $model->file = UploadedFile::getInstance($model,'file');
-//            $model->file->saveAs('uploads/campaign_img/'.$model->file->baseName.'.'.$model->file->extension);
-//            $model->c_image=$model->file->baseName.'.'.$model->file->extension;
-            
-//            $model->videoFile = UploadedFile::getInstance($model, 'videoFile');
-//            $model->videoFile->saveAs('uploads/campaign_video/'.$model->videoFile->baseName.'.'.$model->videoFile->extension);
-//            $model->c_video=$model->videoFile->baseName.'.'.$model->videoFile->extension;
+
                                   
-            if($model->save(false)){              
-//                $reward->load(Yii::$app->request->post());
-//                $reward->c_id = $model->c_id;
-//                if ($reward->save(false)){
-//                return $this->redirect(['view', 'id' => $model->c_id]);
-//                }
+            if($model->save(false)){
             $rewardsItem = Model::createMultiple(RewardItem::classname());
             Model::loadMultiple($rewardsItem, Yii::$app->request->post());
             

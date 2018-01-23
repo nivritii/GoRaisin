@@ -213,4 +213,3 @@ echo TabsX::widget([
     </div>
 </div>
 </body>
-
