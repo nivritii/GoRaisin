@@ -41,20 +41,13 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        
-//        'booster' => array(
-//            'class' => 'vendor\booster\components\Booster',
-//        ),
-        
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false,
+            'showScriptName' => true,
+            'enableStrictParsing' => false,
             'rules' => [
             ],
         ],
-        */
-        
     ],
     'params' => $params,
 ];

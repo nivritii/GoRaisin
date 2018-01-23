@@ -3,6 +3,8 @@
 namespace frontend\models;
 
 use Yii;
+use yii\base\NotSupportedException;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "user".
@@ -18,16 +20,19 @@ use Yii;
  * @property int $updated_at
  * @property string $image
  * @property string $companyName
- * @property string $walletAddres
- *
+ * @property string $walletAddress
+ * @property string $location;
+ * @property string $website;
+ * @property string $biography;
  * @property Campaign[] $campaigns
  * @property Fund[] $funds
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
     /**
      * @inheritdoc
      */
+    public $file;
     public static function tableName()
     {
         return 'user';
@@ -39,11 +44,14 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at', 'companyName', 'walletAddres'], 'required'],
+            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
             [['status', 'created_at', 'updated_at'], 'integer'],
-            [['username', 'password_hash', 'password_reset_token', 'email', 'image', 'walletAddres'], 'string', 'max' => 255],
+            [['username', 'password_hash', 'password_reset_token', 'email', 'image', 'walletAddress'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['companyName'], 'string', 'max' => 50],
+            [['biography'],'string','max' => 500],
+            [['walletAddress','location','website'], 'string', 'max' => 255],
+            [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png,jpg,gif,jpeg,bmp'],
             [['username'], 'unique'],
             [['email'], 'unique'],
             [['password_reset_token'], 'unique'],
@@ -67,7 +75,10 @@ class User extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
             'image' => 'Image',
             'companyName' => 'Company Name',
-            'walletAddres' => 'Wallet Addres',
+            'walletAddress' => 'Wallet Address',
+            'location' => 'Location',
+            'webiste' => 'Website',
+            'biography' => 'Biography',
         ];
     }
 
@@ -85,5 +96,87 @@ class User extends \yii\db\ActiveRecord
     public function getFunds()
     {
         return $this->hasMany(Fund::className(), ['fund_user_id' => 'id']);
+    }
+    /*
+     * @inheritdoc
+     */
+    public static function findIdentity($id)
+    {
+        return static::findOne(['id' => $id]);
+    }
+
+    /*
+     * @inheritdoc
+     */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+    }
+
+    /*
+     * @inheritdoc
+     */
+    public function getId()
+    {
+        return $this->getPrimaryKey();
+    }
+
+    /*
+     * @inheritdoc
+     */
+    public function getAuthKey()
+    {
+        return $this->auth_key;
+    }
+
+    /*
+     * @inheritdoc
+     */
+    public function validateAuthKey($authKey)
+    {
+        return $this->getAuthKey() === $authKey;
+    }
+
+    /*
+     * @param string $password
+     */
+    public function setPassword($password)
+    {
+        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+    }
+
+    /*
+     * generate 'remember me' validate key
+     */
+    public function generateAuthKey()
+    {
+        $this->auth_key = Yii::$app->security->generateRandomString();
+    }
+
+    /*
+     * @param string $username
+     * @return static|null
+     */
+    public static function findByUsername($username)
+    {
+        return static::findOne(['username' => $username]);
+    }
+
+    /*
+     * @param string $email
+     * @return static|null
+     */
+    public static function findByEmail($email)
+    {
+        return static::findOne(['email' => $email]);
+    }
+
+    /*
+     * @param string $password password to validate
+     * @return boolean if password provided is valid
+     */
+    public function validatePassword($password)
+    {
+        return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
 }
