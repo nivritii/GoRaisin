@@ -5,8 +5,12 @@ use yii\widgets\ActiveForm;
 use frontend\models\Campaign;
 use frontend\models\CampaignReward;
 use frontend\models\RewardItem;
-frontend\assets\CampaignAsset::register($this);
-frontend\assets\HomePageAsset::register($this);
+use frontend\assets\HomePageAsset;
+use frontend\assets\CampaignAsset;
+
+HomePageAsset::register($this);
+CampaignAsset::register($this);
+
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
