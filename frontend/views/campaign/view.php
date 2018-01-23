@@ -5,6 +5,8 @@ use yii\widgets\DetailView;
 use yii\helpers\Url;
 use frontend\models\Category;
 use frontend\assets\HomePageAsset;
+use yii\widgets\ListView;
+use kartik\tabs\TabsX;
 
 HomePageAsset::register($this);
 
@@ -19,16 +21,17 @@ frontend\assets\HomePageAsset::register($this);
 <div class="campaign-view">
     <!-- Main Content -->
     <div id="Content">
+        <div style="margin-right: 8%; margin-left: 8%; border-right: .5px solid #f0f0f0; padding-bottom: 0%; padding-top: 0%">
+            <div class="column zero">
+                <h1 class="title"><?=$model->c_title?></h1>
+                <h4 class="title"><?=$model->c_description?></h4>
+            </div>
+        </div>
         <div class="content_wrapper clearfix">
-            <div class="sections_group" style="width: 63%;float: left; margin-left: 8.5%">
+            <div class="sections_group" style="width: 55%;float: left; margin-left: 8%; border-right: .5px solid #f0f0f0">
                 <div id=" " class="no-title no-share  post  format-standard has-post-thumbnail  category-hot-news   ">
                     <div class="section section-post-header">
                         <div class="section_wrapper clearfix">
-                            <!-- Posts Navigation -->
-                            <!-- One full width row-->
-                            <div class="column one post-nav">
-                                <a class="list-nav" href="<?= Url::to(['campaign/show','id'=>'NULL'])?>"><i class="icon-layout"></i>Show all</a>
-                            </div>
                             <!-- Post Header-->
                             <!-- One full width row-->
                             <div class="column one post-header">
@@ -52,6 +55,9 @@ frontend\assets\HomePageAsset::register($this);
                                                             <a rel="category tag" href="<?= Url::to(['campaign/show', 'id'=>$category->id])?>"><?= $category->name?></a>
                                                         </li>
                                                     <?php }?>
+                                                        <li>
+                                                            <a rel="category tag" href="<?= Url::to(['campaign/show', 'id'=>'NULL'])?>">Show all</a>
+                                                        </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -81,210 +87,61 @@ frontend\assets\HomePageAsset::register($this);
                         <div class="section the_content has_content">
                             <div class="section_wrapper">
                                 <div class="the_content_wrapper">
-                                    <h5><?=$model->c_description?></h5>
-                                    <hr class="no_line" style="margin: 0 auto 15px;" />
-                                    <h3>Description</h3>
-                                    <hr class="no_line" style="margin: 0 auto 15px;" />
-                                    <p><?=$model->c_description_long?></p>
-                                    <hr class="no_line" style="margin: 0 auto 15px;" />
                                     <div class="mcb-column one-second column_tabs ">
-                                        <div class="jq-tabs tabs_wrapper tabs_horizontal ui-tabs ui-widget ui-widget-content ui-corner-all">
-                                            <ul class ="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
-                                                <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="tab-5a5ff9210758e-1" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true">
-                                                    <a href="#-1v" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1">Commodo luctus</a>
-                                                </li>
-                                                <li class="ui-state-default ui-corner-top" role="tab">
-                                                    <a href="#-2v">Eget lacina</a>
-                                                </li>
-                                                <li class="ui-state-default ui-corner-top" role="tab">
-                                                    <a href="#-3v">Porta gravida</a>
-                                                </li>
-                                            </ul>
-                                            <div id="-1v" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
-                                                <p>
-                                                    <span class="big">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce velit tortor, dictum in gravida nec, aliquet non lorem. </span>
-                                                </p>
-                                                <p>
-                                                    Donec vestibulum justo a diam ultricies pellentesque. Quisque mattis diam vel lacus tincidunt elementum. Sed vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra a, dapibus at dolor. In iaculis viverra neque, ac eleifend ante lobortis id. In viverra ipsum ac eros tristique dignissim. Donec aliquam velit vitae mi dictum.
-                                                </p>
-                                            </div>
-                                            <div id="-2v" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
-                                                <p>
-                                                    <span class="big">Curabitur et ligula. Ut molestie a, ultricies porta urna. Vestibulum commodo volutpat a, convallis ac, laoreet enim. Phasellus fermentum in, dolor.</span>
-                                                </p>
-                                                <p>
-                                                    Donec vestibulum justo a diam ultricies pellentesque. Quisque mattis diam vel lacus tincidunt elementum. Sed vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra a, dapibus at dolor. In iaculis viverra neque, ac eleifend ante lobortis id.
-                                                </p>
-                                            </div>
-                                            <div id="-3v" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
-                                                <p>
-                                                    <span class="big">Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies.</span>
-                                                </p>
-                                                <p>
-                                                    Donec vestibulum justo a diam ultricies pellentesque. Quisque mattis diam vel lacus tincidunt elementum. Sed vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra a, dapibus at dolor. In iaculis viverra neque, ac eleifend ante lobortis id. In viverra ipsum ac eros tristique dignissim. Donec aliquam velit vitae mi dictum.
-                                                </p>
-                                            </div>
-                                        </div>
+<?php
+$items = [
+    [
+        'label'=>'<i class="glyphicon glyphicon-picture"></i> Story',
+        'content'=>$this->render('campaign_content',['model' => $model]),
+        'active'=>true
+    ],
+    [
+        'label'=>'<i class="glyphicon glyphicon-bell"></i> Updates',
+        'content'=>"Roadmap!",
+        //'linkOptions'=>['data-url'=>\yii\helpers\Url::to(['/campaign/form'])]
+    ],
+    [
+        'label'=>'<i class="glyphicon glyphicon-comment"></i> Comments',
+        'content'=>$this->render('campaign_comments'),
+    ],
+    [
+        'label'=>'<i class="glyphicon glyphicon-user"></i> Community',
+        'content'=>"No of backers",
+    ],
+    [
+        'label'=>'<i class="glyphicon glyphicon-question-sign"></i> FAQ',
+        'content'=>"Questions",
+    ],
+];
+
+// Tab Below Centered
+echo TabsX::widget([
+    'items'=>$items,
+    'position'=>TabsX::POS_ABOVE,
+    'align'=>TabsX::ALIGN_CENTER,
+    'bordered'=>false,
+    'encodeLabels'=>false
+]);
+                                        
+?>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!--                            <div class="mcb-column one-second column_tabs ">
-                                                                <div class="jq-tabs tabs_wrapper tabs_horizontal ui-tabs ui-widget ui-widget-content ui-corner-all">
-                                                                    <ul class ="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
-                                                                        <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab">
-                                                                            <a href="#-1v">Commodo luctus</a>
-                                                                        </li>
-                                                                        <li class="ui-state-default ui-corner-top" role="tab">
-                                                                            <a href="#-2v">Eget lacina</a>
-                                                                        </li>
-                                                                        <li class="ui-state-default ui-corner-top">
-                                                                            <a href="#-3v">Porta gravida</a>
-                                                                        </li>
-                                                                    </ul>
-                                                                    <div id="-1v">
-                                                                        <p>
-                                                                            <span class="big">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce velit tortor, dictum in gravida nec, aliquet non lorem. </span>
-                                                                        </p>
-                                                                        <p>
-                                                                            Donec vestibulum justo a diam ultricies pellentesque. Quisque mattis diam vel lacus tincidunt elementum. Sed vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra a, dapibus at dolor. In iaculis viverra neque, ac eleifend ante lobortis id. In viverra ipsum ac eros tristique dignissim. Donec aliquam velit vitae mi dictum.
-                                                                        </p>
-                                                                    </div>
-                                                                    <div id="-2v">
-                                                                        <p>
-                                                                            <span class="big">Curabitur et ligula. Ut molestie a, ultricies porta urna. Vestibulum commodo volutpat a, convallis ac, laoreet enim. Phasellus fermentum in, dolor.</span>
-                                                                        </p>
-                                                                        <p>
-                                                                            Donec vestibulum justo a diam ultricies pellentesque. Quisque mattis diam vel lacus tincidunt elementum. Sed vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra a, dapibus at dolor. In iaculis viverra neque, ac eleifend ante lobortis id.
-                                                                        </p>
-                                                                    </div>
-                                                                    <div id="-3v">
-                                                                        <p>
-                                                                            <span class="big">Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies.</span>
-                                                                        </p>
-                                                                        <p>
-                                                                            Donec vestibulum justo a diam ultricies pellentesque. Quisque mattis diam vel lacus tincidunt elementum. Sed vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra a, dapibus at dolor. In iaculis viverra neque, ac eleifend ante lobortis id. In viverra ipsum ac eros tristique dignissim. Donec aliquam velit vitae mi dictum.
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                            </div>-->
-                        <!--                            <div class="section section-post-footer">
-                                                        <div class="section_wrapper clearfix">
-                                                             One full width row
-                                                            <div class="column one post-pager">
-                                                                 Navigation Area
-                                                                <div class="pager-single">
-                                                                    <span>1</span><a href="#"><span>2</span></a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>-->
-                        <!--                            Author Info Area
-                                                    <div class="section section-post-about">
-                                                        <div class="section_wrapper clearfix">
-                                                             One full width row
-                                                            <div class="column one author-box">
-                                                                <div class="author-box-wrapper">
-                                                                    <div class="avatar-wrapper">
-                                                                        <img alt='Muffin Group' src='http://0.gravatar.com/avatar/057e2eb392b95a2ecfc9d32d554e3917?s=64&amp;d=mm&amp;r=g' class='avatar avatar-64 photo' height='64' width='64' />
-                                                                    </div>
-                                                                    <div class="desc-wrapper">
-                                                                        <h5><a href="#">Muffin Group</a></h5>
-                                                                        <div class="desc">
-                                                                            Praesent ligula ipsum, bibendum in quam ac, pellentesque ornare elit. Cras egestas lectus enim, et rutrum nunc tempor vulputate. Curabitur massa nunc. Aenean a nunc id justo tempor.
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>-->
                     </div>
-                    <!-- Related posts area-->
-                    <!--                        <div class="section section-post-related">
-                                                <div class="section_wrapper clearfix"></div>
-                                            </div>-->
-                    <!-- Comments area-->
-                    <!--                        <div class="section section-post-comments">
-                                                <div class="section_wrapper clearfix">
-                                                     One full width row
-                                                    <div class="column one comments">
-                                                        <div id="comments">
-                                                            <h4 id="comments-title"> 4 Comments</h4>
-                                                            <ol class="commentlist">
-                                                                <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1 parent" id="comment-2">
-                                                                    <div id="div-comment-2" class="comment-body">
-                                                                        <div class="comment-author vcard">
-                                                                            <img alt='' src='http://0.gravatar.com/avatar/057e2eb392b95a2ecfc9d32d554e3917?s=64&amp;d=mm&amp;r=g' class='avatar avatar-64 photo' height='64' width='64' /><cite class="fn">admin</cite><span class="says">says:</span>
-                                                                        </div>
-                                                                        <div class="comment-meta commentmetadata">
-                                                                            <a href="item-1.html#comment-2"> November 17, 2014 at 11:23 am</a>
-                                                                        </div>
-                                                                        <p>
-                                                                            Donec vestibulum justo a diam ultricies pellentesque. Quisque mattis diam vel lacus tincidunt eleme ntum. Sed vitae adipiscing turpis. Aenean ligula nibh, molestie id viverrra.
-                                                                        </p>
-                                                                    </div>
-                                                                    <ul class="children">
-                                                                        <li class="comment byuser comment-author-admin bypostauthor odd alt depth-2 parent" id="comment-3">
-                                                                            <div id="div-comment-3" class="comment-body">
-                                                                                <div class="comment-author vcard">
-                                                                                    <img alt='' src='http://0.gravatar.com/avatar/057e2eb392b95a2ecfc9d32d554e3917?s=64&amp;d=mm&amp;r=g' class='avatar avatar-64 photo' height='64' width='64' /><cite class="fn">admin</cite><span class="says">says:</span>
-                                                                                </div>
-                                                                                <div class="comment-meta commentmetadata">
-                                                                                    <a href="item-1.html#comment-3"> November 17, 2014 at 11:24 am</a>
-                                                                                </div>
-                                                                                <p>
-                                                                                    Vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra a, dapibus at dolor. In iaculis viverra neque, ac ele molestie id viverra aifend ante lobortis id. In viverra ipsum stie id viverra a.
-                                                                                </p>
-                                                                            </div>
-                                                                            <ul class="children">
-                                                                                <li class="comment byuser comment-author-admin bypostauthor even depth-3" id="comment-4">
-                                                                                    <div id="div-comment-4" class="comment-body">
-                                                                                        <div class="comment-author vcard">
-                                                                                            <img alt='' src='http://0.gravatar.com/avatar/057e2eb392b95a2ecfc9d32d554e3917?s=64&amp;d=mm&amp;r=g' class='avatar avatar-64 photo' height='64' width='64' /><cite class="fn">admin</cite><span class="says">says:</span>
-                                                                                        </div>
-                                                                                        <div class="comment-meta commentmetadata">
-                                                                                            <a href="item-1.html#comment-4"> November 17, 2014 at 11:24 am</a>
-                                                                                        </div>
-                                                                                        <p>
-                                                                                            Donec vestibulum justo a diam ultricies pellentesque. Quisque mattis diam vel lacus tincidunt eleme ntum. Sed vitae adipiscing turpis. Aenean ligula nibh, molestie id viverrra.
-                                                                                        </p>
-                                                                                    </div>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                                <li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-5">
-                                                                    <div id="div-comment-5" class="comment-body">
-                                                                        <div class="comment-author vcard">
-                                                                            <img alt='' src='http://0.gravatar.com/avatar/057e2eb392b95a2ecfc9d32d554e3917?s=64&amp;d=mm&amp;r=g' class='avatar avatar-64 photo' height='64' width='64' /><cite class="fn">admin</cite><span class="says">says:</span>
-                                                                        </div>
-                                                                        <div class="comment-meta commentmetadata">
-                                                                            <a href="item-1.html#comment-5"> November 17, 2014 at 11:24 am</a>
-                                                                        </div>
-                                                                        <p>
-                                                                            Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat.
-                                                                        </p>
-                                                                    </div>
-                                                                </li>
-                                                            </ol>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>-->
                 </div>
             </div>
             <!-- Sidebar area-->
-            <div class="sidebar sidebar-1 four columns" style="width: 24%;float: right">
+            <div class="sidebar sidebar-1 four columns" style="width: 25%;float: left; margin-right: 8%;">
                 <div class="widget-area clearfix ">
                     <!-- Search form-->
                     <aside id="search-2" class="widget widget_search">
                         <h3>Search</h3>
-                        <form method="get" id="searchform" action="#">
+<!--                        <form method="get" id="searchform" action="#">
                             <i class="icon_search icon-search"></i><a href="#" class="icon_close"><i class="icon-cancel"></i></a>
                             <input type="text" class="field" name="s" id="s" placeholder="Enter your search" />
                             <input type="submit" class="submit" value="" style="display:none;" />
-                        </form>
+                        </form>-->
                     </aside>
                     <!-- Text Area -->
                     <!--                        <aside class="widget widget_text">
@@ -294,7 +151,7 @@ frontend\assets\HomePageAsset::register($this);
                                                 </div>
                                             </aside>-->
                     <!-- Categories Area -->
-                    <aside id="categories-2" class="widget widget_categories">
+<!--                    <aside id="categories-2" class="widget widget_categories">
                         <h3>Categories</h3>
                         <ul>
                             <?php foreach ($categories as $category) {?>
@@ -302,7 +159,7 @@ frontend\assets\HomePageAsset::register($this);
                                     <a href="<?= Url::to(['campaign/show', 'id'=>$category->id])?>"><?=$category->name?></a>
                                 </li>
                             <?php }?>
-                            <!--                                <li class="cat-item cat-item-11">
+                                                            <li class="cat-item cat-item-11">
                                                                 <a href="category-page.html">Lifestyle</a>
                                                             </li>
                                                             <li class="cat-item cat-item-13">
@@ -310,9 +167,9 @@ frontend\assets\HomePageAsset::register($this);
                                                             </li>
                                                             <li class="cat-item cat-item-14">
                                                                 <a href="category-page.html">Places</a>
-                                                            </li>-->
+                                                            </li>
                         </ul>
-                    </aside>
+                    </aside>-->
                     <!-- Archives Area -->
                     <!--                        <aside id="archives-2" class="widget widget_archive">
                                                 <h3>Archives</h3>
@@ -325,7 +182,7 @@ frontend\assets\HomePageAsset::register($this);
                                                 </select>
                                             </aside>-->
                     <!-- Recent posts -->
-                    <aside class="widget widget_mfn_recent_posts">
+<!--                    <aside class="widget widget_mfn_recent_posts">
                         <h3>Latest posts</h3>
                         <div class="Recent_posts">
                             <ul>
@@ -349,63 +206,10 @@ frontend\assets\HomePageAsset::register($this);
                                 </li>
                             </ul>
                         </div>
-                    </aside>
+                    </aside>-->
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<script>
-    jQuery(window).load(function() {
-        jQuery(".jq-tabs").tabs();
-
-        var retina = window.devicePixelRatio > 1 ? true : false;
-        if (retina) {
-            var retinaEl = jQuery("#logo img");
-            var retinaLogoW = retinaEl.width();
-            var retinaLogoH = retinaEl.height();
-            retinaEl.attr("src", "images/logo-retina.png").width(retinaLogoW).height(retinaLogoH)
-        }
-    });
-</script>
-
 </body>
-<!--<div class="campaign-view">
-
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->c_id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->c_id], [
-    'class' => 'btn btn-danger',
-    'data' => [
-        'confirm' => 'Are you sure you want to delete this item?',
-        'method' => 'post',
-    ],
-]) ?>
-    </p>
-
-    <?= DetailView::widget([
-    'model' => $model,
-    'attributes' => [
-        'c_title',
-        'c_image',
-        'c_description',
-        'c_start_date',
-        'c_end_date',
-        'c_goal',
-        'c_id',
-        'c_video:ntext',
-        'c_description_long:ntext',
-        'c_author',
-        'c_created_at',
-        'c_display_name',
-        'c_email:email',
-        'c_location',
-        'c_biography:ntext',
-        'c_social_profile',
-        'c_status',
-        'c_cat_id',
-    ],
-]) ?>
