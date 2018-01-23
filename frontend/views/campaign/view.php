@@ -20,7 +20,7 @@ frontend\assets\HomePageAsset::register($this);
     <!-- Main Content -->
     <div id="Content">
         <div class="content_wrapper clearfix">
-            <div class="sections_group" style="width: 63%;float: left; margin-left: 8.5%">
+            <div class="sections_group" style="width: 63%;float: left; margin-left: 8.5%;padding-right:2%;border-right: 1px solid #f0f0f0">
                 <div id=" " class="no-title no-share  post  format-standard has-post-thumbnail  category-hot-news   ">
                     <div class="section section-post-header">
                         <div class="section_wrapper clearfix">
@@ -275,7 +275,7 @@ frontend\assets\HomePageAsset::register($this);
                 </div>
             </div>
             <!-- Sidebar area-->
-            <div class="sidebar sidebar-1 four columns" style="width: 24%;float: right">
+            <div class="sidebar sidebar-1 four columns" style="width: 17%;float:left">
                 <div class="widget-area clearfix ">
                     <!-- Search form-->
                     <aside id="search-2" class="widget widget_search">

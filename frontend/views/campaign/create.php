@@ -5,6 +5,8 @@ use yii\widgets\ActiveForm;
 use frontend\models\Campaign;
 use frontend\models\CampaignReward;
 use frontend\models\RewardItem;
+frontend\assets\CampaignAsset::register($this);
+/*frontend\assets\HomePageAsset::register($this);*/
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
@@ -29,9 +31,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 'content' => $this->render('_form_1',['model' => $model,]),
                 'buttons' => [
                     'next' => [
-                        'title' => 'Save and continue',
+                        'title' => 'Continue',
                         'options' => [
-                            'class' => 'btn btn-info btn-next btn-lg'
+                            'class' => 'basic-button',
                         ],
                     ],
                 ],
