@@ -3,7 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use frontend\models\Campaign;
-use frontend\models\Reward;
+use frontend\models\CampaignReward;
+use frontend\models\RewardItem;
 use frontend\assets\HomePageAsset;
 
 HomePageAsset::register($this);
@@ -13,9 +14,6 @@ HomePageAsset::register($this);
 $this->title = 'Create Campaign';
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-
-$model = new Campaign();
-$reward = new Reward();
 
 ?>
 
@@ -42,7 +40,7 @@ $reward = new Reward();
 		'1' => [
 			'title' => 'Start your campaign',
 			'icon' => 'glyphicon glyphicon-briefcase',
-			'content' => $this->render('_form_1',['model' => $model, 'reward' =>$reward]),
+			'content' => $this->render('_form_1',['model' => $model,]),
 			'buttons' => [
 				'next' => [
 					'title' => 'Save and continue',
@@ -55,7 +53,7 @@ $reward = new Reward();
        		'2' => [
 			'title' => 'Rewards',
 			'icon' => 'glyphicon glyphicon-gift',
-			'content' => $this->render('_reward',['reward' => $reward]),
+			'content' => $this->render('_reward',['c_reward' => $c_reward, 'rewardsItem' =>$rewardsItem]),
                         'buttons' => [
 				'next' => [
 					'title' => 'Save and continue',
@@ -75,7 +73,7 @@ $reward = new Reward();
 		'3' => [
 			'title' => 'The Story',
 			'icon' => 'glyphicon glyphicon-film',
-			'content' => $this->render('_form_2',['model' => $model, 'reward' =>$reward]),
+			'content' => $this->render('_form_2',['model' => $model,]),
                         'buttons' => [
 				'next' => [
 					'title' => 'Save and continue',
@@ -95,7 +93,7 @@ $reward = new Reward();
                 '4' => [
 			'title' => 'The Profile',
 			'icon' => 'glyphicon glyphicon-user',
-			'content' => $this->render('_form_3',['model' => $model, 'reward' =>$reward]),
+			'content' => $this->render('_form_3',['model' => $model, ]),
                         'buttons' => [
                             'prev' =>[
                                     'title' => 'Previous',

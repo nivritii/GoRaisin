@@ -11,6 +11,11 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    
+//    'preload' => array(
+//        'booster'
+//    ),
+    
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
@@ -36,6 +41,11 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        
+//        'booster' => array(
+//            'class' => 'vendor\booster\components\Booster',
+//        ),
+        
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -44,6 +54,7 @@ return [
             ],
         ],
         */
+        
     ],
     'params' => $params,
 ];

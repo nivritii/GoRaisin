@@ -56,9 +56,8 @@ use yii\helpers\ArrayHelper;
     <?php $categories= Category::find()-> all();
         $listData = ArrayHelper::map($categories,'id','name');?>
     <?= $form->field($model, 'c_cat_id')->dropDownList($listData, ['prompt' => '---- Select campaign category ----']); ?>
-      
-    <div id="preview"><img src="" alt="Campaign Image" style="width:75%"/></div>
-    <?= $form->field($model, 'file')->fileInput();  ?>
+    
+    <?= $form->field($model, 'c_image')->textInput(['maxlength' => true]) ?>
        
     <?= $form->field($model, 'c_description')->textarea(['rows' => 3]); ?>
     

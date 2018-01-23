@@ -113,7 +113,7 @@ $this->title = 'GoRaisin';
                                                     <div class="item_wrapper">
                                                         <div class="image_frame scale-with-grid">
                                                             <div class="image_wrapper">
-                                                                <a href="content/blogger2/item-6.html">
+                                                                <a href="<?= Url::to(['campaign/view', 'id' => $campaign_1->c_id])?>">
                                                                     <?= Html::img(Url::to('@web/images/uploads/' . $campaign_1->c_image), ['class' => 'scale-with-grid wp-post-image'], ['alt' => 'Image'], ['align' => 'left'], ['width' => '1200'], ['height' => '480']) ?>
 <!--                                                                    <img width="1200" height="800" src="content/blogger2/images/home_blogger2_news2.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_news2" />-->
                                                                 </a>
@@ -123,9 +123,9 @@ $this->title = 'GoRaisin';
                                                             <?=$campaign_1->c_created_at?>
                                                         </div>
                                                         <div class="desc">
-                                                            <h4><a href="content/blogger2/item-6.html"><?=$campaign_1->c_title?></a></h4>
+                                                            <h4><a href="<?= Url::to(['campaign/view', 'id' => $campaign_1->c_id])?>"><?=$campaign_1->c_title?></a></h4>
                                                             <hr class="hr_color" />
-                                                            <a href="content/blogger2/item-6.html" class="button button_left button_js"><span class="button_icon"><i class="icon-layout"></i></span><span class="button_label">Read more</span></a>
+                                                            <a href="<?= Url::to(['campaign/view', 'id' => $campaign_1->c_id])?>" class="button button_left button_js"><span class="button_icon"><i class="icon-layout"></i></span><span class="button_label">Read more</span></a>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -158,7 +158,7 @@ $this->title = 'GoRaisin';
                                                     <div class="item_wrapper">
                                                         <div class="image_frame scale-with-grid">
                                                             <div class="image_wrapper">
-                                                                <a href="content/blogger2/item-8.html">
+                                                                <a href="<?= Url::to(['campaign/view', 'id' => $campaign_2->c_id])?>">
                                                                     <?= Html::img(Url::to('@web/images/uploads/' . $campaign_2->c_image), ['class' => 'scale-with-grid wp-post-image'], ['alt' => 'Image'], ['align' => 'left'], ['width' => '1200'], ['height' => '480']) ?>
 <!--                                                                    <img width="1200" height="800" src="content/blogger2/images/home_blogger2_lifestyle1.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_lifestyle1" />-->
                                                                 </a>
@@ -168,9 +168,9 @@ $this->title = 'GoRaisin';
                                                             <?=$campaign_2->c_created_at?>
                                                         </div>
                                                         <div class="desc">
-                                                            <h4><a href="content/blogger2/item-8.html"><?=$campaign_2->c_title?></a></h4>
+                                                            <h4><a href="<?= Url::to(['campaign/view', 'id' => $campaign_2->c_id])?>"><?=$campaign_2->c_title?></a></h4>
                                                             <hr class="hr_color" />
-                                                            <a href="content/blogger2/item-8.html" class="button button_left button_js"><span class="button_icon"><i class="icon-layout"></i></span><span class="button_label">Read more</span></a>
+                                                            <a href="<?= Url::to(['campaign/view', 'id' => $campaign_2->c_id])?>" class="button button_left button_js"><span class="button_icon"><i class="icon-layout"></i></span><span class="button_label">Read more</span></a>
                                                         </div>
                                                     </div>
                                                 </li>
@@ -203,7 +203,7 @@ $this->title = 'GoRaisin';
                                                     <div class="item_wrapper">
                                                         <div class="image_frame scale-with-grid">
                                                             <div class="image_wrapper">
-                                                                <a href="content/blogger2/item-11.html">
+                                                                <a href="<?= Url::to(['campaign/view', 'id' => $campaign_3->c_id])?>">
                                                                     <?= Html::img(Url::to('@web/images/uploads/' . $campaign_3->c_image), ['class' => 'scale-with-grid wp-post-image'], ['alt' => 'Image'], ['align' => 'left'], ['width' => '1200'], ['height' => '480']) ?>
 <!--                                                                    <img width="1200" height="800" src="content/blogger2/images/home_blogger2_places2.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_places2" />-->
                                                                 </a>
@@ -213,129 +213,15 @@ $this->title = 'GoRaisin';
                                                             <?=$campaign_3->c_created_at?>
                                                         </div>
                                                         <div class="desc">
-                                                            <h4><a href="content/blogger2/item-11.html"><?=$campaign_3->c_title?></a></h4>
+                                                            <h4><a href="<?= Url::to(['campaign/view', 'id' => $campaign_3->c_id])?>"><?=$campaign_3->c_title?></a></h4>
                                                             <hr class="hr_color" />
-                                                            <a href="content/blogger2/item-11.html" class="button button_left button_js"><span class="button_icon"><i class="icon-layout"></i></span><span class="button_label">Read more</span></a>
+                                                            <a href="<?= Url::to(['campaign/view', 'id' => $campaign_3->c_id])?>" class="button button_left button_js"><span class="button_icon"><i class="icon-layout"></i></span><span class="button_label">Read more</span></a>
                                                         </div>
                                                     </div>
                                                 </li>
                                                 <?php } ?>
                                             </ul>
                                             <div class="slider_pagination"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="section mcb-section " style="padding-top:0px; padding-bottom:40px; ">
-                            <div class="section_wrapper mcb-section-inner">
-                                <!-- One Third (1/3) Column -->
-                                <div class="wrap mcb-wrap one-third clearfix">
-                                    <!-- One Full Row-->
-                                    <div class="column mcb-column one column_column">
-                                        <div class="column_attr">
-                                            <div style="background: url(images/home_blogger2_sep.png) no-repeat left top; height: 3px;"></div>
-                                            <hr class="no_line" style="margin: 0 auto 30px;" />
-                                            <h3>Eiusmod tempor</h3>
-                                        </div>
-                                    </div>
-                                    <!-- One Full Row-->
-                                    <div class="column mcb-column one column_column">
-                                        <div class="column_attr">
-                                            <h4>Fusce faucibus, sapien ac posuere sodales</h4>
-                                            <p class="big">
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, seddo eiusmod tempor incididunt ut labore.
-                                            </p>
-                                            <p>
-                                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolptatem.
-                                            </p>
-                                            <a class="button button_js" href="#"><span class="button_label">Read more</span></a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="wrap mcb-wrap two-third clearfix">
-                                    <!-- One Full Row-->
-                                    <div class="column mcb-column one column_column">
-                                        <div class="column_attr">
-                                            <div style="background: url(images/home_blogger2_sep.png) no-repeat left top; height: 3px;"></div>
-                                            <hr class="no_line" style="margin: 0 auto 30px;" />
-                                            <h3>Vivamus purus neque</h3>
-                                        </div>
-                                    </div>
-                                    <!-- One Sixth (1/6) Column -->
-                                    <div class="column mcb-column one-sixth column_image ">
-                                        <div class="image_frame image_item no_link scale-with-grid no_border">
-                                            <div class="image_wrapper">
-                                                <?= Html::img('@web/images/home_blogger2_staff1.jpg', ['alt'=>'GoRaisin', 'class'=>'scale-with-grid wp-post-image', 'width'=>'272','height'=>'281']);?>
-<!--                                                <img class="scale-with-grid" src="content/blogger2/images/home_blogger2_staff1.jpg" alt="" width="272" height="281" />-->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- One Third (1/3) Column -->
-                                    <div class="column mcb-column one-third column_column">
-                                        <div class="column_attr">
-                                            <h4>Sara Wright</h4>
-                                            <p>
-                                                Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <!-- One Sixth (1/6) Column -->
-                                    <div class="column mcb-column one-sixth column_image ">
-                                        <div class="image_frame image_item no_link scale-with-grid no_border">
-                                            <div class="image_wrapper">
-                                                <?= Html::img('@web/images/home_blogger2_staff1.jpg', ['alt'=>'GoRaisin', 'class'=>'scale-with-grid wp-post-image', 'width'=>'272','height'=>'281']);?>
-<!--                                                <img class="scale-with-grid" src="content/blogger2/images/home_blogger2_staff2.jpg" alt="" width="272" height="281" />-->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- One Third (1/3) Column -->
-                                    <div class="column mcb-column one-third column_column">
-                                        <div class="column_attr">
-                                            <h4>Kevin Perry</h4>
-                                            <p>
-                                                Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <!-- One Full Row-->
-                                    <div class="column mcb-column one column_divider ">
-                                        <hr class="no_line" />
-                                    </div>
-                                    <!-- One Sixth (1/6) Column -->
-                                    <div class="column mcb-column one-sixth column_image ">
-                                        <div class="image_frame image_item no_link scale-with-grid no_border">
-                                            <div class="image_wrapper">
-                                                <?= Html::img('@web/images/home_blogger2_staff1.jpg', ['alt'=>'GoRaisin', 'class'=>'scale-with-grid wp-post-image', 'width'=>'272','height'=>'281']);?>
-<!--                                                <img class="scale-with-grid" src="content/blogger2/images/home_blogger2_staff3.jpg" alt="" width="272" height="281" />-->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- One Third (1/3) Column -->
-                                    <div class="column mcb-column one-third column_column">
-                                        <div class="column_attr">
-                                            <h4>Brandon Ross</h4>
-                                            <p>
-                                                Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <!-- One Sixth (1/6) Column -->
-                                    <div class="column mcb-column one-sixth column_image ">
-                                        <div class="image_frame image_item no_link scale-with-grid no_border">
-                                            <div class="image_wrapper">
-                                                <?= Html::img('@web/images/home_blogger2_staff1.jpg', ['alt'=>'GoRaisin', 'class'=>'scale-with-grid wp-post-image', 'width'=>'272','height'=>'281']);?>
-<!--                                                <img class="scale-with-grid" src="content/blogger2/images/home_blogger2_staff4.jpg" alt="" width="272" height="281" />-->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- One Third (1/3) Column -->
-                                    <div class="column mcb-column one-third column_column">
-                                        <div class="column_attr">
-                                            <h4>Jennifer Lee</h4>
-                                            <p>
-                                                Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit
-                                            </p>
                                         </div>
                                     </div>
                                 </div>

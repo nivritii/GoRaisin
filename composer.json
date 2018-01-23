@@ -1,6 +1,7 @@
 {
     "require": {
-        "drsdre/yii2-wizardwidget": "*"
+        "drsdre/yii2-wizardwidget": "*",
+        "wbraganca/yii2-dynamicform": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

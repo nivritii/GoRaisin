@@ -5,13 +5,16 @@ namespace frontend\controllers;
 use Yii;
 use frontend\models\Campaign;
 use frontend\models\CampaignSearch;
-use frontend\models\Reward;
+use frontend\models\CampaignReward;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use frontend\models\Category;
 use frontend\models\Comment;
 use frontend\models\Fund;
+use frontend\models\RewardItem;
+use frontend\models\Model;
+use yii\web\UploadedFile;
 /**
  * CampaignController implements the CRUD actions for Campaign model.
  */
@@ -97,31 +100,62 @@ class CampaignController extends Controller
     public function actionCreate()
     {
         $model = new Campaign();
-        $reward = new Reward();
+        $c_reward = new CampaignReward();
+        $rewardsItem = [new RewardItem()];
 
         if ($model->load(Yii::$app->request->post())) {
             $model-> c_author = Yii::$app->user->identity->getId();
             
-           //$imageName = $model->c_title;
-            $model->file = UploadedFile::getInstance($model,'file');
-            $model->file->saveAs('uploads/campaign_img/'.$model->file->baseName.'.'.$model->file->extension);
-            $model->c_image=$model->file->baseName.'.'.$model->file->extension;
+//            $model->file = UploadedFile::getInstance($model,'file');
+//            $model->file->saveAs('uploads/campaign_img/'.$model->file->baseName.'.'.$model->file->extension);
+//            $model->c_image=$model->file->baseName.'.'.$model->file->extension;
             
 //            $model->videoFile = UploadedFile::getInstance($model, 'videoFile');
 //            $model->videoFile->saveAs('uploads/campaign_video/'.$model->videoFile->baseName.'.'.$model->videoFile->extension);
 //            $model->c_video=$model->videoFile->baseName.'.'.$model->videoFile->extension;
                                   
             if($model->save(false)){              
-                $reward->load(Yii::$app->request->post());
-                $reward->c_id = $model->c_id;
-                if ($reward->save(false)){
-                return $this->redirect(['view', 'id' => $model->c_id]);
+//                $reward->load(Yii::$app->request->post());
+//                $reward->c_id = $model->c_id;
+//                if ($reward->save(false)){
+//                return $this->redirect(['view', 'id' => $model->c_id]);
+//                }
+            $rewardsItem = Model::createMultiple(RewardItem::classname());
+            Model::loadMultiple($rewardsItem, Yii::$app->request->post());
+            
+            $c_reward->campaign_id=$model->c_id;
+
+            // validate all models
+            $valid = $c_reward->validate();
+            $valid = Model::validateMultiple($rewardsItem);
+            
+            if ($valid) {
+                $transaction = \Yii::$app->db->beginTransaction();
+                try {
+                    if ($flag = $c_reward->save(false)) {
+                        foreach ($rewardsItem as $rewardItem) {
+                            $rewardItem->campaign_reward_id = $c_reward->id;
+                            if (! ($flag = $rewardItem->save(false))) {
+                                $transaction->rollBack();
+                                break;
+                            }
+                        }
+                    }
+                    if ($flag) {
+                        $transaction->commit();
+                        return $this->redirect(['view', 'id' => $model->c_id]);
+                    }
+                } catch (Exception $e) {
+                    $transaction->rollBack();
                 }
+            }
+                
             }
         }
         return $this->render('create', [
                 'model' => $model,
-                'reward' => $reward,
+                'c_reward' => $c_reward,
+                'rewardsItem' => (empty($rewardsItem)) ? [new RewardItem] : $rewardsItem,
             ]);
     }
 
