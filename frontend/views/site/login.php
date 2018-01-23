@@ -6,6 +6,8 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\bootstrap\Modal;
+use yii\helpers\Url;
 frontend\assets\LoginAsset::register($this);
 
 $this->title = 'Log in - GoRaisin';
@@ -15,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div id="login-div">
         <p class="form-title">Log in</p>
         <div class="row">
-            <div style="margin-left: 3%;margin-top: 9%;margin-right: 3%;">
+            <div style="margin-left: 6%;margin-top: 9%;margin-right: 3%;">
                 <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
 
                 <?= $form->field($model, 'username')
@@ -29,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ?>
 
                 <div style="color:#999;margin:1em 0">
-                    <?= Html::a('Forgot your password?', ['site/request-password-reset'],['class' => 'forget-password']) ?>
+                    <?= Html::a('Forgot your password?', ['site/request-password-reset'],['class' => 'forget-password','data-toggle' => 'modal','data-target' => '#forgot-password']) ?>
                 </div>
 
                 <?= Html::submitButton('Log in', ['class' => 'login-button', 'name' => 'login-button']) ?>
@@ -51,3 +53,28 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+
+
+<?php
+Modal::begin([
+    'id' => 'forgot-password',
+    'header' => '<h4 class="modal-title"></h4>',
+]);
+Modal::end();
+?>
+
+<?php
+$requestCreateUrl = Url::toRoute('requestPasswordResetToken');
+$js = <<<JS
+// 创建操作
+$('#create').on('click', function () {
+    $('.modal-title').html('Forgot your password?');
+    $.get('{$requestCreateUrl}',
+        function (data) {
+            $('.modal-body').html(data);
+        }  
+    );
+});
+JS;
+$this->registerJs($js);
+?>
