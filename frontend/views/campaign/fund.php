@@ -18,18 +18,6 @@ $model = new Campaign();
 $reward = new Reward();
 
 ?>
-
-<body class="archive category layout-full-width nice-scroll-on mobile-tb-left button-flat header-classic minimalist-header sticky-header sticky-white ab-hide subheader-both-left menu-line-below-80-1 menuo-right menuo-no-borders footer-copy-center">
-    <!-- Main Theme Wrapper -->
-    <div id="Wrapper">
-        <!-- Header Wrapper -->
-        <!-- Main Content -->
-<!--        <div id="Content">-->
-            <div class="content_wrapper clearfix">
-                <div class="sections_group">
-                    <div class="section">
-                        <div class="section_wrapper clearfix">
-                            <div class="fund-form">
 <div class="container">
     <div class="text-center">
         <div class="form-group">
@@ -52,12 +40,4 @@ $reward = new Reward();
     </div>
 </div>
 
-
-</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-<!--        </div>-->
-    </div>
     

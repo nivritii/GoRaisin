@@ -21,7 +21,7 @@ $userId = Yii::$app->user->identity->id;
             <div class="row">
                 <div class="col-lg-offset-4 col-md-5 col-sm-5 col-xs-5">
                     <div class="panel panel-default">
-                        <div style="margin: 20px auto; width: 200px; text-align: center;">
+                        <div style="margin: 20px auto; width: 200px; text-align: center">
                             <h1 class="page-title">Basic Profile</h1>
                         </div>
                         <div class="button-div">
