@@ -11,6 +11,8 @@ use frontend\assets\CampaignAsset;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
 
+HomePageAsset::register($this);
+
 $this->title = 'Create Campaign';
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
