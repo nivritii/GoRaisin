@@ -46,13 +46,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     'next' => [
                         'title' => 'Save and continue',
                         'options' => [
-                            'class' => 'btn btn-info btn-next btn-lg'
+                            'class' => 'basic-button'
                         ],
                     ],
                     'prev' =>[
                         'title' => 'Previous',
                         'options' => [
-                            'class' => 'btn btn-info btn-next btn-lg'
+                            'class' => 'basic-button'
                         ],
 
                     ]
@@ -66,13 +66,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     'next' => [
                         'title' => 'Save and continue',
                         'options' => [
-                            'class' => 'btn btn-info btn-next btn-lg'
+                            'class' => 'basic-button'
                         ],
                     ],
                     'prev' =>[
                         'title' => 'Previous',
                         'options' => [
-                            'class' => 'btn btn-info btn-next btn-lg'
+                            'class' => 'basic-button'
                         ],
 
                     ]
@@ -86,12 +86,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     'prev' =>[
                         'title' => 'Previous',
                         'options' => [
-                            'class' => 'btn btn-info btn-next btn-lg'
+                            'class' => 'basic-button'
                         ],
 
                     ],
                     'save' => [
-                        'html' => Html::submitButton('Save',['class' => 'btn btn-info btn-next btn-lg']),
+                        'html' => Html::submitButton('Save',['class' => 'basic-button']),
                     ],
                 ],
             ],
