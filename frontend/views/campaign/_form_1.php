@@ -7,12 +7,13 @@ use frontend\models\Campaign;
 use trntv\yii\datetime\DateTimeWidget;
 use frontend\models\Category;
 use yii\helpers\ArrayHelper;
+frontend\assets\CampaignAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-<style>
+<!--<style>
     #preview{
         width:100%;
         border:1px solid#e5e5e5;
@@ -21,7 +22,7 @@ use yii\helpers\ArrayHelper;
     #preview img{
         width:100%;
     }
-</style>
+</style>-->
 
 <script src="https://code.jquery.com/jquery-3.1.0.min.js"
         integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
@@ -47,22 +48,83 @@ use yii\helpers\ArrayHelper;
     <h1 class="basic-title">Basics</h1>
     <div class="form-group">
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+        <div style="width: 100%;height: 80px">
+            <div style="float: left;display: inline-block;width: 20%">
+                <p class="item-title">Campaign Title</p>
+            </div>
+            <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                <?= $form->field($model, 'c_title')
+                    ->textInput(['maxlength' => true,'style' => 'width:600px'])
+                    ->label(false)
+                ?>
+            </div>
+        </div>
 
-    <?= $form->field($model, 'c_title')->textInput(['maxlength' => true]) ?>
-     
 <!--     $list = CHtml::listData(Category::model()->findAll(array('order' => 'name')), 'id', 'name');-->
-           
-    <?php $categories= Category::find()-> all();
-        $listData = ArrayHelper::map($categories,'id','name');?>
-    <?= $form->field($model, 'c_cat_id')->dropDownList($listData, ['prompt' => '---- Select campaign category ----']); ?>
-    
-    <?= $form->field($model, 'c_image')->textInput(['maxlength' => true]) ?>
-       
-    <?= $form->field($model, 'c_description')->textarea(['rows' => 3]); ?>
-    
-    <?= $form->field($model, 'c_start_date')->textInput(['maxlength' => true]) ?>
-    
-    <?= $form->field($model, 'c_end_date')->textInput(['maxlength' => true]) ?>
+        <div style="clear:both;height: 80px">
+            <div style="float: left;display: inline-block;width: 20%">
+                <p class="item-title">Category</p>
+            </div>
+            <?php $categories= Category::find()-> all();
+            $listData = ArrayHelper::map($categories,'id','name');?>
+            <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                <?= $form->field($model, 'c_cat_id')
+                    ->dropDownList($listData, ['prompt' => 'Campaign category','style' => 'width:400px'])
+                    ->label(false)
+                ?>
+            </div>
+        </div>
+
+        <div style="clear:both;height: 80px">
+            <div style="float: left;display: inline-block;width: 20%">
+                <p class="item-title">Campaign image</p>
+            </div>
+            <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                <?= $form->field($model, 'c_image')
+                    ->fileInput(['style' => 'color:#d30000;width:400px'])
+                    /*->textInput(['maxlength' => true,'style' => '600px'])*/
+                    ->label(false)
+                    ->hint('This is the main image of your campaign. This is the first thing people will see about your campaign.')
+                ?>
+            </div>
+        </div>
+
+        <div style="clear:both;height: 150px">
+            <div style="float: left;display: inline-block;width: 20%">
+                <p class="item-title">Short description</p>
+            </div>
+            <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                <?= $form->field($model, 'c_description')
+                    ->textarea(['rows' => 5])
+                    ->label(false)
+                    ->hint('Short description - introduce people on what you are doing')
+                ?>
+            </div>
+        </div>
+
+        <div style="clear:both;height: 80px">
+            <div style="float: left;display: inline-block;width: 20%">
+                <p class="item-title">Start date</p>
+            </div>
+            <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                <?= $form->field($model, 'c_start_date')
+                    ->textInput(['maxlength' => true])
+                    ->label(false)
+                ?>
+            </div>
+        </div>
+
+        <div style="clear:both;height: 80px">
+            <div style="float: left;display: inline-block;width: 20%">
+                <p class="item-title">End date</p>
+            </div>
+            <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                <?= $form->field($model, 'c_end_date')
+                    ->textInput(['maxlength' => true])
+                    ->label(false)
+                ?>
+            </div>
+        </div>
     
 <!--   $form->field($model, 'c_start_date')->widget(
     'trntv\yii\datetime\DateTimeWidget',
@@ -92,10 +154,19 @@ use yii\helpers\ArrayHelper;
             'format' => 'dd-M-yyyy'
         ]
 ]);-->
-
-    <?= $form->field($model, 'c_goal')->textInput() ?>
+        <div style="clear:both;height: 80px">
+            <div style="float: left;display: inline-block;width: 20%">
+                <p class="item-title">Fund cap</p>
+            </div>
+            <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                <?= $form->field($model, 'c_goal')
+                    ->textInput(['maxlength' => true,'style' => 'width:600px'])
+                    ->label(false)
+                ?>
+            </div>
+        </div>
     <?php ActiveForm::end(); ?>
-    
+
     </div>
 </div>
 

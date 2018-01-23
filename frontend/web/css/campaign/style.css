@@ -1,4 +1,13 @@
 .basic-title {
-    padding-left: 10%;
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+}
+.item-title {
+    margin-left: 16%;
     font-size: 20px;
+    font-weight: 500;
+}
+.basic-button {
+    alignment: center;
 }

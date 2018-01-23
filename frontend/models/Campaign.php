@@ -54,11 +54,11 @@ class Campaign extends \yii\db\ActiveRecord
             [['c_start_date', 'c_end_date', 'c_created_at', 'c_video', 'c_description_long', 'c_author', 'c_display_name', 'c_email', 'c_location', 'c_biography', 'c_social_profile'], 'safe'],
             [['c_goal', 'c_author', 'c_cat_id'], 'integer'],
             [['c_video', 'c_description_long', 'c_biography'], 'string'],
-            [['c_title', 'c_image'], 'string', 'max' => 100],
-            [['c_description', 'c_display_name', 'c_email', 'c_location', 'c_social_profile', 'c_status'], 'string', 'max' => 255],
+            [['c_title'], 'string', 'max' => 100],
+            [['c_description', 'c_display_name', 'c_email', 'c_location', 'c_social_profile', 'c_status','c_image'], 'string', 'max' => 255],
             [['c_cat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['c_cat_id' => 'id']],
             [['c_author'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['c_author' => 'id']],
-            [['file'],'file','extensions'=>'jpg,png,gif'],
+            [['c_image'],'file','extensions'=>'jpg,png,gif,jpeg,bmp'],
         ];
     }
 
@@ -68,25 +68,24 @@ class Campaign extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'c_title' => 'C Title',
-            'file' => '',
+            'c_title' => 'Title',
             'c_image' => 'Image',
-            'c_description' => 'C Description',
-            'c_start_date' => 'C Start Date',
-            'c_end_date' => 'C End Date',
-            'c_goal' => 'C Goal',
-            'c_id' => 'C ID',
-            'c_video' => 'C Video',
-            'c_description_long' => 'C Description Long',
-            'c_author' => 'C Author',
-            'c_created_at' => 'C Created At',
-            'c_display_name' => 'C Display Name',
-            'c_email' => 'C Email',
-            'c_location' => 'C Location',
-            'c_biography' => 'C Biography',
-            'c_social_profile' => 'C Social Profile',
-            'c_status' => 'C Status',
-            'c_cat_id' => 'C Cat ID',
+            'c_description' => 'Description',
+            'c_start_date' => 'Start Date',
+            'c_end_date' => 'End Date',
+            'c_goal' => 'Goal',
+            'c_id' => 'ID',
+            'c_video' => 'Video',
+            'c_description_long' => 'Description Long',
+            'c_author' => 'Author',
+            'c_created_at' => 'Created At',
+            'c_display_name' => 'Display Name',
+            'c_email' => 'Email',
+            'c_location' => 'Location',
+            'c_biography' => 'Biography',
+            'c_social_profile' => 'Social Profile',
+            'c_status' => 'Status',
+            'c_cat_id' => 'Cat ID',
         ];
     }
 

@@ -275,7 +275,7 @@ frontend\assets\HomePageAsset::register($this);
                 </div>
             </div>
             <!-- Sidebar area-->
-            <div class="sidebar sidebar-1 four columns" style="width: 24%;float: right">
+            <div class="sidebar sidebar-1 four columns" style="width: 17%;float:left">
                 <div class="widget-area clearfix ">
                     <!-- Search form-->
                     <aside id="search-2" class="widget widget_search">
