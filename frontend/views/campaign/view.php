@@ -39,19 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <!-- Posts Navigation -->
                                 <!-- One full width row-->
                                 <div class="column one post-nav">
-                                    <a class="fixed-nav fixed-nav-next " href="item-2.html"><span class="arrow"><i class="icon-right-open-big"></i></span>
-										<div class="photo"><img width="80" height="80" src="images/home_blogger2_news3-80x80.jpg" class="attachment-blog-navi size-blog-navi wp-post-image" alt="home_blogger2_news3" />
-										</div>
-										<div class="desc">
-											<h6>Nullam nec urna in sem lacinia malesuada sed mollis tortor</h6><span class="date"><i class="icon-clock"></i>March 12, 2014</span>
-										</div>
-                                    </a>
-                                    <ul class="next-prev-nav">
-                                        <li class="next">
-                                            <a class="button button_js" href="item-2.html"><span class="button_icon"><i class="icon-right-open"></i></span></a>
-                                        </li>
-                                    </ul>
-                                    <a class="list-nav" href="blog.html"><i class="icon-layout"></i>Show all</a>
+                                    <a class="list-nav" href="<?= Url::to(['campaign/show','id'=>'NULL'])?>"><i class="icon-layout"></i>Show all</a>
                                 </div>
                                 <!-- Post Header-->
                                 <!-- One full width row-->
@@ -69,30 +57,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                             </div>
                                             <div class="category meta-categories">
                                                 <span class="cat-btn">Categories <i class="icon-down-dir"></i></span>
-                                                    <?php $categories= Category::find()-> all();?>
                                                 <div class="cat-wrapper">
                                                     <ul class="post-categories">
                                                         <?php foreach ($categories as $category) {?>
                                                         <li>
-                                                            <a href="category-page.html" rel="category tag"><?= $category->name?></a>
+                                                            <a rel="category tag" href="<?= Url::to(['campaign/show', 'id'=>$category->id])?>"><?= $category->name?></a>
                                                         </li>
                                                         <?php }?>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <div class="category mata-tags">
-                                                <span class="cat-btn">Tags <i class="icon-down-dir"></i></span>
-                                                <div class="cat-wrapper">
-                                                    <ul>
-                                                        <li>
-                                                            <a href="tag-page.html">Framework</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="tag-page.html">Themeforest</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="tag-page.html">Wordpress</a>
-                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -104,13 +75,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <div class="column one single-photo-wrapper image">
                                     <div class="image_frame scale-with-grid ">
                                         <div class="image_wrapper">
-                                            <a href="images/home_blogger2_hotnews-1200x800.jpg" rel="prettyphoto">
+                                            <a href="#" rel="prettyphoto">
                                                 <div class="mask"></div>
                                                 <?=Html::img(Url::to('@web/images/uploads/'.$model->c_image),['class' => 'attachment-blog-navi size-blog-navi wp-post-image'],['alt'=>'Image'],['align'=>'left'],['width'=>'80'],['height'=>'80'])?>
 <!--                                                <img width="1200" height="480" src="images/home_blogger2_hotnews-1200x480.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_hotnews" itemprop="image" />-->
                                             </a>
                                             <div class="image_links">
-                                                <a href="images/home_blogger2_hotnews-1200x800.jpg" class="zoom" rel="prettyphoto"><i class="icon-search"></i></a>
+                                                <a href="<?= Url::to(['campaign/fund'])?>" class="link"><i class="icon-link"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -127,25 +98,103 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <h3>Description</h3>
                                         <hr class="no_line" style="margin: 0 auto 15px;" />
                                         <p><?=$model->c_description_long?></p>
-                                        <hr class="no_line" style="margin: 0 auto 30px;" />
+                                        <hr class="no_line" style="margin: 0 auto 15px;" />
+                                        <div class="mcb-column one-second column_tabs ">
+                                        <div class="jq-tabs tabs_wrapper tabs_horizontal ui-tabs ui-widget ui-widget-content ui-corner-all">
+                                            <ul class ="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+                                                <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab" tabindex="0" aria-controls="tab-5a5ff9210758e-1" aria-labelledby="ui-id-1" aria-selected="true" aria-expanded="true">
+                                                    <a href="#-1v" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-1">Commodo luctus</a>
+                                                </li>
+                                                <li class="ui-state-default ui-corner-top" role="tab">
+                                                    <a href="#-2v">Eget lacina</a>
+                                                </li>
+                                                <li class="ui-state-default ui-corner-top" role="tab">
+                                                    <a href="#-3v">Porta gravida</a>
+                                                </li>
+                                            </ul>
+                                            <div id="-1v" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+                                                <p>
+                                                    <span class="big">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce velit tortor, dictum in gravida nec, aliquet non lorem. </span>
+                                                </p>
+                                                <p>
+                                                    Donec vestibulum justo a diam ultricies pellentesque. Quisque mattis diam vel lacus tincidunt elementum. Sed vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra a, dapibus at dolor. In iaculis viverra neque, ac eleifend ante lobortis id. In viverra ipsum ac eros tristique dignissim. Donec aliquam velit vitae mi dictum.
+                                                </p>
+                                            </div>
+                                            <div id="-2v" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+                                                <p>
+                                                    <span class="big">Curabitur et ligula. Ut molestie a, ultricies porta urna. Vestibulum commodo volutpat a, convallis ac, laoreet enim. Phasellus fermentum in, dolor.</span>
+                                                </p>
+                                                <p>
+                                                    Donec vestibulum justo a diam ultricies pellentesque. Quisque mattis diam vel lacus tincidunt elementum. Sed vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra a, dapibus at dolor. In iaculis viverra neque, ac eleifend ante lobortis id.
+                                                </p>
+                                            </div>
+                                            <div id="-3v" class="ui-tabs-panel ui-widget-content ui-corner-bottom">
+                                                <p>
+                                                    <span class="big">Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies.</span>
+                                                </p>
+                                                <p>
+                                                    Donec vestibulum justo a diam ultricies pellentesque. Quisque mattis diam vel lacus tincidunt elementum. Sed vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra a, dapibus at dolor. In iaculis viverra neque, ac eleifend ante lobortis id. In viverra ipsum ac eros tristique dignissim. Donec aliquam velit vitae mi dictum.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="section section-post-footer">
+<!--                            <div class="mcb-column one-second column_tabs ">
+                                        <div class="jq-tabs tabs_wrapper tabs_horizontal ui-tabs ui-widget ui-widget-content ui-corner-all">
+                                            <ul class ="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" role="tablist">
+                                                <li class="ui-state-default ui-corner-top ui-tabs-active ui-state-active" role="tab">
+                                                    <a href="#-1v">Commodo luctus</a>
+                                                </li>
+                                                <li class="ui-state-default ui-corner-top" role="tab">
+                                                    <a href="#-2v">Eget lacina</a>
+                                                </li>
+                                                <li class="ui-state-default ui-corner-top">
+                                                    <a href="#-3v">Porta gravida</a>
+                                                </li>
+                                            </ul>
+                                            <div id="-1v">
+                                                <p>
+                                                    <span class="big">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce velit tortor, dictum in gravida nec, aliquet non lorem. </span>
+                                                </p>
+                                                <p>
+                                                    Donec vestibulum justo a diam ultricies pellentesque. Quisque mattis diam vel lacus tincidunt elementum. Sed vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra a, dapibus at dolor. In iaculis viverra neque, ac eleifend ante lobortis id. In viverra ipsum ac eros tristique dignissim. Donec aliquam velit vitae mi dictum.
+                                                </p>
+                                            </div>
+                                            <div id="-2v">
+                                                <p>
+                                                    <span class="big">Curabitur et ligula. Ut molestie a, ultricies porta urna. Vestibulum commodo volutpat a, convallis ac, laoreet enim. Phasellus fermentum in, dolor.</span>
+                                                </p>
+                                                <p>
+                                                    Donec vestibulum justo a diam ultricies pellentesque. Quisque mattis diam vel lacus tincidunt elementum. Sed vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra a, dapibus at dolor. In iaculis viverra neque, ac eleifend ante lobortis id.
+                                                </p>
+                                            </div>
+                                            <div id="-3v">
+                                                <p>
+                                                    <span class="big">Lorem ipsum dolor sit amet enim. Etiam ullamcorper. Suspendisse a pellentesque dui, non felis. Maecenas malesuada elit lectus felis, malesuada ultricies.</span>
+                                                </p>
+                                                <p>
+                                                    Donec vestibulum justo a diam ultricies pellentesque. Quisque mattis diam vel lacus tincidunt elementum. Sed vitae adipiscing turpis. Aenean ligula nibh, molestie id viverra a, dapibus at dolor. In iaculis viverra neque, ac eleifend ante lobortis id. In viverra ipsum ac eros tristique dignissim. Donec aliquam velit vitae mi dictum.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>-->
+<!--                            <div class="section section-post-footer">
                                 <div class="section_wrapper clearfix">
-                                    <!-- One full width row-->
+                                     One full width row
                                     <div class="column one post-pager">
-                                        <!-- Navigation Area -->
+                                         Navigation Area 
                                         <div class="pager-single">
                                             <span>1</span><a href="#"><span>2</span></a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!--Author Info Area-->
+                            </div>-->
+<!--                            Author Info Area
                             <div class="section section-post-about">
                                 <div class="section_wrapper clearfix">
-                                    <!-- One full width row-->
+                                     One full width row
                                     <div class="column one author-box">
                                         <div class="author-box-wrapper">
                                             <div class="avatar-wrapper">
@@ -160,16 +209,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                         <!-- Related posts area-->
-                        <div class="section section-post-related">
+<!--                        <div class="section section-post-related">
                             <div class="section_wrapper clearfix"></div>
-                        </div>
+                        </div>-->
                         <!-- Comments area-->
-                        <div class="section section-post-comments">
+<!--                        <div class="section section-post-comments">
                             <div class="section_wrapper clearfix">
-                                <!-- One full width row-->
+                                 One full width row
                                 <div class="column one comments">
                                     <div id="comments">
                                         <h4 id="comments-title"> 4 Comments</h4>
@@ -234,7 +283,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <!-- Sidebar area-->
@@ -250,20 +299,22 @@ $this->params['breadcrumbs'][] = $this->title;
                             </form>
                         </aside>
                         <!-- Text Area -->
-                        <aside class="widget widget_text">
+<!--                        <aside class="widget widget_text">
                             <h3>About us</h3>
                             <div class="textwidget">
                                 Mauris imperdiet, urna mi, gravida sod ales. <span class="tooltip tooltip-txt" data-tooltip="Donec nisl ac turpis">Vivamus hendrerit</span> nulla erat ornare tortor in vestibulum id.
                             </div>
-                        </aside>
+                        </aside>-->
                         <!-- Categories Area -->
                         <aside id="categories-2" class="widget widget_categories">
                             <h3>Categories</h3>
                             <ul>
+                                <?php foreach ($categories as $category) {?>
                                 <li class="cat-item cat-item-4">
-                                    <a href="category-page.html">Hot news</a>
+                                    <a href="<?= Url::to(['campaign/show', 'id'=>$category->id])?>"><?=$category->name?></a>
                                 </li>
-                                <li class="cat-item cat-item-11">
+                                <?php }?>
+<!--                                <li class="cat-item cat-item-11">
                                     <a href="category-page.html">Lifestyle</a>
                                 </li>
                                 <li class="cat-item cat-item-13">
@@ -271,11 +322,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </li>
                                 <li class="cat-item cat-item-14">
                                     <a href="category-page.html">Places</a>
-                                </li>
+                                </li>-->
                             </ul>
                         </aside>
                         <!-- Archives Area -->
-                        <aside id="archives-2" class="widget widget_archive">
+<!--                        <aside id="archives-2" class="widget widget_archive">
                             <h3>Archives</h3>
                             <label class="screen-reader-text" for="archives-dropdown-2">Archives</label>
                             <select id="archives-dropdown-2" name="archive-dropdown" onchange='document.location.href=this.options[this.selectedIndex].value;'>
@@ -284,7 +335,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <option value='#'> April 2014</option>
                                 <option value='#'> March 2014</option>
                             </select>
-                        </aside>
+                        </aside>-->
                         <!-- Recent posts -->
                         <aside class="widget widget_mfn_recent_posts">
                             <h3>Latest posts</h3>
@@ -316,6 +367,20 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
     </div>
+    
+<script>
+    jQuery(window).load(function() {
+        jQuery(".jq-tabs").tabs();
+
+        var retina = window.devicePixelRatio > 1 ? true : false;
+        if (retina) {
+            var retinaEl = jQuery("#logo img");
+            var retinaLogoW = retinaEl.width();
+            var retinaLogoH = retinaEl.height();
+            retinaEl.attr("src", "images/logo-retina.png").width(retinaLogoW).height(retinaLogoH)
+        }
+    });
+</script>
     
 </body>
 <!--<div class="campaign-view">

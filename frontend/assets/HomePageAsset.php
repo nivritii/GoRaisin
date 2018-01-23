@@ -28,6 +28,8 @@ class HomePageAsset extends AssetBundle
         'js/homepage/jquery.jplayer.min.js',
         'js/homepage/animations.js',
         'js/homepage/scripts.js',
+        'js/homepage/jquery-ui.min',
+        'js/homepage/jquery.ui.tabs',
     ];
     public $depends = [
         'yii\web\YiiAsset',

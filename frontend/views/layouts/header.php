@@ -10,7 +10,6 @@ frontend\assets\HomePageAsset::register($this);
 <body class="archive category layout-full-width nice-scroll-on mobile-tb-left button-flat header-classic minimalist-header sticky-header sticky-white ab-hide subheader-both-left menu-line-below-80-1 menuo-right menuo-no-borders footer-copy-center">
 <!-- Main Theme Wrapper -->
 <div id="Wrapper">
-
     <div id="Header_wrapper">
         <!-- Header -->
         <header id="Header">
@@ -90,3 +89,4 @@ frontend\assets\HomePageAsset::register($this);
             </div>
         </header>
     </div>
+
