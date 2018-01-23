@@ -21,13 +21,28 @@ frontend\assets\HomePageAsset::register($this);
 <div class="campaign-view">
     <!-- Main Content -->
     <div id="Content">
-        <div style="margin-right: 8%; margin-left: 8%; border-right: .5px solid #f0f0f0; padding-bottom: 0%; padding-top: 0%">
-            <div class="column zero">
-                <h1 class="title"><?=$model->c_title?></h1>
-                <h4 class="title"><?=$model->c_description?></h4>
-            </div>
-        </div>
         <div class="content_wrapper clearfix">
+            <div class="sidebar sidebar-1 four columns" style="width: 0%;float: left; margin-left: 8.5%; border-right: .5px solid #f0f0f0">
+                <div class="widget-area clearfix ">
+                    <!-- Search form-->
+                    <div class="image-div">
+                        <div class="user-image">
+                        <?=Html::img(Url::to('@web/'.$model->cAuthor->image))?>
+                        </div>
+                        <div class="image-div2">
+                            <p class="user-name"><?=$model->cAuthor->username?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sections_group" style="width: 82%;float: left; margin-right: 8%;">
+            <div style="margin-right: 8%; margin-left: 8%; border-right: .5px solid #f0f0f0; padding-bottom: 0%; padding-top: 0%">
+                <div class="column zero">
+                    <h1 class="title"><?=$model->c_title?></h1>
+                    <h4 class="title"><?=$model->c_description?></h4>
+                </div>
+            </div>
+            </div>
             <div class="sections_group" style="width: 55%;float: left; margin-left: 8%; border-right: .5px solid #f0f0f0">
                 <div id=" " class="no-title no-share  post  format-standard has-post-thumbnail  category-hot-news   ">
                     <div class="section section-post-header">
