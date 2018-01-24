@@ -47,6 +47,7 @@ $imagePath = '/'.$model->c_image;
 
 <div class="container">
     <h1 class="basic-title">Basics</h1>
+    <br />
     <div class="form-group">
         <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
         <div style="width: 100%;height: 80px">

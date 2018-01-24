@@ -38,6 +38,8 @@ use wbraganca\dynamicform\DynamicFormWidget;
                 ],
             ]); ?>
 
+            <h1 class="basic-title">Rewards</h1>
+            <br/>
             <div class="container-items" style="margin-left: 10%;margin-right: 10%">
                 <?php foreach ($rewardsItem as $i => $rewardItem): ?>
                     <div class="item panel panel-default">
