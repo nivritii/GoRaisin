@@ -9,7 +9,7 @@ use frontend\assets\HomePageAsset;
 use frontend\assets\CampaignAsset;
 
 HomePageAsset::register($this);
-CampaignAsset::register($this);
+//CampaignAsset::register($this);
 
 
 /* @var $this yii\web\View */
