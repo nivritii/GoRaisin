@@ -38,6 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'title' => 'Continue',
                         'options' => [
                             'class' => 'basic-button',
+                            'style' => 'color:#ffffff',
                         ],
                     ],
                 ],
@@ -50,13 +51,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'next' => [
                         'title' => 'Save and continue',
                         'options' => [
-                            'class' => 'basic-button'
+                            'class' => 'basic-button',
+                            'style' => 'color:#ffffff',
                         ],
                     ],
                     'prev' =>[
                         'title' => 'Previous',
                         'options' => [
-                            'class' => 'basic-button'
+                            'class' => 'basic-button',
+                            'style' => 'color:#ffffff',
                         ],
 
                     ]
@@ -66,21 +69,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 'title' => 'The Story',
                 'icon' => 'glyphicon glyphicon-film',
                 'content' => $this->render('_form_2',['model' => $model,]),
-                /*'buttons' => [
+                'buttons' => [
                     'next' => [
                         'title' => 'Save and continue',
                         'options' => [
-                            'class' => 'basic-button'
+                            'class' => 'basic-button',
+                            'style' => 'color:#ffffff;margin-top:350px',
                         ],
                     ],
                     'prev' =>[
                         'title' => 'Previous',
                         'options' => [
-                            'class' => 'basic-button'
+                            'class' => 'basic-button',
+                            'style' => 'color:#ffffff;margin-top:350px',
                         ],
 
                     ]
-                ],*/
+                ],
             ],
             '4' => [
                 'title' => 'The Profile',
@@ -90,12 +95,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     'prev' =>[
                         'title' => 'Previous',
                         'options' => [
-                            'class' => 'basic-button'
+                            'class' => 'basic-button',
+                            'style' => 'color:#ffffff',
                         ],
 
                     ],
                     'save' => [
-                        'html' => Html::submitButton('Save',['class' => 'basic-button']),
+                        'html' => Html::submitButton('Save',['class' => 'basic-button','style' => 'color:#ffffff']),
                     ],
                 ],
             ],
