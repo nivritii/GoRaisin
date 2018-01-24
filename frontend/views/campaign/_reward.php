@@ -62,7 +62,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
                                     <div style="display: inline-block">
                                     <p style="font-size: 20px;color: #2c2c2c">reward title</p>
                                     </div>
-                                    <div style="display: inline-block;margin-left: 14.5%">
+                                    <div style="display: inline-block;margin-left: 17.5%">
                                     <?= $form->field($rewardItem, "[{$i}]r_title")
                                         ->textInput(['maxlength' => true])
                                         ->label(false)
@@ -73,7 +73,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
                                     <div style="display: inline-block">
                                         <p style="font-size: 20px;color: #2c2c2c">pledge amount</p>
                                     </div>
-                                    <div style="display: inline-block;margin-left: 6.25%">
+                                    <div style="display: inline-block;margin-left: 5%">
                                     <?= $form->field($rewardItem, "[{$i}]r_pledge_amt")
                                         ->textInput(['maxlength' => true])
                                         ->label(false)
@@ -95,7 +95,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
                                     <div style="display: inline-block">
                                         <p style="font-size: 20px;color: #2c2c2c">delivery date</p>
                                     </div>
-                                    <div style="display: inline-block;margin-left: 8.5%">
+                                    <div style="display: inline-block;margin-left: 8.7%">
                                     <?= $form->field($rewardItem, "[{$i}]r_delivery_date")
                                         ->textInput(['maxlength' => true])
                                         ->label(false)
@@ -106,7 +106,7 @@ use wbraganca\dynamicform\DynamicFormWidget;
                                     <div style="display: inline-block">
                                         <p style="font-size: 20px;color: #2c2c2c">shipping details</p>
                                     </div>
-                                    <div style="display: inline-block;margin-left: 9.5%">
+                                    <div style="display: inline-block;margin-left: 9.8%">
                                     <?= $form->field($rewardItem, "[{$i}]r_shipping_details")
                                         ->textInput(['maxlength' => true])
                                         ->label(false)
