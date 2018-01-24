@@ -8,7 +8,7 @@ use frontend\models\RewardItem;
 use frontend\assets\HomePageAsset;
 use frontend\assets\CampaignAsset;
 
-/*HomePageAsset::register($this);*/
+HomePageAsset::register($this);
 CampaignAsset::register($this);
 
 

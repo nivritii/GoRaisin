@@ -22,22 +22,19 @@ frontend\assets\HomePageAsset::register($this);
     <!-- Main Content -->
     <div id="Content">
         <div class="content_wrapper clearfix">
-            <div class="sidebar sidebar-1 four columns" style="width: 0%;float: left; margin-left: 8.5%; border-right: .5px solid #f0f0f0">
-                <div class="widget-area clearfix ">
-                    <!-- Search form-->
+            <div class="sidebar sidebar-1 four columns" style="width: 0%;float: left; margin-left: 8.9%; border-right: .5px solid #f0f0f0; margin-top: 30px;">
                     <div class="image-div">
-                        <div class="user-image">
+                        <div class="user-image" style="width: 100px; height: 10px">
                         <?=Html::img(Url::to('@web/'.$model->cAuthor->image))?>
                         </div>
                         <div class="image-div2">
-                            <p class="user-name"><?=$model->cAuthor->username?></p>
+                            <p class="user-name"></p>
                         </div>
                     </div>
-                </div>
             </div>
-            <div class="sections_group" style="width: 82%;float: left; margin-right: 8%;">
+            <div class="sections_group" style="width: 82%;float: right; margin-right: 8%;">
             <div style="margin-right: 8%; margin-left: 8%; border-right: .5px solid #f0f0f0; padding-bottom: 0%; padding-top: 0%">
-                <div class="column zero">
+                <div class="column zero" style="margin:20px">
                     <h1 class="title"><?=$model->c_title?></h1>
                     <h4 class="title"><?=$model->c_description?></h4>
                 </div>
@@ -49,7 +46,7 @@ frontend\assets\HomePageAsset::register($this);
                         <div class="section_wrapper clearfix">
                             <!-- Post Header-->
                             <!-- One full width row-->
-                            <div class="column one post-header">
+<!--                            <div class="column one post-header">
                                 <div class="button-love">
                                     <a href="#" class="mfn-love " data-id="2269"><span class="icons-wrapper"><i class="icon-heart-empty-fa"></i><i class="icon-heart-fa"></i></span><span class="label">138</span></a>
                                 </div>
@@ -78,7 +75,7 @@ frontend\assets\HomePageAsset::register($this);
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                             <!-- Post Featured Element (image / video / gallery)-->
                             <!-- One full width row-->
                             <div class="column one single-photo-wrapper image">
@@ -91,6 +88,37 @@ frontend\assets\HomePageAsset::register($this);
                                         </a>
                                         <div class="image_links">
                                             <a href="<?= Url::to(['campaign/fund'])?>" class="link"><i class="icon-link"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- One full width row-->
+                            <div class="column one post-header">
+                                <div class="button-love">
+                                    <a href="#" class="mfn-love " data-id="2269"><span class="icons-wrapper"><i class="icon-heart-empty-fa"></i><i class="icon-heart-fa"></i></span><span class="label">138</span></a>
+                                </div>
+                                <div class="title_wrapper">
+                                    <div class="post-meta clearfix">
+                                        <div class="author-date">
+                                            <span class="vcard author post-author"> Published by <i class="icon-user"></i> <span class="fn"><a href="#"><?=$model->cAuthor->username?></a></span> </span><span class="date"> at <i class="icon-clock"></i>
+														<time class="entry-date" datetime="2014-03-12T09:15:13+00:00" itemprop="datePublished" pubdate>
+															<?=$model->c_created_at?>
+														</time> </span>
+                                        </div>
+                                        <div class="category meta-categories">
+                                            <span class="cat-btn">Categories <i class="icon-down-dir"></i></span>
+                                            <div class="cat-wrapper">
+                                                <ul class="post-categories">
+                                                    <?php foreach ($categories as $category) {?>
+                                                        <li>
+                                                            <a rel="category tag" href="<?= Url::to(['campaign/show', 'id'=>$category->id])?>"><?= $category->name?></a>
+                                                        </li>
+                                                    <?php }?>
+                                                        <li>
+                                                            <a rel="category tag" href="<?= Url::to(['campaign/show', 'id'=>'NULL'])?>">Show all</a>
+                                                        </li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
