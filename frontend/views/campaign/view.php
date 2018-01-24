@@ -17,6 +17,7 @@ $this->title = $model->c_id;
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 frontend\assets\HomePageAsset::register($this);
+frontend\assets\RoadmapAsset::register($this);
 ?>
 <div class="campaign-view">
     <!-- Main Content -->
@@ -108,7 +109,7 @@ $items = [
     ],
     [
         'label'=>'<i class="glyphicon glyphicon-bell"></i> Updates',
-        'content'=>"Roadmap!",
+        'content'=>$this->render('campaign_roadmap',['roadmap'=>$roadmap]),
         //'linkOptions'=>['data-url'=>\yii\helpers\Url::to(['/campaign/form'])]
     ],
     [
@@ -159,7 +160,7 @@ echo TabsX::widget([
                     <h3 class="title-price" style="margin-top:0px;"><small>days to go</small></h3>
                     
                     <div class="section" style="margin-top:25px; padding-bottom:20px;">
-                        <a href="<?= Url::to(['fund/create1']) ?>">
+                        <a href="<?= Url::to(['campaign/fund']) ?>">
                         <button class="btn btn-default" style="width:100%; background-color:#007bb6; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-gift" aria-hidden="true"></span>Fund this Campaign</h4></button>
                         </a>
                     </div>
