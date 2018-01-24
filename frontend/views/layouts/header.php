@@ -88,5 +88,6 @@ frontend\assets\HomePageAsset::register($this);
                 </div>
             </div>
         </header>
+    </div>
 
 
