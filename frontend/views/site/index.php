@@ -5,25 +5,38 @@ use frontend\assets\HomePageAsset;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use frontend\models\Category;
+use kartik\tabs\TabsX;
 
 HomePageAsset::register($this);
 $this->title = 'GoRaisin';
 ?>
-
-<body class="home layout-full-width nice-scroll-on mobile-tb-left button-flat no-content-padding header-classic minimalist-header sticky-header sticky-white ab-hide subheader-both-left menu-line-below-80-1 menuo-right menuo-no-borders footer-copy-center">
-    <!-- Main Theme Wrapper -->
-    <div id="Wrapper">
-        <!-- Header Wrapper -->
-        <div id="Header_wrapper">
-            <!-- Header -->       
-        </div>
         <!-- Main Content -->
+<div class="site-index">
         <div id="Content">
             <div class="content_wrapper clearfix">
                 <div class="sections_group">
                     <div class="entry-content">
                         <div class="section mcb-section " style="padding-top:50px; padding-bottom:20px; ">
                             <div class="section_wrapper mcb-section-inner">
+                                <?php
+                                $items = [
+                                    [
+                                        'label'=>'<i class="glyphicon glyphicon-home"></i> Home',
+                                        'content'=>$this->render('/user/index',['model' => $model]),
+                                        'active'=>true
+                                    ],
+                                    [
+                                        'label'=>'<i class="glyphicon glyphicon-user"></i> Profile',
+                                        'content'=>$this->render('/user/index',['model' => $model]),
+                                        /*'linkOptions'=>['data-url'=>\yii\helpers\Url::to(['/site/tabs-data'])]*/
+                                    ],
+                                ];
+                                echo TabsX::widget([
+                                    'items'=>$items,
+                                    'position'=>TabsX::POS_ABOVE,
+                                    'encodeLabels'=>false
+                                ]);
+                                ?>
                                 <div class="wrap mcb-wrap one clearfix">
                                     <!-- One Full Row-->
                                     <?php foreach ($model as $campaign) { ?>
@@ -236,16 +249,8 @@ $this->title = 'GoRaisin';
                 </div>
             </div>
         </div>
-    </div>
+</div>
 
-    <!-- JS -->
-    <script src="js/jquery-2.1.4.min.js"></script>
-
-    <script src="js/mfn.menu.js"></script>
-    <script src="js/jquery.plugins.js"></script>
-    <script src="js/jquery.jplayer.min.js"></script>
-    <script src="js/animations/animations.js"></script>
-    <script src="js/scripts.js"></script>
 
     <script>
         jQuery(window).load(function() {
@@ -266,4 +271,4 @@ $this->title = 'GoRaisin';
             }
         });
     </script>
-</body>
+
