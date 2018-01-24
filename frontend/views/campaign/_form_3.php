@@ -52,7 +52,7 @@ use frontend\models\Reward;
             </div>
         </div>
 
-        <div style="clear:both;height: 80px;margin-left: 10%;margin-right: 5%">
+        <div style="clear:both;height: 80px;margin-left: 10%;margin-right: 5%;margin-top: 7%">
             <div style="float: left;display: inline-block;width: 20%">
                 <p class="item-title">Your location</p>
             </div>
