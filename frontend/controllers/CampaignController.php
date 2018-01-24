@@ -102,11 +102,20 @@ class CampaignController extends Controller
         $model = new Campaign();
         $c_reward = new CampaignReward();
         $rewardsItem = [new RewardItem()];
+        $current_image = $model->c_image;
 
         if ($model->load(Yii::$app->request->post())) {
             $model-> c_author = Yii::$app->user->identity->getId();
             $imageName = $model->c_title;
             $model->file = UploadedFile::getInstance($model,'c_image');
+
+            if(!empty($model->file) && $model->file->size !== 0){
+                $model->file->saveAs('uploads/campaign/'.$imageName.'.'.$model->
+                    file->extension);
+                $model->c_image = 'uploads/campaign/'.$imageName.'.'.$model->file->extension;
+            }else {
+                $model->c_image = $current_image;
+            }
 
 
                                   

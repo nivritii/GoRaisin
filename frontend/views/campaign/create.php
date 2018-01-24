@@ -8,7 +8,7 @@ use frontend\models\RewardItem;
 use frontend\assets\HomePageAsset;
 use frontend\assets\CampaignAsset;
 
-HomePageAsset::register($this);
+/*HomePageAsset::register($this);*/
 CampaignAsset::register($this);
 
 
@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'title' => 'The Story',
                 'icon' => 'glyphicon glyphicon-film',
                 'content' => $this->render('_form_2',['model' => $model,]),
-                'buttons' => [
+                /*'buttons' => [
                     'next' => [
                         'title' => 'Save and continue',
                         'options' => [
@@ -80,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
 
                     ]
-                ],
+                ],*/
             ],
             '4' => [
                 'title' => 'The Profile',
