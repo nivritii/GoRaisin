@@ -331,7 +331,7 @@ main content basic style
     z-index: 1;
     min-height: 100vh;
     padding: 100px 0;
-    background-color: #f7f9fa;
+/*    background-color: #f7f9fa;*/
 }
 .page-title {
     font-weight: 800;
