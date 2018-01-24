@@ -330,8 +330,8 @@ main content basic style
     position: relative;
     z-index: 1;
     min-height: 100vh;
-    padding: 100px 0;
-/*    background-color: #f7f9fa;*/
+    /*padding: 100px 0;*/
+    /*background-color: #ffffff;*/
 }
 .page-title {
     font-weight: 800;
