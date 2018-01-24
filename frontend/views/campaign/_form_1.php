@@ -12,6 +12,7 @@ frontend\assets\CampaignAsset::register($this);
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
 /* @var $form yii\widgets\ActiveForm */
+$imagePath = '/'.$model->c_image;
 ?>
 <!--<style>
     #preview{
@@ -38,7 +39,7 @@ frontend\assets\CampaignAsset::register($this);
             reader.readAsDataURL(input.files[0]);
         }
     }
-    
+
     $(document).on('change','input[type="file"]',function(){
         readURL(this);
     })
@@ -47,7 +48,7 @@ frontend\assets\CampaignAsset::register($this);
 <div class="container">
     <h1 class="basic-title">Basics</h1>
     <div class="form-group">
-    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
         <div style="width: 100%;height: 80px">
             <div style="float: left;display: inline-block;width: 20%">
                 <p class="item-title">Campaign Title</p>
@@ -60,7 +61,7 @@ frontend\assets\CampaignAsset::register($this);
             </div>
         </div>
 
-<!--     $list = CHtml::listData(Category::model()->findAll(array('order' => 'name')), 'id', 'name');-->
+        <!--     $list = CHtml::listData(Category::model()->findAll(array('order' => 'name')), 'id', 'name');-->
         <div style="clear:both;height: 80px">
             <div style="float: left;display: inline-block;width: 20%">
                 <p class="item-title">Category</p>
@@ -80,6 +81,7 @@ frontend\assets\CampaignAsset::register($this);
                 <p class="item-title">Campaign image</p>
             </div>
             <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                <img src="<?php echo Yii::$app->request->baseUrl.'/uploads/campaign/default.jpg'?>" style="height: 400px;width: 600px"/>
                 <?= $form->field($model, 'c_image')
                     ->fileInput(['style' => 'color:#d30000;width:400px'])
                     /*->textInput(['maxlength' => true,'style' => '600px'])*/
@@ -125,35 +127,35 @@ frontend\assets\CampaignAsset::register($this);
                 ?>
             </div>
         </div>
-    
-<!--   $form->field($model, 'c_start_date')->widget(
-    'trntv\yii\datetime\DateTimeWidget',
-    [
-        'phpDatetimeFormat' => 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ',
-        'clientOptions' => [
-            'minDate' => new \yii\web\JsExpression('new Date("2015-01-01")'),
-            'allowInputToggle' => false,
-            'sideBySide' => true,
-            'locale' => 'zh-cn',
-            'widgetPositioning' => [
-               'horizontal' => 'auto',
-               'vertical' => 'auto'
+
+        <!--   $form->field($model, 'c_start_date')->widget(
+            'trntv\yii\datetime\DateTimeWidget',
+            [
+                'phpDatetimeFormat' => 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ',
+                'clientOptions' => [
+                    'minDate' => new \yii\web\JsExpression('new Date("2015-01-01")'),
+                    'allowInputToggle' => false,
+                    'sideBySide' => true,
+                    'locale' => 'zh-cn',
+                    'widgetPositioning' => [
+                       'horizontal' => 'auto',
+                       'vertical' => 'auto'
+                    ]
+                ]
             ]
-        ]
-    ]
-    );          
-            
-    $form->field($model, 'c_end_date')->widget(
-         DatePicker::className(), [
-        // inline too, not bad
-         'inline' => false, 
-         // modify template for custom rendering
-        //'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
-        'clientOptions' => [
-            'autoclose' => true,
-            'format' => 'dd-M-yyyy'
-        ]
-]);-->
+            );
+
+            $form->field($model, 'c_end_date')->widget(
+                 DatePicker::className(), [
+                // inline too, not bad
+                 'inline' => false,
+                 // modify template for custom rendering
+                //'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
+                'clientOptions' => [
+                    'autoclose' => true,
+                    'format' => 'dd-M-yyyy'
+                ]
+        ]);-->
         <div style="clear:both;height: 80px">
             <div style="float: left;display: inline-block;width: 20%">
                 <p class="item-title">Fund cap</p>
@@ -165,7 +167,7 @@ frontend\assets\CampaignAsset::register($this);
                 ?>
             </div>
         </div>
-    <?php ActiveForm::end(); ?>
+        <?php ActiveForm::end(); ?>
 
     </div>
 </div>
