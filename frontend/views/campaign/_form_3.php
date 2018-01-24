@@ -13,7 +13,7 @@ use frontend\models\Reward;
 
 <div class="campaignAboutYou-form">
     <h1 class="basic-title">About you</h1>
-
+    <br />
     <div class="form-group">
         <!--<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>-->
         <div style="width: 100%;height: 80px;margin-left: 10%;margin-right: 5%">

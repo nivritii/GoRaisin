@@ -12,7 +12,7 @@ use frontend\models\Campaign;
 
 <div class="campaignStory-form">
     <h1 class="basic-title">Story</h1>
-
+    <br />
     <div class="form-group">
         <!--<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>-->
 
