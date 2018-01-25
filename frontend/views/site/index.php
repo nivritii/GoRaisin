@@ -6,10 +6,15 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use frontend\models\Category;
 use kartik\tabs\TabsX;
+use frontend\models\Campaign;
 
 HomePageAsset::register($this);
 $this->title = 'GoRaisin';
 ?>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <!-- Main Content -->
 <div class="site-index">
     <div id="Content">
@@ -18,53 +23,72 @@ $this->title = 'GoRaisin';
                 <div class="entry-content">
                     <div class="section mcb-section " style="padding-top:50px; padding-bottom:20px; ">
                         <div class="section_wrapper mcb-section-inner">
+                            <div class="container">
+
+  <ul class="nav nav-tabs">
+      <?php foreach($categories as $category){?>
+    <li class="<?=$category->class?>"><a data-toggle="tab" href="#<?=$category->id?>"><?=$category->name?></a></li>
+      <?php }?>
+  </ul>
+
+<div class="tab-content">
+    <?php foreach($categories as $category){?>
+    <div id="<?=$category->id?>" class="tab-pane fade in <?=$category->class?>">
+      <h3><?=$category->name?></h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    </div>
+    <?php }?>
+</div>
+</div>
+
+                            
                             <?php
-                            $items = [
-                                [
-                                    'label'=>'Arts',
-                                    'content'=>$this->render('/site/art',['model' => $model]),
-                                    'active'=>true
-                                ],
-                                [
-                                    'label'=>'Manufactures',
-                                    'content'=>$this->render('/site/manufacture',['model' => $model]),
-                                ],
-                                [
-                                    'label'=>'Musics',
-                                    'content'=>$this->render('/site/music',['model' => $model]),
-                                ],
-                                [
-                                    'label'=>'Foods',
-                                    'content'=>$this->render('/site/food',['model' => $model]),
-                                ],
-                                [
-                                    'label'=>'Computers',
-                                    'content'=>$this->render('/site/computer',['model' => $model]),
-                                ],
-                                [
-                                    'label'=>'Clothes',
-                                    'content'=>$this->render('/site/clothes',['model' => $model]),
-                                ],
-                                [
-                                    'label'=>'Travels',
-                                    'content'=>$this->render('/site/travel',['model' => $model]),
-                                ],
-                                [
-                                    'label'=>'Fashions',
-                                    'content'=>$this->render('/site/fashion',['model' => $model]),
-                                ],
-                                [
-                                    'label'=>'Sciences',
-                                    'content'=>$this->render('/site/science',['model' => $model]),
-                                ],
-                            ];
-                            echo TabsX::widget([
-                                'items'=>$items,
-                                'position'=>TabsX::POS_ABOVE,
-                                'encodeLabels'=>false,
-                                'fade' => false,
-                            ]);
-                            ?>
+//                            $items = [
+//                                [
+//                                    'label'=>'Arts',
+//                                    'content'=>$this->render('/site/art',['model' => $model]),
+//                                    'active'=>true
+//                                ],
+//                                [
+//                                    'label'=>'Manufactures',
+//                                    'content'=>$this->render('/site/manufacture',['model' => $model]),
+//                                ],
+//                                [
+//                                    'label'=>'Musics',
+//                                    'content'=>$this->render('/site/music',['model' => $model]),
+//                                ],
+//                                [
+//                                    'label'=>'Foods',
+//                                    'content'=>$this->render('/site/food',['model' => $model]),
+//                                ],
+//                                [
+//                                    'label'=>'Computers',
+//                                    'content'=>$this->render('/site/computer',['model' => $model]),
+//                                ],
+//                                [
+//                                    'label'=>'Clothes',
+//                                    'content'=>$this->render('/site/clothes',['model' => $model]),
+//                                ],
+//                                [
+//                                    'label'=>'Travels',
+//                                    'content'=>$this->render('/site/travel',['model' => $model]),
+//                                ],
+//                                [
+//                                    'label'=>'Fashions',
+//                                    'content'=>$this->render('/site/fashion',['model' => $model]),
+//                                ],
+//                                [
+//                                    'label'=>'Sciences',
+//                                    'content'=>$this->render('/site/science',['model' => $model]),
+//                                ],
+//                            ];
+//                            echo TabsX::widget([
+//                                'items'=>$items,
+//                                'position'=>TabsX::POS_ABOVE,
+//                                'encodeLabels'=>false,
+//                                'fade' => false,
+//                            ]);
+//                            ?>
 
 
 
