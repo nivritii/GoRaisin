@@ -19,7 +19,7 @@ frontend\assets\HomePageAsset::register($this);
                             <div class="top_bar_left clearfix" style="width:1250px">
                             <!-- Logo-->
                             <div class="logo">
-                                <a id="logo" href="<?=Url::to(['/site/index'])?>" title="BeBlogger 2 - BeTheme">
+                                <a id="logo" href="<?=Url::to(['/site/index'])?>" title="GoRaisin">
                                     <p><?= Html::img('@web/images/raisin_logo.png', ['alt'=>'GoRaisin', 'class'=>'logo-main scale-with-grid']);?></p>
                                     <p><?= Html::img('@web/images/raisin_logo.png', ['alt'=>'GoRaisin', 'class'=>'logo-sticky scale-with-grid']);?></p>
                                     <p><?= Html::img('@web/images/raisin_logo.png', ['alt'=>'GoRaisin', 'class'=>'logo-mobile scale-with-grid']);?></p>
