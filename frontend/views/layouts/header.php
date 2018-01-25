@@ -20,9 +20,9 @@ frontend\assets\HomePageAsset::register($this);
                             <!-- Logo-->
                             <div class="logo">
                                 <a id="logo" href="<?=Url::to(['/site/index'])?>" title="BeBlogger 2 - BeTheme">
-                                    <p><?= Html::img('@web/images/blogger2.png', ['alt'=>'GoRaisin', 'class'=>'logo-main scale-with-grid']);?></p>
-                                    <p><?= Html::img('@web/images/blogger2.png', ['alt'=>'GoRaisin', 'class'=>'logo-sticky scale-with-grid']);?></p>
-                                    <p><?= Html::img('@web/images/blogger2.png', ['alt'=>'GoRaisin', 'class'=>'logo-mobile scale-with-grid']);?></p>
+                                    <p><?= Html::img('@web/images/raisin_logo.png', ['alt'=>'GoRaisin', 'class'=>'logo-main scale-with-grid']);?></p>
+                                    <p><?= Html::img('@web/images/raisin_logo.png', ['alt'=>'GoRaisin', 'class'=>'logo-sticky scale-with-grid']);?></p>
+                                    <p><?= Html::img('@web/images/raisin_logo.png', ['alt'=>'GoRaisin', 'class'=>'logo-mobile scale-with-grid']);?></p>
                                 </a>
                             </div>
                             <!-- Main menu-->

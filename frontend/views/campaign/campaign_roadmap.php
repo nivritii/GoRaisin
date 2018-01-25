@@ -39,7 +39,7 @@ frontend\assets\RoadmapAsset::register($this);
             }
             ?>
             <div class="cd-timeline-img cd-done">
-                <?= Html::img('@web/img/roadmap/launch.png'/*,['alt' => 'Picture']*/)?>
+                <?= Html::img('@web/images/roadmap/launch.png'/*,['alt' => 'Picture']*/)?>
                 <!--<img src="img/cd-icon-picture.svg" alt="Picture">-->
             </div> <!-- cd-timeline-img -->
 
@@ -53,7 +53,7 @@ frontend\assets\RoadmapAsset::register($this);
 
         <div class="cd-timeline-block">
             <div class="cd-timeline-img cd-undergoing">
-                <?= Html::img('@web/img/roadmap/continue.png')?>
+                <?= Html::img('@web/images/roadmap/continue.png')?>
             </div> <!-- cd-timeline-img -->
 
             <div class="cd-timeline-content">
@@ -66,7 +66,7 @@ frontend\assets\RoadmapAsset::register($this);
 
         <div class="cd-timeline-block">
             <div class="cd-timeline-img cd-undergoing">
-                <?= Html::img('@web/img/roadmap/location.png')?>
+                <?= Html::img('@web/images/roadmap/location.png')?>
             </div> <!-- cd-timeline-img -->
 
             <div class="cd-timeline-content">
@@ -79,7 +79,7 @@ frontend\assets\RoadmapAsset::register($this);
 
         <div class="cd-timeline-block">
             <div class="cd-timeline-img cd-undergoing">
-                <?= Html::img('@web/img/roadmap/clock.png')?>
+                <?= Html::img('@web/images/roadmap/clock.png')?>
             </div> <!-- cd-timeline-img -->
 
             <div class="cd-timeline-content">
@@ -92,7 +92,7 @@ frontend\assets\RoadmapAsset::register($this);
 
         <div class="cd-timeline-block">
             <div class="cd-timeline-img cd-undergoing">
-                <?= Html::img('@web/img/roadmap/fund.png')?>
+                <?= Html::img('@web/images/roadmap/fund.png')?>
             </div> <!-- cd-timeline-img -->
 
             <div class="cd-timeline-content">
@@ -105,7 +105,7 @@ frontend\assets\RoadmapAsset::register($this);
 
         <div class="cd-timeline-block">
             <div class="cd-timeline-img cd-undergoing">
-                <?= Html::img('@web/img/roadmap/running.png')?>
+                <?= Html::img('@web/images/roadmap/running.png')?>
             </div> <!-- cd-timeline-img -->
 
             <div class="cd-timeline-content">
