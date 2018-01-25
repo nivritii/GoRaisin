@@ -23,7 +23,7 @@ use frontend\models\Campaign;
             <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
                 <img src="<?php echo Yii::$app->request->baseUrl.'/uploads/campaign/default.jpg'?>" style="height: 400px;width: 600px"/>
                 <?= $form->field($model, 'c_video')
-                    ->fileInput(['style' => 'color:#d30000;width:400px'])
+                    ->fileInput(['style' => 'color:#940094;width:400px'])
                     ->label(false)
                     ->hint('Upload a video from your computer! A campaign with a video has a great chance of success!')
                 ?>
