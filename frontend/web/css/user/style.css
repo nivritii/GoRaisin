@@ -373,7 +373,7 @@ main content basic style
     padding-left: 46%;
 }
 .edit-button {
-    background-color: #d30000;
+    background-color: #940094;
     border-radius: 10px;
     width: 40%;
     height: 30%;
@@ -384,15 +384,16 @@ main content basic style
 }
 .edit-button:hover {
     color: #ffffff;
-    background-color: #BA0000;
+    background-color: #800080;
     text-decoration: none;
 }
 .view-profile {
-    color: #d30000;
+    color: #940094;
     font-size: 15px;
 }
 .view-profile:hover {
     text-decoration: none;
+    color: #800080;
 }
 /* --------------------------------
 
