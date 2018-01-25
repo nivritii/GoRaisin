@@ -83,7 +83,7 @@ body.admin-bar {
 }
 .column, .columns {
 	float: left;
-/*	margin: 0 1% 40px;*/
+	margin: 0 1% 40px;
 }
 .the_content_wrapper {
 	margin: 0 1%;

@@ -23,21 +23,21 @@ frontend\assets\RoadmapAsset::register($this);
     <!-- Main Content -->
     <div id="Content" style="padding: 0px">
         <div class="content_wrapper clearfix">
-            <div class="sidebar sidebar-1 four columns" style="width: 0%;float: left; margin-left: 8.9%; border-right: .5px solid #f0f0f0; margin-top: 30px;">
+            <div class="sidebar sidebar-1 four columns" style="width: 0%;float: left; margin-left: 8.9%; border-right: .5px solid #f0f0f0; padding-top: 4%">
                     <div class="image-div">
-                        <div class="user-image" style="width: 100px; height: 10px">
+                        <div class="user-image" style="width: 35px; height: 42px">
                         <?=Html::img(Url::to('@web/'.$model->cAuthor->image))?>
                         </div>
                         <div class="image-div2">
-                            <p class="user-name"></p>
+                            <p class="user-name"><?=$model->cAuthor->username?></p>
                         </div>
                     </div>
             </div>
-            <div class="sections_group" style="width: 87%;float: right; margin-right: 4%;">
-            <div style="margin-right: 8%; margin-left: 8%; border-right: .5px solid #f0f0f0; padding-bottom: 0%; padding-top: 0%">
-                <div class="column zero" style="margin:20px">
+            <div class="sections_group" style="width: 85%;float: right; margin-right: 4%;">
+            <div style="margin-right: 8%; margin-left: 8%; border-right: .5px solid #f0f0f0; padding-top: 2%">
+                <div class="column zero">
                     <h1 class="title" style="color: #007bb6"><?=$model->c_title?></h1>
-                    <h4 class="title"><?=$model->c_description?></h4>
+                    <p class="" style="font-size: 18px;"><?=$model->c_description?></p>
                 </div>
             </div>
             </div>
@@ -47,7 +47,7 @@ frontend\assets\RoadmapAsset::register($this);
                         <div class="section_wrapper clearfix">
                             <!-- Post Featured Element (image / video / gallery)-->
                             <!-- One full width row-->
-                            <div class="column one single-photo-wrapper image">
+                            <div class="column one single-photo-wrapper image" style="margin-top: 0px; margin-right: 0%; margin-bottom: 0px; margin-left: 0%">
                                 <div class="image_frame scale-with-grid ">
                                     <div class="image_wrapper">
                                         <a href="#" rel="prettyphoto">
@@ -63,9 +63,6 @@ frontend\assets\RoadmapAsset::register($this);
                             <!-- Post Header-->
                             <!-- One full width row-->
                             <div class="column one post-header">
-                                <div class="button-love">
-                                    <a href="#" class="mfn-love " data-id="2269"><span class="icons-wrapper"><i class="icon-heart-empty-fa"></i><i class="icon-heart-fa"></i></span><span class="label">138</span></a>
-                                </div>
                                 <div class="title_wrapper">
                                     <div class="post-meta clearfix">
                                         <div class="author-date">
@@ -115,10 +112,6 @@ $items = [
     [
         'label'=>'<i class="glyphicon glyphicon-comment"></i> Comments',
         'content'=>$this->render('campaign_comments'),
-    ],
-    [
-        'label'=>'<i class="glyphicon glyphicon-user"></i> Community',
-        'content'=>"No of backers",
     ],
     [
         'label'=>'<i class="glyphicon glyphicon-question-sign"></i> FAQ',
