@@ -30,7 +30,7 @@ frontend\assets\HomePageAsset::register($this);
                                 <nav id="menu" class="menu-main-menu-container">
                                     <ul id="menu-main-menu" class="menu">
                                         <li>
-                                            <a href="<?=Url::to(['/site/index'])?>"><span>Explore</span></a>
+                                            <a href="<?=Url::to(['/campaign/show','id' => 'NULL'])?>"><span>Explore</span></a>
                                         </li>
 
                                         <li>
