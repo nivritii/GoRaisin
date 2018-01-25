@@ -45,9 +45,6 @@ frontend\assets\HomePageAsset::register($this);
                                             </li>
                                         <?php } else { ?>
                                             <li>
-                                                <!--<a style="text-decoration: none">-->
-                                                <!--<img class="user-image" src="<?php /*$imagePath = '/'.Yii::$app->user->identity->image;
-                      echo Yii::$app->request->baseUrl.$imagePath*/?>">-->
                                                 <div class="image-div">
                                                     <span><span>
                                                     <img class="user-image" src="<?php $imagePath = '/'.Yii::$app->user->identity->image;

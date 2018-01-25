@@ -50,7 +50,16 @@ frontend\assets\TabAsset::register($this);
             <p class="featured-campaign-title-right">Penguins</p>
             <p class="campaign-fund-progress-right">80% funded</p>
         </div>
-    </div>
+        <br />
+        <br />
 
+        <div class="featured-campaign-image-container">
+            <?= Html::img('@web/images/uploads/Penguins.jpg',['class' => 'featured-campaign-image-right']) ?>
+        </div>
+        <div class="featured-campaign-title-container">
+            <p class="featured-campaign-title-right">Penguins</p>
+            <p class="campaign-fund-progress-right">80% funded</p>
+        </div>
+    </div>
 </div>
 <hr />
