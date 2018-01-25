@@ -16,11 +16,10 @@ $this->title = 'All Campaigns';
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<body class="blog layout-full-width nice-scroll-on mobile-tb-left button-flat header-classic minimalist-header sticky-header sticky-white ab-hide subheader-both-left menu-line-below-80-1 menuo-right menuo-no-borders footer-copy-center">
     <!-- Main Theme Wrapper -->
-    <div id="Wrapper">
+    <div class="campaign-show">
         <!-- Main Content -->
-        <div id="Content">
+        <div id="Content" style="padding: 0px">
             <div class="content_wrapper clearfix">
                 <div class="sections_group">
                     <div class="extra_content">
@@ -174,6 +173,6 @@ $this->params['breadcrumbs'][] = $this->title;
             }
         });
     </script>
-</body>
 
 </html>
+    </body>

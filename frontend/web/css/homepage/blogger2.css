@@ -920,7 +920,9 @@ blockquote, blockquote a, blockquote a:hover {
     color: #444444;
 }
 .image_frame .image_wrapper .image_links, .portfolio_group.masonry-hover .portfolio-item .masonry-hover-wrapper .hover-desc {
-    background: rgba(211, 0, 0, 0.8);
+/*    background: rgba(211, 0, 0, 0.8);*/ 
+/* purple-background theme*/
+    background: #b018cab8;
 }
 .masonry.tiles .post-item .post-desc-wrapper .post-desc .post-title:after, .masonry.tiles .post-item.no-img, .masonry.tiles .post-item.format-quote {
     background: #d30000;
@@ -930,7 +932,7 @@ blockquote, blockquote a, blockquote a:hover {
 }
 .image_frame .image_wrapper .image_links a:hover {
     background: #fff;
-    color: #d30000;
+    color: #772186;
 }
 .sliding_box .desc_wrapper {
     background: #d30000;
@@ -978,7 +980,7 @@ a.content_link:after {
     color: #d30000;
 }
 .icon_box:hover .icon_wrapper:before, .icon_box a:hover .icon_wrapper:before {
-    background-color: #d30000;
+    background-color: #a238b5;
 }
 ul.clients.clients_tiles li .client_wrapper:hover:before {
     background: #d30000;
