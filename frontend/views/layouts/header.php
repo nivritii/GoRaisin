@@ -14,9 +14,9 @@ frontend\assets\HomePageAsset::register($this);
         <!-- Header -->
         <header id="Header">
             <div id="Top_bar">
-                <div class="container">
-                    <div class="column one">
-                        <div class="top_bar_left clearfix" style="width: 1120px;">
+                <div class="container" style="width:1600px; padding-left: 0px;">
+<!--                    <div class="column one">-->
+                            <div class="top_bar_left clearfix" style="width:1250px">
                             <!-- Logo-->
                             <div class="logo">
                                 <a id="logo" href="<?=Url::to(['/site/index'])?>" title="BeBlogger 2 - BeTheme">
@@ -84,7 +84,7 @@ frontend\assets\HomePageAsset::register($this);
                                 </form>
                             </div>
                         </div>
-                    </div>
+<!--                    </div>-->
                 </div>
             </div>
         </header>
