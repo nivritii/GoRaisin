@@ -36,7 +36,7 @@ frontend\assets\RoadmapAsset::register($this);
             <div class="sections_group" style="width: 85%;float: right; margin-right: 4%;">
             <div style="margin-right: 8%; margin-left: 8%; border-right: .5px solid #f0f0f0; padding-top: 2%">
                 <div class="column zero">
-                    <h1 class="title" style="color: #007bb6"><?=$model->c_title?></h1>
+                    <h1 class="title" style="color: #6b0d7ce8"><?=$model->c_title?></h1>
                     <p class="" style="font-size: 18px;"><?=$model->c_description?></p>
                 </div>
             </div>
@@ -140,7 +140,7 @@ echo TabsX::widget([
             <div class="sidebar sidebar-1 four columns" style="width: 29%;float: left; margin-right: 4%;">
                 <div class="widget-area clearfix" style="padding: 9px 0px 0px;">
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">70%
+                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%; background-color:#6b0d7ce8">70%
                         </div>
                     </div>
                     <h3 style="margin-top:25px; margin-bottom:0px;">U$S 70</h3>
@@ -154,7 +154,7 @@ echo TabsX::widget([
                     
                     <div class="section" style="margin-top:25px; padding-bottom:20px;">
                         <a href="<?= Url::to(['campaign/fund']) ?>">
-                        <button class="btn btn-default" style="width:100%; background-color:#007bb6; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-gift" aria-hidden="true"></span>Fund this Campaign</h4></button>
+                        <button class="btn btn-default" style="width:100%; background-color:#6b0d7ce8; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-gift" aria-hidden="true"></span>Fund this Campaign</h4></button>
                         </a>
                     </div>
                     <div class="section" style="padding-bottom:20px;">

@@ -14,8 +14,8 @@ frontend\assets\HomePageAsset::register($this);
         <!-- Header -->
         <header id="Header">
             <div id="Top_bar">
-                <div class="container" style="width:1600px; padding-left: 0px;">
-<!--                    <div class="column one">-->
+                <div class="container" style="width:1200px; padding-left: 0px;">
+                    <div class="column one">
                             <div class="top_bar_left clearfix" style="width:1250px">
                             <!-- Logo-->
                             <div class="logo">
@@ -34,7 +34,7 @@ frontend\assets\HomePageAsset::register($this);
                                         </li>
 
                                         <li>
-                                            <a target="_blank" href="<?=Url::to(['/campaign/create'])?>"><span><span style="padding: 0; color: #d30000;"><!--<i class="fa fa-user-o"></i>-->Start Campaign</span></span></a>
+                                            <a target="_blank" href="<?=Url::to(['/campaign/create'])?>"><span><span style="padding: 0; color: #8f13a5f0;"><!--<i class="fa fa-user-o"></i>-->Start Campaign</span></span></a>
                                         </li>
                                         <?php if(Yii::$app->user->isGuest){ ?>
                                             <li>
@@ -84,7 +84,7 @@ frontend\assets\HomePageAsset::register($this);
                                 </form>
                             </div>
                         </div>
-<!--                    </div>-->
+                    </div>
                 </div>
             </div>
         </header>
