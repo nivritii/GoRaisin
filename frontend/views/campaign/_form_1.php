@@ -84,7 +84,7 @@ $imagePath = '/'.$model->c_image;
             <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
                 <img src="<?php echo Yii::$app->request->baseUrl.'/uploads/campaign/default.jpg'?>" style="height: 400px;width: 600px"/>
                 <?= $form->field($model, 'c_image')
-                    ->fileInput(['style' => 'color:#d30000;width:400px'])
+                    ->fileInput(['style' => 'color:#940094;width:400px'])
                     /*->textInput(['maxlength' => true,'style' => '600px'])*/
                     ->label(false)
                     ->hint('This is the main image of your campaign. This is the first thing people will see about your campaign.')
