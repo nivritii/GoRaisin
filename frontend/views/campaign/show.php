@@ -114,8 +114,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         </p>
                                                     </div>
                                                     <div class="post-footer">
-                                                        <div class="button-love">
-                                                            <span class="love-text">Do you like it?</span><a href="#" class="mfn-love " data-id="2277"><span class="icons-wrapper"><i class="icon-heart-empty-fa"></i><i class="icon-heart-fa"></i></span><span class="label">94</span></a>
+                                                        <div class="progress">
+                                                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%"><?=$campaign->c_id?>%
+                                                            </div>
                                                         </div>
                                                         <div class="post-links">
                                                             <i class="icon-doc-text"></i><a href="<?= Url::to(['campaign/view', 'id' => $campaign->c_id])?>" class="post-more">Read more</a>

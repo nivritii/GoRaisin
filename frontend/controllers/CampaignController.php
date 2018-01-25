@@ -13,6 +13,7 @@ use frontend\models\Category;
 use frontend\models\Comment;
 use frontend\models\Fund;
 use frontend\models\RewardItem;
+use frontend\models\Roadmap;
 use frontend\models\Model;
 use yii\web\UploadedFile;
 /**
@@ -69,6 +70,7 @@ class CampaignController extends Controller
     public function actionView($id)
     {
         $categories= Category::find()-> all();
+        $roadmap = Roadmap::find()->all();
         
         $comment = new Comment();
         $comments = Comment::find()->where(['comment_camp_id'=>$id])->all();
@@ -89,6 +91,7 @@ class CampaignController extends Controller
             'model' => $this->findModel($id),
             'categories' => $categories,
             'comments' => $comments,
+            'roadmap' => $roadmap,
         ]);
     }
 
