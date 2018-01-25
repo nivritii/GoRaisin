@@ -12,13 +12,13 @@ use yii\helpers\Url;
 frontend\assets\TabAsset::register($this);
 ?>
 <div class="tab-title-container">
-    <p class="tab-title">Manufactures</p>
+    <p class="tab-title">Manufacture</p>
     <br />
     <div class="featured-campaign-container1">
         <p class="featured-campaign-text">FEATURED CAMPAIGN</p>
-        <?= Html::img('@web/images/uploads/Tulips.jpg',['class' => 'featured-campaign-image']) ?>
-        <p class="featured-campaign-title">Tulips</p>
-        <p class="campaign-fund-progress">20% FUNDED</p>
+        <?= Html::img('@web/images/uploads/Penguins.jpg',['class' => 'featured-campaign-image']) ?>
+        <p class="featured-campaign-title">Penguins</p>
+        <p class="campaign-fund-progress">60% FUNDED</p>
     </div>
 
     <div class="featured-campaign-container2">
@@ -51,6 +51,5 @@ frontend\assets\TabAsset::register($this);
             <p class="campaign-fund-progress-right">80% funded</p>
         </div>
     </div>
-
 </div>
 <hr />

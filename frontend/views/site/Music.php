@@ -9,6 +9,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
+use frontend\models\Campaign;
 frontend\assets\TabAsset::register($this);
 ?>
 <div class="tab-title-container">
