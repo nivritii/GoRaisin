@@ -70,7 +70,7 @@ class CampaignController extends Controller
     public function actionView($id)
     {
         $categories= Category::find()-> all();
-        $roadmap = Roadmap::find()->all();
+        $roadmap = Roadmap::find()->where(['campaign_id'=>$id])->orderBy(['id' => SORT_DESC])->all();
         
         $comment = new Comment();
         $comments = Comment::find()->where(['comment_camp_id'=>$id])->all();
