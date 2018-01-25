@@ -1,0 +1,70 @@
+.tab-title-container {
+    margin-top: 2%;
+    margin-right: 1.8%;
+    height: 560px;
+}
+.tab-title {
+    color: #2c2c2c;
+    font-size: 25px;
+    font-weight: 700;
+}
+/* left featured campaign */
+.featured-campaign-container1 {
+    display: inline-block;
+    width: 50%;
+    height: 480px;
+    vertical-align: top;
+}
+.featured-campaign-text {
+    color: #2c2c2c;
+    font-size: 17px;
+}
+.featured-campaign-image {
+    width: 600px;
+}
+.featured-campaign-title {
+    margin-top: 1%;
+    font-size: 17px;
+    color: #2c2c2c;
+}
+.campaign-fund-progress {
+    color: #858585;
+    font-size: 15px;
+}
+/* right featured campaign */
+.featured-campaign-container2 {
+    display: inline-block;
+    width: 49.5%;
+    height: 480px;
+    vertical-align: top;
+}
+.featured-campaign-text-right {
+    margin-left: 4%;
+    color: #2c2c2c;
+    font-size: 17px;
+}
+.featured-campaign-image-right {
+    width: 100%;
+    height: 100%;
+}
+.featured-campaign-image-container {
+    display: inline-block;
+    width: 25%;
+    height: 20%;
+    margin-left: 4%;
+    vertical-align: top;
+}
+.featured-campaign-title-container {
+    display: inline-block;
+    margin-left: 5%;
+    margin-top: 5%;
+    vertical-align: top;
+}
+.featured-campaign-title-right {
+    font-size: 15px;
+    color: #2c2c2c;
+}
+.campaign-fund-progress-right {
+    color: #858585;
+    font-size: 12px;
+}

@@ -7,6 +7,8 @@ use frontend\models\CampaignReward;
 use frontend\models\RewardItem;
 use frontend\assets\HomePageAsset;
 use frontend\assets\CampaignAsset;
+use kartik\tabs\TabsX;
+use yii\helpers\Url;
 
 HomePageAsset::register($this);
 CampaignAsset::register($this);
@@ -20,98 +22,99 @@ $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-    <?php
+<?php
 
-    $form = ActiveForm::begin([
-        'id' => 'campaign-create-form',
-        'options' => ['enctype' => 'multipart/form-data']
-    ]);
 
-    $wizard_config = [
-        'steps' => [
-            '1' => [
-                'title' => 'Start your campaign',
-                'icon' => 'glyphicon glyphicon-briefcase',
-                'content' => $this->render('_form_1',['model' => $model,]),
-                'buttons' => [
-                    'next' => [
-                        'title' => 'Continue',
-                        'options' => [
-                            'class' => 'basic-button',
-                            'style' => 'color:#ffffff',
-                        ],
+$form = ActiveForm::begin([
+    'id' => 'campaign-create-form',
+    'options' => ['enctype' => 'multipart/form-data']
+]);
+
+$wizard_config = [
+    'steps' => [
+        '1' => [
+            'title' => 'Start your campaign',
+            'icon' => 'glyphicon glyphicon-briefcase',
+            'content' => $this->render('_form_1',['model' => $model,]),
+            'buttons' => [
+                'next' => [
+                    'title' => 'Continue',
+                    'options' => [
+                        'class' => 'basic-button',
+                        'style' => 'color:#ffffff',
                     ],
                 ],
             ],
-            '2' => [
-                'title' => 'Rewards',
-                'icon' => 'glyphicon glyphicon-gift',
-                'content' => $this->render('_reward',['c_reward' => $c_reward, 'rewardsItem' =>$rewardsItem]),
-                'buttons' => [
-                    'next' => [
-                        'title' => 'Save and continue',
-                        'options' => [
-                            'class' => 'basic-button',
-                            'style' => 'color:#ffffff',
-                        ],
-                    ],
-                    'prev' =>[
-                        'title' => 'Previous',
-                        'options' => [
-                            'class' => 'basic-button',
-                            'style' => 'color:#ffffff',
-                        ],
-
-                    ]
-                ],
-            ],
-            '3' => [
-                'title' => 'The Story',
-                'icon' => 'glyphicon glyphicon-film',
-                'content' => $this->render('_form_2',['model' => $model,]),
-                'buttons' => [
-                    'next' => [
-                        'title' => 'Save and continue',
-                        'options' => [
-                            'class' => 'basic-button',
-                            'style' => 'color:#ffffff;margin-top:350px',
-                        ],
-                    ],
-                    'prev' =>[
-                        'title' => 'Previous',
-                        'options' => [
-                            'class' => 'basic-button',
-                            'style' => 'color:#ffffff;margin-top:350px',
-                        ],
-
-                    ]
-                ],
-            ],
-            '4' => [
-                'title' => 'The Profile',
-                'icon' => 'glyphicon glyphicon-user',
-                'content' => $this->render('_form_3',['model' => $model, ]),
-                'buttons' => [
-                    'prev' =>[
-                        'title' => 'Previous',
-                        'options' => [
-                            'class' => 'basic-button',
-                            'style' => 'color:#ffffff',
-                        ],
-
-                    ],
-                    'save' => [
-                        'html' => Html::submitButton('Save',['class' => 'basic-button','style' => 'color:#ffffff']),
+        ],
+        '2' => [
+            'title' => 'Rewards',
+            'icon' => 'glyphicon glyphicon-gift',
+            'content' => $this->render('_reward',['c_reward' => $c_reward, 'rewardsItem' =>$rewardsItem]),
+            'buttons' => [
+                'next' => [
+                    'title' => 'Save and continue',
+                    'options' => [
+                        'class' => 'basic-button',
+                        'style' => 'color:#ffffff',
                     ],
                 ],
-            ],
+                'prev' =>[
+                    'title' => 'Previous',
+                    'options' => [
+                        'class' => 'basic-button',
+                        'style' => 'color:#ffffff',
+                    ],
 
+                ]
+            ],
+        ],
+        '3' => [
+            'title' => 'The Story',
+            'icon' => 'glyphicon glyphicon-film',
+            'content' => $this->render('_form_2',['model' => $model,]),
+            'buttons' => [
+                'next' => [
+                    'title' => 'Save and continue',
+                    'options' => [
+                        'class' => 'basic-button',
+                        'style' => 'color:#ffffff;margin-top:350px',
+                    ],
+                ],
+                'prev' =>[
+                    'title' => 'Previous',
+                    'options' => [
+                        'class' => 'basic-button',
+                        'style' => 'color:#ffffff;margin-top:350px',
+                    ],
+
+                ]
+            ],
+        ],
+        '4' => [
+            'title' => 'The Profile',
+            'icon' => 'glyphicon glyphicon-user',
+            'content' => $this->render('_form_3',['model' => $model, ]),
+            'buttons' => [
+                'prev' =>[
+                    'title' => 'Previous',
+                    'options' => [
+                        'class' => 'basic-button',
+                        'style' => 'color:#ffffff',
+                    ],
+
+                ],
+                'save' => [
+                    'html' => Html::submitButton('Save',['class' => 'basic-button','style' => 'color:#ffffff']),
+                ],
+            ],
         ],
 
+    ],
+
 //        'complete_content' => "You are done!", // Optional final screen
-        'start_step' => 1, // Optional, start with a specific step
-    ];
-    ?>
+    'start_step' => 1, // Optional, start with a specific step
+];
+?>
 
     <?= \drsdre\wizardwidget\WizardWidget::widget($wizard_config);
     //    Html::submitButton('Save', ['class' => 'btn btn-success']);

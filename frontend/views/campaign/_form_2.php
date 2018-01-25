@@ -34,7 +34,7 @@ use frontend\models\Campaign;
             <div style="float: left;display: inline-block;width: 20%">
                 <p class="item-title">Campaign Description</p>
             </div>
-            <div style="float: left;display: inline-block;width: 50%;margin-left: 1.5%">
+            <div style="float: left;display: inline-block;width: 50%;margin-left: 1.5%;">
                 <?= $form->field($model, 'c_description_long')
                     ->textarea(['rows' => 20])
                     ->label(false)
