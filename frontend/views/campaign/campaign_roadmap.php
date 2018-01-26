@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\RoadmapSearch */
@@ -24,7 +25,7 @@ frontend\assets\RoadmapAsset::register($this);
             <div class="cd-timeline-content">
                 <h2><?=$update->title?></h2>
                 <p><?=$update->content?></p>
-                <a href="#0" class="cd-read-more">Read more</a>
+                <a href="<?=Url::to('campaign/view',['updateId'=>$update->id])?>" class="cd-read-more">Read more</a>
                 <span class="cd-date"><?=$update->timestamp?></span>
             </div> <!-- cd-timeline-content -->
         </div> <!-- cd-timeline-block -->
