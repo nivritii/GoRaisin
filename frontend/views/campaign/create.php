@@ -7,7 +7,6 @@ use frontend\models\CampaignReward;
 use frontend\models\RewardItem;
 use frontend\assets\HomePageAsset;
 use frontend\assets\CampaignAsset;
-use kartik\tabs\TabsX;
 use yii\helpers\Url;
 
 HomePageAsset::register($this);
@@ -17,20 +16,18 @@ CampaignAsset::register($this);
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
 
-$this->title = 'Create Campaign';
+$this->title = 'Create Campaign - GoRaisin';
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <?php
-
-
 $form = ActiveForm::begin([
     'id' => 'campaign-create-form',
     'options' => ['enctype' => 'multipart/form-data']
 ]);
 
-$wizard_config = [
+/*$wizard_config = [
     'steps' => [
         '1' => [
             'title' => 'Start your campaign',
@@ -111,8 +108,71 @@ $wizard_config = [
 
     ],
 
-//        'complete_content' => "You are done!", // Optional final screen
-    'start_step' => 1, // Optional, start with a specific step
+    'start_step' => 1,
+];*/
+$wizard_config = [
+    'id' => 'stepwizard',
+    'steps' => [
+        1 => [
+            'title' => 'The Basics',
+            'icon' => 'fa fa-pencil',
+            'content' => $this->render('_form_1',['model' => $model]),
+            'buttons' => [
+                'next' => [
+                    'title' => 'Forward',
+                    'options' => [
+                        'class' => 'basic-button',
+                        'style' => 'color:#ffffff',
+                    ],
+                ],
+            ],
+        ],
+        2 => [
+            'title' => 'The Story',
+            'icon' => 'fa fa-picture-o',
+            'content' => $this->render('_form_2',['model' => $model]),
+            'buttons' => [
+                'next' => [
+                    'title' => 'Next',
+                    'options' => [
+                        'class' => 'basic-button',
+                        'style' => 'color:#ffffff',
+                    ],
+                ],
+                'prev' => [
+                    'title' => 'Previous',
+                    'options' => [
+                        'class' => 'basic-button',
+                        'style' => 'color:#ffffff',
+                    ],
+                ],
+            ],
+        ],
+        3 => [
+            'title' => 'Company Profile',
+            'icon' => 'fa fa-user-o',
+            'content' => $this->render('_form_3',['model' => $model]),
+            'buttons' => [
+                'save' => [
+                    'title' => 'Submit',
+                    'html' => Html::submitButton('Save',['class' => 'basic-button','style' => 'color:#ffffff']),
+                ],
+                'prev' => [
+                    'title' => 'Previous',
+                    'options' => [
+                        'class' => 'basic-button',
+                        'style' => 'color:#ffffff',
+                    ],
+                ],
+            ],
+        ],
+        /*4 => [
+                'title' => 'Rewards',
+            'icon' => 'fa fa-gift',
+            'content' => '<h3>Step 4</h3>This is step 4',
+        ],*/
+    ],
+    /*'start_step' => 1, // Optional, start with a specific step*/
 ];
 ?>
 

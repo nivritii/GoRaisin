@@ -102,7 +102,7 @@ class CampaignController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Campaign();
+        /*$model = new Campaign();
         $c_reward = new CampaignReward();
         $rewardsItem = [new RewardItem()];
         $current_image = $model->c_image;
@@ -126,10 +126,10 @@ class CampaignController extends Controller
             $rewardsItem = Model::createMultiple(RewardItem::classname());
             Model::loadMultiple($rewardsItem, Yii::$app->request->post());
             
-            $c_reward->campaign_id=$model->c_id;
+            $c_reward->campaign_id=$model->c_id;*/
 
             // validate all models
-            $valid = $c_reward->validate();
+            /*$valid = $c_reward->validate();
             $valid = Model::validateMultiple($rewardsItem);
             
             if ($valid) {
@@ -159,7 +159,30 @@ class CampaignController extends Controller
                 'model' => $model,
                 'c_reward' => $c_reward,
                 'rewardsItem' => (empty($rewardsItem)) ? [new RewardItem] : $rewardsItem,
-            ]);
+            ]);*/
+
+        $model = new Campaign();
+        $current_image = $model->c_image;
+
+        if ($model->load(Yii::$app->request->post())) {
+            $model-> c_author = Yii::$app->user->identity->getId();
+            $imageName = $model->c_title;
+            $model->file = UploadedFile::getInstance($model,'c_image');
+
+            if(!empty($model->file) && $model->file->size !== 0){
+                $model->file->saveAs('uploads/campaign/image/'.$imageName.'.'.$model->
+                    file->extension);
+                $model->c_image = 'uploads/campaign/image/'.$imageName.'.'.$model->file->extension;
+            }else {
+                $model->c_image = $current_image;
+            }
+            $model->save();
+            return $this->redirect('index');
+        }
+
+        return $this->render('create', [
+            'model' => $model,
+        ]);
     }
 
     /**

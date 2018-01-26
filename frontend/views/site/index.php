@@ -35,7 +35,8 @@ $this->title = 'GoRaisin';
     <?php foreach($categories as $category){?>
     <div id="<?=$category->id?>" class="tab-pane fade in <?=$category->class?>">
       <h3><?=$category->name?></h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <?php $catmodel = Campaign::find()->where(['c_id'=>$category->featured_campaign_id])->one();?>
+      <p><?=$catmodel->c_description?></p>
     </div>
     <?php }?>
 </div>
@@ -89,33 +90,6 @@ $this->title = 'GoRaisin';
 //                                'fade' => false,
 //                            ]);
 //                            ?>
-
-
-
-                            <!-- Template category. Does it must be direct to a certain page? -->
-                            <!--<div class="section section-filters">
-                                <div class="section_wrapper clearfix">
-                                    <div id="Filters" class="column one ">
-                                        <div class="filters_wrapper">
-                                            <ul>
-                                                <li class="reset-inner">
-                                                    <a data-rel="*" href="<?/*= Url::to(['campaign/show', 'id'=>'NULL'])*/?>">All</a>
-                                                </li>
-                                                <?php /*foreach ($categories as $category) {*/?>
-                                                    <li>
-                                                        <a data-rel=".category-hot-news" href="<?/*= Url::to(['campaign/show', 'id'=>$category->id])*/?>"><?/*=$category->name*/?></a>
-                                                    </li>
-                                                <?php /*}*/?>
-                                                <li class="close">
-                                                    <a href="#"><i class="icon-cancel"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                </div>-->
-
-
 
                             <div class="wrap mcb-wrap one clearfix">
                                 <!-- One Full Row-->
