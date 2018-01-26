@@ -79,7 +79,7 @@ class SiteController extends Controller
           $model = Campaign::find()->limit($limit)->all();
           $categories = Category::find()->all();
           
-          $category1 = Campaign::find()->where(['c_cat_id'=>'11'])->limit(3)->all();
+          $category1 = Campaign::find()->limit(4)->all();
           $category2 = Campaign::find()->where(['c_cat_id'=>'10'])->limit(2)->all();
           $category3 = Campaign::find()->where(['c_cat_id'=>'8'])->limit(2)->all();
                     
