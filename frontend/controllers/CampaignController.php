@@ -176,6 +176,7 @@ class CampaignController extends Controller
             }else {
                 $model->c_image = $current_image;
             }
+
             $model->save();
             return $this->redirect('index');
         }

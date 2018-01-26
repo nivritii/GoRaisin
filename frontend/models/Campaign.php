@@ -39,6 +39,9 @@ class Campaign extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    
+    public $file;
+    public $file2;
     public static function tableName()
     {
         return 'campaign';
@@ -59,6 +62,8 @@ class Campaign extends \yii\db\ActiveRecord
             [['c_description', 'c_display_name', 'c_email', 'c_location', 'c_social_profile', 'c_status','c_image','c_video'], 'string', 'max' => 255],
             [['c_cat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['c_cat_id' => 'id']],
             [['c_author'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['c_author' => 'id']],
+            [['c_image'],'file','extensions'=>'jpg,png,gif,jpeg,bmp'],
+            [['c_video'],'file','extensions' => 'mp4']
         ];
     }
 

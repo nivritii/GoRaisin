@@ -24,10 +24,9 @@ $imagePath = '/'.$model->c_image;
                 <p class="item-title">Campaign video</p>
             </div>
             <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                <img src="<?php echo Yii::$app->request->baseUrl.'/uploads/campaign/default.jpg'?>" style="height: 400px;width: 600px"/>
+                <img src="<?php echo Yii::$app->request->baseUrl.'/uploads/campaign/video/default.jpg'?>" style="height: 400px;width: 600px"/>
                 <?= $form->field($model, 'c_video')
-                    ->textInput()
-                    /*->fileInput(['style' => 'color:#940094;width:400px'])*/
+                    ->fileInput(['style' => 'color:#940094;width:400px'])
                     ->label(false)
                 ?>
             </div>
