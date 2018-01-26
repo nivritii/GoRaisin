@@ -41,7 +41,7 @@ frontend\assets\RoadmapAsset::register($this);
                 </div>
             </div>
             </div>
-            <div class="sections_group" style="width: 55%;float: left; margin-left: 8%; border-right: .5px solid #f0f0f0">
+            <div class="sections_group" style="width: 55%;float: left; margin-left: 0%; border-right: .5px solid #f0f0f0">
                 <div id=" " class="no-title no-share  post  format-standard has-post-thumbnail  category-hot-news   ">
                     <div class="section section-post-header">
                         <div class="section_wrapper clearfix">
@@ -137,7 +137,7 @@ echo TabsX::widget([
                 </div>
             </div>
             <!-- Sidebar area-->
-            <div class="sidebar sidebar-1 four columns" style="width: 29%;float: left; margin-right: 4%;">
+            <div class="sidebar sidebar-1 four columns" style="width: 25%;float: left; margin-right: 8%;">
                 <div class="widget-area clearfix" style="padding: 9px 0px 0px;">
                     <div class="progress">
                         <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%; background-color:#6b0d7ce8">70%
