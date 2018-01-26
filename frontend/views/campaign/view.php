@@ -111,7 +111,7 @@ $items = [
     ],
     [
         'label'=>'<i class="glyphicon glyphicon-comment"></i> Comments',
-        'content'=>$this->render('campaign_comments'),
+        'content'=>$this->render('campaign_comments',['comments'=>$comments]),
     ],
     [
         'label'=>'<i class="glyphicon glyphicon-question-sign"></i> FAQ',

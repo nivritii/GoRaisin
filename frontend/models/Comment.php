@@ -49,7 +49,7 @@ class Comment extends \yii\db\ActiveRecord
             'comment_id' => 'Comment ID',
             'comment_camp_id' => 'Comment Camp ID',
             'comment_user_id' => 'Comment User ID',
-            'comment_content' => 'Comment Content',
+            'comment_content' => 'Leave Your Comment',
             'comment_status' => 'Comment Status',
             'comment_datetime' => 'Comment Datetime',
         ];
