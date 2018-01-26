@@ -33,6 +33,7 @@ $this->title = 'GoRaisin';
 <div class="tab-content" style="height:640px;">
     <?php foreach($categories as $category){?>
     <div id="<?=$category->id?>" class="tab-pane fade in <?=$category->class?>">
+
         <div class="featured-campaign-container1" style="display: inline-block;width: 60%;height: 480px;vertical-align: top;">
         <h2 class="featured-campaign-text"><?=$category->name?></h2>
             <h6>FEATURED CAMPAIGN</h6>
@@ -58,10 +59,9 @@ $this->title = 'GoRaisin';
             <?php }?>
         </div>
     </div>
-    <?php }?>
 </div>
 </div>
-                            <!--Recommended Campaigns-->
+
                             <div class="wrap mcb-wrap one clearfix">
                                 <!-- One Full Row-->
                                 <div class="column mcb-column one column_column column-margin-20px">

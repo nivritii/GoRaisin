@@ -75,7 +75,6 @@ use frontend\models\Reward;
                 ?>
             </div>
         </div>
-
         <?php ActiveForm::end(); ?>
     </div>
 </div>
