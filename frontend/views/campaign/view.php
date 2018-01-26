@@ -115,7 +115,7 @@ $items = [
     ],
     [
         'label'=>'<i class="glyphicon glyphicon-question-sign"></i> FAQ',
-        'content'=>"Questions",
+        'content'=>$this->render('campaign_faq'),
     ],
 ];
 
