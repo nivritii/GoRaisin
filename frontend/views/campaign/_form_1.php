@@ -25,7 +25,7 @@ $imagePath = '/'.$model->c_image;
     }
 </style>-->
 
-<script src="https://code.jquery.com/jquery-3.1.0.min.js"
+<!--<script src="https://code.jquery.com/jquery-3.1.0.min.js"
         integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
         crossorigin="annonymous">
 </script>
@@ -43,7 +43,7 @@ $imagePath = '/'.$model->c_image;
     $(document).on('change','input[type="file"]',function(){
         readURL(this);
     })
-</script>
+</script>-->
 
 <div class="container">
     <h1 class="basic-title">Basics</h1>
