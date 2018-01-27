@@ -5,7 +5,7 @@ namespace frontend\models;
 use Yii;
 
 /**
- * This is the model class for table "roadmap".
+ * This is the model class for table "update".
  *
  * @property int $id
  * @property int $campaign_id
@@ -15,16 +15,16 @@ use Yii;
  * @property int $image_id
  *
  * @property Campaign $campaign
- * @property RoadmapImage $image
+ * @property UpdateImage $image
  */
-class Roadmap extends \yii\db\ActiveRecord
+class Update extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'roadmap';
+        return 'update';
     }
 
     /**
@@ -39,7 +39,7 @@ class Roadmap extends \yii\db\ActiveRecord
             [['timestamp'], 'safe'],
             [['title'], 'string', 'max' => 200],
             [['campaign_id'], 'exist', 'skipOnError' => true, 'targetClass' => Campaign::className(), 'targetAttribute' => ['campaign_id' => 'c_id']],
-            [['image_id'], 'exist', 'skipOnError' => true, 'targetClass' => RoadmapImage::className(), 'targetAttribute' => ['image_id' => 'id']],
+            [['image_id'], 'exist', 'skipOnError' => true, 'targetClass' => UpdateImage::className(), 'targetAttribute' => ['image_id' => 'id']],
         ];
     }
 
@@ -52,7 +52,7 @@ class Roadmap extends \yii\db\ActiveRecord
             'id' => 'ID',
             'campaign_id' => 'Campaign ID',
             'title' => 'Title',
-            'content' => 'Content',
+            'content' => 'Post an update',
             'timestamp' => 'Timestamp',
             'image_id' => 'Image ID',
         ];
@@ -71,6 +71,6 @@ class Roadmap extends \yii\db\ActiveRecord
      */
     public function getImage()
     {
-        return $this->hasOne(RoadmapImage::className(), ['id' => 'image_id']);
+        return $this->hasOne(UpdateImage::className(), ['id' => 'image_id']);
     }
 }

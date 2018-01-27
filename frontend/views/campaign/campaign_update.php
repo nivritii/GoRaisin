@@ -3,20 +3,21 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\Url;
-
+use yii\widgets\ActiveForm;
+use frontend\models\Update;
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\models\RoadmapSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Roadmaps';
+//$this->title = 'Roadmaps';
 $this->params['breadcrumbs'][] = $this->title;
 frontend\assets\AppAsset::register($this);
 frontend\assets\RoadmapAsset::register($this);
+$user_update = new Update();
 ?>
 <div class="roadmap-index">
-
-<section id="cd-timeline" class="cd-container">
-    <?php foreach ($roadmap as $update) {?>
+    <section id="cd-timeline" class="cd-container">
+    <?php foreach ($updates as $update) {?>
         <div class="cd-timeline-block">
             <div class="cd-timeline-img <?=$update->image->r_background_color?>">
                 <?= Html::img('@web/images/roadmap/'.$update->image->r_image)?>
