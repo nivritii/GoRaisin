@@ -106,7 +106,7 @@ $items = [
     ],
     [
         'label'=>'<i class="glyphicon glyphicon-bell"></i> Updates',
-        'content'=>$this->render('campaign_roadmap',['roadmap'=>$roadmap]),
+        'content'=>$this->render('campaign_update',['updates'=>$updates]),
         //'linkOptions'=>['data-url'=>\yii\helpers\Url::to(['/campaign/form'])]
     ],
     [
