@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use frontend\models\Comment;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
@@ -29,7 +30,7 @@ $userComment = new Comment();
                     <li class="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="comment-5">
                         <div id="div-comment-5" class="comment-body">
                             <div class="comment-author vcard">
-                                <img alt='' src='http://0.gravatar.com/avatar/057e2eb392b95a2ecfc9d32d554e3917?s=64&amp;d=mm&amp;r=g' class='avatar avatar-64 photo' height='64' width='64' /><cite class="fn"><?=$comment->commentUser->username?></cite><span class="says">says:</span>
+                                <p class="avatar avatar-64 photo"><?=Html::img(Url::to('@web/'.$comment->commentUser->image))?></p><cite class="fn"><?=$comment->commentUser->username?></cite><span class="says"> says:</span>
                             </div>
                             <div class="comment-meta commentmetadata">
                                 <a href="item-1.html#comment-5"><?=$comment->comment_datetime?></a>
