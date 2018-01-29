@@ -7,6 +7,7 @@ use frontend\models\Campaign;
 use trntv\yii\datetime\DateTimeWidget;
 use frontend\models\Category;
 use yii\helpers\ArrayHelper;
+use kartik\file\FileInput;
 frontend\assets\CampaignAsset::register($this);
 
 /* @var $this yii\web\View */
@@ -83,11 +84,15 @@ $imagePath = '/'.$model->c_image;
             </div>
             <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
                 <img src="<?php echo Yii::$app->request->baseUrl.'/uploads/campaign/image/default.jpg'?>" style="height: 400px;width: 600px"/>
-                <?= $form->field($model, 'c_image')
+                <? echo $form->field($model, 'c_image')
+                    ->widget(FileInput::classname(), [
+                        'options' => ['accept' => 'uploads/campaign/campaign'],
+                    ]);?>
+                <?/*= $form->field($model, 'c_image')
                     ->fileInput(['style' => 'color:#940094;width:400px'])
                     ->label(false)
                     ->hint('This is the main image of your campaign. This is the first thing people will see about your campaign.')
-                ?>
+                */?>
             </div>
         </div>
 
