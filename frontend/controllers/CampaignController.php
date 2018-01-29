@@ -181,7 +181,7 @@ class CampaignController extends Controller
             }
 
             $model->save();
-            return $this->redirect('index');
+            return $this->redirect(['view', 'id' => $model->c_id]);
         }
 
         return $this->render('create', [
