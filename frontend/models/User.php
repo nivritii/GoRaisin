@@ -82,7 +82,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'companyName' => 'Company Name',
             'walletAddress' => 'Wallet Address',
             'location' => 'Location',
-            'webiste' => 'Website',
+            'website' => 'Website',
             'biography' => 'Biography',
         ];
     }
