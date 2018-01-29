@@ -15,6 +15,7 @@ use Yii;
  * @property string $comment_datetime
  *
  * @property Campaign $commentCamp
+ * @property User $commentUser
  */
 class Comment extends \yii\db\ActiveRecord
 {
@@ -37,6 +38,7 @@ class Comment extends \yii\db\ActiveRecord
             [['comment_datetime'], 'safe'],
             [['comment_content', 'comment_status'], 'string', 'max' => 255],
             [['comment_camp_id'], 'exist', 'skipOnError' => true, 'targetClass' => Campaign::className(), 'targetAttribute' => ['comment_camp_id' => 'c_id']],
+            [['comment_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['comment_user_id' => 'id']],
         ];
     }
 
@@ -49,7 +51,7 @@ class Comment extends \yii\db\ActiveRecord
             'comment_id' => 'Comment ID',
             'comment_camp_id' => 'Comment Camp ID',
             'comment_user_id' => 'Comment User ID',
-            'comment_content' => 'Comment Content',
+            'comment_content' => 'Leave your comment',
             'comment_status' => 'Comment Status',
             'comment_datetime' => 'Comment Datetime',
         ];
@@ -61,5 +63,13 @@ class Comment extends \yii\db\ActiveRecord
     public function getCommentCamp()
     {
         return $this->hasOne(Campaign::className(), ['c_id' => 'comment_camp_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCommentUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'comment_user_id']);
     }
 }

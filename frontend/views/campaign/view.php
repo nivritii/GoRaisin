@@ -106,16 +106,16 @@ $items = [
     ],
     [
         'label'=>'<i class="glyphicon glyphicon-bell"></i> Updates',
-        'content'=>$this->render('campaign_roadmap',['roadmap'=>$roadmap]),
+        'content'=>$this->render('campaign_update',['updates'=>$updates]),
         //'linkOptions'=>['data-url'=>\yii\helpers\Url::to(['/campaign/form'])]
     ],
     [
         'label'=>'<i class="glyphicon glyphicon-comment"></i> Comments',
-        'content'=>$this->render('campaign_comments'),
+        'content'=>$this->render('campaign_comments',['comments'=>$comments]),
     ],
     [
         'label'=>'<i class="glyphicon glyphicon-question-sign"></i> FAQ',
-        'content'=>"Questions",
+        'content'=>$this->render('campaign_faq',['model'=>$model]),
     ],
 ];
 
@@ -140,7 +140,7 @@ echo TabsX::widget([
             <div class="sidebar sidebar-1 four columns" style="width: 25%;float: left; margin-right: 8%;">
                 <div class="widget-area clearfix" style="padding: 9px 0px 0px;">
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%; background-color:#6b0d7ce8">70%
+                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%; background-color:#8f13a5f0">70%
                         </div>
                     </div>
                     <h3 style="margin-top:25px; margin-bottom:0px;">U$S 70</h3>
@@ -154,7 +154,7 @@ echo TabsX::widget([
                     
                     <div class="section" style="margin-top:25px; padding-bottom:20px;">
                         <a href="<?= Url::to(['campaign/fund']) ?>">
-                        <button class="btn btn-default" style="width:100%; background-color:#6b0d7ce8; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-gift" aria-hidden="true"></span>Fund this Campaign</h4></button>
+                        <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-gift" aria-hidden="true"></span>Fund this Campaign</h4></button>
                         </a>
                     </div>
                     <div class="section" style="padding-bottom:20px;">

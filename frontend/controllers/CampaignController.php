@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use frontend\models\Update;
 use Yii;
 use frontend\models\Campaign;
 use frontend\models\CampaignSearch;
@@ -13,7 +14,6 @@ use frontend\models\Category;
 use frontend\models\Comment;
 use frontend\models\Fund;
 use frontend\models\RewardItem;
-use frontend\models\Roadmap;
 use frontend\models\Model;
 use yii\web\UploadedFile;
 /**
@@ -70,20 +70,22 @@ class CampaignController extends Controller
     public function actionView($id)
     {
         $categories= Category::find()-> all();
-        $roadmap = Roadmap::find()->where(['campaign_id'=>$id])->orderBy(['id' => SORT_DESC])->all();
+        $updates = Update::find()->where(['campaign_id'=>$id])->orderBy(['id' => SORT_DESC])->all();
         
         $comment = new Comment();
-        $comments = Comment::find()->where(['comment_camp_id'=>$id])->all();
+        $comments = Comment::find()->where(['comment_camp_id'=>$id])->orderBy(['comment_datetime'=>SORT_DESC])->all();
         
         if($comment->load(Yii::$app->request->post())){
             $comment->comment_camp_id = $id;
             $comment->comment_user_id = Yii::$app->user->identity->getId();
             
             if($comment->save(false)){
-            $comments = Comment::find()->where(['comment_camp_id'=>$id])->all();
+            $comments = Comment::find()->where(['comment_camp_id'=>$id])->orderBy(['comment_datetime'=>SORT_DESC])->all();
             return $this->render('view', [
             'model' => $this->findModel($id),
+            'categories' => $categories,
             'comments' => $comments,
+            'updates' => $updates,
             ]);
             }
         }
@@ -91,7 +93,7 @@ class CampaignController extends Controller
             'model' => $this->findModel($id),
             'categories' => $categories,
             'comments' => $comments,
-            'roadmap' => $roadmap,
+            'updates' => $updates,
         ]);
     }
 

@@ -5,26 +5,28 @@ namespace frontend\models;
 use Yii;
 
 /**
- * This is the model class for table "roadmap".
+ * This is the model class for table "faq".
  *
  * @property int $id
  * @property int $campaign_id
- * @property string $title
- * @property string $content
+ * @property int $user_id
+ * @property string $question
+ * @property string $answer
  * @property string $timestamp
- * @property int $image_id
+ * @property string $to_email_id
+ * @property string $from_email_id
  *
  * @property Campaign $campaign
- * @property RoadmapImage $image
+ * @property User $user
  */
-class Roadmap extends \yii\db\ActiveRecord
+class Faq extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'roadmap';
+        return 'faq';
     }
 
     /**
@@ -33,13 +35,13 @@ class Roadmap extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['campaign_id', 'title', 'content', 'image_id'], 'required'],
-            [['campaign_id', 'image_id'], 'integer'],
-            [['content'], 'string'],
+            [['campaign_id', 'user_id', 'question', 'answer', 'to_email_id', 'from_email_id'], 'required'],
+            [['campaign_id', 'user_id'], 'integer'],
+            [['question', 'answer'], 'string'],
             [['timestamp'], 'safe'],
-            [['title'], 'string', 'max' => 200],
+            [['to_email_id', 'from_email_id'], 'string', 'max' => 255],
             [['campaign_id'], 'exist', 'skipOnError' => true, 'targetClass' => Campaign::className(), 'targetAttribute' => ['campaign_id' => 'c_id']],
-            [['image_id'], 'exist', 'skipOnError' => true, 'targetClass' => RoadmapImage::className(), 'targetAttribute' => ['image_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -51,10 +53,12 @@ class Roadmap extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'campaign_id' => 'Campaign ID',
-            'title' => 'Title',
-            'content' => 'Content',
+            'user_id' => 'User ID',
+            'question' => 'Question',
+            'answer' => '',
             'timestamp' => 'Timestamp',
-            'image_id' => 'Image ID',
+            'to_email_id' => 'To Email ID',
+            'from_email_id' => 'From Email ID',
         ];
     }
 
@@ -69,8 +73,8 @@ class Roadmap extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getImage()
+    public function getUser()
     {
-        return $this->hasOne(RoadmapImage::className(), ['id' => 'image_id']);
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }
