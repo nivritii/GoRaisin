@@ -49,5 +49,13 @@ return [
             ],
         ],
     ],
+    'modules' => [
+        'redactor' => [
+            'class' => 'yii\redactor\RedactorModule',
+            'uploadDir' => 'uploads/campaign/image',
+            'uploadUrl' => 'uplaods/campaign/image',
+            'imageAllowExtensions'=>['jpg','png','gif','jpeg']
+        ],
+    ],
     'params' => $params,
 ];

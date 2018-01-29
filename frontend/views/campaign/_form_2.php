@@ -34,10 +34,13 @@ use frontend\models\Reward;
             </div>
             <div style="float: left;display: inline-block;width: 50%;margin-left: 6.6%">
                 <?= $form->field($model, 'c_description_long')
+                    ->label(false)
+                    ->widget(\yii\redactor\widgets\Redactor::className()) ?>
+                <?/*= $form->field($model, 'c_description_long')
                     ->textarea(['rows' => 5])
                     ->label(false)
                     ->hint('Main description - introduce people on what you are doing')
-                ?>
+                */?>
             </div>
         </div>
         <?php ActiveForm::end(); ?>
