@@ -5,6 +5,8 @@ use yii\widgets\ActiveForm;
 use dosamigos\datepicker\DatePicker;
 use frontend\models\Campaign;
 use trntv\yii\datetime\DateTimeWidget;
+use kartik\file\FileInput;
+use yii\helpers\Url;
 frontend\assets\CampaignAsset::register($this);
 
 /* @var $this yii\web\View */
@@ -24,11 +26,16 @@ $imagePath = '/'.$model->c_image;
                 <p class="item-title">Campaign video</p>
             </div>
             <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                <?php echo $model->c_video ?>
                 <img src="<?php echo Yii::$app->request->baseUrl.'/uploads/campaign/video/default.jpg'?>" style="height: 400px;width: 600px"/>
-                <?= $form->field($model, 'c_video')
+                <? echo $form->field($model, 'c_video')
+                    ->widget(FileInput::classname(), [
+                'options' => ['accept' => 'uploads/campaign/video'],
+                ]);?>
+                <?/*= $form->field($model, 'c_video')
                     ->fileInput(['style' => 'color:#940094;width:400px'])
                     ->label(false)
-                ?>
+                */?>
             </div>
         </div>
 

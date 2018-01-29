@@ -166,6 +166,7 @@ class CampaignController extends Controller
         $model = new Campaign();
         $current_image = $model->c_image;
 
+
         if ($model->load(Yii::$app->request->post())) {
             $model-> c_author = Yii::$app->user->identity->getId();
             $imageName = $model->c_title;
