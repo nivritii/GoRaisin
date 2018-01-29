@@ -175,7 +175,7 @@ class CampaignController extends Controller
             if(!empty($model->file) && $model->file->size !== 0){
                 $model->file->saveAs('uploads/campaign/image/'.$imageName.'.'.$model->
                     file->extension);
-                $model->c_image = 'uploads/campaign/image/'.$imageName.'.'.$model->file->extension;
+                $model->c_image = $imageName.'.'.$model->file->extension;
             }else {
                 $model->c_image = $current_image;
             }

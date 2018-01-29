@@ -28,14 +28,15 @@ use frontend\models\Reward;
             </div>
         </div>
 
-        <div style="width: 100%;height: 80px;margin-left: 10%;margin-right: 5%">
+        <div style="clear:both;height: 300px;margin-left: 10.5%;margin-right: 5%">
             <div style="float: left;display: inline-block;width: 20%">
-                <p class="item-title">Main description</p>
+                <p class="item-title">Short description</p>
             </div>
-            <div style="float: left;display: inline-block;width: 50%;margin-left: 3%;height: 400px">
+            <div style="float: left;display: inline-block;width: 50%;margin-left: 6.6%">
                 <?= $form->field($model, 'c_description_long')
-                    ->textarea(['row' => 20,'style' => 'width:600px'])
+                    ->textarea(['rows' => 5])
                     ->label(false)
+                    ->hint('Main description - introduce people on what you are doing')
                 ?>
             </div>
         </div>
