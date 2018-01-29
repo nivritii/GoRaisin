@@ -10,9 +10,9 @@ use frontend\models\Campaign;
 HomePageAsset::register($this);
 $this->title = 'GoRaisin';
 ?>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- Main Content -->
 <div class="site-index">
@@ -24,11 +24,11 @@ $this->title = 'GoRaisin';
                         <div class="section_wrapper mcb-section-inner">
                             <div class="container" style="padding-left:0px">
 
-  <ul class="nav nav-tabs">
-      <?php foreach($categories as $category){?>
-    <li class="<?=$category->class?>"><a data-toggle="tab" href="#<?=$category->id?>"><?=$category->name?></a></li>
-      <?php }?>
-  </ul>
+                                <ul class="nav nav-tabs">
+                                    <?php foreach($categories as $category){?>
+                                        <li class="<?=$category->class?>"><a data-toggle="tab" href="#<?=$category->id?>"><?=$category->name?></a></li>
+                                    <?php }?>
+                                </ul>
 
 <div class="tab-content" style="height:640px;">
     <?php foreach($categories as $category){?>
@@ -105,15 +105,13 @@ $this->title = 'GoRaisin';
                                     </div>
                                 </div>
                             </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-       </div>
-   </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-
 
 <script>
     jQuery(window).load(function() {
