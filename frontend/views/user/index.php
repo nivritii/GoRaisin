@@ -12,7 +12,6 @@ $this->params['breadcrumbs'][] = $this->title;
 $userId = Yii::$app->user->identity->id;
 ?>
 <div class="user-index">
-    <body>
 
     <main class="cd-main-content">
         <!-- main content here -->
@@ -120,5 +119,4 @@ $userId = Yii::$app->user->identity->id;
             </div>
         </div>
     </main>
-    </body>
 </div>

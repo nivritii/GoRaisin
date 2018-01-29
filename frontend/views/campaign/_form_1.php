@@ -83,10 +83,11 @@ $imagePath = '/'.$model->c_image;
                 <p class="item-title">Campaign image</p>
             </div>
             <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                <img src="<?php echo Yii::$app->request->baseUrl.'/uploads/campaign/image/default.jpg'?>" style="height: 400px;width: 600px"/>
+                <!--<img src="<?php /*echo Yii::$app->request->baseUrl.'/uploads/campaign/image/default.jpg'*/?>" style="height: 400px;width: 600px"/>-->
                 <? echo $form->field($model, 'c_image')
+                    ->label(false)
                     ->widget(FileInput::classname(), [
-                        'options' => ['accept' => 'uploads/campaign/campaign'],
+                        'options' => ['accept' => 'uploads/campaign/image'],
                     ]);?>
                 <?/*= $form->field($model, 'c_image')
                     ->fileInput(['style' => 'color:#940094;width:400px'])

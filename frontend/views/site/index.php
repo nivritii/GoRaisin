@@ -38,8 +38,8 @@ $this->title = 'GoRaisin';
         <h2 class="featured-campaign-text"><?=$category->name?></h2>
             <h6>FEATURED CAMPAIGN</h6>
                 <?php $featured_campaign = Campaign::find()->where(['c_id'=>$category->featured_campaign_id])->one();
-                      $new_campaigns = Campaign::find()->where(['c_cat_id'=>$category->id, 'c_new_tag'=>1])->limit(4)->all();?>
-            <a class="featured-campaign-image" style="width: 700px;" href="<?= Url::to(['campaign/view', 'id' => $featured_campaign->c_id])?>"><?= Html::img('@web/images/uploads/'.$featured_campaign->c_image)?></a>
+                      $new_campaigns = Campaign::find()->where(['c_cat_id'=>$category->id])->limit(4)->all();?>
+            <p class="featured-campaign-image" style="width: 700px;"><?= Html::img('@web/images/uploads/'.$featured_campaign->c_image)?></p>
                 <p style="margin-top: 1%; font-size: 17px; color: #2c2c2c;"><?=$featured_campaign->c_title?></p>
                 <p class="campaign-fund-progress" style="color: #858585;font-size: 15px;">90% FUNDED</p>
         </div>
@@ -48,7 +48,7 @@ $this->title = 'GoRaisin';
             <p class="featured-campaign-text-right" style="margin-left: 4%;color: #2c2c2c;font-size: 17px;margin-top: 52px">NEW</p>
             <?php foreach($new_campaigns as $new) {?>
                 <div class="featured-campaign-image-container" style="display: inline-block;width: 40%;height: 20%;margin-left: 4%;vertical-align: top;">
-                 <a href="<?= Url::to(['campaign/view', 'id' => $new->c_id])?>"><?= Html::img('@web/images/uploads/'.$new->c_image,['class' => 'featured-campaign-image-right']) ?></a>
+                    <?= Html::img('@web/images/uploads/'.$new->c_image,['class' => 'featured-campaign-image-right']) ?>
                 </div>
                 <div class="featured-campaign-title-container" style="display: inline-block;margin-left: 5%;margin-top: 5%;vertical-align: top;">
                     <p class="featured-campaign-title-right" style="font-size: 15px;color: #2c2c2c;"><?=$new->c_title?></p>
