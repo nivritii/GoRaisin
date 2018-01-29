@@ -166,12 +166,12 @@ class CampaignController extends Controller
         $model = new Campaign();
         $current_image = $model->c_image;
 
-
         if ($model->load(Yii::$app->request->post())) {
             $model-> c_author = Yii::$app->user->identity->getId();
             $imageName = $model->c_title;
             $model->file = UploadedFile::getInstance($model,'c_image');
 
+            //image upload
             if(!empty($model->file) && $model->file->size !== 0){
                 $model->file->saveAs('uploads/campaign/image/'.$imageName.'.'.$model->
                     file->extension);

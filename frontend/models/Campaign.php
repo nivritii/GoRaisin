@@ -41,7 +41,6 @@ class Campaign extends \yii\db\ActiveRecord
      */
     
     public $file;
-    public $file2;
     public static function tableName()
     {
         return 'campaign';
@@ -63,7 +62,6 @@ class Campaign extends \yii\db\ActiveRecord
             [['c_cat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['c_cat_id' => 'id']],
             [['c_author'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['c_author' => 'id']],
             [['c_image'],'file','extensions'=>'jpg,png,gif,jpeg,bmp'],
-            [['c_video'],'file','extensions' => 'mp4']
         ];
     }
 
@@ -80,7 +78,7 @@ class Campaign extends \yii\db\ActiveRecord
             'c_end_date' => 'C End Date',
             'c_goal' => 'C Goal',
             'c_id' => 'C ID',
-            'c_video' => 'C Video',
+            'c_video' => 'Video',
             'c_description_long' => 'C Description Long',
             'c_author' => 'C Author',
             'c_created_at' => 'C Created At',

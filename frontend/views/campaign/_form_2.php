@@ -27,15 +27,11 @@ $imagePath = '/'.$model->c_image;
             </div>
             <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
                 <?php echo $model->c_video ?>
-                <img src="<?php echo Yii::$app->request->baseUrl.'/uploads/campaign/video/default.jpg'?>" style="height: 400px;width: 600px"/>
-                <? echo $form->field($model, 'c_video')
-                    ->widget(FileInput::classname(), [
-                'options' => ['accept' => 'uploads/campaign/video'],
-                ]);?>
-                <?/*= $form->field($model, 'c_video')
-                    ->fileInput(['style' => 'color:#940094;width:400px'])
+                <?= $form->field($model, 'c_video')
+                    ->textInput(['style' => 'color:#940094;width:600px'])
+                    ->hint('Please upload your video to YouTube then put the link of campaign video here.')
                     ->label(false)
-                */?>
+                ?>
             </div>
         </div>
 
