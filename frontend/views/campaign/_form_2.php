@@ -32,7 +32,7 @@ use frontend\models\Reward;
             <div style="float: left;display: inline-block;width: 20%">
                 <p class="item-title">Main description</p>
             </div>
-            <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+            <div style="float: left;display: inline-block;width: 50%;margin-left: 3%;height: 400px">
                 <?= $form->field($model, 'c_description_long')
                     ->textarea(['row' => 20,'style' => 'width:600px'])
                     ->label(false)
