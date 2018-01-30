@@ -8,6 +8,9 @@ use frontend\models\RewardItem;
 use frontend\assets\HomePageAsset;
 use frontend\assets\CampaignAsset;
 use yii\helpers\Url;
+use frontend\models\Reward;
+use frontend\models\Category;
+use yii\helpers\ArrayHelper;
 
 HomePageAsset::register($this);
 CampaignAsset::register($this);
@@ -19,202 +22,380 @@ CampaignAsset::register($this);
 $this->title = 'Create Campaign - GoRaisin';
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
+
+//$c_reward = new Reward();
 ?>
 
-<?php
-$form = ActiveForm::begin([
-    'id' => 'campaign-create-form',
-    'options' => ['enctype' => 'multipart/form-data']
-]);
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-/*$wizard_config = [
-    'steps' => [
-        '1' => [
-            'title' => 'Start your campaign',
-            'icon' => 'glyphicon glyphicon-briefcase',
-            'content' => $this->render('_form_1',['model' => $model,]),
-            'buttons' => [
-                'next' => [
-                    'title' => 'Continue',
-                    'options' => [
-                        'class' => 'basic-button',
-                        'style' => 'color:#ffffff',
-                    ],
-                ],
-            ],
-        ],
-        '2' => [
-            'title' => 'Rewards',
-            'icon' => 'glyphicon glyphicon-gift',
-            'content' => $this->render('_reward',['c_reward' => $c_reward, 'rewardsItem' =>$rewardsItem]),
-            'buttons' => [
-                'next' => [
-                    'title' => 'Save and continue',
-                    'options' => [
-                        'class' => 'basic-button',
-                        'style' => 'color:#ffffff',
-                    ],
-                ],
-                'prev' =>[
-                    'title' => 'Previous',
-                    'options' => [
-                        'class' => 'basic-button',
-                        'style' => 'color:#ffffff',
-                    ],
+<div class="container">
+    <div class="row form-group">
+        <div class="col-xs-12">
+            <ul class="nav nav-pills nav-justified thumbnail setup-panel" id="myNav">
+                <li id="navStep1" class="li-nav active" step="#step-1">
+                    <a>
+                        <h4 class="list-group-item-heading">Step 1</h4>
+                        <p class="list-group-item-text">First step description</p>
+                    </a>
+                </li>
+                <li id="navStep2" class="li-nav disabled" step="#step-2">
+                    <a>
+                        <h4 class="list-group-item-heading">Step 2</h4>
+                        <p class="list-group-item-text">Second step description</p>
+                    </a>
+                </li>
+                <li id="navStep3" class="li-nav disabled" step="#step-3">
+                    <a>
+                        <h4 class="list-group-item-heading">Step 3</h4>
+                        <p class="list-group-item-text">Third step description</p>
+                    </a>
+                </li>
+                <li id="navStep4" class="li-nav disabled" step="#step-4">
+                    <a>
+                        <h4 class="list-group-item-heading">Step 4</h4>
+                        <p class="list-group-item-text">Second step description</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 
-                ]
-            ],
-        ],
-        '3' => [
-            'title' => 'The Story',
-            'icon' => 'glyphicon glyphicon-film',
-            'content' => $this->render('_form_2',['model' => $model,]),
-            'buttons' => [
-                'next' => [
-                    'title' => 'Save and continue',
-                    'options' => [
-                        'class' => 'basic-button',
-                        'style' => 'color:#ffffff;margin-top:350px',
-                    ],
-                ],
-                'prev' =>[
-                    'title' => 'Previous',
-                    'options' => [
-                        'class' => 'basic-button',
-                        'style' => 'color:#ffffff;margin-top:350px',
-                    ],
+<form class="createCampaign" enctype="multipart/form-data" action="create" method="post">
+<div class="container">
+    <div class="row setup-content" id="step-1">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1> STEP 1</h1>
+                <div class="container col-xs-12">
+                    <div class="container">
+                        <h1 class="basic-title">Basics</h1>
+                        <br />
+                        <div class="form-group">
+                            <div style="width: 100%;height: 80px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Campaign Title</p>
+                                </div>
+                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                    <p><input placeholder="Campaign Title" name="cTitle"></p>
+                                </div>
+                            </div>
 
-                ]
-            ],
-        ],
-        '4' => [
-            'title' => 'The Profile',
-            'icon' => 'glyphicon glyphicon-user',
-            'content' => $this->render('_form_3',['model' => $model, ]),
-            'buttons' => [
-                'prev' =>[
-                    'title' => 'Previous',
-                    'options' => [
-                        'class' => 'basic-button',
-                        'style' => 'color:#ffffff',
-                    ],
+                            <!--     $list = CHtml::listData(Category::model()->findAll(array('order' => 'name')), 'id', 'name');-->
+                            <div style="clear:both;height: 80px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Category</p>
+                                </div>
+                                <?php $categories= Category::find()-> all();
+                                $listData = ArrayHelper::map($categories,'id','name');?>
+                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                    <p><input placeholder="Campaign Category" name="cCategory"></p>
+                                </div>
+                            </div>
 
-                ],
-                'save' => [
-                    'html' => Html::submitButton('Save',['class' => 'basic-button','style' => 'color:#ffffff']),
-                ],
-            ],
-        ],
+                            <div style="clear:both;height: 80px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Campaign image</p>
+                                    <p><input placeholder="Image" name="cImage"></p>
+                                </div>
+                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                    <img src="<?php echo Yii::$app->request->baseUrl.'/uploads/campaign/default.jpg'?>" style="height: 400px;width: 600px"/>
 
-    ],
+                                </div>
+                            </div>
 
-    'start_step' => 1,
-];*/
-$wizard_config = [
-    'id' => 'stepwizard',
-    'steps' => [
-        1 => [
-            'title' => 'The Basics',
-            'icon' => 'fa fa-pencil',
-            'content' => $this->render('_form_1',['model' => $model]),
-            'buttons' => [
-                'next' => [
-                    'title' => 'Forward',
-                    'options' => [
-                        'class' => 'basic-button',
-                        'style' => 'color:#ffffff',
-                    ],
-                ],
-            ],
-        ],
-        2 => [
-            'title' => 'The Story',
-            'icon' => 'fa fa-picture-o',
-            'content' => $this->render('_form_2',['model' => $model]),
-            'buttons' => [
-                'next' => [
-                    'title' => 'Next',
-                    'options' => [
-                        'class' => 'basic-button',
-                        'style' => 'color:#ffffff',
-                    ],
-                ],
-                'prev' => [
-                    'title' => 'Previous',
-                    'options' => [
-                        'class' => 'basic-button',
-                        'style' => 'color:#ffffff',
-                    ],
-                ],
-            ],
-        ],
-        3 => [
-            'title' => 'Company Profile',
-            'icon' => 'fa fa-user-o',
-            'content' => $this->render('_form_3',['model' => $model]),
-            'buttons' => [
-                'save' => [
-                    'title' => 'Submit',
-                    'html' => Html::submitButton('Save',['class' => 'basic-button','style' => 'color:#ffffff']),
-                ],
-                'prev' => [
-                    'title' => 'Previous',
-                    'options' => [
-                        'class' => 'basic-button',
-                        'style' => 'color:#ffffff',
-                    ],
-                ],
-            ],
-        ],
-        /*4 => [
-                'title' => 'Rewards',
-            'icon' => 'fa fa-gift',
-            'content' => '<h3>Step 4</h3>This is step 4',
-        ],*/
-    ],
-    /*'start_step' => 1, // Optional, start with a specific step*/
-];
-?>
+                            <div style="clear:both;height: 150px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Short description</p>
+                                </div>
+                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                    <p><input placeholder="Description" name="cDesc"></p>
+                                </div>
+                            </div>
 
-    <?= \drsdre\wizardwidget\WizardWidget::widget($wizard_config);
-    //    Html::submitButton('Save', ['class' => 'btn btn-success']);
-    ActiveForm::end();
-    ?>
+                            <div style="clear:both;height: 80px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Start date</p>
+                                </div>
+                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                    <p><input placeholder="Startdate" name="cStartdate"></p>
+                                </div>
+                            </div>
+
+                            <div style="clear:both;height: 80px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">End date</p>
+                                </div>
+                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                    <p><input placeholder="Enddate" name="cEnddate"></p>
+                                </div>
+                            </div>
+
+                            <div style="clear:both;height: 80px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Fund cap</p>
+                                </div>
+                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                    <p><input placeholder="goal" name="cGoal"></p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <input onclick="step1Next()" class="btn btn-md btn-info" value="Next">
+
+                <!-- </form> -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+        <div class="row setup-content" id="step-2">
+            <div class="col-xs-12">
+                <div class="col-md-12 well text-center">
+                    <h1 class="text-center"> STEP 2</h1>
+
+                    <!--<form>-->
+                    <div class="container col-xs-12">
+                        <div class="container">
+                            <h1 class="basic-title">Rewards</h1>
+                            <br />
+                            <div class="form-group">
+                                <div style="width: 100%;height: 80px">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Reward Title</p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                        <p><input placeholder="Reward Title" name="rTitle"></p>
+                                    </div>
+                                </div>
+                                <div style="width: 100%;height: 80px">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Reward Pledge Amount</p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                        <p><input placeholder="Reward Pledge Amount" name="rPledgeAmt"></p>
+                                    </div>
+                                </div>
+
+                                <div style="clear:both;height: 150px">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Reward description</p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                        <p><input placeholder="Reward Description" name="rDesc"></p>
+                                    </div>
+                                </div>
+
+                                <div style="clear:both;height: 80px">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Reward Delivery Date</p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                        <p><input placeholder="Reward Delivery Date" name="rDeliverydate"></p>
+                                    </div>
+                                </div>
+
+                                <div style="clear:both;height: 80px">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Reward Shipping Details</p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                        <p><input placeholder="Reward Shipping Details" name="rShipping"></p>
+                                    </div>
+                                </div>
+
+                                <div style="clear:both;height: 80px">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Reward Limit Availability</p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                        <p><input placeholder="Reward Limit Availability" name="rLimit"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--</form> -->
+
+                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev">
+                    <input onclick="step2Next()" class="btn btn-md btn-info" value="Next">
+
+                </div>
+            </div>
+        </div>
+</div>
+<div class="container">
+    <div class="row setup-content" id="step-3">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1 class="text-center"> STEP 3</h1>
+
+                <!--<form>-->
+                <div class="container col-xs-12">
+                    <div class="container">
+                        <h1 class="basic-title">Story</h1>
+                        <br />
+                        <div class="form-group">
+                            <div style="clear:both;height: 80px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Campaign video</p>
+                                </div>
+                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                    <img src="<?php echo Yii::$app->request->baseUrl.'/uploads/campaign/default.jpg'?>" style="height: 400px;width: 600px"/>
+                                    <p><input placeholder="Video" name="cVideo"></p>
+                                </div>
+                            </div>
+
+                            <div style="clear:both;height: 150px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Main Description</p>
+                                </div>
+                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                    <p><input placeholder="Long Description" name="cLDesc"></p>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <!--</form> -->
+
+                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev">
+                <input onclick="step3Next()" class="btn btn-md btn-info" value="Next">
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+
+    <div class="row setup-content" id="step-4">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1 class="text-center"> STEP 4</h1>
+
+                <!--<form>-->
+                <div class="container col-xs-12">
+                    <div class="campaignAboutYou-form">
+                        <h1 class="basic-title">About you</h1>
+                        <br />
+                        <div class="form-group">
+                            <div style="width: 100%;height: 80px;margin-left: 10%;margin-right: 5%">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Display name</p>
+                                </div>
+                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                    <p><input placeholder="Name" name="cName"></p>
+                                </div>
+                            </div>
+
+                            <div style="width: 100%;height: 80px;margin-left: 10%;margin-right: 5%">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Email</p>
+                                </div>
+                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                    <p><input placeholder="Email" name="cEmail"></p>
+                                </div>
+                            </div>
+
+                            <div style="width: 100%;height: 80px;margin-left: 10%;margin-right: 5%">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Biography</p>
+                                </div>
+                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                    <p><input placeholder="Biography" name="cBio"></p>
+                                </div>
+                            </div>
+
+                            <div style="clear:both;height: 80px;margin-left: 10%;margin-right: 5%;margin-top: 7%">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Your location</p>
+                                </div>
+                                <div style="float: left;display: inline-block;width: 50%;margin-left: 7%">
+                                    <p><input placeholder="Location" name="cLocation"></p>
+                                </div>
+                            </div>
+
+                            <div style="clear:both;height: 80px;margin-left: 10%;margin-right: 5%">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Social profile</p>
+                                </div>
+                                <div style="float: left;display: inline-block;width: 50%;margin-left: 7%">
+                                    <p><input placeholder="Profile" name="cProfile"></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--</form> -->
+                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev">
+                <input class="btn btn-md btn-info" type="submit">
+                <div class="form-group">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
 
 <script>
+    var currentStep = 1;
+
     $(document).ready(function () {
-        //Initialize tooltips
-        $('.nav-tabs > li a[title]').tooltip();
 
-        //Wizard
-        $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+        $('.li-nav').click(function () {
 
-            var $target = $(e.target);
+            var $targetStep = $($(this).attr('step'));
+            currentStep = parseInt($(this).attr('id').substr(7));
 
-            if ($target.parent().hasClass('disabled')) {
-                return false;
+            if (!$(this).hasClass('disabled')) {
+                $('.li-nav.active').removeClass('active');
+                $(this).addClass('active');
+                $('.setup-content').hide();
+                $targetStep.show();
             }
         });
 
-        $(".next-step").click(function (e) {
+        $('#navStep1').click();
 
-            var $active = $('.wizard .nav-tabs li.active');
-            $active.next().removeClass('disabled');
-            nextTab($active);
-
-        });
-        $(".prev-step").click(function (e) {
-
-            var $active = $('.wizard .nav-tabs li.active');
-            prevTab($active);
-
-        });
     });
 
-    function nextTab(elem) {
-        $(elem).next().find('a[data-toggle="tab"]').click();
+
+
+    function step1Next() {
+        //You can make only one function for next, and inside you can check the current step
+        if (true) {//Insert here your validation of the first step
+            currentStep += 1;
+            $('#navStep' + currentStep).removeClass('disabled');
+            $('#navStep' + currentStep).click();
+        }
     }
-    function prevTab(elem) {
-        $(elem).prev().find('a[data-toggle="tab"]').click();
+
+    function prevStep() {
+        //Notice that the btn prev not exist in the first step
+        currentStep -= 1;
+        $('#navStep' + currentStep).click();
     }
+
+    function step2Next() {
+        if (true) {
+            $('#navStep3').removeClass('disabled');
+            $('#navStep3').click();
+        }
+    }
+
+    function step3Next() {
+        if (true) {
+            $('#navStep4').removeClass('disabled');
+            $('#navStep4').click();
+        }
+    }
+
 </script>

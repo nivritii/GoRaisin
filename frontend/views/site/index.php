@@ -116,7 +116,7 @@ $this->title = 'GoRaisin';
 
 
 <script>
-    jQuery(window).load(function() {
+    $(window).load(function() {
         var retina = window.devicePixelRatio > 1 ? true : false;
         if (retina) {
             var retinaEl = jQuery("#logo img.logo-main");

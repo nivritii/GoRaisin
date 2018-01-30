@@ -12,7 +12,7 @@ frontend\assets\CampaignAsset::register($this);
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
 /* @var $form yii\widgets\ActiveForm */
-$imagePath = '/'.$model->c_image;
+//$imagePath = '/'.$model->c_image;
 ?>
 <!--<style>
     #preview{
