@@ -37,26 +37,26 @@ $this->params['breadcrumbs'][] = $this->title;
             <ul class="nav nav-pills nav-justified thumbnail setup-panel" id="myNav">
                 <li id="navStep1" class="li-nav active" step="#step-1">
                     <a>
-                        <h4 class="list-group-item-heading">Step 1</h4>
-                        <p class="list-group-item-text">First step description</p>
+                        <h4 class="list-group-item-heading">Basics</h4>
+                        <p class="list-group-item-text">Introduce your project</p>
                     </a>
                 </li>
                 <li id="navStep2" class="li-nav disabled" step="#step-2">
                     <a>
-                        <h4 class="list-group-item-heading">Step 2</h4>
-                        <p class="list-group-item-text">Second step description</p>
+                        <h4 class="list-group-item-heading">Rewards</h4>
+                        <p class="list-group-item-text">Backers benefits</p>
                     </a>
                 </li>
                 <li id="navStep3" class="li-nav disabled" step="#step-3">
                     <a>
-                        <h4 class="list-group-item-heading">Step 3</h4>
-                        <p class="list-group-item-text">Third step description</p>
+                        <h4 class="list-group-item-heading">The Story</h4>
+                        <p class="list-group-item-text">More about your project</p>
                     </a>
                 </li>
                 <li id="navStep4" class="li-nav disabled" step="#step-4">
                     <a>
-                        <h4 class="list-group-item-heading">Step 4</h4>
-                        <p class="list-group-item-text">Second step description</p>
+                        <h4 class="list-group-item-heading">Company</h4>
+                        <p class="list-group-item-text">Share about your team</p>
                     </a>
                 </li>
             </ul>
@@ -69,10 +69,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row setup-content" id="step-1">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1> STEP 1</h1>
+                    <h1>Basics</h1>
                     <div class="container col-xs-12">
                         <div class="container">
-                            <h1 class="basic-title">Basics</h1>
                             <br />
                             <div class="form-group">
                                 <div style="width: 100%;height: 80px">
@@ -158,10 +157,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row setup-content" id="step-2">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1 class="text-center"> STEP 2</h1>
+                    <h1 class="text-center">Rewards</h1>
 
                     <!--<form>-->
                     <div class="container col-xs-12">
+                        <br/>
                         <div class="row clearfix">
                             <div class="col-md-12 column">
                                 <table class="table table-bordered table-hover" id="tab_logic">
@@ -207,7 +207,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </table>
                             </div>
                         </div>
-                        <a id="add_row" class="btn btn-success pull-left">Add Row</a><a id='delete_row' class="btn btn-danger pull-right">Delete Row</a>
+                        <a id="add_row" class="btn btn-success pull-left">Add Reward</a><a id='delete_row' class="btn btn-danger pull-right">Remove Reward</a>
                     </div>
                     <!--</form> -->
 
@@ -222,12 +222,11 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row setup-content" id="step-3">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1 class="text-center"> STEP 3</h1>
+                    <h1 class="text-center">The Story</h1>
 
                     <!--<form>-->
                     <div class="container col-xs-12">
                         <div class="container">
-                            <h1 class="basic-title">Story</h1>
                             <br />
                             <div class="form-group">
                                 <div style="clear:both;height: 80px">
@@ -267,13 +266,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row setup-content" id="step-4">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1 class="text-center"> STEP 4</h1>
+                    <h1 class="text-center">Company</h1>
 
                     <!--<form>-->
                     <div class="container col-xs-12">
+                        <br/>
                         <div class="campaignAboutYou-form">
-                            <h1 class="basic-title">About you</h1>
-                            <br />
                             <div class="form-group">
                                 <div style="width: 100%;height: 80px;margin-left: 10%;margin-right: 5%">
                                     <div style="float: left;display: inline-block;width: 20%">
@@ -325,7 +323,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <!--</form> -->
                     <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev">
-                    <input class="btn btn-md btn-info" type="submit">
+                    <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit">
                     <div class="form-group">
                     </div>
                 </div>

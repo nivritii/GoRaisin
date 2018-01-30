@@ -142,7 +142,7 @@ class CampaignController extends Controller
 //                $reward->r_limit_availability=$_POST['rLimit'];
 //                $reward->save();
 
-                $number = 2;//count($_POST['rTitle']);
+                $number = count($_POST['rTitle0']);
                 if($number>0){
                     for ($i=0; $i<$number; $i++){
 
@@ -166,9 +166,7 @@ class CampaignController extends Controller
                 }
             }
 
-            return $this->render('create', [
-                //'model' => $model,
-            ]);
+            return $this->render('create',[]);
         }
 
         /**
