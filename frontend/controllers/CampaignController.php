@@ -210,11 +210,12 @@ class CampaignController extends Controller
         }
     }
     
-    public function actionFund()
+    public function actionFund($id)
     {
-        $fund = new Fund();
+        $rewards = Reward::find()->where(['c_id'=>$id])->all();
+
         return $this->render('fund',[
-            'fund'=>$fund,
+            'rewards'=>$rewards,
         ]);
     }
 

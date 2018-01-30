@@ -18,24 +18,31 @@ $model = new Campaign();
 $reward = new Reward();
 
 ?>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
 <div class="container">
-    <div class="text-center">
-        <div class="form-group">
-    <?php $form = ActiveForm::begin(); ?>
-
-    <?= $form->field($fund, 'fund_c_id')->textInput() ?>
-
-    <?= $form->field($fund, 'fund_user_id')->textInput() ?>
-
-    <?= $form->field($fund, 'fund_amt')->textInput() ?>
-
-    <?= $form->field($fund, 'fund_note')->textarea(['rows' => 6]) ?>
-
-    <div class="form-group">
-        <?= Html::submitButton($fund->isNewRecord ? 'Create' : 'Update', ['class' => $fund->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
-    </div>
-
-    <?php ActiveForm::end(); ?>
+    <div class="col-xs-12">
+        <div class="col-md-12 well text-center">
+            <br/>
+            <h1 class="text-center" >Fund the Project</h1>
+            <br/>
+            <!--<form>-->
+            <div class="container col-xs-12">
+                <div class="campaignAboutYou-form">
+                    <div class="form-group">
+                        <?php foreach ($rewards as $reward){?>
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title"><?=$reward->r_title?></h4>
+                                <h6 class="card-subtitle mb-2 text-muted"><input type="radio" name="optradio"><?=$reward->r_description?></h6>
+                            </div>
+                        </div>
+                            <br/>
+                        <?php };?>
+                    </div>
+                </div>
+            </div>
+            <!--</form> -->
         </div>
     </div>
 </div>
