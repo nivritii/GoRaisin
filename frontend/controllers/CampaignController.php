@@ -133,31 +133,51 @@ class CampaignController extends Controller
             $model->c_social_profile=$_POST['cProfile'];
 
             if ($model->save()){
-                $reward->c_id=$model->c_id;
-                $reward->r_title=$_POST['rTitle'];
-                $reward->r_pledge_amt=$_POST['rPledgeAmt'];
-                $reward->r_description=$_POST['rDesc'];
-                $reward->r_delivery_date=$_POST['rDeliverydate'];
-                $reward->r_shipping_details=$_POST['rShipping'];
-                $reward->r_limit_availability=$_POST['rLimit'];
+//                $reward->c_id=$model->c_id;
+//                $reward->r_title=$_POST['rTitle'];
+//                $reward->r_pledge_amt=$_POST['rPledgeAmt'];
+//                $reward->r_description=$_POST['rDesc'];
+//                $reward->r_delivery_date=$_POST['rDeliverydate'];
+//                $reward->r_shipping_details=$_POST['rShipping'];
+//                $reward->r_limit_availability=$_POST['rLimit'];
+//                $reward->save();
 
-                $reward->save();
-                return $this->redirect(['view', 'id'=>$model->c_id]);
+                $number = 2;//count($_POST['rTitle']);
+                if($number>0){
+                    for ($i=0; $i<$number; $i++){
+
+                        $rTitle = 'rTitle'.$i;
+                        $rAmt = 'rAmt'.$i;
+                        $rDesc = 'rDesc'.$i;
+                        $rLimit = 'rLimit'.$i;
+
+                        if(trim($_POST[$rTitle])!=''){
+                            $reward->c_id=$model->c_id;
+                            $reward->r_title=$_POST[$rTitle];
+                            $reward->r_pledge_amt=$_POST[$rAmt];
+                            $reward->r_description=$_POST[$rDesc];
+                            $reward->r_limit_availability=$_POST[$rLimit];
+                            $reward->save();
+                        }
+                    }
+                }
+
+                    return $this->redirect(['view', 'id'=>$model->c_id]);
+                }
             }
+
+            return $this->render('create', [
+                //'model' => $model,
+            ]);
         }
 
-        return $this->render('create', [
-            //'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing Campaign model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+        /**
+         * Updates an existing Campaign model.
+         * If update is successful, the browser will be redirected to the 'view' page.
+         * @param integer $id
+         * @return mixed
+         * @throws NotFoundHttpException if the model cannot be found
+         */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);

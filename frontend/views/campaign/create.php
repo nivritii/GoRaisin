@@ -11,6 +11,7 @@ use yii\helpers\Url;
 use frontend\models\Reward;
 use frontend\models\Category;
 use yii\helpers\ArrayHelper;
+use wbraganca\dynamicform\DynamicFormWidget;
 
 HomePageAsset::register($this);
 CampaignAsset::register($this);
@@ -64,96 +65,96 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <form class="createCampaign" enctype="multipart/form-data" action="create" method="post">
-<div class="container">
-    <div class="row setup-content" id="step-1">
-        <div class="col-xs-12">
-            <div class="col-md-12 well text-center">
-                <h1> STEP 1</h1>
-                <div class="container col-xs-12">
-                    <div class="container">
-                        <h1 class="basic-title">Basics</h1>
-                        <br />
-                        <div class="form-group">
-                            <div style="width: 100%;height: 80px">
-                                <div style="float: left;display: inline-block;width: 20%">
-                                    <p class="item-title">Campaign Title</p>
+    <div class="container">
+        <div class="row setup-content" id="step-1">
+            <div class="col-xs-12">
+                <div class="col-md-12 well text-center">
+                    <h1> STEP 1</h1>
+                    <div class="container col-xs-12">
+                        <div class="container">
+                            <h1 class="basic-title">Basics</h1>
+                            <br />
+                            <div class="form-group">
+                                <div style="width: 100%;height: 80px">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Campaign Title</p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                        <p><input placeholder="Campaign Title" name="cTitle"></p>
+                                    </div>
                                 </div>
-                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                    <p><input placeholder="Campaign Title" name="cTitle"></p>
+
+                                <!--     $list = CHtml::listData(Category::model()->findAll(array('order' => 'name')), 'id', 'name');-->
+                                <div style="clear:both;height: 80px">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Category</p>
+                                    </div>
+                                    <?php $categories= Category::find()-> all();
+                                    $listData = ArrayHelper::map($categories,'id','name');?>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                        <p><input placeholder="Campaign Category" name="cCategory"></p>
+                                    </div>
                                 </div>
+
+                                <div style="clear:both;height: 80px">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Campaign image</p>
+                                        <p><input placeholder="Image" name="cImage"></p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                        <img src="<?php echo Yii::$app->request->baseUrl.'/uploads/campaign/default.jpg'?>" style="height: 400px;width: 600px"/>
+
+                                    </div>
+                                </div>
+
+                                <div style="clear:both;height: 150px">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Short description</p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                        <p><input placeholder="Description" name="cDesc"></p>
+                                    </div>
+                                </div>
+
+                                <div style="clear:both;height: 80px">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Start date</p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                        <p><input placeholder="Startdate" name="cStartdate"></p>
+                                    </div>
+                                </div>
+
+                                <div style="clear:both;height: 80px">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">End date</p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                        <p><input placeholder="Enddate" name="cEnddate"></p>
+                                    </div>
+                                </div>
+
+                                <div style="clear:both;height: 80px">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Fund cap</p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                        <p><input placeholder="goal" name="cGoal"></p>
+                                    </div>
+                                </div>
+
+
                             </div>
-
-                            <!--     $list = CHtml::listData(Category::model()->findAll(array('order' => 'name')), 'id', 'name');-->
-                            <div style="clear:both;height: 80px">
-                                <div style="float: left;display: inline-block;width: 20%">
-                                    <p class="item-title">Category</p>
-                                </div>
-                                <?php $categories= Category::find()-> all();
-                                $listData = ArrayHelper::map($categories,'id','name');?>
-                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                    <p><input placeholder="Campaign Category" name="cCategory"></p>
-                                </div>
-                            </div>
-
-                            <div style="clear:both;height: 80px">
-                                <div style="float: left;display: inline-block;width: 20%">
-                                    <p class="item-title">Campaign image</p>
-                                    <p><input placeholder="Image" name="cImage"></p>
-                                </div>
-                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                    <img src="<?php echo Yii::$app->request->baseUrl.'/uploads/campaign/default.jpg'?>" style="height: 400px;width: 600px"/>
-
-                                </div>
-                            </div>
-
-                            <div style="clear:both;height: 150px">
-                                <div style="float: left;display: inline-block;width: 20%">
-                                    <p class="item-title">Short description</p>
-                                </div>
-                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                    <p><input placeholder="Description" name="cDesc"></p>
-                                </div>
-                            </div>
-
-                            <div style="clear:both;height: 80px">
-                                <div style="float: left;display: inline-block;width: 20%">
-                                    <p class="item-title">Start date</p>
-                                </div>
-                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                    <p><input placeholder="Startdate" name="cStartdate"></p>
-                                </div>
-                            </div>
-
-                            <div style="clear:both;height: 80px">
-                                <div style="float: left;display: inline-block;width: 20%">
-                                    <p class="item-title">End date</p>
-                                </div>
-                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                    <p><input placeholder="Enddate" name="cEnddate"></p>
-                                </div>
-                            </div>
-
-                            <div style="clear:both;height: 80px">
-                                <div style="float: left;display: inline-block;width: 20%">
-                                    <p class="item-title">Fund cap</p>
-                                </div>
-                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                    <p><input placeholder="goal" name="cGoal"></p>
-                                </div>
-                            </div>
-
-
                         </div>
                     </div>
-                </div>
-                <input onclick="step1Next()" class="btn btn-md btn-info" value="Next">
+                    <input onclick="step1Next()" class="btn btn-md btn-info" value="Next">
 
-                <!-- </form> -->
+                    <!-- </form> -->
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="container">
+    <div class="container">
         <div class="row setup-content" id="step-2">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
@@ -161,64 +162,52 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <!--<form>-->
                     <div class="container col-xs-12">
-                        <div class="container">
-                            <h1 class="basic-title">Rewards</h1>
-                            <br />
-                            <div class="form-group">
-                                <div style="width: 100%;height: 80px">
-                                    <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Reward Title</p>
-                                    </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                        <p><input placeholder="Reward Title" name="rTitle"></p>
-                                    </div>
-                                </div>
-                                <div style="width: 100%;height: 80px">
-                                    <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Reward Pledge Amount</p>
-                                    </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                        <p><input placeholder="Reward Pledge Amount" name="rPledgeAmt"></p>
-                                    </div>
-                                </div>
-
-                                <div style="clear:both;height: 150px">
-                                    <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Reward description</p>
-                                    </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                        <p><input placeholder="Reward Description" name="rDesc"></p>
-                                    </div>
-                                </div>
-
-                                <div style="clear:both;height: 80px">
-                                    <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Reward Delivery Date</p>
-                                    </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                        <p><input placeholder="Reward Delivery Date" name="rDeliverydate"></p>
-                                    </div>
-                                </div>
-
-                                <div style="clear:both;height: 80px">
-                                    <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Reward Shipping Details</p>
-                                    </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                        <p><input placeholder="Reward Shipping Details" name="rShipping"></p>
-                                    </div>
-                                </div>
-
-                                <div style="clear:both;height: 80px">
-                                    <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Reward Limit Availability</p>
-                                    </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                        <p><input placeholder="Reward Limit Availability" name="rLimit"></p>
-                                    </div>
-                                </div>
+                        <div class="row clearfix">
+                            <div class="col-md-12 column">
+                                <table class="table table-bordered table-hover" id="tab_logic">
+                                    <thead>
+                                    <tr >
+                                        <th class="text-center">
+                                            #
+                                        </th>
+                                        <th class="text-center">
+                                            Title
+                                        </th>
+                                        <th class="text-center">
+                                            Pledge Amount
+                                        </th>
+                                        <th class="text-center">
+                                            Description
+                                        </th>
+                                        <th class="text-center">
+                                            Limit
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr id='addr0'>
+                                        <td>
+                                            1
+                                        </td>
+                                        <td>
+                                            <input type="text" name='rTitle0'  placeholder='Title' class="form-control"/>
+                                        </td>
+                                        <td>
+                                            <input type="text" name='rAmt0' placeholder='Pledge Amount' class="form-control"/>
+                                        </td>
+                                        <td>
+                                            <input type="text" name='rDesc0' placeholder='Description' class="form-control"/>
+                                        </td>
+                                        <td>
+                                            <input type="text" name='rLimit0' placeholder='Limit' class="form-control"/>
+                                        </td>
+                                    </tr>
+                                    <tr id='addr1'></tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
+                        <a id="add_row" class="btn btn-success pull-left">Add Row</a><a id='delete_row' class="btn btn-danger pull-right">Delete Row</a>
                     </div>
                     <!--</form> -->
 
@@ -228,121 +217,121 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
         </div>
-</div>
-<div class="container">
-    <div class="row setup-content" id="step-3">
-        <div class="col-xs-12">
-            <div class="col-md-12 well text-center">
-                <h1 class="text-center"> STEP 3</h1>
-
-                <!--<form>-->
-                <div class="container col-xs-12">
-                    <div class="container">
-                        <h1 class="basic-title">Story</h1>
-                        <br />
-                        <div class="form-group">
-                            <div style="clear:both;height: 80px">
-                                <div style="float: left;display: inline-block;width: 20%">
-                                    <p class="item-title">Campaign video</p>
-                                </div>
-                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                    <img src="<?php echo Yii::$app->request->baseUrl.'/uploads/campaign/default.jpg'?>" style="height: 400px;width: 600px"/>
-                                    <p><input placeholder="Video" name="cVideo"></p>
-                                </div>
-                            </div>
-
-                            <div style="clear:both;height: 150px">
-                                <div style="float: left;display: inline-block;width: 20%">
-                                    <p class="item-title">Main Description</p>
-                                </div>
-                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                    <p><input placeholder="Long Description" name="cLDesc"></p>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-                <!--</form> -->
-
-                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev">
-                <input onclick="step3Next()" class="btn btn-md btn-info" value="Next">
-
-            </div>
-        </div>
     </div>
-</div>
-<div class="container">
+    <div class="container">
+        <div class="row setup-content" id="step-3">
+            <div class="col-xs-12">
+                <div class="col-md-12 well text-center">
+                    <h1 class="text-center"> STEP 3</h1>
 
-    <div class="row setup-content" id="step-4">
-        <div class="col-xs-12">
-            <div class="col-md-12 well text-center">
-                <h1 class="text-center"> STEP 4</h1>
+                    <!--<form>-->
+                    <div class="container col-xs-12">
+                        <div class="container">
+                            <h1 class="basic-title">Story</h1>
+                            <br />
+                            <div class="form-group">
+                                <div style="clear:both;height: 80px">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Campaign video</p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                        <img src="<?php echo Yii::$app->request->baseUrl.'/uploads/campaign/default.jpg'?>" style="height: 400px;width: 600px"/>
+                                        <p><input placeholder="Video" name="cVideo"></p>
+                                    </div>
+                                </div>
 
-                <!--<form>-->
-                <div class="container col-xs-12">
-                    <div class="campaignAboutYou-form">
-                        <h1 class="basic-title">About you</h1>
-                        <br />
-                        <div class="form-group">
-                            <div style="width: 100%;height: 80px;margin-left: 10%;margin-right: 5%">
-                                <div style="float: left;display: inline-block;width: 20%">
-                                    <p class="item-title">Display name</p>
+                                <div style="clear:both;height: 150px">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Main Description</p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                        <p><input placeholder="Long Description" name="cLDesc"></p>
+                                    </div>
                                 </div>
-                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                    <p><input placeholder="Name" name="cName"></p>
-                                </div>
+
+
                             </div>
-
-                            <div style="width: 100%;height: 80px;margin-left: 10%;margin-right: 5%">
-                                <div style="float: left;display: inline-block;width: 20%">
-                                    <p class="item-title">Email</p>
-                                </div>
-                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                    <p><input placeholder="Email" name="cEmail"></p>
-                                </div>
-                            </div>
-
-                            <div style="width: 100%;height: 80px;margin-left: 10%;margin-right: 5%">
-                                <div style="float: left;display: inline-block;width: 20%">
-                                    <p class="item-title">Biography</p>
-                                </div>
-                                <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                    <p><input placeholder="Biography" name="cBio"></p>
-                                </div>
-                            </div>
-
-                            <div style="clear:both;height: 80px;margin-left: 10%;margin-right: 5%;margin-top: 7%">
-                                <div style="float: left;display: inline-block;width: 20%">
-                                    <p class="item-title">Your location</p>
-                                </div>
-                                <div style="float: left;display: inline-block;width: 50%;margin-left: 7%">
-                                    <p><input placeholder="Location" name="cLocation"></p>
-                                </div>
-                            </div>
-
-                            <div style="clear:both;height: 80px;margin-left: 10%;margin-right: 5%">
-                                <div style="float: left;display: inline-block;width: 20%">
-                                    <p class="item-title">Social profile</p>
-                                </div>
-                                <div style="float: left;display: inline-block;width: 50%;margin-left: 7%">
-                                    <p><input placeholder="Profile" name="cProfile"></p>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
-                </div>
-                <!--</form> -->
-                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev">
-                <input class="btn btn-md btn-info" type="submit">
-                <div class="form-group">
+                    <!--</form> -->
+
+                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev">
+                    <input onclick="step3Next()" class="btn btn-md btn-info" value="Next">
+
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="container">
+
+        <div class="row setup-content" id="step-4">
+            <div class="col-xs-12">
+                <div class="col-md-12 well text-center">
+                    <h1 class="text-center"> STEP 4</h1>
+
+                    <!--<form>-->
+                    <div class="container col-xs-12">
+                        <div class="campaignAboutYou-form">
+                            <h1 class="basic-title">About you</h1>
+                            <br />
+                            <div class="form-group">
+                                <div style="width: 100%;height: 80px;margin-left: 10%;margin-right: 5%">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Display name</p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                        <p><input placeholder="Name" name="cName"></p>
+                                    </div>
+                                </div>
+
+                                <div style="width: 100%;height: 80px;margin-left: 10%;margin-right: 5%">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Email</p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                        <p><input placeholder="Email" name="cEmail"></p>
+                                    </div>
+                                </div>
+
+                                <div style="width: 100%;height: 80px;margin-left: 10%;margin-right: 5%">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Biography</p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                        <p><input placeholder="Biography" name="cBio"></p>
+                                    </div>
+                                </div>
+
+                                <div style="clear:both;height: 80px;margin-left: 10%;margin-right: 5%;margin-top: 7%">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Your location</p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 7%">
+                                        <p><input placeholder="Location" name="cLocation"></p>
+                                    </div>
+                                </div>
+
+                                <div style="clear:both;height: 80px;margin-left: 10%;margin-right: 5%">
+                                    <div style="float: left;display: inline-block;width: 20%">
+                                        <p class="item-title">Social profile</p>
+                                    </div>
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 7%">
+                                        <p><input placeholder="Profile" name="cProfile"></p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--</form> -->
+                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev">
+                    <input class="btn btn-md btn-info" type="submit">
+                    <div class="form-group">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
 
 <script>
@@ -397,5 +386,33 @@ $this->params['breadcrumbs'][] = $this->title;
             $('#navStep4').click();
         }
     }
+
+    // Add , Dlelete row dynamically
+
+    $(document).ready(function(){
+        var i=1;
+        $("#add_row").click(function(){
+            $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='rTitle"+i+"' type='text' placeholder='Title' class='form-control input-md'  /> </td><td><input  name='rAmt"+i+"' type='text' placeholder='Pledge Amount'  class='form-control input-md'></td><td><input  name='rDesc"+i+"' type='text' placeholder='Description'  class='form-control input-md'></td><td><input  name='rLimit"+i+"' type='text' placeholder='Limit'  class='form-control input-md'></td>");
+
+            $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+            i++;
+        });
+        $("#delete_row").click(function(){
+            if(i>1){
+                $("#addr"+(i-1)).html('');
+                i--;
+            }
+        });
+        $("#submit").click(function(){
+            $.ajax({
+                method:"POST",
+                data:$("#tab_logic",i).serialize(),
+                success:function(data){
+                    alert(data);
+                    $("#tab_logic")[0].reset();
+                }
+            })
+        });
+    });
 
 </script>
