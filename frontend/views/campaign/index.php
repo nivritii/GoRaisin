@@ -21,15 +21,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
+        /*'filterModel' => $searchModel,*/
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
             'c_title',
             'c_image',
             /*'c_description',*/
-            /*'c_start_date',
-            'c_end_date',*/
+            'c_start_date',
+            'c_end_date',
             //'c_goal',
             //'c_id',
             /*'c_video',*/
@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
             /*'c_biography:ntext',*/
             //'c_social_profile',
             //'c_status',
-            'c_cat_id',
+            /*'c_cat_id',*/
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

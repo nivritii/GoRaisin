@@ -1,7 +1,6 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 use frontend\models\Campaign;
 use frontend\models\CampaignReward;
 use frontend\models\RewardItem;
@@ -11,7 +10,7 @@ use yii\helpers\Url;
 use frontend\models\Reward;
 use frontend\models\Category;
 use yii\helpers\ArrayHelper;
-use kartik\file\FileInput;
+use kartik\date\DatePicker;
 
 HomePageAsset::register($this);
 CampaignAsset::register($this);
@@ -105,14 +104,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </div>
                                 </div>
 
-                                <div style="clear:both;height: 80px">
+                                <div style="clear:both;height: 320px">
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Campaign image</p>
                                     </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 2%">
                                         <div class="file-upload">
                                             <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
-
                                             <div class="image-upload-wrap">
                                                 <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" name="cImage" />
                                                 <div class="drag-text">
@@ -126,10 +124,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 </div>
                                             </div>
                                         </div>
-                                        <?php /*echo FileInput::widget([
-                                            'name' => 'cImage',
-                                        ]);*/?>
-                                        <!--<input placeholder="Image" name="cImage">-->
                                     </div>
                                 </div>
 
@@ -137,8 +131,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Short description</p>
                                     </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                        <p><input placeholder="Description" name="cDesc"></p>
+                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                        <textarea rows="3" type="text" style="width: 100%;" name="cDesc">
+                                        </textarea>
                                     </div>
                                 </div>
 
@@ -146,8 +141,17 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Start date</p>
                                     </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                        <p><input placeholder="Startdate" name="cStartdate"></p>
+                                    <div style="float: left;display: inline-block;width: 20%;margin-left: 2%">
+                                        <?php
+                                        echo DatePicker::widget([
+                                            'name' => 'cStartdate',
+                                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                                            'pluginOptions' => [
+                                                'format' => 'yyyy-mm-dd',
+                                                'autoclose' => true,
+                                                'todayHighlight' => true,
+                                            ]
+                                        ]); ?>
                                     </div>
                                 </div>
 
@@ -155,8 +159,17 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">End date</p>
                                     </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                        <p><input placeholder="Enddate" name="cEnddate"></p>
+                                    <div style="float: left;display: inline-block;width: 20%;margin-left: 2%">
+                                        <?php
+                                        echo DatePicker::widget([
+                                            'name' => 'cEnddate',
+                                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                                            'pluginOptions' => [
+                                                'format' => 'yyyy-mm-dd',
+                                                'autoclose' => true,
+                                                'todayHighlight' => true,
+                                            ]
+                                        ]); ?>
                                     </div>
                                 </div>
 
@@ -164,8 +177,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Fund cap</p>
                                     </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                        <p><input placeholder="goal" name="cGoal"></p>
+                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                        <div style="display: inline-block;float: left;text-align: center;padding-top: 1%">
+                                            <i class="fa fa-bitcoin fa-2x" style="float: left;"></i>
+                                        </div>
+                                        <div style="display: inline-block;width: 40%;float: left">
+                                            <input type="text" style="width: 40%;float: left" name="cGoal">
+                                        </div>
                                     </div>
                                 </div>
 
@@ -173,7 +191,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                         </div>
                     </div>
-                    <input onclick="step1Next()" class="btn btn-md btn-info" value="Next">
+                    <input onclick="step1Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0">
 
                     <!-- </form> -->
                 </div>
@@ -238,8 +256,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <!--</form> -->
 
-                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev">
-                    <input onclick="step2Next()" class="btn btn-md btn-info" value="Next">
+                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0">
+                    <input onclick="step2Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0">
 
                 </div>
             </div>
@@ -281,8 +299,8 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <!--</form> -->
 
-                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev">
-                    <input onclick="step3Next()" class="btn btn-md btn-info" value="Next">
+                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0">
+                    <input onclick="step3Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0">
 
                 </div>
             </div>
@@ -349,8 +367,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </div>
                     <!--</form> -->
-                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev">
-                    <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit">
+                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0">
+                    <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit" style="color: #ffffff;background-color: #940094;border: 0">
                     <div class="form-group">
                     </div>
                 </div>
