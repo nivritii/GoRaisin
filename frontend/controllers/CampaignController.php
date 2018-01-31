@@ -119,7 +119,13 @@ class CampaignController extends Controller
             $model->c_title=$_POST['cTitle'];
             $model->c_cat_id=7;
             $model->c_author= Yii::$app->user->identity->getId();
-            $model->c_image=$_POST['cImage'];
+            if(isset($_FILES['cImage']['name'])){
+                $uploaddir = '/web/images/uploads/';
+                $dirpath = realpath(dirname(getcwd())).$uploaddir;
+                $uploadfile = $dirpath . basename($_FILES['cImage']['name']);
+                $model->c_image = basename($_FILES['cImage']['name']);
+                move_uploaded_file($_FILES['cImage']['tmp_name'], $uploadfile);
+            }
             $model->c_description=$_POST['cDesc'];
             $model->c_start_date=$_POST['cStartdate'];
             $model->c_end_date=$_POST['cEnddate'];
