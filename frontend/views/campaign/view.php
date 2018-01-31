@@ -55,7 +55,7 @@ frontend\assets\RoadmapAsset::register($this);
                                             <?=Html::img(Url::to('@web/images/uploads/'.$model->c_image),['class' => 'attachment-blog-navi size-blog-navi wp-post-image'],['alt'=>'Image'],['align'=>'left'],['width'=>'80'],['height'=>'80'])?>
                                         </a>
                                         <div class="image_links">
-                                            <a href="<?= Url::to(['campaign/fund'])?>" class="link"><i class="icon-link"></i></a>
+                                            <a href="<?= Url::to(['campaign/fund','id'=>$model->c_id])?>" class="link"><i class="icon-link"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -153,7 +153,7 @@ echo TabsX::widget([
                     <h3 class="title-price" style="margin-top:0px;"><small>days to go</small></h3>
                     
                     <div class="section" style="margin-top:25px; padding-bottom:20px;">
-                        <a href="<?= Url::to(['campaign/fund']) ?>">
+                        <a href="<?= Url::to(['campaign/fund','id'=>$model->c_id])?>">
                         <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-gift" aria-hidden="true"></span>Fund this Campaign</h4></button>
                         </a>
                     </div>

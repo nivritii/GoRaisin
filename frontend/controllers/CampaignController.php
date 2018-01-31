@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use frontend\models\Reward;
 use frontend\models\Update;
 use Yii;
 use frontend\models\Campaign;
@@ -44,6 +45,12 @@ class CampaignController extends Controller
 
             ],
         ];
+    }
+
+    public function beforeAction($action)
+    {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
     }
 
     /**
@@ -102,100 +109,68 @@ class CampaignController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
+
     public function actionCreate()
     {
-        /*$model = new Campaign();
-        $c_reward = new CampaignReward();
-        $rewardsItem = [new RewardItem()];
-        $current_image = $model->c_image;
+        $model = new Campaign();
+        $reward = new Reward();
 
-        if ($model->load(Yii::$app->request->post())) {
-            $model-> c_author = Yii::$app->user->identity->getId();
-            $imageName = $model->c_title;
-            $model->file = UploadedFile::getInstance($model,'c_image');
+        if($_SERVER["REQUEST_METHOD"]=="POST"){
+            $model->c_title=$_POST['cTitle'];
+            $model->c_cat_id=7;
+            $model->c_author= Yii::$app->user->identity->getId();
+            $model->c_image=$_POST['cImage'];
+            $model->c_description=$_POST['cDesc'];
+            $model->c_start_date=$_POST['cStartdate'];
+            $model->c_end_date=$_POST['cEnddate'];
+            $model->c_goal=$_POST['cGoal'];
+            $model->c_video=$_POST['cVideo'];
+            $model->c_description_long=$_POST['cLDesc'];
+            $model->c_display_name=$_POST['cName'];
+            $model->c_email=$_POST['cEmail'];
+            $model->c_biography=$_POST['cBio'];
+            $model->c_location=$_POST['cLocation'];
+            $model->c_social_profile=$_POST['cProfile'];
+            if ($model->save()){
+//                $reward->c_id=$model->c_id;
+//                $reward->r_title=$_POST['rTitle'];
+//                $reward->r_pledge_amt=$_POST['rPledgeAmt'];
+//                $reward->r_description=$_POST['rDesc'];
+//                $reward->r_delivery_date=$_POST['rDeliverydate'];
+//                $reward->r_shipping_details=$_POST['rShipping'];
+//                $reward->r_limit_availability=$_POST['rLimit'];
+//                $reward->save();
 
-            if(!empty($model->file) && $model->file->size !== 0){
-                $model->file->saveAs('uploads/campaign/'.$imageName.'.'.$model->
-                    file->extension);
-                $model->c_image = 'uploads/campaign/'.$imageName.'.'.$model->file->extension;
-            }else {
-                $model->c_image = $current_image;
-            }
+                $number = count($_POST['rTitle']);
+                echo("<script>console.log('PHP: ".$number."');</script>");
+                if($number>0){
+                    for ($i=0; $i<$number; $i++){
 
-
-                                  
-            if($model->save(false)){
-            $rewardsItem = Model::createMultiple(RewardItem::classname());
-            Model::loadMultiple($rewardsItem, Yii::$app->request->post());
-            
-            $c_reward->campaign_id=$model->c_id;*/
-
-            // validate all models
-            /*$valid = $c_reward->validate();
-            $valid = Model::validateMultiple($rewardsItem);
-            
-            if ($valid) {
-                $transaction = \Yii::$app->db->beginTransaction();
-                try {
-                    if ($flag = $c_reward->save(false)) {
-                        foreach ($rewardsItem as $rewardItem) {
-                            $rewardItem->campaign_reward_id = $c_reward->id;
-                            if (! ($flag = $rewardItem->save(false))) {
-                                $transaction->rollBack();
-                                break;
-                            }
-                        }
+                            $reward->c_id=$model->c_id;
+                            $reward->r_title=$_POST['rTitle'][$i];
+                        echo("<script>console.log('Get Reward hereN: ".$reward->r_title."');</script>");
+                            $reward->r_pledge_amt=$number;
+                            $reward->r_description=$_POST['rDesc'][$i];
+                            $reward->r_limit_availability=$_POST['rLimit'][$i];
+                            $reward->save();
                     }
-                    if ($flag) {
-                        $transaction->commit();
-                        return $this->redirect(['view', 'id' => $model->c_id]);
-                    }
-                } catch (Exception $e) {
-                    $transaction->rollBack();
+                }
+
+
+                    return $this->redirect(['view', 'id'=>$model->c_id]);
                 }
             }
-                
-            }
-        }
-        return $this->render('create', [
-                'model' => $model,
-                'c_reward' => $c_reward,
-                'rewardsItem' => (empty($rewardsItem)) ? [new RewardItem] : $rewardsItem,
-            ]);*/
 
-        $model = new Campaign();
-        $current_image = $model->c_image;
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model-> c_author = Yii::$app->user->identity->getId();
-            $imageName = $model->c_title;
-            $model->file = UploadedFile::getInstance($model,'c_image');
-
-            //image upload
-            if(!empty($model->file) && $model->file->size !== 0){
-                $model->file->saveAs('uploads/campaign/image/'.$imageName.'.'.$model->
-                    file->extension);
-                $model->c_image = $imageName.'.'.$model->file->extension;
-            }else {
-                $model->c_image = $current_image;
-            }
-
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->c_id]);
+            return $this->render('create',[]);
         }
 
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing Campaign model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
+        /**
+         * Updates an existing Campaign model.
+         * If update is successful, the browser will be redirected to the 'view' page.
+         * @param integer $id
+         * @return mixed
+         * @throws NotFoundHttpException if the model cannot be found
+         */
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
@@ -230,11 +205,12 @@ class CampaignController extends Controller
         }
     }
     
-    public function actionFund()
+    public function actionFund($id)
     {
-        $fund = new Fund();
+        $rewards = Reward::find()->where(['c_id'=>$id])->all();
+
         return $this->render('fund',[
-            'fund'=>$fund,
+            'rewards'=>$rewards,
         ]);
     }
 

@@ -707,15 +707,15 @@ a.button, a.tp-button {
     background-color: #ececec !important;
     color: #fff;
 }
-a.button_theme, a.tp-button.button_theme, button, input[type="submit"], input[type="reset"], input[type="button"] {
+a.button_theme, a.tp-button.button_theme, button, /*input[type="submit"],*/ input[type="reset"], input[type="button"] {
     background-color: #8f13a5f0;
     color: #fff;
 }
-.button-stroke a.button.button_theme:not(.action_button), .button-stroke a.button.button_theme:not(.action_button), .button-stroke a.button.button_theme .button_icon i, .button-stroke a.tp-button.button_theme, .button-stroke button, .button-stroke input[type="submit"], .button-stroke input[type="reset"], .button-stroke input[type="button"] {
+.button-stroke a.button.button_theme:not(.action_button), .button-stroke a.button.button_theme:not(.action_button), .button-stroke a.button.button_theme .button_icon i, .button-stroke a.tp-button.button_theme, .button-stroke button, /*.button-stroke input[type="submit"],*/ .button-stroke input[type="reset"], .button-stroke input[type="button"] {
     border-color: #8f13a5f0;
     color: #8f13a5f0 !important;
 }
-.button-stroke a.button.button_theme:hover, .button-stroke a.tp-button.button_theme:hover, .button-stroke button:hover, .button-stroke input[type="submit"]:hover, .button-stroke input[type="reset"]:hover, .button-stroke input[type="button"]:hover {
+.button-stroke a.button.button_theme:hover, .button-stroke a.tp-button.button_theme:hover, .button-stroke button:hover, /*.button-stroke input[type="submit"]:hover,*/ .button-stroke input[type="reset"]:hover, .button-stroke input[type="button"]:hover {
     background-color: #8f13a5f0 !important;
     color: #fff !important;
 }
@@ -738,7 +738,7 @@ a.mfn-link-6:before {
     background-color: #ececec !important;
     color: #000 !important;
 }
-.woocommerce a.button_theme, .woocommerce a.checkout-button, .woocommerce button.button, .woocommerce .button.add_to_cart_button, .woocommerce .button.product_type_external, .woocommerce input[type="submit"], .woocommerce input[type="reset"], .woocommerce input[type="button"], .button-stroke .woocommerce a.checkout-button {
+.woocommerce a.button_theme, .woocommerce a.checkout-button, .woocommerce button.button, .woocommerce .button.add_to_cart_button, .woocommerce .button.product_type_external, /*.woocommerce input[type="submit"],*/ .woocommerce input[type="reset"], .woocommerce input[type="button"], .button-stroke .woocommerce a.checkout-button {
     background-color: #8f13a5f0 !important;
     color: #fff !important;
 }
@@ -1048,7 +1048,7 @@ html {
 #Wrapper, #Content {
     background-color: #f7f9fa;
 }
-body, button, span.date_label, .timeline_items li h3 span, input[type="submit"], input[type="reset"], input[type="button"], input[type="text"], input[type="password"], input[type="tel"], input[type="email"], textarea, select, .offer_li .title h3 {
+body, button, span.date_label, .timeline_items li h3 span, /*input[type="submit"],*/ input[type="reset"], input[type="button"], input[type="text"], input[type="password"], input[type="tel"], input[type="email"], textarea, select, .offer_li .title h3 {
     font-family: "Lato", Arial, Tahoma, sans-serif;
     font-weight: 400;
 }
