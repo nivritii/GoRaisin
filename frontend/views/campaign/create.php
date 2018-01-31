@@ -190,16 +190,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                             1
                                         </td>
                                         <td>
-                                            <input type="text" name='rTitle0'  placeholder='Title' class="form-control"/>
+                                            <input type="text" name='rTitle[]'  id='rTitle' placeholder='Title' class="form-control"/>
                                         </td>
                                         <td>
-                                            <input type="text" name='rAmt0' placeholder='Pledge Amount' class="form-control"/>
+                                            <input type="text" name='rAmt[]' placeholder='Pledge Amount' class="form-control"/>
                                         </td>
                                         <td>
-                                            <input type="text" name='rDesc0' placeholder='Description' class="form-control"/>
+                                            <input type="text" name='rDesc[]' placeholder='Description' class="form-control"/>
                                         </td>
                                         <td>
-                                            <input type="text" name='rLimit0' placeholder='Limit' class="form-control"/>
+                                            <input type="text" name='rLimit[]' placeholder='Limit' class="form-control"/>
                                         </td>
                                     </tr>
                                     <tr id='addr1'></tr>
@@ -385,26 +385,28 @@ $this->params['breadcrumbs'][] = $this->title;
         }
     }
 
-    // Add , Dlelete row dynamically
+    // Add , Delete row dynamically
 
     $(document).ready(function(){
         var i=1;
-        $("#add_row").click(function(){
-            $('#addr'+i).html("<td>"+ (i+1) +"</td><td><input name='rTitle"+i+"' type='text' placeholder='Title' class='form-control input-md'  /> </td><td><input  name='rAmt"+i+"' type='text' placeholder='Pledge Amount'  class='form-control input-md'></td><td><input  name='rDesc"+i+"' type='text' placeholder='Description'  class='form-control input-md'></td><td><input  name='rLimit"+i+"' type='text' placeholder='Limit'  class='form-control input-md'></td>");
 
-            $('#tab_logic').append('<tr id="addr'+(i+1)+'"></tr>');
+        $("#add_row").click(function(){
             i++;
+            $('#addr'+(i-1)).html("<td>"+ (i) +"</td><td><input name='rTitle[]' id='rTitle' type='text' placeholder='Title' class='form-control input-md'  /> </td><td><input  name='rAmt[]' type='text' placeholder='Pledge Amount'  class='form-control input-md'></td><td><input  name='rDesc[]' type='text' placeholder='Description'  class='form-control input-md'></td><td><input  name='rLimit[]' type='text' placeholder='Limit'  class='form-control input-md'></td>");
+            $('#tab_logic').append('<tr id="addr'+i+'"></tr>');
         });
+
         $("#delete_row").click(function(){
             if(i>1){
                 $("#addr"+(i-1)).html('');
                 i--;
             }
         });
+
         $("#submit").click(function(){
             $.ajax({
                 method:"POST",
-                data:$("#tab_logic",i).serialize(),
+                data: $("#tab_logic").serialize(),
                 success:function(data){
                     alert(data);
                     $("#tab_logic")[0].reset();

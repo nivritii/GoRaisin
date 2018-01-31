@@ -361,7 +361,7 @@ jQuery(document).ready(function() {
 	/* ---------------------------------------------------------------------------
 	 * TwentyTwenty [ before_after ]
 	 * --------------------------------------------------------------------------- */
-	jQuery('.before_after.twentytwenty-container').twentytwenty();
+	// jQuery('.before_after.twentytwenty-container').twentytwenty();
 	
 	/* ---------------------------------------------------------------------------
 	 * Content sliders
@@ -1552,10 +1552,10 @@ jQuery(window).load(function() {
 	 * Isotope
 	 * --------------------------------------------------------------------------- */
 	// Portfolio - Isotope
-	jQuery('.portfolio_wrapper  .isotope:not(.masonry-flat)').isotope({
+	/*jQuery('.portfolio_wrapper  .isotope:not(.masonry-flat)').isotope({
 		itemSelector: '.portfolio-item',
 		layoutMode: 'fitRows'
-	});
+	});*/
 	// Portfolio - Masonry Flat
 	jQuery('.portfolio_wrapper .masonry-flat').isotope({
 		itemSelector: '.portfolio-item',

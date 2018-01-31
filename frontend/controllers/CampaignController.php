@@ -131,7 +131,6 @@ class CampaignController extends Controller
             $model->c_biography=$_POST['cBio'];
             $model->c_location=$_POST['cLocation'];
             $model->c_social_profile=$_POST['cProfile'];
-
             if ($model->save()){
 //                $reward->c_id=$model->c_id;
 //                $reward->r_title=$_POST['rTitle'];
@@ -142,23 +141,18 @@ class CampaignController extends Controller
 //                $reward->r_limit_availability=$_POST['rLimit'];
 //                $reward->save();
 
-                $number = count($_POST['rTitle0']);
+                $number = count($_POST['rTitle']);
+                echo("<script>console.log('PHP: ".$number."');</script>");
                 if($number>0){
                     for ($i=0; $i<$number; $i++){
 
-                        $rTitle = 'rTitle'.$i;
-                        $rAmt = 'rAmt'.$i;
-                        $rDesc = 'rDesc'.$i;
-                        $rLimit = 'rLimit'.$i;
-
-                        if(trim($_POST[$rTitle])!=''){
                             $reward->c_id=$model->c_id;
-                            $reward->r_title=$_POST[$rTitle];
-                            $reward->r_pledge_amt=$_POST[$rAmt];
-                            $reward->r_description=$_POST[$rDesc];
-                            $reward->r_limit_availability=$_POST[$rLimit];
+                            $reward->r_title=$_POST['rTitle'][$i];
+                        echo("<script>console.log('Get Reward hereN: ".$reward->r_title."');</script>");
+                            $reward->r_pledge_amt=$number;
+                            $reward->r_description=$_POST['rDesc'][$i];
+                            $reward->r_limit_availability=$_POST['rLimit'][$i];
                             $reward->save();
-                        }
                     }
                 }
 
