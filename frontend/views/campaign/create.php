@@ -11,7 +11,7 @@ use yii\helpers\Url;
 use frontend\models\Reward;
 use frontend\models\Category;
 use yii\helpers\ArrayHelper;
-use wbraganca\dynamicform\DynamicFormWidget;
+use kartik\file\FileInput;
 
 HomePageAsset::register($this);
 CampaignAsset::register($this);
@@ -27,9 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
 //$c_reward = new Reward();
 ?>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
 <div class="container">
     <div class="row form-group">
@@ -78,8 +77,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Campaign Title</p>
                                     </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                        <p><input placeholder="Campaign Title" name="cTitle"></p>
+                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                        <input type="text" style="width: 100%" name="cTitle">
                                     </div>
                                 </div>
 
@@ -90,19 +89,47 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </div>
                                     <?php $categories= Category::find()-> all();
                                     $listData = ArrayHelper::map($categories,'id','name');?>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                        <p><input placeholder="Campaign Category" name="cCategory"></p>
+                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                        <select name="search_categories" id="search_categories" style="border-radius: 10px;width: 35%">
+                                            <option value="">Select Category</option>
+                                            <option value="3">Art</option>
+                                            <option value="4">Manufacture</option>
+                                            <option value="7">Music</option>
+                                            <option value="8">Food</option>
+                                            <option value="9">Computer</option>
+                                            <option value="10">Clothes</option>
+                                            <option value="11">Travel</option>
+                                            <option value="12">Fashion</option>
+                                            <option value="13">Science</option>
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div style="clear:both;height: 80px">
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Campaign image</p>
-                                        <p><input placeholder="Image" name="cImage"></p>
                                     </div>
                                     <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                        <img src="<?php echo Yii::$app->request->baseUrl.'/uploads/campaign/default.jpg'?>" style="height: 400px;width: 600px"/>
+                                        <div class="file-upload">
+                                            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
 
+                                            <div class="image-upload-wrap">
+                                                <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" name="cImage" />
+                                                <div class="drag-text">
+                                                    <h3>Drag and drop a file or select add Image</h3>
+                                                </div>
+                                            </div>
+                                            <div class="file-upload-content">
+                                                <img class="file-upload-image" src="#" alt="your image" />
+                                                <div class="image-title-wrap">
+                                                    <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php /*echo FileInput::widget([
+                                            'name' => 'cImage',
+                                        ]);*/?>
+                                        <!--<input placeholder="Image" name="cImage">-->
                                     </div>
                                 </div>
 
