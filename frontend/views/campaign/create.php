@@ -28,6 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="https://cdn.quilljs.com/1.3.5/quill.js"></script>
 
 <div class="container">
     <div class="row form-group">
@@ -253,9 +254,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                         </div>
                         <a id="add_row" class="btn btn-success pull-left">Add Reward</a><a id='delete_row' class="btn btn-danger pull-right">Remove Reward</a>
+                        <br /><br /><br />
                     </div>
                     <!--</form> -->
-
+                    <hr>
                     <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0">
                     <input onclick="step2Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0">
 
@@ -274,26 +276,25 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="container">
                             <br />
                             <div class="form-group">
-                                <div style="clear:both;height: 80px">
+                                <div style="clear:both;height: 150px">
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Campaign video</p>
                                     </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                        <img src="<?php echo Yii::$app->request->baseUrl.'/uploads/campaign/default.jpg'?>" style="height: 400px;width: 600px"/>
-                                        <p><input placeholder="Video" name="cVideo"></p>
+                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                        <input type="text" style="width: 100%" name="cVideo">
+                                        <p align="left">Please upload your video to YouTube and paste the link here.  Projects with a video have a much higher chance of success.</p>
                                     </div>
                                 </div>
 
-                                <div style="clear:both;height: 150px">
-                                    <div style="float: left;display: inline-block;width: 20%">
+                                <div style="clear:both;height: 500px">
+                                    <div style="float: left;display: inline-block;width: 20%;">
                                         <p class="item-title">Main Description</p>
                                     </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                        <p><input placeholder="Long Description" name="cLDesc"></p>
+                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;height: 400px">
+                                        <div id="editor"></div>
+                                        <!--<input placeholder="Long Description" name="cLDesc">-->
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -459,5 +460,4 @@ $this->params['breadcrumbs'][] = $this->title;
             })
         });
     });
-
 </script>
