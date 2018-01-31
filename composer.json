@@ -2,7 +2,10 @@
     "require": {
         "drsdre/yii2-wizardwidget": "*",
         "wbraganca/yii2-dynamicform": "*",
-        "kartik-v/yii2-tabs-x": "*"
+        "kartik-v/yii2-tabs-x": "*",
+        "kartik-v/yii2-widget-fileinput": "@dev",
+        "kartik-v/yii2-widget-datepicker": "@dev",
+        "yiidoc/yii2-redactor": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

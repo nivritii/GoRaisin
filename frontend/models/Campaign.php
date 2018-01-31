@@ -39,6 +39,8 @@ class Campaign extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    
+    public $file;
     public static function tableName()
     {
         return 'campaign';
@@ -51,14 +53,17 @@ class Campaign extends \yii\db\ActiveRecord
     {
         return [
 
+
             [['c_title'], 'required'],
             [[ 'c_description','c_goal','c_start_date', 'c_end_date', 'c_created_at', /*'c_video',*/ 'c_description_long', 'c_author', 'c_display_name', 'c_email', 'c_location', 'c_biography', 'c_social_profile'], 'safe'],
+
             [['c_goal', 'c_author', 'c_cat_id','c_new_tag'], 'integer'],
             [['c_video', 'c_description_long', 'c_biography'], 'string'],
             [['c_title'], 'string', 'max' => 100],
             [['c_description', 'c_display_name', 'c_email', 'c_location', 'c_social_profile', 'c_status','c_image','c_video'], 'string', 'max' => 255],
             [['c_cat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['c_cat_id' => 'id']],
             [['c_author'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['c_author' => 'id']],
+            [['c_image'],'file','extensions'=>'jpg,png,gif,jpeg,bmp'],
         ];
     }
 
@@ -75,7 +80,7 @@ class Campaign extends \yii\db\ActiveRecord
             'c_end_date' => 'C End Date',
             'c_goal' => 'C Goal',
             'c_id' => 'C ID',
-            'c_video' => 'C Video',
+            'c_video' => 'Video',
             'c_description_long' => 'C Description Long',
             'c_author' => 'C Author',
             'c_created_at' => 'C Created At',

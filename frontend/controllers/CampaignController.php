@@ -156,6 +156,7 @@ class CampaignController extends Controller
                     }
                 }
 
+
                     return $this->redirect(['view', 'id'=>$model->c_id]);
                 }
             }

@@ -54,6 +54,11 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png,jpg,gif,jpeg,bmp'],
             [['username'], 'unique'],
             [['email'], 'unique'],
+            ['email', 'filter', 'filter' => 'trim'],
+            ['email', 'required', 'message' => 'email can not be blank'],
+            ['email', 'email'],
+            ['email', 'string', 'max' => 255],
+            ['email', 'unique', 'targetClass' => '\frontend\models\User', 'message' => 'email has been taken.'],
             [['password_reset_token'], 'unique'],
         ];
     }
@@ -77,7 +82,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'companyName' => 'Company Name',
             'walletAddress' => 'Wallet Address',
             'location' => 'Location',
-            'webiste' => 'Website',
+            'website' => 'Website',
             'biography' => 'Biography',
         ];
     }

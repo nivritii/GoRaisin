@@ -2,11 +2,11 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use dosamigos\datepicker\DatePicker;
 use frontend\models\Campaign;
-use trntv\yii\datetime\DateTimeWidget;
 use frontend\models\Category;
 use yii\helpers\ArrayHelper;
+use kartik\file\FileInput;
+use kartik\date\DatePicker;
 frontend\assets\CampaignAsset::register($this);
 
 /* @var $this yii\web\View */
@@ -82,13 +82,11 @@ frontend\assets\CampaignAsset::register($this);
                 <p class="item-title">Campaign image</p>
             </div>
             <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                <img src="<?php echo Yii::$app->request->baseUrl.'/uploads/campaign/default.jpg'?>" style="height: 400px;width: 600px"/>
-                <?= $form->field($model, 'c_image')
-                    ->fileInput(['style' => 'color:#940094;width:400px'])
-                    /*->textInput(['maxlength' => true,'style' => '600px'])*/
+                <? echo $form->field($model, 'c_image')
                     ->label(false)
-                    ->hint('This is the main image of your campaign. This is the first thing people will see about your campaign.')
-                ?>
+                    ->widget(FileInput::classname(), [
+                        'options' => ['accept' => 'image/*'],
+                    ]);?>
             </div>
         </div>
 
@@ -111,9 +109,15 @@ frontend\assets\CampaignAsset::register($this);
             </div>
             <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
                 <?= $form->field($model, 'c_start_date')
-                    ->textInput(['maxlength' => true])
                     ->label(false)
-                ?>
+                    ->widget(DatePicker::classname(), [
+                    'options' => ['placeholder' => ''],
+                    'pluginOptions' => [
+                            'format' => 'yyyy-mm-dd',
+                        'autoclose' => true,
+                        'todayHighlight' => true,
+                    ]
+                ]); ?>
             </div>
         </div>
 
@@ -123,40 +127,18 @@ frontend\assets\CampaignAsset::register($this);
             </div>
             <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
                 <?= $form->field($model, 'c_end_date')
-                    ->textInput(['maxlength' => true])
                     ->label(false)
-                ?>
+                    ->widget(DatePicker::classname(), [
+                        'options' => ['placeholder' => ''],
+                        'pluginOptions' => [
+                            'format' => 'yyyy-mm-dd',
+                            'autoclose' => true,
+                            'todayHighlight' => true,
+                        ]
+                    ]); ?>
             </div>
         </div>
 
-        <!--   $form->field($model, 'c_start_date')->widget(
-            'trntv\yii\datetime\DateTimeWidget',
-            [
-                'phpDatetimeFormat' => 'yyyy-MM-dd\'T\'HH:mm:ssZZZZZ',
-                'clientOptions' => [
-                    'minDate' => new \yii\web\JsExpression('new Date("2015-01-01")'),
-                    'allowInputToggle' => false,
-                    'sideBySide' => true,
-                    'locale' => 'zh-cn',
-                    'widgetPositioning' => [
-                       'horizontal' => 'auto',
-                       'vertical' => 'auto'
-                    ]
-                ]
-            ]
-            );
-
-            $form->field($model, 'c_end_date')->widget(
-                 DatePicker::className(), [
-                // inline too, not bad
-                 'inline' => false,
-                 // modify template for custom rendering
-                //'template' => '<div class="well well-sm" style="background-color: #fff; width:250px">{input}</div>',
-                'clientOptions' => [
-                    'autoclose' => true,
-                    'format' => 'dd-M-yyyy'
-                ]
-        ]);-->
         <div style="clear:both;height: 80px">
             <div style="float: left;display: inline-block;width: 20%">
                 <p class="item-title">Fund cap</p>
