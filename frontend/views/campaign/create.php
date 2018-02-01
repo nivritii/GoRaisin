@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row setup-content" id="step-1">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1>Basics</h1>
+                    <h1 class="tabpage-title">Basics</h1>
                     <div class="container col-xs-12">
                         <div class="container">
                             <br />
@@ -198,7 +198,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row setup-content" id="step-2">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1 class="text-center">Rewards</h1>
+                    <h1 class="tabpage-title">Rewards</h1>
 
                     <!--<form>-->
                     <div class="container col-xs-12">
@@ -264,7 +264,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row setup-content" id="step-3">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1 class="text-center">The Story</h1>
+                    <h1 class="tabpage-title">The Story</h1>
 
                     <!--<form>-->
                     <div class="container col-xs-12">
@@ -308,7 +308,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row setup-content" id="step-4">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1 class="text-center">Company</h1>
+                    <h1 class="tabpage-title">Company</h1>
 
                     <div class="container col-xs-12">
                         <div class="container">
