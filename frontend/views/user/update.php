@@ -17,7 +17,6 @@ $imagePath = '/'.Yii::$app->user->identity->image;
 ?>
 <div class="user-update">
     <body>
-
     <main class="cd-main-content">
         <!-- main content here -->
 
