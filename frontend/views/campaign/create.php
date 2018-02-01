@@ -82,20 +82,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Category</p>
                                     </div>
-                                    <?php $categories= Category::find()-> all();
-                                    $listData = ArrayHelper::map($categories,'id','name');?>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <select name="search_categories" id="search_categories" style="border-radius: 10px;width: 35%">
-                                            <option value="">Select Category</option>
-                                            <option value="3">Art</option>
-                                            <option value="4">Manufacture</option>
-                                            <option value="7">Music</option>
-                                            <option value="8">Food</option>
-                                            <option value="9">Computer</option>
-                                            <option value="10">Clothes</option>
-                                            <option value="11">Travel</option>
-                                            <option value="12">Fashion</option>
-                                            <option value="13">Science</option>
+                                        <select name="cCategory" id="search_categories" data-default-caption="Select Category" style="border-radius: 10px;width: 100%">
+                                            <option selected>Select Category</option>
+                                            <?php foreach ($categories as $category) {?>
+                                            <option value=<?=$category->id?>><?=$category->name?></option>
+                                            <?php }?>
                                         </select>
                                     </div>
                                 </div>
