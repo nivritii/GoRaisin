@@ -26,14 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'c_title',
-            'c_image',
+            /*'c_image',*/
             /*'c_description',*/
-            'c_start_date',
-            'c_end_date',
+            /*'c_start_date',
+            'c_end_date',*/
             //'c_goal',
             //'c_id',
             /*'c_video',*/
-            /*'c_description_long:ntext',*/
+            'c_description_long:ntext',
             //'c_author',
             //'c_created_at',
             /*'c_display_name',*/
