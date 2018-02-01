@@ -13,16 +13,16 @@ HomePageAsset::register($this);
             <div class="column one-fourth">
                 <!-- Meta Links Area -->
                 <aside id="meta-2" class="widget widget_meta">
-                    <h4>Useful links</h4>
+                    <h4>ABOUT</h4>
                     <ul>
                         <li>
-                            <a href="content/blogger2/wp-login.html">Log in</a>
+                            <a href="content/blogger2/wp-login.html">About us</a>
                         </li>
                         <li>
-                            <a href="#">Entries <abbr title="Really Simple Syndication">RSS</abbr></a>
+                            <a href="#">Entries</a>
                         </li>
                         <li>
-                            <a href="content/blogger2/comments/#">Comments <abbr title="Really Simple Syndication">RSS</abbr></a>
+                            <a href="content/blogger2/comments/#">Comments</a>
                         </li>
                         <li>
                             <a href="https://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a>
@@ -32,9 +32,22 @@ HomePageAsset::register($this);
             </div>
             <!-- One Fourth (1/4) Column -->
             <div class="column one-fourth">
-                <!-- Recent Comments Area -->
+                <!-- Meta Links Area -->
+                <aside id="meta-2" class="widget widget_meta">
+                    <h4>HELP</h4>
+                    <ul>
+                        <li>
+                            <a href="content/blogger2/wp-login.html">Help Center</a>
+                        </li>
+                        <li>
+                            <a href="#">Support</a>
+                        </li>
+                    </ul>
+                </aside>
+            </div>
+            <!--<div class="column one-fourth">
                 <aside class="widget widget_mfn_recent_comments">
-                    <h4>Latest comments</h4>
+                    <h4>HELP</h4>
                     <div class="Recent_comments">
                         <ul>
                             <li>
@@ -52,28 +65,49 @@ HomePageAsset::register($this);
                         </ul>
                     </div>
                 </aside>
-            </div>
+            </div>-->
             <!-- One Fourth (1/4) Column -->
             <div class="column one-fourth">
-                <!-- Text Area -->
-                <aside class="widget widget_text">
-                    <h4>About us</h4>
-                    <div class="textwidget">
-                        <h6>Nulla risus ante, luctus et placerat quis, efficitur nec nisl. Cras iaculis tristique.</h6>
-                        <p>
-                            Etiam at nibh turpis! Vestibulum mattis risus eget dolor finibus, ut luctus est congue. Ut sit amet interdum erat; quis malesuada lacus. Sed mauris diam, sodales a imperdiet ut.
-                        </p>
-                    </div>
+                <!-- Meta Links Area -->
+                <aside id="meta-2" class="widget widget_meta">
+                    <h4>HELLO</h4>
+                    <ul>
+                        <li>
+                            <a href="content/blogger2/wp-login.html">Our Website</a>
+                        </li>
+                        <li>
+                            <a href="#">Entries</a>
+                        </li>
+                        <li>
+                            <a href="content/blogger2/comments/#">Newsletter</a>
+                        </li>
+                    </ul>
                 </aside>
             </div>
             <!-- One Fourth (1/4) Column -->
-            <div class="column one-fourth">
-                <!--Tag Cloud -->
+            <!--<div class="column one-fourth">
                 <aside class="widget widget_tag_cloud">
                     <h4>Tags</h4>
                     <div class="tagcloud">
                         <a href='content/blogger2/tag-page.html' class='tag-link-7' title='2 topics' style='font-size: 8pt;'>Design</a><a href='content/blogger2/tag-page.html' class='tag-link-3' title='3 topics' style='font-size: 13.6pt;'>Framework</a><a href='content/blogger2/tag-page.html' class='tag-link-8' title='3 topics' style='font-size: 13.6pt;'>Motion</a><a href='content/blogger2/tag-page.html' class='tag-link-5' title='4 topics' style='font-size: 18.266666666667pt;'>Themeforest</a><a href='content/blogger2/tag-page.html' class='tag-link-9' title='3 topics' style='font-size: 13.6pt;'>Video</a><a href='content/blogger2/tag-page.html' class='tag-link-6' title='5 topics' style='font-size: 22pt;'>Wordpress</a>
                     </div>
+                </aside>
+            </div>-->
+            <div class="column one-fourth">
+                <!-- Meta Links Area -->
+                <aside id="meta-2" class="widget widget_meta">
+                    <h4>MORE</h4>
+                    <ul>
+                        <li>
+                            <a href="content/blogger2/wp-login.html">Our Website</a>
+                        </li>
+                        <li>
+                            <a href="#">Entries</a>
+                        </li>
+                        <li>
+                            <a href="content/blogger2/comments/#">Newsletter</a>
+                        </li>
+                    </ul>
                 </aside>
             </div>
         </div>
@@ -84,7 +118,7 @@ HomePageAsset::register($this);
             <div class="column one">
 
                 <div class="copyright">
-                    &copy; 2017 BeBlogger 2 - BeTheme. Muffin group - HTML by <a target="_blank" rel="nofollow" href="http://bit.ly/1M6lijQ">BeantownThemes</a>
+                    &copy; 2017 GoRaisin.<!-- <a target="_blank" rel="nofollow" href="http://bit.ly/1M6lijQ">BeantownThemes</a>-->
                 </div>
                 <!--Social info area-->
                 <ul class="social"></ul>

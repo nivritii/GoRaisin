@@ -8,12 +8,12 @@ use frontend\assets\HomePageAsset;
 use yii\widgets\ListView;
 use kartik\tabs\TabsX;
 
-HomePageAsset::register($this);
+/*HomePageAsset::register($this);*/
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
 
-$this->title = $model->c_id;
+$this->title = $model->c_title.' - GoRaisin';
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 frontend\assets\HomePageAsset::register($this);
@@ -24,22 +24,22 @@ frontend\assets\RoadmapAsset::register($this);
     <div id="Content" style="padding: 0px">
         <div class="content_wrapper clearfix">
             <div class="sidebar sidebar-1 four columns" style="width: 0%;float: left; margin-left: 8.9%; border-right: .5px solid #f0f0f0; padding-top: 4%">
-                    <div class="image-div">
-                        <div class="user-image" style="width: 35px; height: 42px">
+                <div class="image-div">
+                    <div class="user-image" style="width: 35px; height: 42px">
                         <?=Html::img(Url::to('@web/'.$model->cAuthor->image))?>
-                        </div>
-                        <div class="image-div2">
-                            <p class="user-name"><?=$model->cAuthor->username?></p>
-                        </div>
                     </div>
-            </div>
-            <div class="sections_group" style="width: 85%;float: right; margin-right: 4%;">
-            <div style="margin-right: 8%; margin-left: 8%; border-right: .5px solid #f0f0f0; padding-top: 2%">
-                <div class="column zero">
-                    <h1 class="title" style="color: #6b0d7ce8"><?=$model->c_title?></h1>
-                    <p class="" style="font-size: 18px;"><?=$model->c_description?></p>
+                    <div class="image-div2">
+                        <p class="user-name"><?=$model->cAuthor->username?></p>
+                    </div>
                 </div>
             </div>
+            <div class="sections_group" style="width: 85%;float: right; margin-right: 4%;">
+                <div style="margin-right: 8%; margin-left: 8%; border-right: .5px solid #f0f0f0; padding-top: 2%">
+                    <div class="column zero">
+                        <h1 class="title" style="color: #6b0d7ce8"><?=$model->c_title?></h1>
+                        <p class="" style="font-size: 18px;"><?=$model->c_description?></p>
+                    </div>
+                </div>
             </div>
             <div class="sections_group" style="width: 55%;float: left; margin-left: 0%; border-right: .5px solid #f0f0f0">
                 <div id=" " class="no-title no-share  post  format-standard has-post-thumbnail  category-hot-news   ">
@@ -80,9 +80,9 @@ frontend\assets\RoadmapAsset::register($this);
                                                             <a rel="category tag" href="<?= Url::to(['campaign/show', 'id'=>$category->id])?>"><?= $category->name?></a>
                                                         </li>
                                                     <?php }?>
-                                                        <li>
-                                                            <a rel="category tag" href="<?= Url::to(['campaign/show', 'id'=>'NULL'])?>">Show all</a>
-                                                        </li>
+                                                    <li>
+                                                        <a rel="category tag" href="<?= Url::to(['campaign/show', 'id'=>'NULL'])?>">Show all</a>
+                                                    </li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -97,38 +97,38 @@ frontend\assets\RoadmapAsset::register($this);
                             <div class="section_wrapper">
                                 <div class="the_content_wrapper">
                                     <div class="mcb-column one-second column_tabs ">
-<?php
-$items = [
-    [
-        'label'=>'<i class="glyphicon glyphicon-picture"></i> Story',
-        'content'=>$this->render('campaign_content',['model' => $model]),
-        'active'=>true
-    ],
-    [
-        'label'=>'<i class="glyphicon glyphicon-bell"></i> Updates',
-        'content'=>$this->render('campaign_update',['updates'=>$updates]),
-        //'linkOptions'=>['data-url'=>\yii\helpers\Url::to(['/campaign/form'])]
-    ],
-    [
-        'label'=>'<i class="glyphicon glyphicon-comment"></i> Comments',
-        'content'=>$this->render('campaign_comments',['comments'=>$comments]),
-    ],
-    [
-        'label'=>'<i class="glyphicon glyphicon-question-sign"></i> FAQ',
-        'content'=>$this->render('campaign_faq',['model'=>$model]),
-    ],
-];
+                                        <?php
+                                        $items = [
+                                            [
+                                                'label'=>'<i class="glyphicon glyphicon-picture"></i> Story',
+                                                'content'=>$this->render('campaign_content',['model' => $model]),
+                                                'active'=>true
+                                            ],
+                                            [
+                                                'label'=>'<i class="glyphicon glyphicon-bell"></i> Updates',
+                                                'content'=>$this->render('campaign_update',['updates'=>$updates]),
+                                                //'linkOptions'=>['data-url'=>\yii\helpers\Url::to(['/campaign/form'])]
+                                            ],
+                                            [
+                                                'label'=>'<i class="glyphicon glyphicon-comment"></i> Comments',
+                                                'content'=>$this->render('campaign_comments',['comments'=>$comments]),
+                                            ],
+                                            [
+                                                'label'=>'<i class="glyphicon glyphicon-question-sign"></i> FAQ',
+                                                'content'=>$this->render('campaign_faq',['model'=>$model]),
+                                            ],
+                                        ];
 
-// Tab Below Centered
-echo TabsX::widget([
-    'items'=>$items,
-    'position'=>TabsX::POS_ABOVE,
-    'align'=>TabsX::ALIGN_CENTER,
-    'bordered'=>false,
-    'encodeLabels'=>false
-]);
-                                        
-?>
+                                        // Tab Below Centered
+                                        echo TabsX::widget([
+                                            'items'=>$items,
+                                            'position'=>TabsX::POS_ABOVE,
+                                            'align'=>TabsX::ALIGN_CENTER,
+                                            'bordered'=>false,
+                                            'encodeLabels'=>false
+                                        ]);
+
+                                        ?>
                                     </div>
                                 </div>
                             </div>
@@ -145,25 +145,23 @@ echo TabsX::widget([
                     </div>
                     <h3 style="margin-top:25px; margin-bottom:0px;">U$S 70</h3>
                     <h3 class="title-price" style="margin-top:0px;"><small>pledged of U$S<?=$model->c_goal?> goal</small></h3>
-                    
+
                     <h3 style="margin-top:25px; margin-bottom:0px;">199</h3>
                     <h3 class="title-price" style="margin-top:0px;"><small>backers</small></h3>
 
                     <h3 style="margin-top:25px; margin-bottom:0px;">22</h3>
                     <h3 class="title-price" style="margin-top:0px;"><small>days to go</small></h3>
-                    
+
                     <div class="section" style="margin-top:25px; padding-bottom:20px;">
                         <a href="<?= Url::to(['campaign/fund','id'=>$model->c_id])?>">
-                        <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-gift" aria-hidden="true"></span>Fund this Campaign</h4></button>
+                            <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-gift" aria-hidden="true"></span>Fund this Campaign</h4></button>
                         </a>
                     </div>
                     <div class="section" style="padding-bottom:20px;">
                         <h6><a href="#"><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> All or nothing. This project will only be funded if it reaches its goal by <?=$model->c_end_date?>.</a></h6>
-                    </div>                                         
-<!--                </div>-->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-</body>

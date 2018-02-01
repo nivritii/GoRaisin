@@ -13,6 +13,7 @@ var quill = new Quill('#editor-container', {
     theme: 'snow'
 });
 
+/*
 var form = document.querySelector('form');
 form.onsubmit = function() {
     // Populate hidden form on submit
@@ -24,4 +25,4 @@ form.onsubmit = function() {
     // No back end to actually submit to!
     alert('Open the console to see the submit data!')
     return false;
-};
+};*/
