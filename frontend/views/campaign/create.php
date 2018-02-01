@@ -291,7 +291,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <p class="item-title">Main Description</p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;height: 400px">
-                                        <div id="editor"></div>
+                                        <input type="hidden" name="cLDesc">
+                                        <div id="editor-container">
+                                        </div>
                                         <!--<input placeholder="Long Description" name="cLDesc">-->
                                     </div>
                                 </div>
