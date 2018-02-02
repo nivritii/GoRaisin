@@ -19,7 +19,7 @@ class HomePageAsset extends AssetBundle
         'css/homepage/global.css',
         'css/homepage/structure.css',
         'css/homepage/blogger2.css',
-        'css/homepage/custom.css',
+        /*'css/homepage/custom.css',*/
     ];
     public $js = [
         'js/homepage/jquery-2.1.4.min.js',

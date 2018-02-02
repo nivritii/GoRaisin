@@ -1,25 +1,22 @@
 <?php
-
 use yii\helpers\Html;
 use frontend\models\Campaign;
 use frontend\models\CampaignReward;
 use frontend\models\RewardItem;
+use frontend\assets\HomePageAsset;
 use frontend\assets\CampaignAsset;
 use yii\helpers\Url;
 use frontend\models\Reward;
 use frontend\models\Category;
 use yii\helpers\ArrayHelper;
 use kartik\date\DatePicker;
-
+HomePageAsset::register($this);
 CampaignAsset::register($this);
-
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
-
 $this->title = 'Create Campaign - GoRaisin';
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-
 //$c_reward = new Reward();
 ?>
 
@@ -287,7 +284,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;height: 400px">
                                         <input type="hidden" name="cLDesc">
-                                        <div id="editor-container">
+                                        <div id="editor-container" style="background-color: #ffffff">
                                         </div>
                                         <!--<input placeholder="Long Description" name="cLDesc">-->
                                     </div>
@@ -359,7 +356,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 <div style="clear:both;height: 80px;">
                                     <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Social profile</p>
+                                        <p class="item-title">Company website</p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
                                         <input type="text" style="width: 100%" name="cProfile">
@@ -382,14 +379,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <script>
     var currentStep = 1;
-
     $(document).ready(function () {
-
         $('.li-nav').click(function () {
-
             var $targetStep = $($(this).attr('step'));
             currentStep = parseInt($(this).attr('id').substr(7));
-
             if (!$(this).hasClass('disabled')) {
                 $('.li-nav.active').removeClass('active');
                 $(this).addClass('active');
@@ -397,13 +390,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 $targetStep.show();
             }
         });
-
         $('#navStep1').click();
-
     });
-
-
-
     function step1Next() {
         //You can make only one function for next, and inside you can check the current step
         if (true) {//Insert here your validation of the first step
@@ -412,45 +400,37 @@ $this->params['breadcrumbs'][] = $this->title;
             $('#navStep' + currentStep).click();
         }
     }
-
     function prevStep() {
         //Notice that the btn prev not exist in the first step
         currentStep -= 1;
         $('#navStep' + currentStep).click();
     }
-
     function step2Next() {
         if (true) {
             $('#navStep3').removeClass('disabled');
             $('#navStep3').click();
         }
     }
-
     function step3Next() {
         if (true) {
             $('#navStep4').removeClass('disabled');
             $('#navStep4').click();
         }
     }
-
     // Add , Delete row dynamically
-
     $(document).ready(function(){
         var i=1;
-
         $("#add_row").click(function(){
             i++;
             $('#addr'+(i-1)).html("<td>"+ (i) +"</td><td><input name='rTitle[]' id='rTitle' type='text' placeholder='Title' class='form-control input-md'  /> </td><td><input  name='rAmt[]' type='text' placeholder='Pledge Amount'  class='form-control input-md'></td><td><input  name='rDesc[]' type='text' placeholder='Description'  class='form-control input-md'></td><td><input  name='rLimit[]' type='text' placeholder='Limit'  class='form-control input-md'></td>");
             $('#tab_logic').append('<tr id="addr'+i+'"></tr>');
         });
-
         $("#delete_row").click(function(){
             if(i>1){
                 $("#addr"+(i-1)).html('');
                 i--;
             }
         });
-
         $("#submit").click(function(){
             $.ajax({
                 method:"POST",

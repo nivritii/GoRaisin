@@ -133,7 +133,9 @@ class CampaignController extends Controller
             $model->c_end_date=$_POST['cEnddate'];
             $model->c_goal=$_POST['cGoal'];
             $model->c_video=$_POST['cVideo'];
-            $model->c_description_long=$_POST['cLDesc'];
+            if (isset($_POST['cLDesc'])){
+                $model->c_description_long=$_POST['cLDesc'];
+            }
             $model->c_display_name=$_POST['cName'];
             $model->c_email=$_POST['cEmail'];
             $model->c_biography=$_POST['cBio'];
