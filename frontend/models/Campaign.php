@@ -56,7 +56,8 @@ class Campaign extends \yii\db\ActiveRecord
 
             [['c_title'], 'required'],
             [[ 'c_description','c_goal','c_start_date', 'c_end_date', 'c_created_at', /*'c_video',*/ 'c_description_long', 'c_author', 'c_display_name', 'c_email', 'c_location', 'c_biography', 'c_social_profile'], 'safe'],
-
+            ['c_email', 'filter', 'filter' => 'trim'],
+            [['c_email'],'email'],
             [['c_goal', 'c_author', 'c_cat_id','c_new_tag'], 'integer'],
             [['c_video', 'c_description_long', 'c_biography'], 'string'],
             [['c_title'], 'string', 'max' => 100],
