@@ -113,6 +113,7 @@ class CampaignController extends Controller
     public function actionCreate()
     {
         $model = new Campaign();
+        $categories = Category::find()->all();
         $reward = new Reward();
 
         if($_SERVER["REQUEST_METHOD"]=="POST"){
@@ -128,14 +129,14 @@ class CampaignController extends Controller
             }else {
                 $model->c_image = 'default.jpg';
             }
+
+            $model->c_cat_id=$_POST['cCategory'];
             $model->c_description=$_POST['cDesc'];
             $model->c_start_date=$_POST['cStartdate'];
             $model->c_end_date=$_POST['cEnddate'];
             $model->c_goal=$_POST['cGoal'];
             $model->c_video=$_POST['cVideo'];
-            if (isset($_POST['cLDesc'])){
-                $model->c_description_long=$_POST['cLDesc'];
-            }
+            $model->c_description_long=$_POST['cLDesc'];//json_decode($_GET['cLDesc'], true);
             $model->c_display_name=$_POST['cName'];
             $model->c_email=$_POST['cEmail'];
             $model->c_biography=$_POST['cBio'];
@@ -171,7 +172,9 @@ class CampaignController extends Controller
                 }
             }
 
-            return $this->render('create',[]);
+            return $this->render('create',[
+                'categories' =>$categories,
+            ]);
         }
 
         /**
