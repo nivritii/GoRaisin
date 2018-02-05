@@ -18,8 +18,8 @@ class CampaignSearch extends Campaign
     public function rules()
     {
         return [
-            [['c_title', 'c_image', 'c_description', 'c_start_date', 'c_end_date', 'c_video', 'c_description_long', 'c_author', 'c_created_at', 'c_display_name', 'c_email', 'c_location', 'c_biography', 'c_social_profile', 'c_status'], 'safe'],
-            [['c_goal', 'c_id', 'c_cat_id'], 'integer'],
+            [['c_title', 'c_image', 'c_description', 'c_start_date', 'c_end_date', 'c_video', 'c_description_long', 'c_created_at', 'c_display_name', 'c_email', 'c_location', 'c_biography', 'c_social_profile', 'c_status'], 'safe'],
+            [['c_goal', 'c_id', 'c_author', 'c_cat_id', 'c_new_tag'], 'integer'],
         ];
     }
 
@@ -63,8 +63,10 @@ class CampaignSearch extends Campaign
             'c_end_date' => $this->c_end_date,
             'c_goal' => $this->c_goal,
             'c_id' => $this->c_id,
+            'c_author' => $this->c_author,
             'c_created_at' => $this->c_created_at,
             'c_cat_id' => $this->c_cat_id,
+            'c_new_tag' => $this->c_new_tag,
         ]);
 
         $query->andFilterWhere(['like', 'c_title', $this->c_title])
@@ -72,7 +74,6 @@ class CampaignSearch extends Campaign
             ->andFilterWhere(['like', 'c_description', $this->c_description])
             ->andFilterWhere(['like', 'c_video', $this->c_video])
             ->andFilterWhere(['like', 'c_description_long', $this->c_description_long])
-            ->andFilterWhere(['like', 'c_author', $this->c_author])
             ->andFilterWhere(['like', 'c_display_name', $this->c_display_name])
             ->andFilterWhere(['like', 'c_email', $this->c_email])
             ->andFilterWhere(['like', 'c_location', $this->c_location])

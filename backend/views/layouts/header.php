@@ -8,7 +8,7 @@ $imagePath = '/'.Yii::$app->user->identity->image;
 
 <header class="main-header">
 
-    <?= Html::a('<span class="logo-mini">Raisin</span><span class="logo-lg">Raisin backend</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
+    <?= Html::a('<span class="logo-mini">Raisin</span><span class="logo-lg">GoRaisin Backend</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
 
     <nav class="navbar navbar-static-top" role="navigation">
 
@@ -268,7 +268,7 @@ $imagePath = '/'.Yii::$app->user->identity->image;
                             <div class="pull-left">
                                 <?= Html::a(
                                     'Profile',
-                                    ['/site/index'],
+                                    ['/site/header'],
                                     ['class' => 'btn btn-default btn flat']
                                     /*['data-method' => 'post', 'class' => 'btn btn-default btn-flat']*/
                                 ) ?>
