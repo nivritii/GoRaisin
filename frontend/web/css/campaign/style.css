@@ -1,3 +1,8 @@
+.tabpage-title {
+    font-size: 30px;
+    font-weight: 500;
+}
+
 .basic-title {
     font-size: 30px;
     font-weight: 700;
@@ -36,12 +41,14 @@
 }
 
 .file-upload-btn {
-    width: 100%;
+    width: 30%;
+    height: 10%;
     margin: 0;
     color: #fff;
     background: #bb00bb;
     border: none;
-    padding: 10px;
+    font-size: 10px;
+    padding: 6px;
     border-radius: 4px;
     border-bottom: 4px solid #a700a7;
     transition: all .2s ease;
@@ -79,15 +86,16 @@
 }
 
 .image-upload-wrap {
-    margin-top: 20px;
-    border: 4px dashed #bb00bb;
+    margin-top: 10px;
+    border: 1px dashed #bb00bb;
     position: relative;
+    height: 300px;
 }
 
 .image-dropping,
 .image-upload-wrap:hover {
     background-color: #ffceff;
-    border: 4px dashed #ffffff;
+    border: 1px dashed #ffffff;
 }
 
 .image-title-wrap {
@@ -97,24 +105,25 @@
 
 .drag-text {
     text-align: center;
+    height:300px;
 }
 
 .drag-text h3 {
     font-weight: 100;
-    text-transform: uppercase;
+    font-size: 20px;
     color: #bb00bb;
     padding: 60px 0;
 }
 
 .file-upload-image {
-    max-height: 200px;
-    max-width: 200px;
+    max-width: 50%;
     margin: auto;
-    padding: 20px;
+    padding: 10px;
 }
 
 .remove-image {
-    width: 200px;
+    width: 20%;
+    height: 5%;
     margin: 0;
     color: #fff;
     background: #bb00bb;
@@ -126,6 +135,7 @@
     outline: none;
     text-transform: uppercase;
     font-weight: 700;
+    font-size: 10px;
 }
 
 .remove-image:hover {

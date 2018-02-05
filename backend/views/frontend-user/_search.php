@@ -17,7 +17,10 @@ use yii\widgets\ActiveForm;
 
     <?/*= $form->field($model, 'id') */?>
 
-    <?= $form->field($model, 'username') ?>
+    <?= $form->field($model, 'username')
+        ->label(false)
+        ->textInput(['placeholder' => 'username'])
+    ?>
 
     <?/*= $form->field($model, 'auth_key') */?><!--
 
@@ -25,7 +28,10 @@ use yii\widgets\ActiveForm;
 
     --><?/*= $form->field($model, 'password_reset_token') */?>
 
-    <?php  echo $form->field($model, 'email') ?>
+    <?php  echo $form->field($model, 'email')
+        ->label(false)
+        ->textInput(['placeholder' => 'Email Address'])
+    ?>
 
     <?php // echo $form->field($model, 'status') ?>
 
@@ -40,8 +46,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'walletAddress') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton('Search', ['class' => 'btn btn-primary','style' => 'background-color: #7348b3; color: #ffffff;border:0']) ?>
+        <?= Html::resetButton('Reset', ['class' => 'btn btn-default','type' => 'reset']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

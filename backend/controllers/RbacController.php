@@ -18,13 +18,13 @@ class RbacController extends Controller
         //call component
         /*$auth = Yii::$app->authManager;
 
-        //add "/Campaign/index" authority
-        $blogIndex = $auth->createPermission('/Campaign/index');
+        //add "/Campaign/header" authority
+        $blogIndex = $auth->createPermission('/Campaign/header');
         $blogIndex->description = 'List of Blogs';
         $auth->add($blogIndex);*/
 
 
-        //create a role named 'BlogManage' and authorize '/Campaign/index'
+        //create a role named 'BlogManage' and authorize '/Campaign/header'
         /*$blogManage = $auth->createRole('BlogManage');
         $auth->add($blogManage);
         $auth->addChild($blogManage,$blogIndex);*/

@@ -9,23 +9,28 @@ use yii\helpers\Url;
 /* @var $searchModel backend\models\FrontendUserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Frontend Users';
+$this->title = 'User Management - GoRaisin Backend';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="frontend-user-index">
 
     <!--<h1><?/*= Html::encode($this->title) */?></h1>-->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div style="text-align: center">
+        <h2>Platform User Management</h2>
+    </div>
+    <br />
 
-
+    <div style="width: 50%;text-align: center;margin-left: 25%">
     <h3 style="color: black">Search</h3>
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    </div>
     <hr style=" height:1px;border:none;border-top:1px solid #185598;" />
 
     <!--<p>
         <?/*= Html::a('Create Frontend User', ['create'], ['class' => 'btn btn-success']) */?>
     </p>-->
-    <h3 style="color: black">Frontend User List</h3>
+    <!--<h3 style="color: black">Frontend User List</h3>-->
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         /*'filterModel' => $searchModel,*/
@@ -45,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
              'companyName',
              'walletAddress',
 
-            [
+            /*[
                 'class' => 'yii\grid\ActionColumn',
                 'template' => '{view}',
                 'header' => 'operate',
@@ -59,6 +64,29 @@ $this->params['breadcrumbs'][] = $this->title;
                         ]);
                     },
                 ],
+            ],*/
+
+            ['class' => 'yii\grid\ActionColumn',
+                // if want to add 'delete' there should add {delete}
+                'template' => '{view}',
+                'buttons' => [
+                    'view' => function ($url) {
+                        return Html::a('View', $url, [
+                            'title' => 'view',
+                            'style' => 'background-color: #7348b3; color: #ffffff; padding:5%;border-radius:5px',
+                        ]);
+                    },
+                    /*'delete' => function ($url) {
+                        return Html::a('Delete', $url, [
+                            'title' => 'delete',
+                            'style' => 'background-color: #ff1414; color: #ffffff; padding:5%;border-radius:5px',
+                            'data' => [
+                                'confirm' => 'Confirm Delete?',
+                                'method' => 'post',
+                            ],
+                        ]);
+                    },*/
+                ],
             ],
         ],
     ]); ?>
@@ -66,7 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 <?php
-Modal::begin([
+/*Modal::begin([
     'id' => 'operate-modal',
     'header' => '<h4 class="modal-title"></h4>',
 ]);
@@ -84,4 +112,4 @@ $js = <<<JS
     });
 JS;
 $this->registerJS($js);
-?>
+*/?>

@@ -7,7 +7,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
 backend\assets\ProfileAsset::register($this);
-$this->title = 'Raisin Backend';
+$this->title = 'GoRaisin Backend';
 ?>
 
 <div class="site-index">
@@ -75,6 +75,7 @@ $this->title = 'Raisin Backend';
                                                 'id' => 'update',
                                                 'data-toggle' => 'modal',
                                                 'data-target' => '#operate-modal',
+                                                'style' => 'background-color: #50327c; color: #ffffff',
                                             ])
                                             ?>
                                         </div>

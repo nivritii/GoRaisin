@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use kartik\file\FileInput;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\UserBackend */
@@ -36,11 +37,16 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $form->field($model, 'phone')->textInput(['maxlength' => true]); ?>
 
-    <?= $form->field($model,'image')->fileInput()?>
+    <?= $form->field($model,'image')
+        ->fileInput()
+        ->widget(FileInput::className(),[
+            'options' => ['accept' => 'image/*'],
+        ]);
+    ?>
 
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary','style' => 'background-color: #50327c; color: #ffffff']) ?>
         <?=
         Html::a('Cancel',['site/index'],[
             'class' => 'btn btn-default',

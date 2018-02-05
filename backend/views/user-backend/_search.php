@@ -16,21 +16,27 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
 
-    <?= $form->field($model, 'username') ?>
+    <?= $form->field($model, 'username')
+        ->label(false)
+        ->textInput(['placeholder' => 'Username'])
+    ?>
 
     <?/*= $form->field($model, 'auth_key') */?><!--
 
     --><?/*= $form->field($model, 'password_hash') */?>
 
-    <?= $form->field($model, 'email') ?>
+    <?= $form->field($model, 'email')
+        ->label(false)
+        ->textInput(['placeholder' => 'Email'])
+    ?>
 
     <?php // echo $form->field($model, 'created_at') ?>
 
     <?php // echo $form->field($model, 'updated_at') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton('Search', ['class' => 'btn btn-primary','style' => 'background-color: #7348b3; color: #ffffff;border:0']) ?>
+        <?= Html::resetButton('Reset', ['class' => 'btn btn-default','type' => 'reset']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

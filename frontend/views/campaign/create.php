@@ -1,5 +1,4 @@
 <?php
-
 use yii\helpers\Html;
 use frontend\models\Campaign;
 use frontend\models\CampaignReward;
@@ -11,18 +10,13 @@ use frontend\models\Reward;
 use frontend\models\Category;
 use yii\helpers\ArrayHelper;
 use kartik\date\DatePicker;
-
 HomePageAsset::register($this);
 CampaignAsset::register($this);
-
-
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
-
 $this->title = 'Create Campaign - GoRaisin';
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-
 //$c_reward = new Reward();
 ?>
 
@@ -69,21 +63,19 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row setup-content" id="step-1">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1>Basics</h1>
+                    <h1 class="tabpage-title">Basics</h1>
                     <div class="container col-xs-12">
                         <div class="container">
                             <br/>
                             <div class="form-group">
                                 <div style="width: 100%;height: 80px">
                                     <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Campaign Title</p>
+                                        <p class="item-title">Campaign title</p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
                                         <input type="text" style="width: 100%" name="cTitle">
                                     </div>
                                 </div>
-
-                                <!--     $list = CHtml::listData(Category::model()->findAll(array('order' => 'name')), 'id', 'name');-->
                                 <div style="clear:both;height: 80px">
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Category</p>
@@ -100,11 +92,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </div>
                                 </div>
 
-                                <div style="clear:both;height: 320px">
+                                <div style="clear:both;height: 460px">
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Campaign image</p>
                                     </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 2%">
+                                    <div style="float: left;display: inline-block;width: 60%;margin-left: 2%">
                                         <div class="file-upload">
                                             <button class="file-upload-btn" type="button"
                                                     onclick="$('.file-upload-input').trigger( 'click' )">Add Image
@@ -116,25 +108,30 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     <h3>Drag and drop a file or select add Image</h3>
                                                 </div>
                                             </div>
+                                            <br />
                                             <div class="file-upload-content">
                                                 <img class="file-upload-image" src="#" alt="your image"/>
                                                 <div class="image-title-wrap">
+
                                                     <button type="button" onclick="removeUpload()" class="remove-image">
                                                         Remove <span class="image-title">Uploaded Image</span></button>
+
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div style="clear:both;height: 150px">
+                                <div style="clear:both;height: 140px">
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Short description</p>
                                     </div>
+
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%; background: red"
                                          class="textEditor">
                                         <textarea rows="3" type="text" style="width: 100%;" name="cDesc">
                                          </textarea>
+
                                     </div>
                                 </div>
 
@@ -192,8 +189,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                         </div>
                     </div>
-                    <input onclick="step1Next()" class="btn btn-md btn-info" value="Next"
-                           style="color: #ffffff;background-color: #940094;border: 0">
+
+                    <input onclick="step1Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+
 
                     <!-- </form> -->
                 </div>
@@ -204,7 +202,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row setup-content" id="step-2">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1 class="text-center">Rewards</h1>
+                    <h1 class="tabpage-title">Rewards</h1>
 
                     <!--<form>-->
                     <div class="container col-xs-12">
@@ -237,20 +235,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                             1
                                         </td>
                                         <td>
-                                            <input type="text" name='rTitle[]' id='rTitle' placeholder='Title'
-                                                   class="form-control"/>
+                                            <input type="text" name='rTitle[]'  id='rTitle' class="form-control"/>
                                         </td>
                                         <td>
-                                            <input type="text" name='rAmt[]' placeholder='Pledge Amount'
-                                                   class="form-control"/>
+                                            <input type="text" name='rAmt[]' class="form-control"/>
                                         </td>
                                         <td>
-                                            <input type="text" name='rDesc[]' placeholder='Description'
-                                                   class="form-control"/>
+                                            <input type="text" name='rDesc[]' class="form-control"/>
                                         </td>
                                         <td>
-                                            <input type="text" name='rLimit[]' placeholder='Limit'
-                                                   class="form-control"/>
+                                            <input type="text" name='rLimit[]' class="form-control"/>
                                         </td>
                                     </tr>
                                     <tr id='addr1'></tr>
@@ -265,10 +259,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <!--</form> -->
                     <hr>
-                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
-                           style="color: #ffffff;background-color: #940094;border: 0">
-                    <input onclick="step2Next()" class="btn btn-md btn-info" value="Next"
-                           style="color: #ffffff;background-color: #940094;border: 0">
+
+                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                    <input onclick="step2Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
 
                 </div>
             </div>
@@ -278,7 +271,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="row setup-content" id="step-3">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1 class="text-center">The Story</h1>
+                    <h1 class="tabpage-title">The Story</h1>
 
                     <!--<form>-->
                     <div class="container col-xs-12">
@@ -301,11 +294,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <p class="item-title">Main Description</p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;height: 400px">
+
                                         <!--                                        <input type="hidden" name="cLDesc">-->
                                         <!--                                        <div id="editor-container">-->
                                         <!--                                        </div>-->
                                         <textarea class="form-control " name="cLDesc" id="" cols="30" rows="10"
                                                   style=""></textarea>
+
                                         <!--<input placeholder="Long Description" name="cLDesc">-->
                                     </div>
                                 </div>
@@ -314,69 +309,72 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
                     <!--</form> -->
 
-                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
-                           style="color: #ffffff;background-color: #940094;border: 0">
-                    <input onclick="step3Next()" class="btn btn-md btn-info" value="Next"
-                           style="color: #ffffff;background-color: #940094;border: 0">
+                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                    <input onclick="step3Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
 
                 </div>
             </div>
         </div>
     </div>
     <div class="container">
-
         <div class="row setup-content" id="step-4">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
-                    <h1 class="text-center">Company</h1>
+                    <h1 class="tabpage-title">Company</h1>
 
-                    <!--<form>-->
                     <div class="container col-xs-12">
-                        <br/>
-                        <div class="campaignAboutYou-form">
+                        <div class="container">
+                            <br />
                             <div class="form-group">
-                                <div style="width: 100%;height: 80px;margin-left: 10%;margin-right: 5%">
+                                <div style="width: 100%;height: 80px">
                                     <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Display name</p>
+                                        <p class="item-title">Author name</p>
                                     </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                        <p><input placeholder="Name" name="cName"></p>
+                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                        <input type="text" style="width: 100%" name="cName">
                                     </div>
                                 </div>
 
-                                <div style="width: 100%;height: 80px;margin-left: 10%;margin-right: 5%">
+                                <div style="clear:both;height: 80px">
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Email</p>
                                     </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                        <p><input placeholder="Email" name="cEmail"></p>
+                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                        <?php /*echo Yii::$app->user->identity->email */?><!--
+                                        <?php /*if (!empty(Yii::$app->user->identity->email)) {
+                                            $email = Yii::$app->user->identity->email*/?>
+                                        <input type="text" style="width: 100%" name="cEmail" value=<?php /*$email */?>>
+                                        --><?php /*}else { */?>
+                                        <input type="text" style="width: 100%" name="cEmail">
+                                        <?php /*}*/?>
                                     </div>
                                 </div>
 
-                                <div style="width: 100%;height: 80px;margin-left: 10%;margin-right: 5%">
+                                <div style="clear:both;height: 180px;">
                                     <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Biography</p>
+                                        <p class="item-title">Company biography</p>
                                     </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 3%">
-                                        <p><input placeholder="Biography" name="cBio"></p>
+                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                        <textarea rows="5" type="text" style="width: 100%" name="cBio"> </textarea>
+                                        <p align="left">Simply introduce your company can help backers learn about your campaign better!</p>
                                     </div>
                                 </div>
 
-                                <div style="clear:both;height: 80px;margin-left: 10%;margin-right: 5%;margin-top: 7%">
+                                <div style="clear:both;height: 80px;">
                                     <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Your location</p>
+                                        <p class="item-title">Company location</p>
                                     </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 7%">
-                                        <p><input placeholder="Location" name="cLocation"></p>
+                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                        <input type="text" style="width: 100%" name="cLocation">
                                     </div>
                                 </div>
 
-                                <div style="clear:both;height: 80px;margin-left: 10%;margin-right: 5%">
+                                <div style="clear:both;height: 80px;">
                                     <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Social profile</p>
+                                        <p class="item-title">Company website</p>
                                     </div>
-                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 7%">
-                                        <p><input placeholder="Profile" name="cProfile"></p>
+                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                        <input type="text" style="width: 100%" name="cProfile">
                                     </div>
                                 </div>
 
@@ -384,10 +382,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </div>
                     <!--</form> -->
-                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
-                           style="color: #ffffff;background-color: #940094;border: 0">
-                    <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit"
-                           style="color: #ffffff;background-color: #940094;border: 0">
+                  
+                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                    <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+
                     <div class="form-group">
                     </div>
                 </div>
@@ -398,14 +396,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <script>
     var currentStep = 1;
-
     $(document).ready(function () {
-
         $('.li-nav').click(function () {
-
             var $targetStep = $($(this).attr('step'));
             currentStep = parseInt($(this).attr('id').substr(7));
-
             if (!$(this).hasClass('disabled')) {
                 $('.li-nav.active').removeClass('active');
                 $(this).addClass('active');
@@ -413,11 +407,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 $targetStep.show();
             }
         });
-
         $('#navStep1').click();
-
     });
-
 
     function step1Next() {
         //You can make only one function for next, and inside you can check the current step
@@ -427,20 +418,17 @@ $this->params['breadcrumbs'][] = $this->title;
             $('#navStep' + currentStep).click();
         }
     }
-
     function prevStep() {
         //Notice that the btn prev not exist in the first step
         currentStep -= 1;
         $('#navStep' + currentStep).click();
     }
-
     function step2Next() {
         if (true) {
             $('#navStep3').removeClass('disabled');
             $('#navStep3').click();
         }
     }
-
     function step3Next() {
         if (true) {
             $('#navStep4').removeClass('disabled');
@@ -448,17 +436,18 @@ $this->params['breadcrumbs'][] = $this->title;
         }
     }
 
-
     // Add , Delete row dynamically
 
     $(document).ready(function () {
         var i = 1;
 
         $("#add_row").click(function () {
+
             i++;
             $('#addr' + (i - 1)).html("<td>" + (i) + "</td><td><input name='rTitle[]' id='rTitle' type='text' placeholder='Title' class='form-control input-md'  /> </td><td><input  name='rAmt[]' type='text' placeholder='Pledge Amount'  class='form-control input-md'></td><td><input  name='rDesc[]' type='text' placeholder='Description'  class='form-control input-md'></td><td><input  name='rLimit[]' type='text' placeholder='Limit'  class='form-control input-md'></td>");
             $('#rewardTab').append('<tr id="addr' + i + '"></tr>');
         });
+
 
         $("#delete_row").click(function () {
             if (i > 1) {

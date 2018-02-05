@@ -150,7 +150,7 @@ class EmailController extends Controller
 
     /**
      * Deletes an existing Email model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * If deletion is successful, the browser will be redirected to the 'header' page.
      * @param integer $id
      * @return mixed
      */

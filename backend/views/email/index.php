@@ -7,18 +7,22 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\EmailSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Emails';
+$this->title = 'Platform Emails - GoRaisin Backend';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="email-index">
 
     <!--<h1><?/*= Html::encode($this->title) */?></h1>-->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <h3 style="color: black">Create</h3>
+    <div style="text-align: center">
+        <h2>Platform Emails Management</h2>
+    </div>
+    <br />
+    <div style="text-align: center">
     <p>
         <?= Html::a('Create Email', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    </div>
 
     <p>
         <?php
@@ -37,21 +41,22 @@ $this->params['breadcrumbs'][] = $this->title;
             //$str = $str . "," . $rows[$key]['email'];
         }
 
-        print_r($aa);
+        /*print_r($aa);*/
         //echo($str);
 
         ?>
     </p>
     <hr style=" height:1px;border:none;border-top:1px solid #185598;" />
 
+    <div style="width: 50%;text-align: center;margin-left: 25%">
     <h3 style="color: black">Search</h3>
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    </div>
     <hr style=" height:1px;border:none;border-top:1px solid #185598;" />
 
     <h3 style="color: black">Email List</h3>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        /*'filterModel' => $searchModel,*/
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -62,23 +67,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'content:ntext',
             // 'attachment',
 
-            [
-                'class' => 'yii\grid\ActionColumn',
+            ['class' => 'yii\grid\ActionColumn',
                 'template' => '{view} {delete}',
-                'header' => 'operate',
                 'buttons' => [
-                    'update' => function ($url, $model, $key) {
-                        return Html::a("View", $url, [
+                    'view' => function ($url) {
+                        return Html::a('View', $url, [
                             'title' => 'view',
-                            'class' => 'btn btn-default',
-                            /*'data-toggle' => 'modal',
-                            'data-target' => '#operate-modal',*/
+                            'style' => 'background-color: #7348b3; color: #ffffff; padding:5%;border-radius:5px',
                         ]);
                     },
-                    'delete' => function ($url, $model, $key) {
-                        return Html::a("Delete", $url, [
+                    'delete' => function ($url) {
+                        return Html::a('Delete', $url, [
                             'title' => 'delete',
-                            'class' => 'btn btn-danger',
+                            'style' => 'background-color: #ff1414; color: #ffffff; padding:5%;border-radius:5px',
                             'data' => [
                                 'confirm' => 'Confirm Delete?',
                                 'method' => 'post',
