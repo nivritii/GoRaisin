@@ -268,7 +268,7 @@ $imagePath = '/'.Yii::$app->user->identity->image;
                             <div class="pull-left">
                                 <?= Html::a(
                                     'Profile',
-                                    ['/site/header'],
+                                    ['/site/index'],
                                     ['class' => 'btn btn-default btn flat']
                                     /*['data-method' => 'post', 'class' => 'btn btn-default btn-flat']*/
                                 ) ?>

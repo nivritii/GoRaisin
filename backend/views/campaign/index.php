@@ -53,7 +53,33 @@ $this->params['breadcrumbs'][] = $this->title;
             //'c_cat_id',
             //'c_new_tag',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                'template' => '{view} {update} {delete}',
+                'buttons' => [
+                    'view' => function ($url) {
+                        return Html::a('View', $url, [
+                            'title' => 'view',
+                            'style' => 'background-color: #7348b3; color: #ffffff; padding:2%;border-radius:5px',
+                        ]);
+                    },
+                    'update' => function ($url) {
+                        return Html::a('Review', $url, [
+                            'title' => 'view',
+                            'style' => 'background-color: #00a65a; color: #ffffff; padding:2%;border-radius:5px',
+                        ]);
+                    },
+                    'delete' => function ($url) {
+                        return Html::a('Delete', $url, [
+                            'title' => 'delete',
+                            'style' => 'background-color: #ff1414; color: #ffffff; padding:2%;border-radius:5px',
+                            'data' => [
+                                'confirm' => 'Confirm Delete?',
+                                'method' => 'post',
+                            ],
+                        ]);
+                    },
+                ],
+            ],
         ],
     ]); ?>
 </div>
