@@ -14,7 +14,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <div style="width: 50%">
+    <div style="text-align: center">
+        <h2>Campaign Publish Review</h2>
+    </div>
+    <br />
+
+    <div style="width: 50%;text-align: center;margin-left: 25%">
     <h3 style="color: black">Search</h3>
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
     </div>
