@@ -46,9 +46,9 @@ $this->params['breadcrumbs'][] = 'Update';
 
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary','style' => 'background-color: #50327c; color: #ffffff']) ?>
         <?=
-        Html::a('Cancel',['site/header'],[
+        Html::a('Cancel',['site/index'],[
             'class' => 'btn btn-default',
             'id' => 'cancel',
         ])

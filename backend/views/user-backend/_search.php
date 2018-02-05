@@ -16,13 +16,19 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
 
-    <?= $form->field($model, 'username') ?>
+    <?= $form->field($model, 'username')
+        ->label(false)
+        ->textInput(['placeholder' => 'Username'])
+    ?>
 
     <?/*= $form->field($model, 'auth_key') */?><!--
 
     --><?/*= $form->field($model, 'password_hash') */?>
 
-    <?= $form->field($model, 'email') ?>
+    <?= $form->field($model, 'email')
+        ->label(false)
+        ->textInput(['placeholder' => 'Email'])
+    ?>
 
     <?php // echo $form->field($model, 'created_at') ?>
 

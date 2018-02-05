@@ -14,9 +14,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
+    <div style="text-align: center">
+        <h2>Category Management</h2>
+    </div>
+    <br />
+
+    <div style="width: 50%;text-align: center;margin-left: 25%">
     <p>
         <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+    </div>
     <hr style=" height:1px;border:none;border-top:1px solid #185598;" />
 
     <?= GridView::widget([

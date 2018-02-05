@@ -16,8 +16,12 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <!--<h1><?/*= Html::encode($this->title) */?></h1>-->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+    <div style="text-align: center">
+        <h2>Frontend User Management</h2>
+    </div>
+    <br />
 
-    <div style="width: 50%">
+    <div style="width: 50%;text-align: center;margin-left: 25%">
     <h3 style="color: black">Search</h3>
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
     </div>
@@ -26,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <!--<p>
         <?/*= Html::a('Create Frontend User', ['create'], ['class' => 'btn btn-success']) */?>
     </p>-->
-    <h3 style="color: black">Frontend User List</h3>
+    <!--<h3 style="color: black">Frontend User List</h3>-->
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         /*'filterModel' => $searchModel,*/

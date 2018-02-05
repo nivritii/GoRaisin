@@ -17,7 +17,10 @@ use yii\widgets\ActiveForm;
 
     <?/*= $form->field($model, 'id') */?>
 
-    <?= $form->field($model, 'username') ?>
+    <?= $form->field($model, 'username')
+        ->label(false)
+        ->textInput(['placeholder' => 'username'])
+    ?>
 
     <?/*= $form->field($model, 'auth_key') */?><!--
 
@@ -25,7 +28,10 @@ use yii\widgets\ActiveForm;
 
     --><?/*= $form->field($model, 'password_reset_token') */?>
 
-    <?php  echo $form->field($model, 'email') ?>
+    <?php  echo $form->field($model, 'email')
+        ->label(false)
+        ->textInput(['placeholder' => 'Email Address'])
+    ?>
 
     <?php // echo $form->field($model, 'status') ?>
 

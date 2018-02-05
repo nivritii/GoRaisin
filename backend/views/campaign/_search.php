@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'c_title') ?>
+    <?= $form->field($model, 'c_title')->label(false) ?>
 
     <?/*= $form->field($model, 'c_image') */?><!--
 

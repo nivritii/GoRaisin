@@ -75,6 +75,7 @@ $this->title = 'GoRaisin Backend';
                                                 'id' => 'update',
                                                 'data-toggle' => 'modal',
                                                 'data-target' => '#operate-modal',
+                                                'style' => 'background-color: #50327c; color: #ffffff',
                                             ])
                                             ?>
                                         </div>
