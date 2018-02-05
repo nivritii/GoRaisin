@@ -22,7 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="https://cdn.quilljs.com/1.3.5/quill.js"></script>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script>tinymce.init({selector: 'textarea'});</script>
 
 <div class="container">
     <div class="row form-group">
@@ -57,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 
-<form class="createCampaign" enctype="multipart/form-data" action="create" method="post">
+<form class="createCampaign" enctype="multipart/form-data" action="create" method="post" id="tab_logic">
     <div class="container">
         <div class="row setup-content" id="step-1">
             <div class="col-xs-12">
@@ -65,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <h1 class="tabpage-title">Basics</h1>
                     <div class="container col-xs-12">
                         <div class="container">
-                            <br />
+                            <br/>
                             <div class="form-group">
                                 <div style="width: 100%;height: 80px">
                                     <div style="float: left;display: inline-block;width: 20%">
@@ -80,11 +81,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <p class="item-title">Category</p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <select name="cCategory" id="search_categories" data-default-caption="Select Category" style="border-radius: 10px;width: 100%">
+                                        <select name="cCategory" id="search_categories"
+                                                data-default-caption="Select Category"
+                                                style="border-radius: 10px;width: 100%">
                                             <option selected>Select Category</option>
-                                            <?php foreach ($categories as $category) {?>
-                                            <option value=<?=$category->id?>><?=$category->name?></option>
-                                            <?php }?>
+                                            <?php foreach ($categories as $category) { ?>
+                                                <option value=<?= $category->id ?>><?= $category->name ?></option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -95,18 +98,24 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </div>
                                     <div style="float: left;display: inline-block;width: 60%;margin-left: 2%">
                                         <div class="file-upload">
-                                            <button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">Add Image</button>
+                                            <button class="file-upload-btn" type="button"
+                                                    onclick="$('.file-upload-input').trigger( 'click' )">Add Image
+                                            </button>
                                             <div class="image-upload-wrap">
-                                                <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" name="cImage" />
+                                                <input class="file-upload-input" type='file' onchange="readURL(this);"
+                                                       accept="image/*" name="cImage"/>
                                                 <div class="drag-text">
                                                     <h3>Drag and drop a file or select add Image</h3>
                                                 </div>
                                             </div>
                                             <br />
                                             <div class="file-upload-content">
-                                                <img class="file-upload-image" src="#" alt="your image" />
+                                                <img class="file-upload-image" src="#" alt="your image"/>
                                                 <div class="image-title-wrap">
-                                                    <button type="button" onclick="removeUpload()" class="remove-image">Remove <!--<span class="image-title">Uploaded Image</span>--></button>
+
+                                                    <button type="button" onclick="removeUpload()" class="remove-image">
+                                                        Remove <span class="image-title">Uploaded Image</span></button>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -117,8 +126,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Short description</p>
                                     </div>
-                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <textarea rows="3" type="text" style="width: 100%;" name="cDesc"> </textarea>
+
+                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%; background: red"
+                                         class="textEditor">
+                                        <textarea rows="3" type="text" style="width: 100%;" name="cDesc">
+                                         </textarea>
+
                                     </div>
                                 </div>
 
@@ -176,7 +189,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                         </div>
                     </div>
+
                     <input onclick="step1Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+
 
                     <!-- </form> -->
                 </div>
@@ -194,9 +209,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         <br/>
                         <div class="row clearfix">
                             <div class="col-md-12 column">
-                                <table class="table table-bordered table-hover" id="tab_logic">
+                                <table class="table table-bordered table-hover" id="rewardTab">
                                     <thead>
-                                    <tr >
+                                    <tr>
                                         <th class="text-center">
                                             #
                                         </th>
@@ -237,11 +252,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                 </table>
                             </div>
                         </div>
-                        <a id="add_row" class="btn btn-success pull-left">Add Reward</a><a id='delete_row' class="btn btn-danger pull-right">Remove Reward</a>
-                        <br /><br /><br />
+                        <a id="add_row" class="btn btn-success pull-left">Add Reward</a><a id='delete_row'
+                                                                                           class="btn btn-danger pull-right">Remove
+                            Reward</a>
+                        <br/><br/><br/>
                     </div>
                     <!--</form> -->
                     <hr>
+
                     <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
                     <input onclick="step2Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
 
@@ -258,7 +276,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <!--<form>-->
                     <div class="container col-xs-12">
                         <div class="container">
-                            <br />
+                            <br/>
                             <div class="form-group">
                                 <div style="clear:both;height: 150px">
                                     <div style="float: left;display: inline-block;width: 20%">
@@ -266,7 +284,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
                                         <input type="text" style="width: 100%" name="cVideo">
-                                        <p align="left">Please upload your video to YouTube and paste the link here.  Projects with a video have a much higher chance of success.</p>
+                                        <p align="left">Please upload your video to YouTube and paste the link here.
+                                            Projects with a video have a much higher chance of success.</p>
                                     </div>
                                 </div>
 
@@ -275,9 +294,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <p class="item-title">Main Description</p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;height: 400px">
-                                        <input type="hidden" name="cLDesc">
-                                        <div id="editor-container" style="background-color: #ffffff">
-                                        </div>
+
+                                        <!--                                        <input type="hidden" name="cLDesc">-->
+                                        <!--                                        <div id="editor-container">-->
+                                        <!--                                        </div>-->
+                                        <textarea class="form-control " name="cLDesc" id="" cols="30" rows="10"
+                                                  style=""></textarea>
+
                                         <!--<input placeholder="Long Description" name="cLDesc">-->
                                     </div>
                                 </div>
@@ -359,8 +382,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                     </div>
                     <!--</form> -->
+                  
                     <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
                     <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+
                     <div class="form-group">
                     </div>
                 </div>
@@ -384,6 +409,7 @@ $this->params['breadcrumbs'][] = $this->title;
         });
         $('#navStep1').click();
     });
+
     function step1Next() {
         //You can make only one function for next, and inside you can check the current step
         if (true) {//Insert here your validation of the first step
@@ -409,25 +435,33 @@ $this->params['breadcrumbs'][] = $this->title;
             $('#navStep4').click();
         }
     }
+
     // Add , Delete row dynamically
-    $(document).ready(function(){
-        var i=1;
-        $("#add_row").click(function(){
+
+    $(document).ready(function () {
+        var i = 1;
+
+        $("#add_row").click(function () {
+
             i++;
-            $('#addr'+(i-1)).html("<td>"+ (i) +"</td><td><input name='rTitle[]' id='rTitle' type='text' placeholder='Title' class='form-control input-md'  /> </td><td><input  name='rAmt[]' type='text' placeholder='Pledge Amount'  class='form-control input-md'></td><td><input  name='rDesc[]' type='text' placeholder='Description'  class='form-control input-md'></td><td><input  name='rLimit[]' type='text' placeholder='Limit'  class='form-control input-md'></td>");
-            $('#tab_logic').append('<tr id="addr'+i+'"></tr>');
+            $('#addr' + (i - 1)).html("<td>" + (i) + "</td><td><input name='rTitle[]' id='rTitle' type='text' placeholder='Title' class='form-control input-md'  /> </td><td><input  name='rAmt[]' type='text' placeholder='Pledge Amount'  class='form-control input-md'></td><td><input  name='rDesc[]' type='text' placeholder='Description'  class='form-control input-md'></td><td><input  name='rLimit[]' type='text' placeholder='Limit'  class='form-control input-md'></td>");
+            $('#rewardTab').append('<tr id="addr' + i + '"></tr>');
         });
-        $("#delete_row").click(function(){
-            if(i>1){
-                $("#addr"+(i-1)).html('');
+
+
+        $("#delete_row").click(function () {
+            if (i > 1) {
+                $("#addr" + (i - 1)).html('');
                 i--;
             }
         });
-        $("#submit").click(function(){
+
+        $("#submit").click(function () {
+
             $.ajax({
-                method:"POST",
+                method: "POST",
                 data: $("#tab_logic").serialize(),
-                success:function(data){
+                success: function (data) {
                     alert(data);
                     $("#tab_logic")[0].reset();
                 }
