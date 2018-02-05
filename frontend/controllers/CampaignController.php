@@ -118,8 +118,9 @@ class CampaignController extends Controller
 
         if($_SERVER["REQUEST_METHOD"]=="POST"){
             $model->c_title=$_POST['cTitle'];
-            $model->c_cat_id=7;
+            $model->c_cat_id=$_POST['cCategory'];
             $model->c_author= Yii::$app->user->identity->getId();
+
             if(isset($_FILES['cImage']['name']) && $_FILES['cImage']['size'] > 0){
                 $uploaddir = '/web/images/uploads/campaign/';
                 $dirpath = realpath(dirname(getcwd())).$uploaddir;
@@ -130,13 +131,15 @@ class CampaignController extends Controller
                 $model->c_image = 'default.jpg';
             }
 
-            $model->c_cat_id=$_POST['cCategory'];
             $model->c_description=$_POST['cDesc'];
             $model->c_start_date=$_POST['cStartdate'];
             $model->c_end_date=$_POST['cEnddate'];
             $model->c_goal=$_POST['cGoal'];
             $model->c_video=$_POST['cVideo'];
-            $model->c_description_long=$_POST['cLDesc'];//json_decode($_GET['cLDesc'], true);
+
+
+
+            $model->c_description_long=$_POST['cLDesc'];
             $model->c_display_name=$_POST['cName'];
             $model->c_email=$_POST['cEmail'];
             $model->c_biography=$_POST['cBio'];
@@ -154,18 +157,15 @@ class CampaignController extends Controller
 
                 $number = count($_POST['rTitle']);
                 echo("<script>console.log('PHP: ".$number."');</script>");
-                if($number>0){
                     for ($i=0; $i<$number; $i++){
-
                             $reward->c_id=$model->c_id;
                             $reward->r_title=$_POST['rTitle'][$i];
                         echo("<script>console.log('Get Reward hereN: ".$reward->r_title."');</script>");
                             $reward->r_pledge_amt=$number;
                             $reward->r_description=$_POST['rDesc'][$i];
                             $reward->r_limit_availability=$_POST['rLimit'][$i];
-                            $reward->save();
+                            $reward->save(false);
                     }
-                }
 
 
                     return $this->redirect(['view', 'id'=>$model->c_id]);
@@ -224,6 +224,15 @@ class CampaignController extends Controller
 
         return $this->render('fund',[
             'rewards'=>$rewards,
+        ]);
+    }
+
+    public function actionMycampaign()
+    {
+        $campaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId()])->all();
+
+        return $this->render('mycampaign',[
+            'model' => $campaigns,
         ]);
     }
 

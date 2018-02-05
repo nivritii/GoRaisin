@@ -139,3 +139,17 @@
     border: 0;
     transition: all .2s ease;
 }
+
+textarea .mce-notification-warning{
+    display: none;
+    background-color: transparent !important;
+}
+
+div .mce-notification-warning{
+    /*display: none;*/
+    background-color: transparent !important;
+}
+
+.textEditor{
+    background-color: red;
+}
