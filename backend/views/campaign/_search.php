@@ -54,8 +54,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'c_new_tag') ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton('Search', ['class' => 'btn btn-primary','style' => 'background-color: #7348b3; color: #ffffff;border:0']) ?>
+        <?= Html::resetButton('Reset', ['class' => 'btn btn-default','type' => 'reset']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

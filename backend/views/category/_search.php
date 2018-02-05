@@ -15,17 +15,23 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'id') ?>
+    <?= $form->field($model, 'id')
+        ->label(false)
+        ->textInput(['placeholder' => 'Category ID'])
+    ?>
 
-    <?= $form->field($model, 'name') ?>
+    <?= $form->field($model, 'name')
+        ->label(false)
+        ->textInput(['placeholder' => 'Category Name'])
+    ?>
 
-    <?= $form->field($model, 'class') ?>
+    <?/*= $form->field($model, 'class') */?><!--
 
-    <?= $form->field($model, 'featured_campaign_id') ?>
+    --><?/*= $form->field($model, 'featured_campaign_id') */?>
 
     <div class="form-group">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?= Html::submitButton('Search', ['class' => 'btn btn-primary','style' => 'background-color: #7348b3; color: #ffffff;border:0']) ?>
+        <?= Html::resetButton('Reset', ['class' => 'btn btn-default','type' => 'reset']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

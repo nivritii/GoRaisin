@@ -28,6 +28,7 @@ class ProfileAsset extends AssetBundle
         'css/style-responsive.css',
         'css/widgets.css',
         'css/xcharts.min.css',
+        'https://use.fontawesome.com/releases/v5.0.6/css/all.css',
     ];
 
     public $depends = [
