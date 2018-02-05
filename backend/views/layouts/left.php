@@ -31,8 +31,8 @@
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
                 'items' => [
                     ['label' => 'Menu', 'options' => ['class' => 'header']],
-                    ['label' => 'Profile', 'icon' => 'user-circle', 'url' => ['/site/index']],
-                    ['label' => 'User Management', 'icon' => 'gavel', 'url' => ['/user-backend/index']],
+                    ['label' => 'Profile', 'icon' => 'user-circle', 'url' => ['/site/header']],
+                    ['label' => 'User Management', 'icon' => 'gavel', 'url' => ['/user-backend/header']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     [
                         'label' => 'Campaigns',

@@ -17,13 +17,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'c_title') ?>
 
-    <?= $form->field($model, 'c_image') ?>
+    <?/*= $form->field($model, 'c_image') */?><!--
 
-    <?= $form->field($model, 'c_description') ?>
+    <?/*= $form->field($model, 'c_description') */?>
 
-    <?= $form->field($model, 'c_start_date') ?>
+    <?/*= $form->field($model, 'c_start_date') */?>
 
-    <?= $form->field($model, 'c_end_date') ?>
+    --><?/*= $form->field($model, 'c_end_date') */?>
 
     <?php // echo $form->field($model, 'c_goal') ?>
 
@@ -33,7 +33,7 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'c_description_long') ?>
 
-    <?php // echo $form->field($model, 'c_author') ?>
+    <?php /* echo $form->field($model, 'c_author') */?>
 
     <?php // echo $form->field($model, 'c_created_at') ?>
 
@@ -50,6 +50,8 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'c_status') ?>
 
     <?php // echo $form->field($model, 'c_cat_id') ?>
+
+    <?php // echo $form->field($model, 'c_new_tag') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>

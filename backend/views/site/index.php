@@ -7,7 +7,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\bootstrap\Modal;
 backend\assets\ProfileAsset::register($this);
-$this->title = 'Raisin Backend';
+$this->title = 'GoRaisin Backend';
 ?>
 
 <div class="site-index">

@@ -9,7 +9,7 @@ use yii\helpers\Url;
 /* @var $searchModel backend\models\FrontendUserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Frontend Users';
+$this->title = 'UserManagement - GoRaisin Backend';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="frontend-user-index">
@@ -17,9 +17,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <!--<h1><?/*= Html::encode($this->title) */?></h1>-->
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-
+    <div style="width: 50%">
     <h3 style="color: black">Search</h3>
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    </div>
     <hr style=" height:1px;border:none;border-top:1px solid #185598;" />
 
     <!--<p>
