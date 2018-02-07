@@ -2,10 +2,11 @@
 
 namespace frontend\tests\unit\models;
 
+use Codeception\Test\Unit;
 use common\fixtures\UserFixture;
 use frontend\models\ResetPasswordForm;
 
-class ResetPasswordFormTest extends \Codeception\Test\Unit
+class ResetPasswordFormTest extends Unit
 {
     /**
      * @var \frontend\tests\UnitTester
