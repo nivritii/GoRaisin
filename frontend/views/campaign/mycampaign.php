@@ -23,13 +23,24 @@ use yii\helpers\Html;
                         <div class="section_wrapper mcb-section-inner">
                             <div class="container" style="padding-left:0px">
                                 <ul class="nav nav-tabs">
-                                    <li class="active"><a data-toggle="tab" href="#home">Created Projects</a></li>
-                                    <li><a data-toggle="tab" href="#menu1">Backed Projects</a></li>
-                                    <li><a data-toggle="tab" href="#menu2">Activity</a></li>
+                                    <li class="active"><a data-toggle="tab" href="#home">Activity</a></li>
+                                    <li><a data-toggle="tab" href="#menu1">Created Projects</a></li>
+                                    <li><a data-toggle="tab" href="#menu2">Backed Projects</a></li>
                                 </ul>
 
                                 <div class="tab-content">
                                     <div id="home" class="tab-pane fade in active">
+                                        <h3>Activity</h3>
+                                        <?php foreach ($activities as $activity){?>
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <h4 class="card-title"><?=$activity->fund_amt?></h4>
+                                                <h6 class="card-subtitle mb-2 text-muted"><?=$activity->fund_created_on?></h6>
+                                            </div>
+                                        </div>
+                                        <?php }?>
+                                    </div>
+                                    <div id="menu1" class="tab-pane fade">
                                         <h3>Created Projects</h3>
                                         <div class="posts_group lm_wrapper classic col-3">
                                             <?php foreach ($model as $campaign) { ?>
@@ -90,13 +101,14 @@ use yii\helpers\Html;
                                             <?php } ?>
                                         </div>
                                     </div>
-                                    <div id="menu1" class="tab-pane fade">
-                                        <h3>Backed Projects</h3>
-                                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                    </div>
                                     <div id="menu2" class="tab-pane fade">
-                                        <h3>Activity</h3>
-                                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                                        <h3>Backed Projects</h3>
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <h4 class="card-title"></h4>
+                                                <h6 class="card-subtitle mb-2 text-muted"></h6>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

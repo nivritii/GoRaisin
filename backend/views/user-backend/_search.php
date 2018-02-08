@@ -21,9 +21,6 @@ use yii\widgets\ActiveForm;
         ->textInput(['placeholder' => 'Username'])
     ?>
 
-    <?/*= $form->field($model, 'auth_key') */?><!--
-
-    --><?/*= $form->field($model, 'password_hash') */?>
 
     <?= $form->field($model, 'email')
         ->label(false)

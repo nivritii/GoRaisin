@@ -25,9 +25,6 @@ use yii\widgets\ActiveForm;
         ->textInput(['placeholder' => 'Category Name'])
     ?>
 
-    <?/*= $form->field($model, 'class') */?><!--
-
-    --><?/*= $form->field($model, 'featured_campaign_id') */?>
 
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary','style' => 'background-color: #7348b3; color: #ffffff;border:0']) ?>

@@ -136,9 +136,6 @@ class CampaignController extends Controller
             $model->c_end_date=$_POST['cEnddate'];
             $model->c_goal=$_POST['cGoal'];
             $model->c_video=$_POST['cVideo'];
-
-
-
             $model->c_description_long=$_POST['cLDesc'];
             $model->c_display_name=$_POST['cName'];
             $model->c_email=$_POST['cEmail'];
@@ -146,14 +143,6 @@ class CampaignController extends Controller
             $model->c_location=$_POST['cLocation'];
             $model->c_social_profile=$_POST['cProfile'];
             if ($model->save()){
-//                $reward->c_id=$model->c_id;
-//                $reward->r_title=$_POST['rTitle'];
-//                $reward->r_pledge_amt=$_POST['rPledgeAmt'];
-//                $reward->r_description=$_POST['rDesc'];
-//                $reward->r_delivery_date=$_POST['rDeliverydate'];
-//                $reward->r_shipping_details=$_POST['rShipping'];
-//                $reward->r_limit_availability=$_POST['rLimit'];
-//                $reward->save();
 
                 $number = count($_POST['rTitle']);
                 echo("<script>console.log('PHP: ".$number."');</script>");
@@ -221,18 +210,31 @@ class CampaignController extends Controller
     public function actionFund($id)
     {
         $rewards = Reward::find()->where(['c_id'=>$id])->all();
+        $fund = new Fund();
+
+        if($_SERVER["REQUEST_METHOD"]=="POST"){
+            $fund->fund_c_id=$id;
+            $fund->fund_user_id=Yii::$app->user->identity->getId();
+            $fund->fund_amt=$_POST['reward'];
+            if ($fund->save()){
+                return $this->redirect(['mycampaign']);
+            }
+        }
 
         return $this->render('fund',[
             'rewards'=>$rewards,
+            'c_id'=>$id,
         ]);
     }
 
     public function actionMycampaign()
     {
         $campaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId()])->all();
+        $fund = Fund::find()->where(['fund_user_id'=>Yii::$app->user->getId()])->all();
 
         return $this->render('mycampaign',[
             'model' => $campaigns,
+            'activities' => $fund,
         ]);
     }
 
