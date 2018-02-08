@@ -17,14 +17,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'c_title')->label(false) ?>
 
-    <?/*= $form->field($model, 'c_image') */?><!--
-
-    <?/*= $form->field($model, 'c_description') */?>
-
-    <?/*= $form->field($model, 'c_start_date') */?>
-
-    --><?/*= $form->field($model, 'c_end_date') */?>
-
     <?php // echo $form->field($model, 'c_goal') ?>
 
     <?php // echo $form->field($model, 'c_id') ?>

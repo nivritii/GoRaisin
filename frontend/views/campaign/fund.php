@@ -27,6 +27,7 @@ $reward = new Reward();
             <h1 class="text-center" >Fund the Project</h1>
             <br/>
             <!--<form>-->
+            <form enctype="multipart/form-data" action="fund?id=<?=$c_id?>" method="post">
             <div class="container col-xs-12">
                 <div class="campaignAboutYou-form">
                     <div class="form-group">
@@ -34,14 +35,16 @@ $reward = new Reward();
                         <div class="card">
                             <div class="card-block">
                                 <h4 class="card-title"><?=$reward->r_title?></h4>
-                                <h6 class="card-subtitle mb-2 text-muted"><input type="radio" name="optradio"><?=$reward->r_description?></h6>
+                                <h6 class="card-subtitle mb-2 text-muted"><input type="radio" name="reward" value="<?=$reward->r_pledge_amt?>"><?=$reward->r_description?></h6>
                             </div>
                         </div>
-                            <br/>
                         <?php };?>
+                        <br/>
+                        <input class="btn btn-md btn-info" type="submit" value="Pledge" id="submit" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
                     </div>
                 </div>
             </div>
+            </form>
             <!--</form> -->
         </div>
     </div>

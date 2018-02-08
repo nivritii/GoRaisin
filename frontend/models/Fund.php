@@ -11,7 +11,7 @@ use Yii;
  * @property int $fund_c_id
  * @property int $fund_user_id
  * @property double $fund_amt
- * @property string $fund_note
+ * @property string $fund_created_on
  *
  * @property User $fundUser
  */
@@ -31,10 +31,10 @@ class Fund extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['fund_c_id', 'fund_user_id', 'fund_amt', 'fund_note'], 'required'],
+            [['fund_c_id', 'fund_user_id', 'fund_amt'], 'required'],
             [['fund_c_id', 'fund_user_id'], 'integer'],
             [['fund_amt'], 'number'],
-            [['fund_note'], 'string'],
+            [['fund_created_on'], 'safe'],
             [['fund_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['fund_user_id' => 'id']],
         ];
     }
@@ -49,7 +49,7 @@ class Fund extends \yii\db\ActiveRecord
             'fund_c_id' => 'Fund C ID',
             'fund_user_id' => 'Fund User ID',
             'fund_amt' => 'Fund Amt',
-            'fund_note' => 'Fund Note',
+            'fund_created_on' => 'Fund Created On',
         ];
     }
 
