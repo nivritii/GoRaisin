@@ -83,8 +83,7 @@ class CampaignController extends Controller
         $comments = Comment::find()->where(['comment_camp_id'=>$id])->orderBy(['comment_datetime'=>SORT_DESC])->all();
 
         $backed = Fund::find()->where(['fund_c_id'=>$id])->sum('fund_amt');
-
-        $progess = ($backed/$this->findModel($id)->c_goal)*100;
+        $progress = ($backed/$this->findModel($id)->c_goal)*100;
         
         if($comment->load(Yii::$app->request->post())){
             $comment->comment_camp_id = $id;
@@ -103,7 +102,7 @@ class CampaignController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
             'backed' => $backed,
-            'progress' => $progess,
+            'progress' => $progress,
             'categories' => $categories,
             'comments' => $comments,
             'updates' => $updates,
@@ -196,6 +195,8 @@ class CampaignController extends Controller
     {        
         $model = Campaign::find()->all();
         $categories = Category::find()->all();
+//        $backed = Fund::find()->where(['fund_c_id'=>$id])->sum('fund_amt');
+//        $progress = ($backed/$this->findModel($id)->c_goal)*100;
         
         if($id!='NULL'){
             
@@ -207,9 +208,11 @@ class CampaignController extends Controller
             
         }else{
             return $this->render('show',[
-            'model'=>$model,
-            'categories'=>$categories,
-            ]);
+                'model'=>$model,
+                'categories'=>$categories,
+//                'backed' =>$backed,
+//                'progress' =>$progress,
+                ]);
         }
     }
     
@@ -239,7 +242,7 @@ class CampaignController extends Controller
         $fund = Fund::find()->where(['fund_user_id'=>Yii::$app->user->getId()])->all();
 
         return $this->render('mycampaign',[
-            'model' => $campaigns,
+            'campaigns' => $campaigns,
             'activities' => $fund,
         ]);
     }
