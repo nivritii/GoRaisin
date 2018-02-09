@@ -7,6 +7,7 @@
  */
 use yii\helpers\Url;
 use yii\helpers\Html;
+use frontend\models\Fund;
 ?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -43,7 +44,10 @@ use yii\helpers\Html;
                                     <div id="menu1" class="tab-pane fade">
                                         <h3>Created Projects</h3>
                                         <div class="posts_group lm_wrapper classic col-3">
-                                            <?php foreach ($model as $campaign) { ?>
+                                            <?php foreach ($campaigns as $campaign) {
+                                                $backed = Fund::find()->where(['fund_c_id'=>$campaign->c_id])->sum('fund_amt');
+                                                $progress = ($backed/$campaign->c_goal)*100;
+                                                ?>
                                                 <div class="post-item isotope-item clearfix post-2277 post  format-standard has-post-thumbnail  category-lifestyle  tag-video">
                                                     <div class="date_label">
                                                         <?=$campaign->c_created_at?>
@@ -88,7 +92,7 @@ use yii\helpers\Html;
                                                             </div>
                                                             <div class="post-footer">
                                                                 <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%"><?=$campaign->c_id?>%
+                                                                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:<?=$progress?>%"><?=$progress?>%
                                                                     </div>
                                                                 </div>
                                                                 <div class="post-links">
