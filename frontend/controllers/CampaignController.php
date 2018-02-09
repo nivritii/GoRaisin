@@ -216,7 +216,7 @@ class CampaignController extends Controller
             $fund->fund_c_id=$id;
             $fund->fund_user_id=Yii::$app->user->identity->getId();
             $fund->fund_amt=$_POST['reward'];
-            if ($fund->save()){
+            if ($fund->save(false)){
                 return $this->redirect(['mycampaign']);
             }
         }
