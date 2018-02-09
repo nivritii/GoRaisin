@@ -81,6 +81,10 @@ class CampaignController extends Controller
         
         $comment = new Comment();
         $comments = Comment::find()->where(['comment_camp_id'=>$id])->orderBy(['comment_datetime'=>SORT_DESC])->all();
+
+        $backed = Fund::find()->where(['fund_c_id'=>$id])->sum('fund_amt');
+
+        $progess = ($backed/$this->findModel($id)->c_goal)*100;
         
         if($comment->load(Yii::$app->request->post())){
             $comment->comment_camp_id = $id;
@@ -98,6 +102,8 @@ class CampaignController extends Controller
         }
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'backed' => $backed,
+            'progress' => $progess,
             'categories' => $categories,
             'comments' => $comments,
             'updates' => $updates,
