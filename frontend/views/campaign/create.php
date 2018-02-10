@@ -10,6 +10,7 @@ use frontend\models\Reward;
 use frontend\models\Category;
 use yii\helpers\ArrayHelper;
 use kartik\date\DatePicker;
+
 HomePageAsset::register($this);
 CampaignAsset::register($this);
 /* @var $this yii\web\View */
@@ -22,8 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
-<script>tinymce.init({selector: 'textarea'});</script>
 
 <div class="container">
     <div class="row form-group">
@@ -294,14 +293,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <p class="item-title">Main Description</p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;height: 400px">
-
-                                        <!--                                        <input type="hidden" name="cLDesc">-->
-                                        <!--                                        <div id="editor-container">-->
-                                        <!--                                        </div>-->
-                                        <textarea class="form-control " name="cLDesc" id="" cols="30" rows="10"
-                                                  style=""></textarea>
-
-                                        <!--<input placeholder="Long Description" name="cLDesc">-->
+                                        <?php
+                                        echo \artkost\yii2\trumbowyg\Trumbowyg::widget([
+                                        'name' => 'cLDesc',
+                                        'settings' => [
+                                        'lang' => 'en'
+                                        ]
+                                        ]);
+                                        ?>
                                     </div>
                                 </div>
                             </div>
