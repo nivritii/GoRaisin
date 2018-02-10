@@ -241,9 +241,14 @@ class CampaignController extends Controller
         $campaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId()])->all();
         $fund = Fund::find()->where(['fund_user_id'=>Yii::$app->user->getId()])->all();
 
+        $cIds = Fund::find()->select(['fund_c_id'])->where(['fund_user_id'=>Yii::$app->user->getId()])->distinct();
+        $fundedCampaigns = Campaign::find()->where(['c_id'=>$cIds])->all();
+
         return $this->render('mycampaign',[
             'campaigns' => $campaigns,
             'activities' => $fund,
+            'cIds' => $cIds,
+            'fundedCampaigns' => $fundedCampaigns,
         ]);
     }
 

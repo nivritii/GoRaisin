@@ -14,6 +14,7 @@ use Yii;
  * @property string $fund_created_on
  *
  * @property User $fundUser
+ * @property Campaign $fundC
  */
 class Fund extends \yii\db\ActiveRecord
 {
@@ -36,6 +37,7 @@ class Fund extends \yii\db\ActiveRecord
             [['fund_amt'], 'number'],
             [['fund_created_on'], 'safe'],
             [['fund_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['fund_user_id' => 'id']],
+            [['fund_c_id'], 'exist', 'skipOnError' => true, 'targetClass' => Campaign::className(), 'targetAttribute' => ['fund_c_id' => 'c_id']],
         ];
     }
 
@@ -59,5 +61,13 @@ class Fund extends \yii\db\ActiveRecord
     public function getFundUser()
     {
         return $this->hasOne(User::className(), ['id' => 'fund_user_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getFundC()
+    {
+        return $this->hasOne(Campaign::className(), ['c_id' => 'fund_c_id']);
     }
 }

@@ -1,15 +1,6 @@
 <?php
-use yii\helpers\Html;
-use frontend\models\Campaign;
-use frontend\models\CampaignReward;
-use frontend\models\RewardItem;
 use frontend\assets\HomePageAsset;
 use frontend\assets\CampaignAsset;
-use frontend\assets\CreateCampaignAsset;
-use yii\helpers\Url;
-use frontend\models\Reward;
-use frontend\models\Category;
-use yii\helpers\ArrayHelper;
 use kartik\date\DatePicker;
 
 HomePageAsset::register($this);
@@ -20,7 +11,6 @@ CampaignAsset::register($this);
 $this->title = 'Create Campaign - GoRaisin';
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-//$c_reward = new Reward();
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -136,8 +126,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Short description</p>
                                     </div>
-                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;                                        class="textEditor">
-                                        <textarea rows="3" type="text" style="width: 100%;" name="cDesc">
+                                    <div style="display: inline-block;float: left;width: 50%;class="textEditor">
+                                        <textarea rows="3" type="text" style="width: 100%;" name="cDesc" id="cDesc">
                                          </textarea>
                                     </div>
                                 </div>
@@ -187,7 +177,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                             <i class="fa fa-bitcoin fa-2x" style="float: left;"></i>
                                         </div>
                                         <div style="display: inline-block;width: 40%;float: left">
-                                            <input type="text" style="width: 40%;float: left" name="cGoal">
+                                            <input type="text" style="width: 40%;float: left" name="cGoal" id="cGoal">
                                         </div>
                                     </div>
                                 </div>
@@ -198,8 +188,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     </div>
 
                     <input onclick="step1Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-
-
                     <!-- </form> -->
                 </div>
             </div>
@@ -414,33 +402,27 @@ $this->params['breadcrumbs'][] = $this->title;
             cTitle.focus();
             error_message+="Please enter Campaign Title";
         }
-
         if(cCategory.value == ""){
             cCategory.focus();
-            error_message+="<br>Please select campaign category";
+            error_message+="<br>Please select Category";
         }
-
-        if(cDesc == ""){
+        if(cDesc.value == ""){
             cDesc.focus();
-            error_message+="<br>Please enter the short description";
+            error_message+="<br>Please give Short Description";
         }
-
-        if(cGoal == ""){
+        if(cGoal.value == ""){
             cGoal.focus();
-            error_message+="<br>Please your target that wish to raise";
+            error_message+="<br>Set your Target";
         }
-
         if(error_message){
             $('.alert-success').removeClass('hide').html(error_message);
             error_message='';
             return false;
         }else{
+            error_message='';
             return true;
         }
-
     }
-
-
 
     $(document).ready(function () {
         $('.li-nav').click(function () {

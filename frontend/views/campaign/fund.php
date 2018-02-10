@@ -61,7 +61,7 @@ $reward = new Reward();
                         <?php foreach ($rewards as $reward) {?>
                         <div class="panel panel-default panel-faq">
                             <div class="panel-heading">
-                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#<?=$reward->r_id?>">
+                                <a  data-toggle="collapse" data-parent="#accordion-cat-1" href="#<?=$reward->r_id?>">
                                     <h4 class="panel-title">
                                         <input type="radio" name="reward" value="<?=$reward->r_pledge_amt?>" hidden>
                                         <?=$reward->r_title?>

@@ -8,6 +8,8 @@
 use yii\helpers\Url;
 use yii\helpers\Html;
 use frontend\models\Fund;
+use frontend\models\Campaign;
+use yii\helpers\Console;
 ?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -106,12 +108,36 @@ use frontend\models\Fund;
                                         </div>
                                     </div>
                                     <div id="menu2" class="tab-pane fade">
-                                        <h3>Backed Projects</h3>
-                                        <div class="card">
-                                            <div class="card-block">
-                                                <h4 class="card-title"></h4>
-                                                <h6 class="card-subtitle mb-2 text-muted"></h6>
-                                            </div>
+                                        <div class="container">
+                                            <h2><bold>Backed Projects</bold></h2>
+                                        <p>A place to keep track of all your backed projects</p>
+                                            <h3>Live Projects</h3>
+                                            <p>Tracks both live and dropped projects</p>
+                                            <br/>
+                                            <table class="table table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>Backed Projects</th>
+                                                    <th>Pledged Amount</th>
+                                                    <th>Reward</th>
+                                                    <th>Ends on</th>
+                                                    <th>Drop a Message</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php foreach ($fundedCampaigns as $fundCampaign){
+                                                  $fundamt = Fund::find()->where(['fund_c_id'=>$fundCampaign->c_id,'fund_user_id'=>Yii::$app->user->getId()])->sum('fund_amt');
+                                                    ?>
+                                                <tr>
+                                                    <td><?=$fundCampaign->c_title?></td>
+                                                    <td><?=$fundamt?></td>
+                                                    <td>Null</td>
+                                                    <td><?=$fundCampaign->c_end_date?></td>
+                                                    <td><a href="#">New Message</a></td>
+                                                </tr>
+                                                <?php }?>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
