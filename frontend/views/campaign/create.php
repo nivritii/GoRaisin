@@ -5,6 +5,7 @@ use frontend\models\CampaignReward;
 use frontend\models\RewardItem;
 use frontend\assets\HomePageAsset;
 use frontend\assets\CampaignAsset;
+use frontend\assets\CreateCampaignAsset;
 use yii\helpers\Url;
 use frontend\models\Reward;
 use frontend\models\Category;
@@ -13,6 +14,7 @@ use kartik\date\DatePicker;
 
 HomePageAsset::register($this);
 CampaignAsset::register($this);
+//lCreateCampaignAsset::register($this);
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
 $this->title = 'Create Campaign - GoRaisin';
@@ -57,7 +59,16 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 </div>
 
-<form class="createCampaign" enctype="multipart/form-data" action="create" method="post" id="tab_logic">
+
+<div class="container">
+    <div class="row form-group">
+        <div class="col-xs-12">
+            <div class="alert alert-success hide"></div>
+        </div>
+    </div>
+</div>
+
+<form class="createCampaign" enctype="multipart/form-data" action="create" method="post" id="tab_logic" name="campaignForm">
     <div class="container">
         <div class="row setup-content" id="step-1">
             <div class="col-xs-12">
@@ -72,7 +83,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <p class="item-title">Campaign title</p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <input type="text" style="width: 100%" name="cTitle">
+                                        <input type="text" style="width: 100%" name="cTitle" id="cTitle" required>
                                     </div>
                                 </div>
                                 <div style="clear:both;height: 80px">
@@ -83,7 +94,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <select name="cCategory" id="search_categories"
                                                 data-default-caption="Select Category"
                                                 style="border-radius: 10px;width: 100%">
-                                            <option selected>Select Category</option>
+                                            <option selected value="">Select Category</option>
                                             <?php foreach ($categories as $category) { ?>
                                                 <option value=<?= $category->id ?>><?= $category->name ?></option>
                                             <?php } ?>
@@ -125,12 +136,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Short description</p>
                                     </div>
-
-                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%; background: red"
-                                         class="textEditor">
+                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;                                        class="textEditor">
                                         <textarea rows="3" type="text" style="width: 100%;" name="cDesc">
                                          </textarea>
-
                                     </div>
                                 </div>
 
@@ -147,7 +155,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 'format' => 'yyyy-mm-dd',
                                                 'autoclose' => true,
                                                 'todayHighlight' => true,
-                                            ]
+                                            ],
                                         ]); ?>
                                     </div>
                                 </div>
@@ -165,14 +173,14 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 'format' => 'yyyy-mm-dd',
                                                 'autoclose' => true,
                                                 'todayHighlight' => true,
-                                            ]
+                                            ],
                                         ]); ?>
                                     </div>
                                 </div>
 
                                 <div style="clear:both;height: 80px">
                                     <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Fund cap</p>
+                                        <p class="item-title">Target</p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
                                         <div style="display: inline-block;float: left;text-align: center;padding-top: 1%">
@@ -395,6 +403,45 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <script>
     var currentStep = 1;
+    var cTitle = document.campaignForm.cTitle;
+    var cCategory = document.campaignForm.cCategory;
+    var cDesc = document.campaignForm.cDesc;
+    var cGoal = document.campaignForm.cGoal;
+    var error_message='';
+
+    function validateStep1() {
+        if(cTitle.value == ""){
+            cTitle.focus();
+            error_message+="Please enter Campaign Title";
+        }
+
+        if(cCategory.value == ""){
+            cCategory.focus();
+            error_message+="<br>Please select campaign category";
+        }
+
+        if(cDesc == ""){
+            cDesc.focus();
+            error_message+="<br>Please enter the short description";
+        }
+
+        if(cGoal == ""){
+            cGoal.focus();
+            error_message+="<br>Please your target that wish to raise";
+        }
+
+        if(error_message){
+            $('.alert-success').removeClass('hide').html(error_message);
+            error_message='';
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+
+
+
     $(document).ready(function () {
         $('.li-nav').click(function () {
             var $targetStep = $($(this).attr('step'));
@@ -412,9 +459,11 @@ $this->params['breadcrumbs'][] = $this->title;
     function step1Next() {
         //You can make only one function for next, and inside you can check the current step
         if (true) {//Insert here your validation of the first step
-            currentStep += 1;
-            $('#navStep' + currentStep).removeClass('disabled');
-            $('#navStep' + currentStep).click();
+            if(validateStep1()){
+                currentStep += 1;
+                $('#navStep' + currentStep).removeClass('disabled');
+                $('#navStep' + currentStep).click();
+            }
         }
     }
     function prevStep() {
