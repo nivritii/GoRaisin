@@ -64,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'receiver_name',
             'receiver_address',
             'subject',
-            'content:ntext',
+            /*'content:ntext',*/
             // 'attachment',
 
             ['class' => 'yii\grid\ActionColumn',

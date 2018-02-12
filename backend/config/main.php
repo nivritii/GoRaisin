@@ -84,7 +84,7 @@ return [
             ],
             'messageConfig'=>[
                 'charset'=>'UTF-8',
-                'from'=>['cherry@webpuppies.com.sg'=>'Cherry']
+                'from'=>['cherry@webpuppies.com.sg'=>'GoRaisin']
             ],
         ],
 
