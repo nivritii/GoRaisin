@@ -7,6 +7,7 @@ use frontend\models\Category;
 use frontend\assets\HomePageAsset;
 use yii\widgets\ListView;
 use kartik\tabs\TabsX;
+use frontend\models\User;
 
 /*HomePageAsset::register($this);*/
 
@@ -16,32 +17,37 @@ use kartik\tabs\TabsX;
 $this->title = $model->c_title.' - GoRaisin';
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-frontend\assets\HomePageAsset::register($this);
+/*frontend\assets\HomePageAsset::register($this);*/
 frontend\assets\RoadmapAsset::register($this);
 ?>
 <div class="campaign-view">
     <!-- Main Content -->
     <div id="Content" style="padding: 0px">
         <div class="content_wrapper clearfix">
-            <div class="sidebar sidebar-1 four columns" style="width: 0%;float: left; margin-left: 8.9%; border-right: .5px solid #f0f0f0; padding-top: 4%">
-                <div class="image-div">
-                    <div class="user-image" style="width: 35px; height: 42px">
-                        <?=Html::img(Url::to('@web/'.$model->cAuthor->image))?>
+            <!--<div class="sidebar sidebar-1 four columns" style="width: 0%;float: left; margin-left: 9%; border-right: .5px solid #f0f0f0; padding-top: 4%">
+                <div style="padding-left: 20%">
+                    <div style="width: 35px; height: 42px;margin-left: 10%">
+                        <?/*= Html::img('@web/'.$model->cAuthor->image,['style' => 'margin-left:55%']) */?>
+                        <?/*=Html::img(Url::to('@web/'.$model->cAuthor->image))*/?>
                     </div>
-                    <div class="image-div2">
-                        <p class="user-name"><?=$model->cAuthor->username?></p>
-                    </div>
+                    <p style="margin-left: 55%"><?/*=$model->cAuthor->username*/?></p>
                 </div>
-            </div>
-            <div class="sections_group" style="width: 85%;float: right; margin-right: 4%;">
-                <div style="margin-right: 8%; margin-left: 8%; border-right: .5px solid #f0f0f0; padding-top: 2%">
-                    <div class="column zero">
+            </div>-->
+            <div class="sections_group" style="width: 55%;float: left;margin-left: 10%">
+                <div style="border-right: .5px solid #f0f0f0; padding-top: 2%">
+                    <div class="column zero" style="width: 100%">
+                        <div style="display: inline-block;vertical-align: middle">
+                        <?= Html::img('@web/'.$model->cAuthor->image,['style' => 'height:35px;width:35px;border-radius:10px']) ?>
+                        <p><?=$model->c_display_name?></p>
+                        </div>
+                        <div style="clear:both; display: inline-block;vertical-align: middle;margin-left: 10%;">
                         <h1 class="title" style="color: #6b0d7ce8"><?=$model->c_title?></h1>
                         <p class="" style="font-size: 18px;"><?=$model->c_description?></p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="sections_group" style="width: 55%;float: left; margin-left: 0%; border-right: .5px solid #f0f0f0">
+            <div class="sections_group" style="width: 55%;float: left; margin-left: 10%; border-right: .5px solid #f0f0f0">
                 <div id=" " class="no-title no-share  post  format-standard has-post-thumbnail  category-hot-news   ">
                     <div class="section section-post-header">
                         <div class="section_wrapper clearfix">
@@ -65,26 +71,31 @@ frontend\assets\RoadmapAsset::register($this);
                             <div class="column one post-header">
                                 <div class="title_wrapper">
                                     <div class="post-meta clearfix">
-                                        <div class="author-date">
-                                            <span class="vcard author post-author"> Published by <i class="icon-user"></i> <span class="fn"><a href="#"><?=$model->cAuthor->username?></a></span> </span><span class="date"> at <i class="icon-clock"></i>
+                                        <!--<div class="author-date">
+                                            <span class="vcard author post-author"> Published by <i class="icon-user"></i> <span class="fn"><a href="#"><?/*=$model->cAuthor->username*/?></a></span> </span><span class="date"> at <i class="icon-clock"></i>
 														<time class="entry-date" datetime="2014-03-12T09:15:13+00:00" itemprop="datePublished" pubdate>
-															<?=$model->c_created_at?>
+															<?/*=$model->c_created_at*/?>
 														</time> </span>
-                                        </div>
-                                        <div class="category meta-categories">
-                                            <span class="cat-btn">Categories <i class="icon-down-dir"></i></span>
-                                            <div class="cat-wrapper">
+                                        </div>-->
+                                        <div class="category meta-categories" style="width: 100%">
+                                            <div style="display: inline-block;float: left;margin-left: 22%">
+                                                <p style="font-size: 15px;color: #000000;"><i class="fa fa-location-arrow"></i><?php echo $model->c_location ?></p>
+                                            </div>
+                                            <div style="clear: both;display: inline-block;margin-left: 30%">
+                                                <p style="font-size: 15px;color: #000000;"><i class="fa fa-anchor"></i><?php echo $model->cCat->name ?></p>
+                                            </div>
+                                            <!--<div class="cat-wrapper">
                                                 <ul class="post-categories">
-                                                    <?php foreach ($categories as $category) {?>
+                                                    <?php /*foreach ($categories as $category) {*/?>
                                                         <li>
-                                                            <a rel="category tag" href="<?= Url::to(['campaign/show', 'id'=>$category->id])?>"><?= $category->name?></a>
+                                                            <a rel="category tag" href="<?/*= Url::to(['campaign/show', 'id'=>$category->id])*/?>"><?/*= $category->name*/?></a>
                                                         </li>
-                                                    <?php }?>
+                                                    <?php /*}*/?>
                                                     <li>
-                                                        <a rel="category tag" href="<?= Url::to(['campaign/show', 'id'=>'NULL'])?>">Show all</a>
+                                                        <a rel="category tag" href="<?/*= Url::to(['campaign/show', 'id'=>'NULL'])*/?>">Show all</a>
                                                     </li>
                                                 </ul>
-                                            </div>
+                                            </div>-->
                                         </div>
                                     </div>
                                 </div>
@@ -160,6 +171,11 @@ frontend\assets\RoadmapAsset::register($this);
                     <div class="section" style="padding-bottom:20px;">
                         <h6><a href="#"><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> All or nothing. This project will only be funded if it reaches its goal by <?=$model->c_end_date?>.</a></h6>
                     </div>
+                    <?php if (Yii::$app->user->identity->id == $model->c_author) { ?>
+                    <div class="section" style="margin-top:25px; padding-bottom:20px;text-align: center">
+                        <?= Html::a('Update',['campaign/update','id' => $model->c_id],['style' => 'font-size:15px;background-color:#940094;color:#ffffff;padding:3%;border-radius:10px;text-decoration:none']) ?>
+                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
