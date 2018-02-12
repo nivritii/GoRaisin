@@ -104,7 +104,7 @@ class UserBackendController extends Controller
             //save the path in the database column
             /*$model->image = 'uploads/'.$imageName.'.'.$model->file->extension;*/
             $model->save();
-            return $this->redirect(['site/index', 'id' => $model->id]);
+            return $this->redirect(['user-backend/profile', 'id' => $model->id]);
         } else {
             return $this->renderAjax('update', [
                 'model' => $model,
@@ -140,6 +140,15 @@ class UserBackendController extends Controller
         return $this->render('signup',['model'=>$model,]);
     }
 
+    /**
+     * view profile
+     */
+    public function actionProfile($id)
+    {
+        return $this->render('profile', [
+            'model' => $this->findModel($id),
+        ]);
+    }
 
     /**
      * Finds the UserBackend model based on its primary key value.
