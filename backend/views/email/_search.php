@@ -15,21 +15,21 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-    <?/*= $form->field($model, 'id') */?>
+
 
     <?= $form->field($model, 'receiver_name')
         ->label(false)
         ->textInput(['placeholder' => 'Receiver Name'])
     ?>
 
-    <?/*= $form->field($model, 'receiver_address') */?>
+
 
     <?= $form->field($model, 'subject')
         ->label(false)
         ->textInput(['placeholder' => 'Email Subject'])
     ?>
 
-    <?/*= $form->field($model, 'content') */?>
+
 
     <?php // echo $form->field($model, 'attachment') ?>
 

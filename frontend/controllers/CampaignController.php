@@ -81,6 +81,9 @@ class CampaignController extends Controller
         
         $comment = new Comment();
         $comments = Comment::find()->where(['comment_camp_id'=>$id])->orderBy(['comment_datetime'=>SORT_DESC])->all();
+
+        $backed = Fund::find()->where(['fund_c_id'=>$id])->sum('fund_amt');
+        $progress = ($backed/$this->findModel($id)->c_goal)*100;
         
         if($comment->load(Yii::$app->request->post())){
             $comment->comment_camp_id = $id;
@@ -98,6 +101,8 @@ class CampaignController extends Controller
         }
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'backed' => $backed,
+            'progress' => $progress,
             'categories' => $categories,
             'comments' => $comments,
             'updates' => $updates,
@@ -136,9 +141,6 @@ class CampaignController extends Controller
             $model->c_end_date=$_POST['cEnddate'];
             $model->c_goal=$_POST['cGoal'];
             $model->c_video=$_POST['cVideo'];
-
-
-
             $model->c_description_long=$_POST['cLDesc'];
             $model->c_display_name=$_POST['cName'];
             $model->c_email=$_POST['cEmail'];
@@ -146,14 +148,6 @@ class CampaignController extends Controller
             $model->c_location=$_POST['cLocation'];
             $model->c_social_profile=$_POST['cProfile'];
             if ($model->save()){
-//                $reward->c_id=$model->c_id;
-//                $reward->r_title=$_POST['rTitle'];
-//                $reward->r_pledge_amt=$_POST['rPledgeAmt'];
-//                $reward->r_description=$_POST['rDesc'];
-//                $reward->r_delivery_date=$_POST['rDeliverydate'];
-//                $reward->r_shipping_details=$_POST['rShipping'];
-//                $reward->r_limit_availability=$_POST['rLimit'];
-//                $reward->save();
 
                 $number = count($_POST['rTitle']);
                 echo("<script>console.log('PHP: ".$number."');</script>");
@@ -201,6 +195,8 @@ class CampaignController extends Controller
     {        
         $model = Campaign::find()->all();
         $categories = Category::find()->all();
+//        $backed = Fund::find()->where(['fund_c_id'=>$id])->sum('fund_amt');
+//        $progress = ($backed/$this->findModel($id)->c_goal)*100;
         
         if($id!='NULL'){
             
@@ -212,27 +208,47 @@ class CampaignController extends Controller
             
         }else{
             return $this->render('show',[
-            'model'=>$model,
-            'categories'=>$categories,
-            ]);
+                'model'=>$model,
+                'categories'=>$categories,
+//                'backed' =>$backed,
+//                'progress' =>$progress,
+                ]);
         }
     }
     
     public function actionFund($id)
     {
         $rewards = Reward::find()->where(['c_id'=>$id])->all();
+        $fund = new Fund();
+
+        if($_SERVER["REQUEST_METHOD"]=="POST"){
+            $fund->fund_c_id=$id;
+            $fund->fund_user_id=Yii::$app->user->identity->getId();
+            $fund->fund_amt=$_POST['reward'];
+            if ($fund->save(false)){
+                return $this->redirect(['mycampaign']);
+            }
+        }
 
         return $this->render('fund',[
             'rewards'=>$rewards,
+            'c_id'=>$id,
         ]);
     }
 
     public function actionMycampaign()
     {
         $campaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId()])->all();
+        $fund = Fund::find()->where(['fund_user_id'=>Yii::$app->user->getId()])->all();
+
+        $cIds = Fund::find()->select(['fund_c_id'])->where(['fund_user_id'=>Yii::$app->user->getId()])->distinct();
+        $fundedCampaigns = Campaign::find()->where(['c_id'=>$cIds])->all();
 
         return $this->render('mycampaign',[
-            'model' => $campaigns,
+            'campaigns' => $campaigns,
+            'activities' => $fund,
+            'cIds' => $cIds,
+            'fundedCampaigns' => $fundedCampaigns,
         ]);
     }
 

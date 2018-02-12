@@ -7,6 +7,9 @@
  */
 use yii\helpers\Url;
 use yii\helpers\Html;
+use frontend\models\Fund;
+use frontend\models\Campaign;
+use yii\helpers\Console;
 ?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -23,16 +26,30 @@ use yii\helpers\Html;
                         <div class="section_wrapper mcb-section-inner">
                             <div class="container" style="padding-left:0px">
                                 <ul class="nav nav-tabs">
-                                    <li class="active"><a data-toggle="tab" href="#home">Created Projects</a></li>
-                                    <li><a data-toggle="tab" href="#menu1">Backed Projects</a></li>
-                                    <li><a data-toggle="tab" href="#menu2">Activity</a></li>
+                                    <li class="active"><a data-toggle="tab" href="#home">Activity</a></li>
+                                    <li><a data-toggle="tab" href="#menu1">Created Projects</a></li>
+                                    <li><a data-toggle="tab" href="#menu2">Backed Projects</a></li>
                                 </ul>
 
                                 <div class="tab-content">
                                     <div id="home" class="tab-pane fade in active">
+                                        <h3>Activity</h3>
+                                        <?php foreach ($activities as $activity){?>
+                                        <div class="card">
+                                            <div class="card-block">
+                                                <h4 class="card-title"><?=$activity->fund_amt?></h4>
+                                                <h6 class="card-subtitle mb-2 text-muted"><?=$activity->fund_created_on?></h6>
+                                            </div>
+                                        </div>
+                                        <?php }?>
+                                    </div>
+                                    <div id="menu1" class="tab-pane fade">
                                         <h3>Created Projects</h3>
                                         <div class="posts_group lm_wrapper classic col-3">
-                                            <?php foreach ($model as $campaign) { ?>
+                                            <?php foreach ($campaigns as $campaign) {
+                                                $backed = Fund::find()->where(['fund_c_id'=>$campaign->c_id])->sum('fund_amt');
+                                                $progress = ($backed/$campaign->c_goal)*100;
+                                                ?>
                                                 <div class="post-item isotope-item clearfix post-2277 post  format-standard has-post-thumbnail  category-lifestyle  tag-video">
                                                     <div class="date_label">
                                                         <?=$campaign->c_created_at?>
@@ -77,7 +94,7 @@ use yii\helpers\Html;
                                                             </div>
                                                             <div class="post-footer">
                                                                 <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%"><?=$campaign->c_id?>%
+                                                                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:<?=$progress?>%"><?=$progress?>%
                                                                     </div>
                                                                 </div>
                                                                 <div class="post-links">
@@ -90,13 +107,38 @@ use yii\helpers\Html;
                                             <?php } ?>
                                         </div>
                                     </div>
-                                    <div id="menu1" class="tab-pane fade">
-                                        <h3>Backed Projects</h3>
-                                        <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                    </div>
                                     <div id="menu2" class="tab-pane fade">
-                                        <h3>Activity</h3>
-                                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                                        <div class="container">
+                                            <h2><bold>Backed Projects</bold></h2>
+                                        <p>A place to keep track of all your backed projects</p>
+                                            <h3>Live Projects</h3>
+                                            <p>Tracks both live and dropped projects</p>
+                                            <br/>
+                                            <table class="table table-hover">
+                                                <thead>
+                                                <tr>
+                                                    <th>Backed Projects</th>
+                                                    <th>Pledged Amount</th>
+                                                    <th>Reward</th>
+                                                    <th>Ends on</th>
+                                                    <th>Drop a Message</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <?php foreach ($fundedCampaigns as $fundCampaign){
+                                                  $fundamt = Fund::find()->where(['fund_c_id'=>$fundCampaign->c_id,'fund_user_id'=>Yii::$app->user->getId()])->sum('fund_amt');
+                                                    ?>
+                                                <tr>
+                                                    <td><?=$fundCampaign->c_title?></td>
+                                                    <td><?=$fundamt?></td>
+                                                    <td>Null</td>
+                                                    <td><?=$fundCampaign->c_end_date?></td>
+                                                    <td><a href="#">New Message</a></td>
+                                                </tr>
+                                                <?php }?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

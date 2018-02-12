@@ -5,7 +5,7 @@ use yii\widgets\DetailView;
 use yii\helpers\Url;
 use frontend\models\Category;
 use frontend\assets\HomePageAsset;
-use frontend\models\Campaign;
+use frontend\models\Fund;
 
 HomePageAsset::register($this);
 
@@ -69,7 +69,13 @@ $this->params['breadcrumbs'][] = $this->title;
                             <div class="column one column_blog">
                                 <div class="blog_wrapper isotope_wrapper">
                                     <div class="posts_group lm_wrapper classic col-3">
-                                        <?php foreach ($model as $campaign) { ?>
+                                        <?php foreach ($model as $campaign) {
+                                            $backed = Fund::find()->where(['fund_c_id'=>$campaign->c_id])->sum('fund_amt');
+                                            $progress = 0;
+                                            if($backed!=0){
+                                                $progress = ($backed/$campaign->c_goal)*100;
+                                            }
+                                            ?>
                                         <div class="post-item isotope-item clearfix post-2277 post  format-standard has-post-thumbnail  category-lifestyle  tag-video">
                                             <div class="date_label">
                                                 <?=$campaign->c_created_at?>
@@ -114,7 +120,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     </div>
                                                     <div class="post-footer">
                                                         <div class="progress">
-                                                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%"><?=$campaign->c_id?>%
+                                                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:<?=$progress?>%; background-color:#8f13a5f0"><?=$progress?>%
                                                             </div>
                                                         </div>
                                                         <div class="post-links">
