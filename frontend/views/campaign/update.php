@@ -158,8 +158,13 @@ $this->params['breadcrumbs'][] = 'Update';
                                 </div>
                                 <div style="float: left;display: inline-block;width: 20%;margin-left: 2%">
                                     <?php
+                                    $startDate = $model->c_start_date;
+                                    $endDate = $model->c_end_date;
+                                    ?>
+                                    <?php
                                     echo DatePicker::widget([
                                         'name' => 'cStartdate',
+                                        'value' => $startDate,
                                         'type' => DatePicker::TYPE_COMPONENT_PREPEND,
                                         'pluginOptions' => [
                                             'format' => 'yyyy-mm-dd',
@@ -178,6 +183,7 @@ $this->params['breadcrumbs'][] = 'Update';
                                     <?php
                                     echo DatePicker::widget([
                                         'name' => 'cEnddate',
+                                        'value' => $endDate,
                                         'type' => DatePicker::TYPE_COMPONENT_PREPEND,
                                         'pluginOptions' => [
                                             'format' => 'yyyy-mm-dd',
@@ -197,7 +203,7 @@ $this->params['breadcrumbs'][] = 'Update';
                                         <i class="fa fa-bitcoin fa-2x" style="float: left;"></i>
                                     </div>
                                     <div style="display: inline-block;width: 40%;float: left">
-                                        <input type="text" style="width: 40%;float: left" name="cGoal" id="cGoal">
+                                        <input type="text" style="width: 40%;float: left" value="<?php echo $model->c_goal ?>" name="cGoal" id="cGoal">
                                     </div>
                                 </div>
                             </div>
