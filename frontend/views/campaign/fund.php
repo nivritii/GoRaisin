@@ -10,7 +10,7 @@ HomePageAsset::register($this);
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
 
-$this->title = 'Create Campaign';
+$this->title = 'Fund for Campaign - GoRaisin';
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 
