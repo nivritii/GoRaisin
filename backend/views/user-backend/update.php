@@ -3,6 +3,10 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
+use yii\helpers\Url;
+use yii\bootstrap\Modal;
+backend\assets\ProfileAsset::register($this);
+$imagePath = '/'.Yii::$app->user->identity->image;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\UserBackend */
@@ -23,17 +27,17 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?/*= $form->field($model, 'username')->textInput(['maxlength' => true]) */?><!--
+    <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
     <?/*= $form->field($model, 'auth_key')->textInput(['maxlength' => true]) */?>
 
-    --><?/*= $form->field($model, 'password_hash')->textInput(['maxlength' => true]) */?>
+    <?/*= $form->field($model, 'password_hash')->textInput(['maxlength' => true]) */?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'mobile')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'position')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'position')->textInput(['maxlength' => true])?>
 
     <?= $form->field($model, 'phone')->textInput(['maxlength' => true]); ?>
 
@@ -42,7 +46,7 @@ $this->params['breadcrumbs'][] = 'Update';
         ->widget(FileInput::className(),[
             'options' => ['accept' => 'image/*'],
         ]);
-    ?>
+?>
 
 
     <div class="form-group">
@@ -58,3 +62,4 @@ $this->params['breadcrumbs'][] = 'Update';
     <?php ActiveForm::end(); ?>
 
 </div>
+

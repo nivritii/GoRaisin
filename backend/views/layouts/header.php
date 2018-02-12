@@ -264,11 +264,12 @@ $imagePath = '/'.Yii::$app->user->identity->image;
                             </div>
                         </li>-->
                         <!-- Menu Footer-->
+                        <?php $userId = Yii::$app->user->identity->id; ?>
                         <li class="user-footer">
                             <div class="pull-left">
                                 <?= Html::a(
                                     'Profile',
-                                    ['/site/index'],
+                                    ['/user-backend/profile','id'=>$userId],
                                     ['class' => 'btn btn-default btn flat']
                                     /*['data-method' => 'post', 'class' => 'btn btn-default btn-flat']*/
                                 ) ?>
