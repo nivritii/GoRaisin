@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b0f97b0a731cf874a286d9bd9d276b44",
+    "content-hash": "5dab1ceb04427cb8d595ca19e10042fc",
     "packages": [
         {
             "name": "2amigos/yii2-date-picker-widget",
@@ -109,6 +109,54 @@
                 "web"
             ],
             "time": "2018-02-04T12:54:57+00:00"
+        },
+        {
+            "name": "artkost/yii2-trumbowyg",
+            "version": "2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/artkost/yii2-trumbowyg.git",
+                "reference": "68d0fe03d30814674cad7ca5c0aed3ef0108b262"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/artkost/yii2-trumbowyg/zipball/68d0fe03d30814674cad7ca5c0aed3ef0108b262",
+                "reference": "68d0fe03d30814674cad7ca5c0aed3ef0108b262",
+                "shasum": ""
+            },
+            "require": {
+                "npm-asset/trumbowyg": "2.7.1",
+                "yiisoft/yii2": "~2.0.0"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "artkost\\yii2\\trumbowyg\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nikolay Kostyurin",
+                    "email": "nikolay@artkost.ru"
+                },
+                {
+                    "name": "A.Kustov",
+                    "email": "v8diesel@mail.ru"
+                }
+            ],
+            "description": "The Trumbowyg WYSIWYG Editor widget for yii2 framework",
+            "keywords": [
+                "trumbowyg",
+                "widget",
+                "wysiwyg",
+                "yii 2",
+                "yii2"
+            ],
+            "time": "2017-09-03T21:49:47+00:00"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -1138,6 +1186,66 @@
             "time": "2017-10-04T02:54:53+00:00"
         },
         {
+            "name": "npm-asset/trumbowyg",
+            "version": "2.7.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/trumbowyg/-/trumbowyg-2.7.1.tgz",
+                "reference": null,
+                "shasum": "75b36eb2da9d65faf8e36acb29e40544a7f235ca"
+            },
+            "require-dev": {
+                "npm-asset/del": "2.0.2",
+                "npm-asset/gulp": "3.9.0",
+                "npm-asset/gulp-autoprefixer": "2.2.0",
+                "npm-asset/gulp-concat": "2.6.0",
+                "npm-asset/gulp-header": "1.7.1",
+                "npm-asset/gulp-jshint": "1.11.2",
+                "npm-asset/gulp-livereload": "3.8.1",
+                "npm-asset/gulp-load-plugins": "1.0.0",
+                "npm-asset/gulp-minify-css": "1.2.1",
+                "npm-asset/gulp-newer": "1.0.0",
+                "npm-asset/gulp-rename": "1.2.2",
+                "npm-asset/gulp-sass": "2.1.0",
+                "npm-asset/gulp-size": "2.0.0",
+                "npm-asset/gulp-svgmin": ">=1.2.2,<2.0.0",
+                "npm-asset/gulp-svgstore": ">=5.0.5,<6.0.0",
+                "npm-asset/gulp-uglify": "1.4.2",
+                "npm-asset/jshint-stylish": "2.0.1",
+                "npm-asset/vinyl-paths": "2.0.0"
+            },
+            "type": "npm-asset-library",
+            "extra": {
+                "npm-asset-bugs": {
+                    "url": "https://github.com/Alex-D/Trumbowyg/issues"
+                },
+                "npm-asset-main": "dist/trumbowyg.js",
+                "npm-asset-directories": [],
+                "npm-asset-repository": {
+                    "type": "git",
+                    "url": "git+https://github.com/Alex-D/Trumbowyg.git"
+                },
+                "npm-asset-scripts": {
+                    "build": "npm install && gulp clean && gulp build",
+                    "start": "gulp",
+                    "test": "gulp test"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexandre Demode",
+                    "email": "contact@alex-d.fr",
+                    "url": "Alex-D"
+                }
+            ],
+            "description": "A lightweight WYSIWYG editor",
+            "homepage": "http://alex-d.github.io/Trumbowyg",
+            "time": "2017-08-29T23:39:43+00:00"
+        },
+        {
             "name": "rmrevin/yii2-fontawesome",
             "version": "2.17.1",
             "source": {
@@ -1920,7 +2028,8 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "kartik-v/yii2-widget-fileinput": 20,
-        "kartik-v/yii2-widget-datepicker": 20
+        "kartik-v/yii2-widget-datepicker": 20,
+        "artkost/yii2-trumbowyg": 0
     },
     "prefer-stable": false,
     "prefer-lowest": false,
