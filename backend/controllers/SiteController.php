@@ -1,6 +1,10 @@
 <?php
 namespace backend\controllers;
 
+use frontend\models\Campaign;
+use frontend\models\Category;
+use frontend\models\Comment;
+use frontend\models\User;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -60,7 +64,18 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $campaignCount = Campaign::find()->count();
+        $commentCount = Comment::find()->count();
+        $categoryCount = Category::find()->count();
+        $userCount = User::find()->count();
+
+
+        return $this->render('index',[
+            'campaignCount' => $campaignCount,
+            'commentCount' => $commentCount,
+            'userCount' => $userCount,
+            'categoryCount' => $categoryCount,
+        ]);
     }
 
     /**

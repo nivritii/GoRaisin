@@ -93,6 +93,8 @@ class CampaignController extends Controller
             $comments = Comment::find()->where(['comment_camp_id'=>$id])->orderBy(['comment_datetime'=>SORT_DESC])->all();
             return $this->render('view', [
             'model' => $this->findModel($id),
+            'backed' => $backed,
+            'progress' => $progress,
             'categories' => $categories,
             'comments' => $comments,
             'updates' => $updates,
