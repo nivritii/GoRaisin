@@ -16,6 +16,9 @@ $this->title = 'All Campaigns';
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <!-- Main Theme Wrapper -->
     <div class="campaign-show">
         <!-- Main Content -->
@@ -39,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         Filter by
                                     </li>
                                     <li class="categories">
-                                        <a class="open" href="#"><i class="icon-docs"></i>Categories<i class="icon-down-dir"></i></a>
+                                        <a class="open" href="#"><i class="glyphicon glyphicon-duplicate"></i> Categories</a>
                                     </li>
                                     <li class="reset">
                                         <a class="close" data-rel="*" href="<?= Url::to(['campaign/show', 'id'=>'NULL'])?>"><i class="icon-cancel"></i>Show all</a>
@@ -56,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         </li>
                                         <?php }?>
                                         <li class="close">
-                                            <a href="#"><i class="icon-cancel"></i></a>
+                                            <a href="#"><i class="glyphicon glyphicon-remove"></i></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -87,8 +90,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         <?= Html::img(Url::to('@web/images/uploads/' . $campaign->c_image), ['class' => 'scale-with-grid wp-post-image'], ['alt' => 'Image'], ['align' => 'left'], ['width' => '1200'], ['height' => '480']) ?>
 <!--                                                        <img width="960" height="750" src="images/home_blogger2_lifestyle1-960x750.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_lifestyle1" itemprop="image" />-->
                                                     </a>
-                                                    <div class="image_links double">
-                                                        <a href="images/home_blogger2_lifestyle1-1200x800.jpg" class="zoom" rel="prettyphoto"><i class="icon-search"></i></a><a href="item-8.html" class="link"><i class="icon-link"></i></a>
+                                                    <div class="image_links single">
+                                                        <a href="<?=Url::to(['campaign/view', 'id' => $campaign->c_id])?>" class="zoom"><i class="glyphicon glyphicon-gift"></i></a>
                                                     </div>
                                                 </div>
                                             </div>

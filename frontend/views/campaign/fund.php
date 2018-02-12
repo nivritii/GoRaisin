@@ -38,7 +38,6 @@ $reward = new Reward();
                                 <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#noReward">
                                     <h4 class="panel-title">
                                         Pleage without a reward
-                                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
                                     </h4>
                                 </a>
                             </div>
@@ -65,7 +64,6 @@ $reward = new Reward();
                                     <h4 class="panel-title">
                                         <input type="radio" name="reward" value="<?=$reward->r_pledge_amt?>" hidden>
                                         <?=$reward->r_title?>
-                                        <span class="pull-right"><i class="glyphicon glyphicon-plus"></i></span>
                                     </h4>
                                 </a>
                             </div>

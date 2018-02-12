@@ -55,7 +55,7 @@ frontend\assets\RoadmapAsset::register($this);
                                             <?=Html::img(Url::to('@web/images/uploads/campaign/'.$model->c_image),['class' => 'attachment-blog-navi size-blog-navi wp-post-image'],['alt'=>'Image'],['align'=>'left'],['width'=>'80'],['height'=>'80'])?>
                                         </a>
                                         <div class="image_links">
-                                            <a href="<?= Url::to(['campaign/fund','id'=>$model->c_id])?>" class="link"><i class="icon-link"></i></a>
+                                            <a href="<?= Url::to(['campaign/fund','id'=>$model->c_id])?>" class="link"><i class="glyphicon glyphicon-gift"></i></a>
                                         </div>
                                     </div>
                                 </div>
