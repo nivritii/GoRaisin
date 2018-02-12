@@ -126,9 +126,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Short description</p>
                                     </div>
-                                    <div style="display: inline-block;float: left;width: 50%;class="textEditor">
-                                        <textarea rows="3" type="text" style="width: 100%;" name="cDesc" id="cDesc">
-                                         </textarea>
+                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;class="textEditor">
+                                        <textarea rows="3" type="text" style="width: 100%;" name="cDesc" id="cDesc"> </textarea>
                                     </div>
                                 </div>
 
