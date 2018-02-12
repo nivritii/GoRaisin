@@ -8,7 +8,7 @@ $imagePath = '/'.Yii::$app->user->identity->image;
 
 <header class="main-header">
 
-    <?= Html::a('<span class="logo-mini">Raisin</span><span class="logo-lg">GoRaisin Backend</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
+    <?= Html::a('<span class="logo-mini">Raisin</span><span class="logo-lg">GoRaisin Dashboard</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
 
     <nav class="navbar navbar-static-top" role="navigation">
 
