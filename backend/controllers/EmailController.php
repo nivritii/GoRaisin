@@ -110,18 +110,18 @@ class EmailController extends Controller
                     ->send();
             }*/
 
-            $value = Yii::$app->mailer->compose()
+            $value = Yii::$app->mailer->compose('mailTemplate')
                 ->setFrom([ 'cherry@webpuppies.com.sg' => 'GoRaisin'])
-                ->setTo($aa)
+                ->setTo($model->receiver_address)
                 ->setSubject($model->subject)
-                ->setHtmlBody($model->content)
+                /*->setHtmlBody($model->content)*/
                 ->send();
             $model->save();
             /*print_r($userEmail);
             $string=implode(' ',$userEmail);
             echo $string;
             die();*/
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         } else {
             return $this->render('create', [
                 'model' => $model,

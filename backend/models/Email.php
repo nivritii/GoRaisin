@@ -16,6 +16,7 @@ use Yii;
  */
 class Email extends \yii\db\ActiveRecord
 {
+    public $file;
     /**
      * @inheritdoc
      */
@@ -35,6 +36,7 @@ class Email extends \yii\db\ActiveRecord
             [['receiver_name'], 'string', 'max' => 45],
             [['receiver_address'], 'string', 'max' => 200],
             [['subject', 'attachment'], 'string', 'max' => 255],
+            [['attachment'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png,jpg,gif,jpeg,bmp,txt,doc,docx,xlsx,csv'],
         ];
     }
 
