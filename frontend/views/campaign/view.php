@@ -78,24 +78,12 @@ frontend\assets\RoadmapAsset::register($this);
 														</time> </span>
                                         </div>-->
                                         <div class="category meta-categories" style="width: 100%">
-                                            <div style="display: inline-block;float: left;margin-left: 22%">
+                                            <div style="display: inline-block;float: right;margin-right: 3%">
                                                 <p style="font-size: 15px;color: #000000;"><i class="glyphicon glyphicon-map-marker"></i><?php echo $model->c_location ?></p>
                                             </div>
-                                            <div style="clear: both;display: inline-block;margin-left: 30%">
+                                            <div style="clear: both;display: inline-block;margin-left: 70%">
                                                 <p style="font-size: 15px;color: #000000;"><i class="glyphicon glyphicon-tag"></i><?php echo $model->cCat->name ?></p>
                                             </div>
-                                            <!--<div class="cat-wrapper">
-                                                <ul class="post-categories">
-                                                    <?php /*foreach ($categories as $category) {*/?>
-                                                        <li>
-                                                            <a rel="category tag" href="<?/*= Url::to(['campaign/show', 'id'=>$category->id])*/?>"><?/*= $category->name*/?></a>
-                                                        </li>
-                                                    <?php /*}*/?>
-                                                    <li>
-                                                        <a rel="category tag" href="<?/*= Url::to(['campaign/show', 'id'=>'NULL'])*/?>">Show all</a>
-                                                    </li>
-                                                </ul>
-                                            </div>-->
                                         </div>
                                     </div>
                                 </div>
@@ -163,7 +151,7 @@ frontend\assets\RoadmapAsset::register($this);
                     <h3 style="margin-top:25px; margin-bottom:0px;">22</h3>
                     <h3 class="title-price" style="margin-top:0px;"><small>days to go</small></h3>
 
-                    <?php if (Yii::$app->user->isGuest) { ?>
+                    <?php if (Yii::$app->user->isGuest || Yii::$app->user->identity->id != $model->c_author) { ?>
                     <div class="section" style="margin-top:25px; padding-bottom:20px;">
                         <a href="<?= Url::to(['campaign/fund','id'=>$model->c_id])?>">
                             <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-gift" aria-hidden="true"></span>Fund this Campaign</h4></button>

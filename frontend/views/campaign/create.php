@@ -287,12 +287,13 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <div style="float: left;display: inline-block;width: 20%;">
                                         <p class="item-title">Main Description</p>
                                     </div>
-                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;height: 400px">
+                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;height: 400px;background-color: #ffffff">
                                         <?php
                                         echo \artkost\yii2\trumbowyg\Trumbowyg::widget([
                                         'name' => 'cLDesc',
                                         'settings' => [
-                                        'lang' => 'en'
+                                        'lang' => 'en',
+                                            'background-color' => '#ffffff',
                                         ]
                                         ]);
                                         ?>

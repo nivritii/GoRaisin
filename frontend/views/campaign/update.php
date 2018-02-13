@@ -121,6 +121,7 @@ $this->params['breadcrumbs'][] = 'Update';
                                                     onclick="$('.file-upload-input').trigger( 'click' )">Add Image
                                             </button>
                                             <div class="image-upload-wrap">
+                                                <?php $campaignImage = '@web/images/uploads/campaign/'.$model->c_image?>
                                                 <input class="file-upload-input" type='file' onchange="readURL(this);"
                                                        accept="image/*" name="cImage"/>
                                                 <div class="drag-text">
@@ -129,9 +130,7 @@ $this->params['breadcrumbs'][] = 'Update';
                                             </div>
                                             <br />
                                             <div class="file-upload-content">
-                                                <?php $campaignImage = $model->c_image?>
-                                                <?= Html::img('@web/images/uploads/campaign/'.$campaignImage,['class' => 'file-upload-image','alt' => 'your image']) ?>
-                                                <!--<img class="file-upload-image" src="#" alt="your image"/>-->
+                                                <img class="file-upload-image" src="#" alt="your image"/>
                                                 <div class="image-title-wrap">
 
                                                     <button type="button" onclick="removeUpload()" class="remove-image">
@@ -148,7 +147,7 @@ $this->params['breadcrumbs'][] = 'Update';
                                         <p class="item-title">Short description</p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 60%;class="textEditor">
-                                    <textarea rows="2" type="text" style="width: 100%;" name="cDesc" id="cDesc" > </textarea>
+                                    <textarea rows="2" type="text" style="width: 100%;" name="cDesc" id="cDesc" ><?php echo $model->c_description ?> </textarea>
                                 </div>
                             </div>
 
@@ -304,7 +303,7 @@ $this->params['breadcrumbs'][] = 'Update';
                                         <p class="item-title">Campaign video</p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <input type="text" style="width: 100%" name="cVideo">
+                                        <input type="text" style="width: 100%" name="cVideo" value="<?php echo $model->c_video ?>">
                                         <p align="left">Please upload your video to YouTube and paste the link here.
                                             Projects with a video have a much higher chance of success.</p>
                                     </div>
@@ -352,7 +351,7 @@ $this->params['breadcrumbs'][] = 'Update';
                                         <p class="item-title">Author name</p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <input type="text" style="width: 100%" name="cName">
+                                        <input type="text" style="width: 100%" name="cName" value="<?php echo $model->c_display_name ?>">
                                     </div>
                                 </div>
 
@@ -361,13 +360,7 @@ $this->params['breadcrumbs'][] = 'Update';
                                         <p class="item-title">Email</p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <?php /*echo Yii::$app->user->identity->email */?><!--
-                                        <?php /*if (!empty(Yii::$app->user->identity->email)) {
-                                            $email = Yii::$app->user->identity->email*/?>
-                                        <input type="text" style="width: 100%" name="cEmail" value=<?php /*$email */?>>
-                                        --><?php /*}else { */?>
-                                        <input type="text" style="width: 100%" name="cEmail">
-                                        <?php /*}*/?>
+                                        <input type="text" style="width: 100%" name="cEmail" value="<?php echo $model->c_email ?>">
                                     </div>
                                 </div>
 
@@ -376,7 +369,7 @@ $this->params['breadcrumbs'][] = 'Update';
                                         <p class="item-title">Company biography</p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <textarea rows="5" type="text" style="width: 100%" name="cBio"> </textarea>
+                                        <textarea rows="5" type="text" style="width: 100%" name="cBio"><?php echo $model->c_biography ?> </textarea>
                                         <p align="left">Simply introduce your company can help backers learn about your campaign better!</p>
                                     </div>
                                 </div>
@@ -386,7 +379,7 @@ $this->params['breadcrumbs'][] = 'Update';
                                         <p class="item-title">Company location</p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <input type="text" style="width: 100%" name="cLocation">
+                                        <input type="text" style="width: 100%" name="cLocation" value="<?php echo $model->c_location ?>">
                                     </div>
                                 </div>
 
@@ -395,7 +388,7 @@ $this->params['breadcrumbs'][] = 'Update';
                                         <p class="item-title">Company website</p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <input type="text" style="width: 100%" name="cProfile">
+                                        <input type="text" style="width: 100%" name="cProfile" value="<?php echo $model->c_social_profile ?>">
                                     </div>
                                 </div>
 
