@@ -15,7 +15,7 @@ use backend\models\Campaign;
 /* @var $searchModel backend\models\CampaignSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Publish Campaigns - GoRaisin Backend';
+$this->title = 'Campaigns - GoRaisin Backend';
 $this->params['breadcrumbs'][] = $this->title;
 $searchModel = new CampaignSearchforModeration();
 $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
