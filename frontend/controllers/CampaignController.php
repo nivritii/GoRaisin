@@ -79,6 +79,19 @@ class CampaignController extends Controller
     }
 
     /**
+     * @param $id
+     * @throws NotFoundHttpException
+     */
+    public function actionReview($id)
+    {
+        $reviewCampaign = $this->findModel($id);
+        $reviewCampaign->c_status='moderation';
+
+        $reviewCampaign->save();
+        return $this->redirect(['view', 'id' => $reviewCampaign->c_id]);
+
+    }
+    /**
      * Displays a single Campaign model.
      * @param integer $id
      * @return mixed
@@ -103,6 +116,7 @@ class CampaignController extends Controller
             if($comment->save(false)){
             $comments = Comment::find()->where(['comment_camp_id'=>$id])->orderBy(['comment_datetime'=>SORT_DESC])->all();
             return $this->render('view', [
+
                 'model' => $this->findModel($id),
                 'backed' => $backed,
                 'progress' => $progress,
