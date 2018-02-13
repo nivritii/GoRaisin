@@ -1,6 +1,7 @@
 <?php
 
 namespace frontend\models;
+//namespace frontend\components;
 
 use Yii;
 use yii\base\NotSupportedException;
@@ -93,6 +94,14 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function getCampaigns()
     {
         return $this->hasMany(Campaign::className(), ['c_author' => 'id']);
+    }
+
+    public function getUsername(){
+        return Yii::$app->user->identity->username;
+    }
+
+    public function getName(){
+        return Yii::$app->user->identity->name;
     }
 
     /**

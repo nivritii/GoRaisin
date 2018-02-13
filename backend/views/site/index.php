@@ -10,6 +10,9 @@ backend\assets\ProfileAsset::register($this);
 $this->title = 'GoRaisin Backend';
 ?>
 <link href="css/styles.css" rel="stylesheet">
+<link href="css/profile/ionicons.min.css" rel="stylesheet">
+<link href="css/profile/bootstrap.min.css" rel="stylesheet">
+<link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 <div class="site-index">
@@ -22,102 +25,69 @@ $this->title = 'GoRaisin Backend';
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        Welcome to admin
-                        <small> <?php echo Yii::$app->getUser()->getId() ?></small>
+                        Welcome <?php echo Yii::$app->user->getIdentity()->username ?></small>
                     </h1>
                 </div>
             </div>
             <!-- /.row -->
-
+            <!-- Small boxes (Stat box) -->
             <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-file-text fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class='huge'><?=$campaignCount?></div>
-                                    <div>Projects</div>
-                                </div>
-                            </div>
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-aqua">
+                        <div class="inner">
+                            <h3><?=$campaignCount?></h3>
+                            <p>Campaigns</p>
                         </div>
-                        <a href="posts.php">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class='huge'><?=$commentCount?></div>
-                                    <div>Comment</div>
-                                </div>
-                            </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-green">
+                        <div class="inner">
+                            <h3><?=$commentCount?><sup style="font-size: 20px">%</sup></h3>
+                            <p>Comments</p>
                         </div>
-                        <a href="comments.php">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-user fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class='huge'><?=$userCount?></div>
-                                    <div>Users</div>
-                                </div>
-                            </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-yellow">
+                        <div class="inner">
+                            <h3><?=$userCount?></h3>
+                            <p>User</p>
                         </div>
-                        <a href="users.php">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
+                        <div class="icon">
+                            <i class="ion ion-person-add"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-list fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class='huge'><?=$categoryCount?></div>
-                                    <div>Categories</div>
-                                </div>
-                            </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-xs-6">
+                    <!-- small box -->
+                    <div class="small-box bg-red">
+                        <div class="inner">
+                            <h3>65</h3>
+                            <p>Unique Visitors</p>
                         </div>
-                        <a href="categories.php">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
+                        <div class="icon">
+                            <i class="ion ion-pie-graph"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
+                <!-- ./col -->
             </div>
             <!-- /.row -->
 <div class="row">
