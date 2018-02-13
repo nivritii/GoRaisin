@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
 use frontend\models\Category;
 use frontend\models\Comment;
 use frontend\models\Fund;
+use yii\filters\AccessControl;
 use frontend\models\RewardItem;
 use frontend\models\Model;
 use yii\web\UploadedFile;
@@ -35,14 +36,23 @@ class CampaignController extends Controller
                 ],
             ],
             'access' => [
-                'class' => 'yii\filters\AccessControl',
+                'class' => AccessControl::className(),
                 'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['*'],
+                    ],
+                    // allow authenticated users
                     [
                         'allow' => true,
                         'roles' => ['@'],
                     ],
-                ]
-
+                    [
+                        'actions' => ['show','view'],
+                        'allow' => true,
+                        'roles' => ['?'],
+                    ],
+                ],
             ],
         ];
     }
@@ -76,6 +86,7 @@ class CampaignController extends Controller
      */
     public function actionView($id)
     {
+        $model = new Campaign();
         $categories= Category::find()-> all();
         $updates = Update::find()->where(['campaign_id'=>$id])->orderBy(['id' => SORT_DESC])->all();
         
@@ -84,7 +95,11 @@ class CampaignController extends Controller
 
         $backed = Fund::find()->where(['fund_c_id'=>$id])->sum('fund_amt');
         $progress = ($backed/$this->findModel($id)->c_goal)*100;
-        
+
+        if (Yii::$app->request->post('moderation')) {
+            $model -> c_status = "moderation";
+        }
+
         if($comment->load(Yii::$app->request->post())){
             $comment->comment_camp_id = $id;
             $comment->comment_user_id = Yii::$app->user->identity->getId();
@@ -92,12 +107,13 @@ class CampaignController extends Controller
             if($comment->save(false)){
             $comments = Comment::find()->where(['comment_camp_id'=>$id])->orderBy(['comment_datetime'=>SORT_DESC])->all();
             return $this->render('view', [
-            'model' => $this->findModel($id),
-            'backed' => $backed,
-            'progress' => $progress,
-            'categories' => $categories,
-            'comments' => $comments,
-            'updates' => $updates,
+
+                'model' => $this->findModel($id),
+                'backed' => $backed,
+                'progress' => $progress,
+                'categories' => $categories,
+                'comments' => $comments,
+                'updates' => $updates,
             ]);
             }
         }

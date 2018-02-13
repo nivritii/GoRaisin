@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use yii\helpers\Html;
 use frontend\assets\HomePageAsset;
 
 HomePageAsset::register($this);
@@ -99,7 +100,8 @@ HomePageAsset::register($this);
                     <h4>MORE</h4>
                     <ul>
                         <li>
-                            <a href="content/blogger2/wp-login.html">Our Website</a>
+                            <?/*= Html::a('Our Website',[$this->redirect('http://www.google.com')]) */?>
+                            <a href="www.google.com">Our Website</a>
                         </li>
                         <li>
                             <a href="#">Entries</a>
