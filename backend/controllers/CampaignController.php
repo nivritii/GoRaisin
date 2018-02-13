@@ -6,6 +6,7 @@ use Yii;
 use backend\models\Campaign;
 use backend\models\CampaignSearch;
 use backend\models\CampaignSearchforModeration;
+use backend\models\CampaignSearchforDraft;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -92,12 +93,12 @@ class CampaignController extends Controller
      */
     public function actionViewDraft()
     {
-        $searchModel2 = new CampaignSearchforModeration();
-        $dataProvider2 = $searchModel2->search(Yii::$app->request->queryParams);
+        $searchModel3 = new CampaignSearchforDraft();
+        $dataProvider3 = $searchModel3->search(Yii::$app->request->queryParams);
 
         return $this->render('viewDraft', [
-            'searchModel' => $searchModel2,
-            'dataProvider' => $dataProvider2,
+            'searchModel' => $searchModel3,
+            'dataProvider' => $dataProvider3,
         ]);
     }
 

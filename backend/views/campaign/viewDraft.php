@@ -8,7 +8,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use backend\models\CampaignSearch;
+use backend\models\CampaignSearchforDraft;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\CampaignSearch */
@@ -16,7 +16,7 @@ use backend\models\CampaignSearch;
 
 $this->title = 'Publish Campaigns - GoRaisin Backend';
 $this->params['breadcrumbs'][] = $this->title;
-$searchModel = new CampaignSearch();
+$searchModel = new CampaignSearchforDraft();
 $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 ?>
 <div class="campaign-index">
