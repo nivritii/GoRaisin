@@ -10,26 +10,7 @@ CampaignAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
-
-$this->title = 'Update '.$model->c_title;
-$this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->c_id, 'url' => ['view', 'id' => $model->c_id]];
-$this->params['breadcrumbs'][] = 'Update';
 ?>
-<!--<div class="campaign-update">
-
-    <h1><?/*= Html::encode($this->title) */?></h1>
-
-    <?/*= $this->render('_form', [
-        'model' => $model,
-    ]) */?>
-
-</div>-->
-
-
-
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
@@ -75,7 +56,7 @@ $this->params['breadcrumbs'][] = 'Update';
     </div>
 </div>
 
-<form class="createCampaign" enctype="multipart/form-data" action="create" method="post" id="tab_logic" name="campaignForm">
+<form class="updateCampaign" enctype="multipart/form-data" action="update?id=<?=$model->c_id?>" method="post" id="tab_logic" name="campaignForm">
     <div class="container">
         <div class="row setup-content" id="step-1">
             <div class="col-xs-12">
@@ -101,7 +82,7 @@ $this->params['breadcrumbs'][] = 'Update';
                                         <select name="cCategory" id="search_categories"
                                                 data-default-caption="Select Category"
                                                 style="border-radius: 10px;width: 100%">
-                                            <option selected value="<?php echo $model->cCat->name ?>"><?php echo $model->cCat->name ?></option>
+                                            <option selected value=<?=$model->cCat->id?>><?=$model->cCat->name?></option>
                                             <?php
                                             $categories= Category::find()-> all();
                                             foreach ($categories as $category) { ?>
