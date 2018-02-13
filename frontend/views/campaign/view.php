@@ -180,7 +180,7 @@ frontend\assets\RoadmapAsset::register($this);
                             <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Update</h4></button>
                         </a>
                         <br /><br />
-                        <a href="<?= Url::to(['campaign/view','id'=>$model->c_id])?>">
+                        <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>">
                             <?= Html::submitButton('Submit for Review',['class' => 'btn btn-default','value' => 'moderation','name' => 'moderation']) ?>
                             <!--<button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white" value="moderation" name="moderation"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Submit for Review</h4></button>-->
                         </a>
