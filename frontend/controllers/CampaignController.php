@@ -18,6 +18,18 @@ use yii\filters\AccessControl;
 use frontend\models\RewardItem;
 use frontend\models\Model;
 use yii\web\UploadedFile;
+use atans\actionlog\models\ActionLog;
+
+ActionLog::error('Some error message');
+ActionLog::info('Some info message');
+ActionLog::warning('Some warning message');
+ActionLog::success('Some success message');
+
+
+$data = ['success' => true, 'message' => 'Successfully']; // optional
+$category = 'application'; // optional
+ActionLog::success('Some success message', $data, $category);
+
 /**
  * CampaignController implements the CRUD actions for Campaign model.
  */
@@ -79,6 +91,7 @@ class CampaignController extends Controller
     }
 
     /**
+     * Submitting Campaign for Review
      * @param $id
      * @throws NotFoundHttpException
      */
@@ -87,9 +100,27 @@ class CampaignController extends Controller
         $reviewCampaign = $this->findModel($id);
         $reviewCampaign->c_status='moderation';
         $reviewCampaign->save();
-
         return $this->redirect(['view', 'id' => $reviewCampaign->c_id]);
     }
+
+    /**
+     * Create comment for a Campaign
+     * @param $id
+     * @return \yii\web\Response
+     */
+    public function actionComment($id)
+    {
+        $comment = new Comment();
+        if($_SERVER["REQUEST_METHOD"]=="POST"){
+            $comment->comment_camp_id = $id;
+            $comment->comment_user_id = Yii::$app->user->identity->getId();
+            $comment->comment_content = $_POST['comment'];
+            $comment->save(false);
+            return $this->redirect(['view', 'id' => $id]);
+        }
+        return $this->redirect(['view', 'id' => $id]);
+    }
+
     /**
      * Displays a single Campaign model.
      * @param integer $id
@@ -98,33 +129,12 @@ class CampaignController extends Controller
      */
     public function actionView($id)
     {
-        $model = new Campaign();
         $categories= Category::find()-> all();
         $updates = Update::find()->where(['campaign_id'=>$id])->orderBy(['id' => SORT_DESC])->all();
-        
-        $comment = new Comment();
         $comments = Comment::find()->where(['comment_camp_id'=>$id])->orderBy(['comment_datetime'=>SORT_DESC])->all();
-
         $backed = Fund::find()->where(['fund_c_id'=>$id])->sum('fund_amt');
         $progress = ($backed/$this->findModel($id)->c_goal)*100;
 
-        if($comment->load(Yii::$app->request->post())){
-            $comment->comment_camp_id = $id;
-            $comment->comment_user_id = Yii::$app->user->identity->getId();
-            
-            if($comment->save(false)){
-            $comments = Comment::find()->where(['comment_camp_id'=>$id])->orderBy(['comment_datetime'=>SORT_DESC])->all();
-            return $this->render('view', [
-
-                'model' => $this->findModel($id),
-                'backed' => $backed,
-                'progress' => $progress,
-                'categories' => $categories,
-                'comments' => $comments,
-                'updates' => $updates,
-            ]);
-            }
-        }
         return $this->render('view', [
             'model' => $this->findModel($id),
             'backed' => $backed,
@@ -207,13 +217,57 @@ class CampaignController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $categories = Category::find()->all();
+        $reward = new Reward();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->c_id]);
+        if($_SERVER["REQUEST_METHOD"]=="POST"){
+            $model->c_title=$_POST['cTitle'];
+            $model->c_cat_id=$_POST['cCategory'];
+            $model->c_author= Yii::$app->user->identity->getId();
+
+            if(isset($_FILES['cImage']['name']) && $_FILES['cImage']['size'] > 0){
+                $uploaddir = '/web/images/uploads/campaign/';
+                $dirpath = realpath(dirname(getcwd())).$uploaddir;
+                $uploadfile = $dirpath . basename($_FILES['cImage']['name']);
+                $model->c_image = basename($_FILES['cImage']['name']);
+                move_uploaded_file($_FILES['cImage']['tmp_name'], $uploadfile);
+            }else {
+                $model->c_image = 'default.jpg';
+            }
+
+            $model->c_description=$_POST['cDesc'];
+            $model->c_start_date=$_POST['cStartdate'];
+            $model->c_end_date=$_POST['cEnddate'];
+            $model->c_goal=$_POST['cGoal'];
+            $model->c_video=$_POST['cVideo'];
+            $model->c_description_long=$_POST['cLDesc'];
+            $model->c_display_name=$_POST['cName'];
+            $model->c_email=$_POST['cEmail'];
+            $model->c_biography=$_POST['cBio'];
+            $model->c_location=$_POST['cLocation'];
+            $model->c_social_profile=$_POST['cProfile'];
+            if ($model->save()){
+
+                $number = count($_POST['rTitle']);
+                echo("<script>console.log('PHP: ".$number."');</script>");
+                for ($i=0; $i<$number; $i++){
+                    $reward->c_id=$model->c_id;
+                    $reward->r_title=$_POST['rTitle'][$i];
+                    echo("<script>console.log('Get Reward hereN: ".$reward->r_title."');</script>");
+                    $reward->r_pledge_amt=$number;
+                    $reward->r_description=$_POST['rDesc'][$i];
+                    $reward->r_limit_availability=$_POST['rLimit'][$i];
+                    $reward->save(false);
+                }
+
+
+                return $this->redirect(['view', 'id'=>$model->c_id]);
+            }
         }
 
         return $this->render('update', [
             'model' => $model,
+            'categories' => $categories,
         ]);
     }
     
@@ -287,9 +341,13 @@ class CampaignController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
 
-        return $this->redirect(['index']);
+        $campaign = $this->findModel($id);
+//        return $this->redirect(['index']);
+
+        return $this->render('delete',[
+           'campaign' => $campaign,
+        ]);
     }
 
     /**
