@@ -96,10 +96,6 @@ class CampaignController extends Controller
         $backed = Fund::find()->where(['fund_c_id'=>$id])->sum('fund_amt');
         $progress = ($backed/$this->findModel($id)->c_goal)*100;
 
-        if (Yii::$app->request->post('moderation')) {
-            $model -> c_status = "moderation";
-        }
-
         if($comment->load(Yii::$app->request->post())){
             $comment->comment_camp_id = $id;
             $comment->comment_user_id = Yii::$app->user->identity->getId();
