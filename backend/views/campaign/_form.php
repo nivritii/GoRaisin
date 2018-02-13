@@ -44,7 +44,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'c_social_profile')->textInput(['maxlength' => true,'readonly' => true,'style' => 'background-color:#ffffff']) ?>
 
-    <?= $form->field($model, 'c_status')->dropDownList(['draft' => 'draft','publish' => 'publish']) ?>
+    <?= $form->field($model, 'c_status')->dropDownList(['draft' => 'draft','publish' => 'publish','moderation' => 'moderation']) ?>
 
     <?= $form->field($model, 'c_cat_id')->textInput(['readonly' => true,'style' => 'background-color:#ffffff']) ?>
 

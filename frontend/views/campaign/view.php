@@ -79,10 +79,10 @@ frontend\assets\RoadmapAsset::register($this);
                                         </div>-->
                                         <div class="category meta-categories" style="width: 100%">
                                             <div style="display: inline-block;float: left;margin-left: 22%">
-                                                <p style="font-size: 15px;color: #000000;"><i class="fa fa-location-arrow"></i><?php echo $model->c_location ?></p>
+                                                <p style="font-size: 15px;color: #000000;"><i class="glyphicon glyphicon-map-marker"></i><?php echo $model->c_location ?></p>
                                             </div>
                                             <div style="clear: both;display: inline-block;margin-left: 30%">
-                                                <p style="font-size: 15px;color: #000000;"><i class="fa fa-anchor"></i><?php echo $model->cCat->name ?></p>
+                                                <p style="font-size: 15px;color: #000000;"><i class="glyphicon glyphicon-tag"></i><?php echo $model->cCat->name ?></p>
                                             </div>
                                             <!--<div class="cat-wrapper">
                                                 <ul class="post-categories">
@@ -163,19 +163,36 @@ frontend\assets\RoadmapAsset::register($this);
                     <h3 style="margin-top:25px; margin-bottom:0px;">22</h3>
                     <h3 class="title-price" style="margin-top:0px;"><small>days to go</small></h3>
 
+                    <?php if (Yii::$app->user->isGuest) { ?>
                     <div class="section" style="margin-top:25px; padding-bottom:20px;">
                         <a href="<?= Url::to(['campaign/fund','id'=>$model->c_id])?>">
                             <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-gift" aria-hidden="true"></span>Fund this Campaign</h4></button>
                         </a>
                     </div>
-                    <div class="section" style="padding-bottom:20px;">
-                        <h6><a href="#"><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> All or nothing. This project will only be funded if it reaches its goal by <?=$model->c_end_date?>.</a></h6>
+                    <?php }elseif(Yii::$app->user->id == $model->c_author && $model->c_status == 'publish') { ?>
+                    <div class="section" style="margin-top:25px; padding-bottom:20px;">
+                        <a href="<?= Url::to(['campaign/update','id'=>$model->c_id])?>">
+                            <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Update</h4></button>
+                        </a>
                     </div>
-                    <?php if (Yii::$app->user->identity->id == $model->c_author) { ?>
-                    <div class="section" style="margin-top:25px; padding-bottom:20px;text-align: center">
-                        <?= Html::a('Update',['campaign/update','id' => $model->c_id],['style' => 'font-size:15px;background-color:#940094;color:#ffffff;padding:3%;border-radius:10px;text-decoration:none']) ?>
-                    </div>
+                    <?php }elseif (Yii::$app->user->id == $model->c_author && $model->c_status == 'draft'){ ?>
+                        <a href="<?= Url::to(['campaign/update','id'=>$model->c_id])?>">
+                            <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Update</h4></button>
+                        </a>
+                        <br /><br />
+                        <a href="<?= Url::to(['campaign/view','id'=>$model->c_id])?>">
+                            <?= Html::submitButton('Submit for Review',['class' => 'btn btn-default','value' => 'moderation','name' => 'moderation']) ?>
+                            <!--<button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white" value="moderation" name="moderation"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Submit for Review</h4></button>-->
+                        </a>
+                    <?php }elseif (Yii::$app->user->id == $model->c_author && $model->c_status == 'moderation') { ?>
+                        <a href="<?= Url::to(['campaign/view','id'=>$model->c_id])?>">
+                            <button disabled class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Under Review</h4></button>
+                        </a>
                     <?php } ?>
+                    <br /><br />
+                    <div class="section" style="padding-bottom:20px;">
+                        <h6><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> All or nothing. This project will only be funded if it reaches its goal by <?=$model->c_end_date?>.</h6>
+                    </div>
                 </div>
             </div>
         </div>
