@@ -39,6 +39,7 @@ frontend\assets\RoadmapAsset::register($this);
                         <div style="display: inline-block;vertical-align: middle">
                         <?= Html::img('@web/'.$model->cAuthor->image,['style' => 'height:35px;width:35px;border-radius:10px']) ?>
                         <p><?=$model->c_display_name?></p>
+                            <?= Html::a('View',['campaign/viewcompany','id' => $model->c_id],['style' => 'text-decoration:none;color:#ffffff;background-color:#940094;padding:3%;border-radius:5px;font-size:15px']) ?>
                         </div>
                         <div style="clear:both; display: inline-block;vertical-align: middle;margin-left: 10%;">
                         <h1 class="title" style="color: #6b0d7ce8"><?=$model->c_title?></h1>
@@ -79,10 +80,10 @@ frontend\assets\RoadmapAsset::register($this);
                                         </div>-->
                                         <div class="category meta-categories" style="width: 100%">
                                             <div style="display: inline-block;float: right;margin-right: 3%">
-                                                <p style="font-size: 15px;color: #000000;"><i class="glyphicon glyphicon-map-marker"></i><?php echo $model->c_location ?></p>
+                                                <p style="font-size: 15px;color: #000000;"><i class="glyphicon glyphicon-map-marker"></i>&nbsp;<?php echo $model->c_location ?></p>
                                             </div>
-                                            <div style="clear: both;display: inline-block;margin-left: 70%">
-                                                <p style="font-size: 15px;color: #000000;"><i class="glyphicon glyphicon-tag"></i><?php echo $model->cCat->name ?></p>
+                                            <div style="clear: both;display: inline-block;margin-left: 60%">
+                                                <p style="font-size: 15px;color: #000000;"><i class="glyphicon glyphicon-tag"></i>&nbsp;<?php echo $model->cCat->name ?></p>
                                             </div>
                                         </div>
                                     </div>
@@ -139,7 +140,7 @@ frontend\assets\RoadmapAsset::register($this);
             <div class="sidebar sidebar-1 four columns" style="width: 25%;float: left; margin-right: 8%;">
                 <div class="widget-area clearfix" style="padding: 9px 0px 0px;">
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:<?=$progress?>%; background-color:#8f13a5f0"><?=$progress?>%
+                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:<?=$progress?>%; background-color:#8f13a5f0;color: black;"><?=$progress?>%
                         </div>
                     </div>
                     <h3 style="margin-top:25px; margin-bottom:0px;"><?=$backed?></h3>
@@ -168,8 +169,9 @@ frontend\assets\RoadmapAsset::register($this);
                             <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</h4></button>
                         </a>
                         <br /><br />
-                        <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>">
-                            <p><span class="glyphicon glyphicon-envelope"></span> Submit for Review</p>
+
+                        <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>" style="margin-left: 32%;text-decoration: none">
+                            <?= Html::submitButton('Submit for Review',['class' => 'btn btn-default','value' => 'moderation','name' => 'moderation','style' => 'background-color:#add8e6;color:#ffffff;border-radius: 10px']) ?>
                         </a>
                     <?php }elseif (Yii::$app->user->id == $model->c_author && $model->c_status == 'moderation') { ?>
                         <a href="<?= Url::to(['campaign/view','id'=>$model->c_id])?>">
