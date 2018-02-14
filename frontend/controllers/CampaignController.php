@@ -91,7 +91,7 @@ class CampaignController extends Controller
     }
 
     /**
-     * Submitting Campaign for Review
+     * Submit Campaign for Review
      * @param $id
      * @throws NotFoundHttpException
      */
@@ -102,7 +102,24 @@ class CampaignController extends Controller
         $reviewCampaign->save();
         return $this->redirect(['view', 'id' => $reviewCampaign->c_id]);
     }
-
+    /**
+     * View campaign company profile
+     * @param $id
+     * @throws NotFoundHttpException
+     */
+    public function actionViewcompany($id)
+    {
+        return $this->render('viewcompany',['model' => $this->findModel($id)]);
+    }
+    /**
+     * Link to external website
+     * @param $website
+     * @throws NotFoundHttpException
+     */
+    public function actionLinkexternal($website)
+    {
+        return $this->redirect('http://'.$website);
+    }
     /**
      * Create comment for a Campaign
      * @param $id

@@ -39,6 +39,7 @@ frontend\assets\RoadmapAsset::register($this);
                         <div style="display: inline-block;vertical-align: middle">
                         <?= Html::img('@web/'.$model->cAuthor->image,['style' => 'height:35px;width:35px;border-radius:10px']) ?>
                         <p><?=$model->c_display_name?></p>
+                            <?= Html::a('View',['campaign/viewcompany','id' => $model->c_id],['style' => 'text-decoration:none;color:#ffffff;background-color:#940094;padding:3%;border-radius:5px;font-size:15px']) ?>
                         </div>
                         <div style="clear:both; display: inline-block;vertical-align: middle;margin-left: 10%;">
                         <h1 class="title" style="color: #6b0d7ce8"><?=$model->c_title?></h1>
