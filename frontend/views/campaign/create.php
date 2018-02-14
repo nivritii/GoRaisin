@@ -1,23 +1,22 @@
 <?php
+
 use frontend\assets\HomePageAsset;
 use frontend\assets\CampaignAsset;
+use yii\helpers\Html;
+use frontend\models\Category;
 use kartik\date\DatePicker;
-
 HomePageAsset::register($this);
 CampaignAsset::register($this);
-//lCreateCampaignAsset::register($this);
+
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
-$this->title = 'Create Campaign - GoRaisin';
-$this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
-<div class="container">
+<div class="container" style="margin-top: 10px">
     <div class="row form-group">
-        <div class="col-xs-12">
+        <div class="col-xs-9" style="padding-right: 0px">
             <ul class="nav nav-pills nav-justified thumbnail setup-panel" id="myNav">
                 <li id="navStep1" class="li-nav active" step="#step-1">
                     <a>
@@ -25,19 +24,19 @@ $this->params['breadcrumbs'][] = $this->title;
                         <p class="list-group-item-text">Introduce your project</p>
                     </a>
                 </li>
-                <li id="navStep2" class="li-nav disabled" step="#step-2">
+                <li id="navStep2" class="li-nav active" step="#step-2">
                     <a>
                         <h4 class="list-group-item-heading">Rewards</h4>
                         <p class="list-group-item-text">Backers benefits</p>
                     </a>
                 </li>
-                <li id="navStep3" class="li-nav disabled" step="#step-3">
+                <li id="navStep3" class="li-nav" step="#step-3">
                     <a>
                         <h4 class="list-group-item-heading">The Story</h4>
                         <p class="list-group-item-text">More about your project</p>
                     </a>
                 </li>
-                <li id="navStep4" class="li-nav disabled" step="#step-4">
+                <li id="navStep4" class="li-nav" step="#step-4">
                     <a>
                         <h4 class="list-group-item-heading">Company</h4>
                         <p class="list-group-item-text">Share about your team</p>
@@ -45,87 +44,102 @@ $this->params['breadcrumbs'][] = $this->title;
                 </li>
             </ul>
         </div>
+        <div>
+            <div class="col-xs-3" style="padding-left: 0px">
+                <ul class="nav nav-pills nav-justified thumbnail setup-panel" id="myNav">
+                    <li id="navStep5" class="li-nav" step="#step-5">
+                        <a>
+                            <h4 class="list-group-item-heading">Preview</h4>
+                            <p class="list-group-item-text">Your project</p>
+                        </a>
+                    </li>
+                    <li id="navStep6" class="li-nav" step="#step-6">
+                        <a href="<?=\yii\helpers\Url::to(['campaign/create'])?>">
+                            <h4 class="list-group-item-heading">Submit</h4>
+                            <p class="list-group-item-text">For review</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-</div>
 
 
-<div class="container">
     <div class="row form-group">
         <div class="col-xs-12">
             <div class="alert alert-success hide"></div>
         </div>
     </div>
-</div>
 
-<form class="createCampaign" enctype="multipart/form-data" action="create" method="post" id="tab_logic" name="campaignForm">
-    <div class="container">
-        <div class="row setup-content" id="step-1">
-            <div class="col-xs-12">
-                <div class="col-md-12 well text-center">
-                    <h1 class="tabpage-title">Basics</h1>
-                    <div class="container col-xs-12">
-                        <div class="container">
-                            <br/>
-                            <div class="form-group">
-                                <div style="width: 100%;height: 80px">
-                                    <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Campaign title</p>
+    <form class="createCampaign" enctype="multipart/form-data" action="create" method="post" id="tab_logic" name="campaignForm">
+<!--        <div class="container">-->
+            <div class="row setup-content" id="step-1">
+                <div class="col-xs-12">
+                    <div class="col-md-12 well text-center">
+                        <h1 class="tabpage-title">Basics</h1>
+                        <div class="container col-xs-12">
+                            <div class="container">
+                                <br/>
+                                <div class="form-group">
+                                    <div style="width: 100%;height: 80px">
+                                        <div style="float: left;display: inline-block;width: 20%">
+                                            <p class="item-title">Campaign title</p>
+                                        </div>
+                                        <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                            <input type="text" style="width: 100%" name="cTitle" id="cTitle" required>
+                                        </div>
                                     </div>
-                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <input type="text" style="width: 100%" name="cTitle" id="cTitle" required>
+                                    <div style="clear:both;height: 80px">
+                                        <div style="float: left;display: inline-block;width: 20%">
+                                            <p class="item-title">Category</p>
+                                        </div>
+                                        <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                            <select name="cCategory" id="search_categories"
+                                                    data-default-caption="Select Category"
+                                                    style="border-radius: 10px;width: 100%">
+                                                <option selected value="">Select Category</option>
+                                                <?php foreach ($categories as $category) { ?>
+                                                    <option value=<?= $category->id ?>><?= $category->name ?></option>
+                                                <?php } ?>
+                                            </select>
+                                        </div>
                                     </div>
-                                </div>
-                                <div style="clear:both;height: 80px">
-                                    <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Category</p>
-                                    </div>
-                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <select name="cCategory" id="search_categories"
-                                                data-default-caption="Select Category"
-                                                style="border-radius: 10px;width: 100%">
-                                            <option selected value="">Select Category</option>
-                                            <?php foreach ($categories as $category) { ?>
-                                                <option value=<?= $category->id ?>><?= $category->name ?></option>
-                                            <?php } ?>
-                                        </select>
-                                    </div>
-                                </div>
 
-                                <div style="clear:both;height: 460px">
-                                    <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Campaign image</p>
-                                    </div>
-                                    <div style="float: left;display: inline-block;width: 60%;margin-left: 2%">
-                                        <div class="file-upload">
-                                            <button class="file-upload-btn" type="button"
-                                                    onclick="$('.file-upload-input').trigger( 'click' )">Add Image
-                                            </button>
-                                            <div class="image-upload-wrap">
-                                                <input class="file-upload-input" type='file' onchange="readURL(this);"
-                                                       accept="image/*" name="cImage"/>
-                                                <div class="drag-text">
-                                                    <h3>Drag and drop a file or select add Image</h3>
+                                    <div style="clear:both;height: 460px">
+                                        <div style="float: left;display: inline-block;width: 20%">
+                                            <p class="item-title">Campaign image</p>
+                                        </div>
+                                        <div style="float: left;display: inline-block;width: 60%;margin-left: 2%">
+                                            <div class="file-upload">
+                                                <button class="file-upload-btn" type="button"
+                                                        onclick="$('.file-upload-input').trigger( 'click' )">Add Image
+                                                </button>
+                                                <div class="image-upload-wrap">
+                                                    <input class="file-upload-input" type='file' onchange="readURL(this);"
+                                                           accept="image/*" name="cImage"/>
+                                                    <div class="drag-text">
+                                                        <h3>Drag and drop a file or select add Image</h3>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <br />
-                                            <div class="file-upload-content">
-                                                <img class="file-upload-image" src="#" alt="your image"/>
-                                                <div class="image-title-wrap">
+                                                <br />
+                                                <div class="file-upload-content">
+                                                    <img class="file-upload-image" src="#" alt="your image"/>
+                                                    <div class="image-title-wrap">
 
-                                                    <button type="button" onclick="removeUpload()" class="remove-image">
-                                                        Remove <span class="image-title">Uploaded Image</span></button>
+                                                        <button type="button" onclick="removeUpload()" class="remove-image">
+                                                            Remove <span class="image-title">Uploaded Image</span></button>
 
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div style="clear:both;height: 140px">
-                                    <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Short description</p>
-                                    </div>
-                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 60%;class="textEditor">
+                                    <div style="clear:both;height: 140px">
+                                        <div style="float: left;display: inline-block;width: 20%">
+                                            <p class="item-title">Short description</p>
+                                        </div>
+                                        <div style="display: inline-block;float: left;margin-left: 2%;width: 60%;class="textEditor">
                                         <textarea rows="2" type="text" style="width: 100%;" name="cDesc" id="cDesc"> </textarea>
                                     </div>
                                 </div>
@@ -189,203 +203,202 @@ $this->params['breadcrumbs'][] = $this->title;
                     <!-- </form> -->
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row setup-content" id="step-2">
-            <div class="col-xs-12">
-                <div class="col-md-12 well text-center">
-                    <h1 class="tabpage-title">Rewards</h1>
+<!--        </div>-->
+</div>
+<!--<div class="container">-->
+    <div class="row setup-content" id="step-2">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1 class="tabpage-title">Rewards</h1>
 
-                    <!--<form>-->
-                    <div class="container col-xs-12">
-                        <br/>
-                        <div class="row clearfix">
-                            <div class="col-md-12 column">
-                                <table class="table table-bordered table-hover" id="rewardTab">
-                                    <thead>
-                                    <tr>
-                                        <th class="text-center">
-                                            #
-                                        </th>
-                                        <th class="text-center">
-                                            Title
-                                        </th>
-                                        <th class="text-center">
-                                            Pledge Amount
-                                        </th>
-                                        <th class="text-center">
-                                            Description
-                                        </th>
-                                        <th class="text-center">
-                                            Limit
-                                        </th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr id='addr0'>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            <input type="text" name='rTitle[]'  id='rTitle' class="form-control"/>
-                                        </td>
-                                        <td>
-                                            <input type="text" name='rAmt[]' class="form-control"/>
-                                        </td>
-                                        <td>
-                                            <input type="text" name='rDesc[]' class="form-control"/>
-                                        </td>
-                                        <td>
-                                            <input type="text" name='rLimit[]' class="form-control"/>
-                                        </td>
-                                    </tr>
-                                    <tr id='addr1'></tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                <!--<form>-->
+                <div class="container col-xs-12">
+                    <br/>
+                    <div class="row clearfix">
+                        <div class="col-md-12 column">
+                            <table class="table table-bordered table-hover" id="rewardTab">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">
+                                        #
+                                    </th>
+                                    <th class="text-center">
+                                        Title
+                                    </th>
+                                    <th class="text-center">
+                                        Pledge Amount
+                                    </th>
+                                    <th class="text-center">
+                                        Description
+                                    </th>
+                                    <th class="text-center">
+                                        Limit
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr id='addr0'>
+                                    <td>
+                                        1
+                                    </td>
+                                    <td>
+                                        <input type="text" name='rTitle[]'  id='rTitle' class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input type="text" name='rAmt[]' class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input type="text" name='rDesc[]' class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input type="text" name='rLimit[]' class="form-control"/>
+                                    </td>
+                                </tr>
+                                <tr id='addr1'></tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <a id="add_row" class="btn btn-success pull-left">Add Reward</a><a id='delete_row'
-                                                                                           class="btn btn-danger pull-right">Remove
-                            Reward</a>
-                        <br/><br/><br/>
                     </div>
-                    <!--</form> -->
-                    <hr>
-
-                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-                    <input onclick="step2Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-
+                    <a id="add_row" class="btn btn-success pull-left">Add Reward</a><a id='delete_row'
+                                                                                       class="btn btn-danger pull-right">Remove
+                        Reward</a>
+                    <br/><br/><br/>
                 </div>
+                <!--</form> -->
+                <hr>
+
+                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                <input onclick="step2Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row setup-content" id="step-3">
-            <div class="col-xs-12">
-                <div class="col-md-12 well text-center">
-                    <h1 class="tabpage-title">The Story</h1>
+<!--</div>-->
+<!--<div class="container">-->
+    <div class="row setup-content" id="step-3">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1 class="tabpage-title">The Story</h1>
 
-                    <!--<form>-->
-                    <div class="container col-xs-12">
-                        <div class="container">
-                            <br/>
-                            <div class="form-group">
-                                <div style="clear:both;height: 150px">
-                                    <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Campaign video</p>
-                                    </div>
-                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <input type="text" style="width: 100%" name="cVideo">
-                                        <p align="left">Please upload your video to YouTube and paste the link here.
-                                            Projects with a video have a much higher chance of success.</p>
-                                    </div>
+                <!--<form>-->
+                <div class="container col-xs-12">
+                    <div class="container">
+                        <br/>
+                        <div class="form-group">
+                            <div style="clear:both;height: 150px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Campaign video</p>
                                 </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                    <input type="text" style="width: 100%" name="cVideo">
+                                    <p align="left">Please upload your video to YouTube and paste the link here.
+                                        Projects with a video have a much higher chance of success.</p>
+                                </div>
+                            </div>
 
-                                <div style="clear:both;height: 500px">
-                                    <div style="float: left;display: inline-block;width: 20%;">
-                                        <p class="item-title">Main Description</p>
-                                    </div>
-                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;height: 400px;background-color: #ffffff">
-                                        <?php
-                                        echo \artkost\yii2\trumbowyg\Trumbowyg::widget([
+                            <div style="clear:both;height: 500px">
+                                <div style="float: left;display: inline-block;width: 20%;">
+                                    <p class="item-title">Main Description</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;height: 400px">
+                                    <?php
+                                    echo \artkost\yii2\trumbowyg\Trumbowyg::widget([
                                         'name' => 'cLDesc',
                                         'settings' => [
-                                        'lang' => 'en',
-                                            'background-color' => '#ffffff',
+                                            'lang' => 'en'
                                         ]
-                                        ]);
-                                        ?>
-                                    </div>
+                                    ]);
+                                    ?>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!--</form> -->
-
-                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-                    <input onclick="step3Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-
                 </div>
+                <!--</form> -->
+
+                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                <input onclick="step3Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="row setup-content" id="step-4">
-            <div class="col-xs-12">
-                <div class="col-md-12 well text-center">
-                    <h1 class="tabpage-title">Company</h1>
+<!--</div>-->
+<!--<div class="container">-->
+    <div class="row setup-content" id="step-4">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1 class="tabpage-title">Company</h1>
 
-                    <div class="container col-xs-12">
-                        <div class="container">
-                            <br />
-                            <div class="form-group">
-                                <div style="width: 100%;height: 80px">
-                                    <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Author name</p>
-                                    </div>
-                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <input type="text" style="width: 100%" name="cName">
-                                    </div>
+                <div class="container col-xs-12">
+                    <div class="container">
+                        <br />
+                        <div class="form-group">
+                            <div style="width: 100%;height: 80px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Author name</p>
                                 </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                    <input type="text" style="width: 100%" name="cName">
+                                </div>
+                            </div>
 
-                                <div style="clear:both;height: 80px">
-                                    <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Email</p>
-                                    </div>
-                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <?php /*echo Yii::$app->user->identity->email */?><!--
+                            <div style="clear:both;height: 80px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Email</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                    <?php /*echo Yii::$app->user->identity->email */?><!--
                                         <?php /*if (!empty(Yii::$app->user->identity->email)) {
                                             $email = Yii::$app->user->identity->email*/?>
                                         <input type="text" style="width: 100%" name="cEmail" value=<?php /*$email */?>>
                                         --><?php /*}else { */?>
-                                        <input type="text" style="width: 100%" name="cEmail">
-                                        <?php /*}*/?>
-                                    </div>
+                                    <input type="text" style="width: 100%" name="cEmail">
+                                    <?php /*}*/?>
                                 </div>
-
-                                <div style="clear:both;height: 180px;">
-                                    <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Company biography</p>
-                                    </div>
-                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <textarea rows="5" type="text" style="width: 100%" name="cBio"> </textarea>
-                                        <p align="left">Simply introduce your company can help backers learn about your campaign better!</p>
-                                    </div>
-                                </div>
-
-                                <div style="clear:both;height: 80px;">
-                                    <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Company location</p>
-                                    </div>
-                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <input type="text" style="width: 100%" name="cLocation">
-                                    </div>
-                                </div>
-
-                                <div style="clear:both;height: 80px;">
-                                    <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Company website</p>
-                                    </div>
-                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <input type="text" style="width: 100%" name="cProfile">
-                                    </div>
-                                </div>
-
                             </div>
+
+                            <div style="clear:both;height: 180px;">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Company biography</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                    <textarea rows="5" type="text" style="width: 100%" name="cBio"> </textarea>
+                                    <p align="left">Simply introduce your company can help backers learn about your campaign better!</p>
+                                </div>
+                            </div>
+
+                            <div style="clear:both;height: 80px;">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Company location</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                    <input type="text" style="width: 100%" name="cLocation">
+                                </div>
+                            </div>
+
+                            <div style="clear:both;height: 80px;">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Company website</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                    <input type="text" style="width: 100%" name="cProfile">
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-                    <!--</form> -->
-                  
-                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-                    <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                </div>
+                <!--</form> -->
 
-                    <div class="form-group">
-                    </div>
+                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+
+                <div class="form-group">
                 </div>
             </div>
         </div>
     </div>
+<!--</div>-->
 </form>
 
 <script>
@@ -442,7 +455,7 @@ $this->params['breadcrumbs'][] = $this->title;
         if (true) {//Insert here your validation of the first step
             if(validateStep1()){
                 currentStep += 1;
-                $('#navStep' + currentStep).removeClass('disabled');
+                //$('#navStep' + currentStep).removeClass('disabled');
                 $('#navStep' + currentStep).click();
             }
         }
@@ -454,13 +467,13 @@ $this->params['breadcrumbs'][] = $this->title;
     }
     function step2Next() {
         if (true) {
-            $('#navStep3').removeClass('disabled');
+            //$('#navStep3').removeClass('disabled');
             $('#navStep3').click();
         }
     }
     function step3Next() {
         if (true) {
-            $('#navStep4').removeClass('disabled');
+            //$('#navStep4').removeClass('disabled');
             $('#navStep4').click();
         }
     }

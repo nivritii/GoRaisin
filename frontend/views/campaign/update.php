@@ -53,9 +53,9 @@ CampaignAsset::register($this);
                 </a>
             </li>
             <li id="navStep6" class="li-nav" step="#step-6">
-                <a>
+                <a href="<?=\yii\helpers\Url::to(['campaign/create'])?>">
                     <h4 class="list-group-item-heading">Submit For Review</h4>
-                    <p class="list-group-item-text">Will take about 3 days</p>
+                    <p class="list-group-item-text">Allow 3 days</p>
                 </a>
             </li>
                 </ul>
@@ -394,7 +394,7 @@ CampaignAsset::register($this);
                     <!--</form> -->
 
                     <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-                    <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+<!--                    <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">-->
 
                     <div class="form-group">
                     </div>
