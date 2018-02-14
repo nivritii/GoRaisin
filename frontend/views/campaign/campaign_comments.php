@@ -16,14 +16,16 @@ $userComment = new Comment();
 <!--         One full width row-->
         <div class="column one comments">
             <div id="comments">
-                <form action="#" method="post" role="form">
+                <form action="comment?id=<?=$model->c_id?>" method="post" role="form">
                     <div class="form-group">
-                        <?php $form = ActiveForm::begin(); ?>
-                        <?= $form->field($userComment, 'comment_content')->textarea(['rows' => 3]); ?>
+                        <div style="display: inline-block;float: left;width: 100%;class="textEditor">
+                        <textarea rows="3" type="text" style="width: 100%;" name="comment" id="comment"></textarea>
+                        </div>
                     </div>
-                    <?= Html::submitButton('Submit', ['class' => 'btn btn-info']) ?>
+
+                        <button class="btn btn-info">Comment</button>
+                        <hr class="no_line" style="margin: 0 auto 30px;" />
                 </form>
-                        <?php ActiveForm::end(); ?>
                 <hr class="no_line" style="margin: 0 auto 30px;" />
                 <ol class="commentlist">
                     <?php foreach($comments as $comment){?>

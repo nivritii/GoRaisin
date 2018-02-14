@@ -110,7 +110,7 @@ frontend\assets\RoadmapAsset::register($this);
                                             ],
                                             [
                                                 'label'=>'<i class="glyphicon glyphicon-comment"></i> Comments',
-                                                'content'=>$this->render('campaign_comments',['comments'=>$comments]),
+                                                'content'=>$this->render('campaign_comments',['comments'=>$comments, 'model'=>$model]),
                                             ],
                                             [
                                                 'label'=>'<i class="glyphicon glyphicon-question-sign"></i> FAQ',
@@ -148,7 +148,7 @@ frontend\assets\RoadmapAsset::register($this);
                     <h3 style="margin-top:25px; margin-bottom:0px;">199</h3>
                     <h3 class="title-price" style="margin-top:0px;"><small>backers</small></h3>
 
-                    <h3 style="margin-top:25px; margin-bottom:0px;">22</h3>
+                    <h3 style="margin-top:25px; margin-bottom:0px;" id="endDate"><?=$model->c_end_date?></h3>
                     <h3 class="title-price" style="margin-top:0px;"><small>days to go</small></h3>
 
                     <?php if (Yii::$app->user->isGuest || Yii::$app->user->identity->id != $model->c_author) { ?>
@@ -160,14 +160,15 @@ frontend\assets\RoadmapAsset::register($this);
                     <?php }elseif(Yii::$app->user->id == $model->c_author && $model->c_status == 'publish') { ?>
                     <div class="section" style="margin-top:25px; padding-bottom:20px;">
                         <a href="<?= Url::to(['campaign/update','id'=>$model->c_id])?>">
-                            <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Update</h4></button>
+                            <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</h4></button>
                         </a>
                     </div>
                     <?php }elseif (Yii::$app->user->id == $model->c_author && $model->c_status == 'draft'){ ?>
                         <a href="<?= Url::to(['campaign/update','id'=>$model->c_id])?>">
-                            <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Update</h4></button>
+                            <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</h4></button>
                         </a>
                         <br /><br />
+
                         <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>" style="margin-left: 32%;text-decoration: none">
                             <?= Html::submitButton('Submit for Review',['class' => 'btn btn-default','value' => 'moderation','name' => 'moderation','style' => 'background-color:#add8e6;color:#ffffff;border-radius: 10px']) ?>
                         </a>
@@ -177,6 +178,9 @@ frontend\assets\RoadmapAsset::register($this);
                         </a>
                     <?php } ?>
                     <br /><br />
+                            <a href="<?= Url::to(['campaign/delete','id'=>$model->c_id])?>">
+                                <p><span class="glyphicon glyphicon-remove"></span> Delete Project</p>
+                            </a>
                     <div class="section" style="padding-bottom:20px;">
                         <h6><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> All or nothing. This project will only be funded if it reaches its goal by <?=$model->c_end_date?>.</h6>
                     </div>
@@ -185,3 +189,34 @@ frontend\assets\RoadmapAsset::register($this);
         </div>
     </div>
 </div>
+
+<script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+        // Get todays date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now an the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="demo"
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+        // If the count down is over, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("endDate").innerHTML = "EXPIRED";
+        }
+    }, 1000);
+</script>
