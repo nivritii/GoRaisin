@@ -5,6 +5,8 @@ namespace backend\controllers;
 use Yii;
 use backend\models\Campaign;
 use backend\models\CampaignSearch;
+use backend\models\CampaignSearchforModeration;
+use backend\models\CampaignSearchforDraft;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -35,13 +37,14 @@ class CampaignController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new CampaignSearch();
+        /*$searchModel = new CampaignSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
+        ]);*/
+        return $this->render('index');
     }
 
     /**
@@ -54,6 +57,48 @@ class CampaignController extends Controller
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
+        ]);
+    }
+
+    /*
+     * view publish campaigns
+     */
+    public function actionViewPublish()
+    {
+        $searchModel = new CampaignSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('viewPublish', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /*
+     * view moderation campaigns
+     */
+    public function actionViewModeration()
+    {
+        $searchModel2 = new CampaignSearchforModeration();
+        $dataProvider2 = $searchModel2->search(Yii::$app->request->queryParams);
+
+        return $this->render('viewModeration', [
+            'searchModel' => $searchModel2,
+            'dataProvider' => $dataProvider2,
+        ]);
+    }
+
+    /*
+     * view draft campaigns
+     */
+    public function actionViewDraft()
+    {
+        $searchModel3 = new CampaignSearchforDraft();
+        $dataProvider3 = $searchModel3->search(Yii::$app->request->queryParams);
+
+        return $this->render('viewDraft', [
+            'searchModel' => $searchModel3,
+            'dataProvider' => $dataProvider3,
         ]);
     }
 

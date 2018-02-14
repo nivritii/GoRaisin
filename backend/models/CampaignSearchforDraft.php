@@ -1,4 +1,10 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: cherry
+ * Date: 13/02/2018
+ * Time: 4:42 PM
+ */
 
 namespace backend\models;
 
@@ -10,7 +16,7 @@ use backend\models\Campaign;
 /**
  * CampaignSearch represents the model behind the search form of `backend\models\Campaign`.
  */
-class CampaignSearch extends Campaign
+class CampaignSearchforDraft extends Campaign
 {
     /**
      * @inheritdoc
@@ -67,7 +73,7 @@ class CampaignSearch extends Campaign
             'c_created_at' => $this->c_created_at,
             'c_cat_id' => $this->c_cat_id,
             'c_new_tag' => $this->c_new_tag,
-            'c_status' => 'publish',
+            'c_status' => "draft",
         ]);
 
         $query->andFilterWhere(['like', 'c_title', $this->c_title])
