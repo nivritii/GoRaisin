@@ -34,14 +34,14 @@ frontend\assets\RoadmapAsset::register($this);
                 </div>
             </div>-->
             <div class="sections_group" style="width: 55%;float: left;margin-left: 10%">
-                <div style="border-right: .5px solid #f0f0f0; padding-top: 2%">
+                <div style="border-right: .5px solid #f0f0f0; padding-top: 3%">
                     <div class="column zero" style="width: 100%">
-                        <div style="display: inline-block;vertical-align: middle">
+                        <div style="display: inline-block;vertical-align: middle;padding-top:5%">
                         <?= Html::img('@web/'.$model->cAuthor->image,['style' => 'height:35px;width:35px;border-radius:10px']) ?>
                         <p><?=$model->c_display_name?></p>
-                            <?= Html::a('View',['campaign/viewcompany','id' => $model->c_id],['style' => 'text-decoration:none;color:#ffffff;background-color:#940094;padding:3%;border-radius:5px;font-size:15px']) ?>
+                            <?= Html::a('View',['campaign/viewcompany','id' => $model->c_id],['target' => '_blank','style' => 'text-decoration:none;color:#ffffff;background-color:#940094;padding:3%;border-radius:5px;font-size:15px']) ?>
                         </div>
-                        <div style="clear:both; display: inline-block;vertical-align: middle;margin-left: 10%;">
+                        <div style="clear:both; display: inline-block;vertical-align: middle;margin-left: 10%;width: 75%;">
                         <h1 class="title" style="color: #6b0d7ce8"><?=$model->c_title?></h1>
                         <p class="" style="font-size: 18px;"><?=$model->c_description?></p>
                         </div>
