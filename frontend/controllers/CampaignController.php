@@ -2,8 +2,10 @@
 
 namespace frontend\controllers;
 
+use common\models\LoginForm;
 use frontend\models\Reward;
 use frontend\models\Update;
+use frontend\tests\unit\models\PasswordResetRequestFormTest;
 use Yii;
 use frontend\models\Campaign;
 use frontend\models\CampaignSearch;
@@ -19,6 +21,7 @@ use frontend\models\RewardItem;
 use frontend\models\Model;
 use yii\web\UploadedFile;
 use atans\actionlog\models\ActionLog;
+use frontend\models\PasswordResetRequestForm;
 
 ActionLog::error('Some error message');
 ActionLog::info('Some info message');
@@ -43,9 +46,9 @@ class CampaignController extends Controller
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
+//                'actions' => [
+//                    'delete' => ['POST'],
+//                ],
             ],
             'access' => [
                 'class' => AccessControl::className(),
@@ -292,9 +295,7 @@ class CampaignController extends Controller
     {        
         $model = Campaign::find()->all();
         $categories = Category::find()->all();
-//        $backed = Fund::find()->where(['fund_c_id'=>$id])->sum('fund_amt');
-//        $progress = ($backed/$this->findModel($id)->c_goal)*100;
-        
+
         if($id!='NULL'){
             
             $model = Campaign::find()->where(['c_cat_id'=>$id])->all();            
@@ -307,8 +308,6 @@ class CampaignController extends Controller
             return $this->render('show',[
                 'model'=>$model,
                 'categories'=>$categories,
-//                'backed' =>$backed,
-//                'progress' =>$progress,
                 ]);
         }
     }
@@ -358,13 +357,41 @@ class CampaignController extends Controller
      */
     public function actionDelete($id)
     {
-
         $campaign = $this->findModel($id);
-//        return $this->redirect(['index']);
+        $user = new LoginForm();
+        $model="";
+
+        if($_SERVER["REQUEST_METHOD"]=="POST"){
+            $user->username=Yii::$app->user->getIdentity()->username;
+            $user->password=$_POST['password'];
+            if($user->login()){
+                return $this->redirect(['mycampaign']);
+            }else{
+                $model="hidden";
+                return $this->render('delete',[
+                    'campaign' => $campaign,
+                    'model' => $model,
+                    ]);
+            }
+        }
 
         return $this->render('delete',[
            'campaign' => $campaign,
+            'model' => $model,
         ]);
+    }
+
+    public function actionForgotpassword()
+    {
+        $emailUser = new PasswordResetRequestForm();
+        $emailUser->email=Yii::$app->user->getIdentity()->email;
+
+        if ($emailUser->sendEmail()) {
+            Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+            return $this->goHome();
+        } else {
+            Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
+        }
     }
 
     /**

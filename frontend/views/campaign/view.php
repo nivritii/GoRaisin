@@ -180,7 +180,7 @@ frontend\assets\RoadmapAsset::register($this);
                     <?php } ?>
                     <br /><br />
                             <a href="<?= Url::to(['campaign/delete','id'=>$model->c_id])?>">
-                                <p><span class="glyphicon glyphicon-remove"></span> Delete Project</p>
+                                <p><span class="glyphicon glyphicon-trash"></span> Delete Project</p>
                             </a>
                     <div class="section" style="padding-bottom:20px;">
                         <h6><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> All or nothing. This project will only be funded if it reaches its goal by <?=$model->c_end_date?>.</h6>
