@@ -74,7 +74,7 @@ HomePageAsset::register($this);
                     <h4>HELLO</h4>
                     <ul>
                         <li>
-                            <a href="content/blogger2/wp-login.html">Our Website</a>
+                            <?= Html::a('Our Website',['site/redirect','website' => 'webpuppies.com.sg'],['target' => '_blank']) ?>
                         </li>
                         <li>
                             <a href="#">Entries</a>
@@ -100,8 +100,7 @@ HomePageAsset::register($this);
                     <h4>MORE</h4>
                     <ul>
                         <li>
-                            <?/*= Html::a('Our Website',[$this->redirect('http://www.google.com')]) */?>
-                            <a href="www.google.com">Our Website</a>
+                            <?= Html::a('Our Website',['site/redirect','website' => 'webpuppies.com.sg'],['target' => '_blank']) ?>
                         </li>
                         <li>
                             <a href="#">Entries</a>
