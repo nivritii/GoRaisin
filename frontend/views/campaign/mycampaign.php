@@ -87,7 +87,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                             <a href="<?= Url::to(['campaign/view', 'id' => $campaign->c_id])?>">
                                                                 <div class="mask"></div>
                                                                 <?= Html::img(Url::to('@web/images/uploads/' . $campaign->c_image), ['class' => 'scale-with-grid wp-post-image'], ['alt' => 'Image'], ['align' => 'left'], ['width' => '1200'], ['height' => '480']) ?>
-                                                                <!--                                                        <img width="960" height="750" src="images/home_blogger2_lifestyle1-960x750.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_lifestyle1" itemprop="image" />-->
+                                                                <!--<img width="960" height="750" src="images/home_blogger2_lifestyle1-960x750.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_lifestyle1" itemprop="image" />-->
                                                             </a>
                                                             <div class="image_links double">
                                                                 <a href="images/home_blogger2_lifestyle1-1200x800.jpg" class="zoom" rel="prettyphoto"><i class="icon-search"></i></a><a href="item-8.html" class="link"><i class="icon-link"></i></a>
@@ -99,17 +99,17 @@ $this->params['breadcrumbs'][] = $this->title;
                                                             <div class="post-head">
                                                                 <div class="post-meta clearfix">
                                                                     <div class="author-date">
-                                                                        <span class="vcard author post-author"><span class="label">Published by </span><i class="icon-user"></i> <span class="fn"><a href="#"><?= $campaign->cAuthor->username?></a></span></span><span class="date"><span class="label">at </span><i class="icon-clock"></i> <span class="post-date updated"><?= $campaign->c_created_at?></span></span>
+                                                                        <span class="vcard author post-author"><span class="label" style="color: #adadad;font-size: 12px">Published by </span>&nbsp&nbsp<i class="glyphicon glyphicon-user"></i><span class="fn"><a href="#"><?= $campaign->cAuthor->username?></a href="#"></span></span><span class="date"><span class="label">at </span><i class="glyphicon glyphicon-time"></i> <span class="post-date updated"><?= $campaign->c_created_at?></span></span>
                                                                     </div>
                                                                     <div class="category">
-                                                                        <span class="cat-btn">Category<i class="icon-down-dir"></i></span>
-                                                                        <div class="cat-wrapper">
+                                                                        <p style="color: #337ab7;font-weight: 500"><i class="glyphicon glyphicon-tag" style="color: #337ab7"></i>&nbsp&nbsp;<?= $campaign->cCat->name?></p>
+                                                                        <!--<div class="cat-wrapper">
                                                                             <ul class="post-categories">
                                                                                 <li>
-                                                                                    <a href="category-page.html" rel="category tag"><?= $campaign->cCat->name?></a>
+                                                                                    <a href="category-page.html" rel="category tag"><?/*= $campaign->cCat->name*/?></a>
                                                                                 </li>
                                                                             </ul>
-                                                                        </div>
+                                                                        </div>-->
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -122,11 +122,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                                             </div>
                                                             <div class="post-footer">
                                                                 <div class="progress">
-                                                                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:<?=$progress?>%"><?=$progress?>%
+                                                                    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:<?=$progress?>%;color: black"><?=$progress?>%
                                                                     </div>
                                                                 </div>
                                                                 <div class="post-links">
-                                                                    <i class="icon-doc-text"></i><a href="<?= Url::to(['campaign/view', 'id' => $campaign->c_id])?>" class="post-more">Read more</a>
+                                                                    <i class="glyphicon glyphicon-link" style="color: #337ab7"></i>&nbsp&nbsp;<a href="<?= Url::to(['campaign/view', 'id' => $campaign->c_id])?>" class="post-more" style="text-decoration: none">Read more</a>
                                                                 </div>
                                                             </div>
                                                         </div>
