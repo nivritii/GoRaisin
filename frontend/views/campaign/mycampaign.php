@@ -37,24 +37,28 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 <div class="tab-content">
                                     <div id="home" class="tab-pane fade in active">
+                                        <div style="margin-top: 2%;margin-left: 1.5%">
+                                            <div>
+                                                <div class="col-xs-2" style="display: inline-block; align-content: center">
+                                                    <h4>Fund Campaign</h4>
+                                                </div>
+                                                <div style="clear: both;display: inline-block;width: 12%">
+                                                    <h4>Fund Amount</h4>
+                                                </div>
+                                                <div style="clear: both;display: inline-block;width: 15%">
+                                                    <h4>Done on</h4>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <!--<h3>Activity</h3>-->
                                         <?php foreach ($activities as $activity){?>
                                             <div style="margin-top: 2%;margin-left: 1.5%">
                                                 <div>
-                                                    <div style="display: inline-block">
-                                                        <h4>Fund Campaign</h4>
-                                                    </div>
                                                     <div style="clear: both;display: inline-block;margin-left: 2%;width: 15%">
-                                                        <p style="font-size: 15px"><?php echo $activity->fundC->c_title?></p>
-                                                    </div>
-                                                    <div style="clear: both;display: inline-block;width: 12%">
-                                                        <h4>Fund Amount</h4>
+                                                        <p style="font-size: 15px"><?=$activity->fundC->c_title?></p>
                                                     </div>
                                                     <div style="clear: both;display: inline-block;width: 5%">
                                                         <p><?=$activity->fund_amt?></p>
-                                                    </div>
-                                                    <div style="clear: both;display: inline-block;width: 15%">
-                                                        <h4>Operation Time</h4>
                                                     </div>
                                                     <div style="clear: both;display: inline-block;width: 20%">
                                                         <p><?=$activity->fund_created_on?></p>
