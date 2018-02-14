@@ -348,6 +348,27 @@ class CampaignController extends Controller
             'fundedCampaigns' => $fundedCampaigns,
         ]);
     }
+    /**
+     * Other people view introduction of campaign author
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionMyintroduction($id)
+    {
+        $campaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId()])->all();
+        $fund = Fund::find()->where(['fund_user_id'=>Yii::$app->user->getId()])->all();
+
+        $cIds = Fund::find()->select(['fund_c_id'])->where(['fund_user_id'=>Yii::$app->user->getId()])->distinct();
+        $fundedCampaigns = Campaign::find()->where(['c_id'=>$cIds])->all();
+
+        return $this->render('myintroduction',[
+            'campaigns' => $campaigns,
+            'cIds' => $cIds,
+            'fundedCampaigns' => $fundedCampaigns,
+            'model' => $this->findModel($id)
+        ]);
+    }
 
     /**
      * Deletes an existing Campaign model.

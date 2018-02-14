@@ -99,22 +99,29 @@ $imagePath = '/'.Yii::$app->user->identity->image;
                             </div>
                             <div style="display: inline-block;padding-left: 20%">
                                 <div style="float: left;">
-                                    <h5 class="item-title">Biography</h5>
-                                    <?= $form->field($model, 'biography')
-                                        ->label(false)
-                                        ->textarea(['row' => 10,'maxlength' => true,'style' => 'float:left; width: 400px;font-size:20px']) ?>
-                                </div>
-                                <div style="float: left;margin: 0 0 0 70px">
                                     <h5 class="item-title">Website</h5>
                                     <?= $form->field($model, 'website')
                                         ->label(false)
                                         ->textInput(['maxlength' => true, 'style' => 'float:left; width: 400px;font-size:20px']) ?>
                                 </div>
+                                <!--<div style="float: left;margin: 0 0 0 70px">
+                                    <h5 class="item-title">Biography</h5>
+                                    <?/*= $form->field($model, 'biography')
+                                        ->label(false)
+                                        ->textarea(['row' => 10,'maxlength' => true,'style' => 'float:left; width: 400px;font-size:20px']) */?>
+
+                                </div>-->
+                            </div>
+                            <div style="margin-left:20%;width: 61%;height:200px">
+                                <h5 class="item-title">Biography</h5>
+                                <?= $form->field($model, 'biography')
+                                        ->label(false)
+                                        ->textarea(['row' =>5,'maxlength' => true,'style' => 'float:left; width:100%;font-size:20px']) ?>
                             </div>
                         </div>
                     </div>
 
-                    <br>
+                    <br />
                     <div class="form-group">
                         <div id="image-div">
                             <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Save Profile', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary','style' => 'background-color: #940094;border-radius: 10px;width: 9%;height: 30%;color: #ffffff;font-size: 20px;border: none;padding: 5px;']) ?>

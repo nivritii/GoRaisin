@@ -236,4 +236,12 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+    /*
+     * Redirect to external website
+     */
+    public function actionRedirect($website)
+    {
+        return $this->redirect('http://'.$website);
+    }
 }
