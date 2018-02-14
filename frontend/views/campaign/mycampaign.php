@@ -48,7 +48,12 @@ use yii\helpers\Console;
                                         <div class="posts_group lm_wrapper classic col-3">
                                             <?php foreach ($campaigns as $campaign) {
                                                 $backed = Fund::find()->where(['fund_c_id'=>$campaign->c_id])->sum('fund_amt');
-                                                $progress = ($backed/$campaign->c_goal)*100;
+
+                                                if($backed!=0){
+                                                    $progress = ($backed/$campaign->c_goal)*100;
+                                                }else{
+                                                    $progress=0;
+                                                }
                                                 ?>
                                                 <div class="post-item isotope-item clearfix post-2277 post  format-standard has-post-thumbnail  category-lifestyle  tag-video">
                                                     <div class="date_label">

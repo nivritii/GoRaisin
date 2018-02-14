@@ -40,7 +40,7 @@ $this->title = 'GoRaisin';
                 <?php $featured_campaign = Campaign::find()->where(['c_id'=>$category->featured_campaign_id])->one();
                       $new_campaigns = Campaign::find()->where(['c_cat_id'=>$category->id, 'c_new_tag'=>1])->limit(4)->all();?>
             <a class="featured-campaign-image" style="width: 700px;" href="<?= Url::to(['campaign/view', 'id' => $featured_campaign->c_id])?>"><?= Html::img('@web/images/uploads/'.$featured_campaign->c_image)?></a>
-                <p style="margin-top: 1%; font-size: 17px; color: #2c2c2c;"><?=$featured_campaign->c_title?></p>
+            <a href="<?= Url::to(['campaign/view', 'id' => $featured_campaign->c_id])?>"><p style="margin-top: 1%; font-size: 17px; color: #2c2c2c;" ><?=$featured_campaign->c_title?></p></a>
                 <p class="campaign-fund-progress" style="color: #858585;font-size: 15px;">90% FUNDED</p>
         </div>
 
@@ -51,7 +51,7 @@ $this->title = 'GoRaisin';
                  <a href="<?= Url::to(['campaign/view', 'id' => $new->c_id])?>"><?= Html::img('@web/images/uploads/'.$new->c_image,['class' => 'featured-campaign-image-right']) ?></a>
                 </div>
                 <div class="featured-campaign-title-container" style="display: inline-block;margin-left: 5%;margin-top: 5%;vertical-align: top;">
-                    <p class="featured-campaign-title-right" style="font-size: 15px;color: #2c2c2c;"><?=$new->c_title?></p>
+                    <a href="<?= Url::to(['campaign/view', 'id' => $new->c_id])?>"><p class="featured-campaign-title-right" style="font-size: 15px;color: #2c2c2c;"><?=$new->c_title?></p></a>
                     <p class="campaign-fund-progress-right" style="color: #858585;font-size: 12px;">30% funded</p>
                 </div>
                 <br />
