@@ -99,17 +99,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                                             <div class="post-head">
                                                                 <div class="post-meta clearfix">
                                                                     <div class="author-date">
-                                                                        <span class="vcard author post-author"><span class="label" style="color: #adadad;font-size: 12px">Published by </span>&nbsp&nbsp<i class="glyphicon glyphicon-user"></i><span class="fn"><a href="#"><?= $campaign->cAuthor->username?></a href="#"></span></span><span class="date"><span class="label">at </span><i class="glyphicon glyphicon-time"></i> <span class="post-date updated"><?= $campaign->c_created_at?></span></span>
+                                                                        <span class="vcard author post-author"><span class="label" style="color: #adadad;font-size: 12px">Published by </span>&nbsp&nbsp<i class="glyphicon glyphicon-user"></i>&nbsp;<span class="fn"><a href="#"><?= $campaign->cAuthor->username?></a href="#"></span></span><span class="date"><span class="label">at </span><i class="glyphicon glyphicon-time"></i> <span class="post-date updated"><?= $campaign->c_created_at?></span></span>
                                                                     </div>
                                                                     <div class="category">
                                                                         <p style="color: #337ab7;font-weight: 500"><i class="glyphicon glyphicon-tag" style="color: #337ab7"></i>&nbsp&nbsp;<?= $campaign->cCat->name?></p>
-                                                                        <!--<div class="cat-wrapper">
-                                                                            <ul class="post-categories">
-                                                                                <li>
-                                                                                    <a href="category-page.html" rel="category tag"><?/*= $campaign->cCat->name*/?></a>
-                                                                                </li>
-                                                                            </ul>
-                                                                        </div>-->
                                                                     </div>
                                                                 </div>
                                                             </div>

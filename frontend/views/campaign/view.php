@@ -139,7 +139,7 @@ frontend\assets\RoadmapAsset::register($this);
             <div class="sidebar sidebar-1 four columns" style="width: 25%;float: left; margin-right: 8%;">
                 <div class="widget-area clearfix" style="padding: 9px 0px 0px;">
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:<?=$progress?>%; background-color:#8f13a5f0"><?=$progress?>%
+                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:<?=$progress?>%; background-color:#8f13a5f0;color: black;"><?=$progress?>%
                         </div>
                     </div>
                     <h3 style="margin-top:25px; margin-bottom:0px;"><?=$backed?></h3>
@@ -168,8 +168,9 @@ frontend\assets\RoadmapAsset::register($this);
                             <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</h4></button>
                         </a>
                         <br /><br />
-                        <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>">
-                            <p><span class="glyphicon glyphicon-envelope"></span> Submit for Review</p>
+
+                        <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>" style="margin-left: 32%;text-decoration: none">
+                            <?= Html::submitButton('Submit for Review',['class' => 'btn btn-default','value' => 'moderation','name' => 'moderation','style' => 'background-color:#add8e6;color:#ffffff;border-radius: 10px']) ?>
                         </a>
                     <?php }elseif (Yii::$app->user->id == $model->c_author && $model->c_status == 'moderation') { ?>
                         <a href="<?= Url::to(['campaign/view','id'=>$model->c_id])?>">
