@@ -14,9 +14,9 @@ CampaignAsset::register($this);
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
-<div class="container">
+<div class="container" style="margin-top: 10px">
     <div class="row form-group">
-        <div class="col-xs-12">
+        <div class="col-xs-9">
             <ul class="nav nav-pills nav-justified thumbnail setup-panel" id="myNav">
                 <li id="navStep1" class="li-nav active" step="#step-1">
                     <a>
@@ -24,19 +24,19 @@ CampaignAsset::register($this);
                         <p class="list-group-item-text">Introduce your project</p>
                     </a>
                 </li>
-                <li id="navStep2" class="li-nav disabled" step="#step-2">
+                <li id="navStep2" class="li-nav active" step="#step-2">
                     <a>
                         <h4 class="list-group-item-heading">Rewards</h4>
                         <p class="list-group-item-text">Backers benefits</p>
                     </a>
                 </li>
-                <li id="navStep3" class="li-nav disabled" step="#step-3">
+                <li id="navStep3" class="li-nav" step="#step-3">
                     <a>
                         <h4 class="list-group-item-heading">The Story</h4>
                         <p class="list-group-item-text">More about your project</p>
                     </a>
                 </li>
-                <li id="navStep4" class="li-nav disabled" step="#step-4">
+                <li id="navStep4" class="li-nav" step="#step-4">
                     <a>
                         <h4 class="list-group-item-heading">Company</h4>
                         <p class="list-group-item-text">Share about your team</p>
@@ -44,20 +44,35 @@ CampaignAsset::register($this);
                 </li>
             </ul>
         </div>
-    </div>
-</div>
-
-
-<div class="container">
-    <div class="row form-group">
-        <div class="col-xs-12">
-            <div class="alert alert-success hide"></div>
+        <div>
+            <div class="col-xs-3">
+                <ul class="nav nav-pills nav-justified thumbnail setup-panel" id="myNav">
+            <li id="navStep5" class="li-nav" step="#step-5">
+                <a>
+                    <h4 class="list-group-item-heading">Preview</h4>
+                </a>
+            </li>
+            <li id="navStep6" class="li-nav" step="#step-6">
+                <a>
+                    <h4 class="list-group-item-heading">Submit For Review</h4>
+                    <p class="list-group-item-text">Will take about 3 days</p>
+                </a>
+            </li>
+                </ul>
         </div>
     </div>
 </div>
 
+
+<div class="row form-group">
+    <div class="col-xs-12">
+        <div class="alert alert-success hide"></div>
+    </div>
+</div>
+
+
 <form class="updateCampaign" enctype="multipart/form-data" action="update?id=<?=$model->c_id?>" method="post" id="tab_logic" name="campaignForm">
-    <div class="container">
+<!--    <div class="container">-->
         <div class="row setup-content" id="step-1">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
@@ -197,9 +212,9 @@ CampaignAsset::register($this);
                 <!-- </form> -->
             </div>
         </div>
+<!--    </div>-->
     </div>
-    </div>
-    <div class="container">
+<!--    <div class="container">-->
         <div class="row setup-content" id="step-2">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
@@ -267,8 +282,8 @@ CampaignAsset::register($this);
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
+<!--    </div>-->
+<!--    <div class="container">-->
         <div class="row setup-content" id="step-3">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
@@ -316,8 +331,8 @@ CampaignAsset::register($this);
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
+<!--    </div>-->
+<!--    <div class="container">-->
         <div class="row setup-content" id="step-4">
             <div class="col-xs-12">
                 <div class="col-md-12 well text-center">
@@ -386,7 +401,7 @@ CampaignAsset::register($this);
                 </div>
             </div>
         </div>
-    </div>
+<!--    </div>-->
 </form>
 
 <script>
@@ -443,7 +458,7 @@ CampaignAsset::register($this);
         if (true) {//Insert here your validation of the first step
             if(validateStep1()){
                 currentStep += 1;
-                $('#navStep' + currentStep).removeClass('disabled');
+                //$('#navStep' + currentStep).removeClass('disabled');
                 $('#navStep' + currentStep).click();
             }
         }
@@ -455,13 +470,13 @@ CampaignAsset::register($this);
     }
     function step2Next() {
         if (true) {
-            $('#navStep3').removeClass('disabled');
+            //$('#navStep3').removeClass('disabled');
             $('#navStep3').click();
         }
     }
     function step3Next() {
         if (true) {
-            $('#navStep4').removeClass('disabled');
+            //$('#navStep4').removeClass('disabled');
             $('#navStep4').click();
         }
     }
