@@ -38,14 +38,36 @@ $this->params['breadcrumbs'][] = $this->title;
                                 <div class="tab-content">
                                     <div id="home" class="tab-pane fade in active">
                                         <!--<h3>Activity</h3>-->
-                                        <br /><br />
                                         <?php foreach ($activities as $activity){?>
-                                        <div class="card">
-                                            <div class="card-block">
-                                                <h4 class="card-title">Fund Amount <?=$activity->fund_amt?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Campaign <?php echo $activity->fundC->c_title?></h4>
-                                                <h6 class="card-subtitle mb-2 text-muted"><?=$activity->fund_created_on?></h6>
+                                            <div style="margin-top: 2%;margin-left: 1.5%">
+                                                <div>
+                                                    <div style="display: inline-block">
+                                                        <h4>Fund Campaign</h4>
+                                                    </div>
+                                                    <div style="clear: both;display: inline-block;margin-left: 2%;width: 15%">
+                                                        <p style="font-size: 15px"><?php echo $activity->fundC->c_title?></p>
+                                                    </div>
+                                                    <div style="clear: both;display: inline-block;width: 12%">
+                                                        <h4>Fund Amount</h4>
+                                                    </div>
+                                                    <div style="clear: both;display: inline-block;width: 5%">
+                                                        <p><?=$activity->fund_amt?></p>
+                                                    </div>
+                                                    <div style="clear: both;display: inline-block;width: 15%">
+                                                        <h4>Operation Time</h4>
+                                                    </div>
+                                                    <div style="clear: both;display: inline-block;width: 20%">
+                                                        <p><?=$activity->fund_created_on?></p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
+                                            <hr style=" height:1px;border:none;border-top:1px solid #f9f9f9;" />
+                                        <!--<div class="card">
+                                            <div class="card-block">
+                                                <h4 class="card-title">Campaign <?php /*echo $activity->fundC->c_title*/?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspFund Amount <?/*=$activity->fund_amt*/?></h4>
+                                                <h6 class="card-subtitle mb-2 text-muted"><?/*=$activity->fund_created_on*/?></h6>
+                                            </div>
+                                        </div>-->
                                         <?php }?>
                                     </div>
                                     <div id="menu1" class="tab-pane fade">
