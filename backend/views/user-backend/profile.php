@@ -75,11 +75,11 @@ $this->params['breadcrumbs'][] = 'Update';
                                             </div>
                                         </div>
                                         <?=
-                                        Html::a('Edit',['update'],[
+                                        Html::a('Edit',['update','id' => $model->id],[
                                             'class' => 'btn btn-default btn-update',
                                             'id' => 'update',
-                                            'data-toggle' => 'modal',
-                                            'data-target' => '#operate-modal',
+                                            /*'data-toggle' => 'modal',
+                                            'data-target' => '#operate-modal',*/
                                             'style' => 'background-color: #50327c; color: #ffffff',
                                         ])
                                         ?>
@@ -179,7 +179,7 @@ Modal::end();
 ?>
 
 <?php
-$userId = Yii::$app->user->identity->id;
+/*$userId = Yii::$app->user->identity->id;
 $requestUpdateUrl = Url::toRoute('user-backend/update');
 $js = <<<JS
     $('.btn-update').on('click',function () {
@@ -192,6 +192,6 @@ $js = <<<JS
     });
 JS;
 $this->registerJs($js);
-?>
+*/?>
 
 

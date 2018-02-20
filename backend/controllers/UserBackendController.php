@@ -106,7 +106,7 @@ class UserBackendController extends Controller
             $model->save();
             return $this->redirect(['user-backend/profile', 'id' => $model->id]);
         } else {
-            return $this->renderAjax('update', [
+            return $this->render('update', [
                 'model' => $model,
             ]);
         }
