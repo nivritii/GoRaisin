@@ -52,7 +52,7 @@ $this->params['breadcrumbs'][] = 'Update';
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary','style' => 'background-color: #50327c; color: #ffffff']) ?>
         <?=
-        Html::a('Cancel',['site/index'],[
+        Html::a('Cancel',['user-backend/profile','id' => $model->id],[
             'class' => 'btn btn-default',
             'id' => 'cancel',
         ])
