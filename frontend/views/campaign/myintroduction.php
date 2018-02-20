@@ -35,6 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <br /><br />
                                     <p style="font-size: 30px;font-weight: 400"><?php echo $model->cAuthor->username ?></p>
                                     <p style="color: #adadad;">Joined <?php echo $model->cAuthor->created_at ?></p>
+                                    <p style="color: #adadad;">Located at <?php echo $model->cAuthor->location ?></p>
                                 </div>
                                 <ul class="nav nav-tabs">
                                     <li class="active"><a data-toggle="tab" href="#home" style="font-size: 18px">About</a></li>
@@ -44,48 +45,26 @@ $this->params['breadcrumbs'][] = $this->title;
 
                                 <div class="tab-content">
                                     <div id="home" class="tab-pane fade in active">
-                                        <div>
+                                        <div style="height: 300px">
                                             <div style="margin-left: 6%;margin-top: 2%;display: inline-block;width:10%">
                                                 <p style="font-size: 20px;font-weight: 400">Biography</p>
                                             </div>
                                             <div style="clear: both;display: inline-block;margin-left: 10%;width: 50%;height: 300px">
+                                                <?php if ($model->cAuthor->biography == null){ ?>
+                                                    <p><i>The user has not leave biography.</i></p>
+                                                <?php }else{ ?>
                                                 <p><?php echo $model->cAuthor->biography ?></p>
+                                                <?php } ?>
                                             </div>
                                         </div>
-                                        <div>
+                                        <div style="height: 100px">
                                             <div style="margin-left: 6%;margin-top: 2%;display: inline-block;width:10%">
                                                 <p style="font-size: 20px;font-weight: 400">Website</p>
                                             </div>
                                             <div style="clear: both;display: inline-block;margin-left: 10%;width: 50%;height: 400px">
-                                                <p><?php echo $model->cAuthor->website ?></p>
+                                                <?= Html::a($model->cAuthor->website,['campaign/redirect','website' => $model->cAuthor->website],['target' => '_blank']) ?>
                                             </div>
                                         </div>
-
-                                        <?php /*foreach ($activities as $activity){*/?><!--
-                                            <div style="margin-top: 2%;margin-left: 1.5%">
-                                                <div>
-                                                    <div style="display: inline-block">
-                                                        <h4>Fund Campaign</h4>
-                                                    </div>
-                                                    <div style="clear: both;display: inline-block;margin-left: 2%;width: 15%">
-                                                        <p style="font-size: 15px"><?php /*echo $activity->fundC->c_title*/?></p>
-                                                    </div>
-                                                    <div style="clear: both;display: inline-block;width: 12%">
-                                                        <h4>Fund Amount</h4>
-                                                    </div>
-                                                    <div style="clear: both;display: inline-block;width: 5%">
-                                                        <p><?/*=$activity->fund_amt*/?></p>
-                                                    </div>
-                                                    <div style="clear: both;display: inline-block;width: 15%">
-                                                        <h4>Operation Time</h4>
-                                                    </div>
-                                                    <div style="clear: both;display: inline-block;width: 20%">
-                                                        <p><?/*=$activity->fund_created_on*/?></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <hr style=" height:1px;border:none;border-top:1px solid #f9f9f9;" />
-                                        --><?php /*}*/?>
                                     </div>
                                     <div id="menu1" class="tab-pane fade">
                                         <!--<h3>Created Projects</h3>-->
@@ -104,7 +83,6 @@ $this->params['breadcrumbs'][] = $this->title;
                                                             <a href="<?= Url::to(['campaign/view', 'id' => $campaign->c_id])?>">
                                                                 <div class="mask"></div>
                                                                 <?= Html::img(Url::to('@web/images/uploads/' . $campaign->c_image), ['class' => 'scale-with-grid wp-post-image'], ['alt' => 'Image'], ['align' => 'left'], ['width' => '1200'], ['height' => '480']) ?>
-                                                                <!--<img width="960" height="750" src="images/home_blogger2_lifestyle1-960x750.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_lifestyle1" itemprop="image" />-->
                                                             </a>
                                                             <div class="image_links double">
                                                                 <a href="images/home_blogger2_lifestyle1-1200x800.jpg" class="zoom" rel="prettyphoto"><i class="icon-search"></i></a><a href="item-8.html" class="link"><i class="icon-link"></i></a>
@@ -147,36 +125,21 @@ $this->params['breadcrumbs'][] = $this->title;
                                     </div>
                                     <div id="menu2" class="tab-pane fade">
                                         <div class="container">
-                                            <!--<h2><bold>Backed Projects</bold></h2>-->
-                                            <br /><br />
-                                            <p>A place to keep track of all your backed projects</p>
-                                            <h3>Live Projects</h3>
-                                            <p>Tracks both live and dropped projects</p>
-                                            <br/>
-                                            <table class="table table-hover">
-                                                <thead>
-                                                <tr>
-                                                    <th>Backed Projects</th>
-                                                    <th>Pledged Amount</th>
-                                                    <th>Reward</th>
-                                                    <th>Ends on</th>
-                                                    <th>Drop a Message</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
+                                            <div>
                                                 <?php foreach ($fundedCampaigns as $fundCampaign){
                                                     $fundamt = Fund::find()->where(['fund_c_id'=>$fundCampaign->c_id,'fund_user_id'=>Yii::$app->user->getId()])->sum('fund_amt');
                                                     ?>
-                                                    <tr>
-                                                        <td><?=$fundCampaign->c_title?></td>
-                                                        <td><?=$fundamt?></td>
-                                                        <td>Null</td>
-                                                        <td><?=$fundCampaign->c_end_date?></td>
-                                                        <td><a href="#">New Message</a></td>
-                                                    </tr>
+                                                    <div style="margin-left: 5%;margin-top: 3%;width: 300px;height: 400px;display: inline-block;border: 1px solid #d8d8d8">
+                                                        <div>
+                                                            <?= Html::img('@web/images/uploads/' . $fundCampaign->c_image) ?>
+                                                            <br /><br />
+                                                            <?= Html::a($fundCampaign->c_title,['campaign/view', 'id' => $fundCampaign->c_id],['target' => '_blank','style' => 'margin-left: 5%;padding-top:4%;font-size: 20px;font-weight: 300;color:#484848']) ?>
+                                                            <br /><br/>
+                                                            <p style="display: inline-block;margin-left: 5%;color: #2e2e2e">By</p><?= Html::a($fundCampaign->cAuthor->username,['campaign/myintroduction','id' => $fundCampaign->c_id],['target' => '_blank','style' => 'margin-left: 2%;padding-top:4%;font-size: 17px;font-weight: 300;color:#2e2e2e']) ?>
+                                                        </div>
+                                                    </div>
                                                 <?php }?>
-                                                </tbody>
-                                            </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

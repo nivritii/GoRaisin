@@ -403,4 +403,11 @@ class CampaignController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+    /*
+     * Redirect to external website
+     */
+    public function actionRedirect($website)
+    {
+        return $this->redirect('http://'.$website);
+    }
 }
