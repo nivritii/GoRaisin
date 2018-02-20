@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <div class="section_wrapper mcb-section-inner">
                             <div class="container" style="padding-left:0px">
                                 <div style="text-align: center;">
-                                    <?php $imagePath = '/'.Yii::$app->user->identity->image; ?>
+                                    <?php $imagePath = '/'.$model->cAuthor->image; ?>
                                     <?= Html::img(Yii::$app->request->baseUrl.$imagePath,['style' => 'height:70px;width:70px;border-radius:35px']) ?>
                                     <br /><br />
                                     <p style="font-size: 30px;font-weight: 400"><?php echo $model->cAuthor->username ?></p>

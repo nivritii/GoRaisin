@@ -98,11 +98,6 @@ class UserBackendController extends Controller
             }else {
                 $model->image = $current_image;
             }
-
-
-            /*$model->file->saveAs('uploads/'.$imageName.'.'.$model->file->extension);*/
-            //save the path in the database column
-            /*$model->image = 'uploads/'.$imageName.'.'.$model->file->extension;*/
             $model->save();
             return $this->redirect(['user-backend/profile', 'id' => $model->id]);
         } else {

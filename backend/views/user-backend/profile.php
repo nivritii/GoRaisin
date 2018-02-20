@@ -171,12 +171,12 @@ $this->params['breadcrumbs'][] = 'Update';
 </section>
 
 <?php
-Modal::begin([
+/*Modal::begin([
     'id' => 'operate-modal',
     'header' => '<h4 class="modal-title"></h4>',
 ]);
 Modal::end();
-?>
+*/?>
 
 <?php
 /*$userId = Yii::$app->user->identity->id;

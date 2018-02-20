@@ -60,7 +60,7 @@ class CampaignController extends Controller
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['show','view'],
+                        'actions' => ['show','view','viewcompany','myintroduction'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -109,7 +109,7 @@ class CampaignController extends Controller
      */
     public function actionViewcompany($id)
     {
-        return $this->render('viewcompany',['model' => $this->findModel($id)]);
+        return $this->renderAjax('viewcompany',['model' => $this->findModel($id)]);
     }
     /**
      * Link to external website
@@ -356,10 +356,11 @@ class CampaignController extends Controller
      */
     public function actionMyintroduction($id)
     {
-        $campaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId()])->all();
-        $fund = Fund::find()->where(['fund_user_id'=>Yii::$app->user->getId()])->all();
+        $model = $this->findModel($id);
+        $authorId = $model->cAuthor->id;
+        $campaigns = Campaign::find()->where(['c_author'=>$authorId])->all();
 
-        $cIds = Fund::find()->select(['fund_c_id'])->where(['fund_user_id'=>Yii::$app->user->getId()])->distinct();
+        $cIds = Fund::find()->select(['fund_c_id'])->where(['fund_user_id'=>$authorId])->distinct();
         $fundedCampaigns = Campaign::find()->where(['c_id'=>$cIds])->all();
 
         return $this->render('myintroduction',[
