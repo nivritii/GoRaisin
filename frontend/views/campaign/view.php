@@ -8,6 +8,7 @@ use frontend\assets\HomePageAsset;
 use yii\widgets\ListView;
 use kartik\tabs\TabsX;
 use frontend\models\User;
+use yii\bootstrap\Modal;
 
 /*HomePageAsset::register($this);*/
 
@@ -37,11 +38,16 @@ frontend\assets\RoadmapAsset::register($this);
                 <div style="border-right: .5px solid #f0f0f0; padding-top: 3%">
                     <div class="column zero" style="width: 100%">
                         <div style="display: inline-block;vertical-align: middle;padding-top:5%">
-                        <?= Html::img('@web/'.$model->cAuthor->image,['style' => 'height:35px;width:35px;border-radius:10px']) ?>
-                            <?php $displayname = $model->c_display_name?>
-                            <?= Html::a($displayname,['campaign/myintroduction','id' => $model->c_id]) ?>
-                        <!--<p><?/*=$model->c_display_name*/?></p>-->
-                            <?= Html::a('View',['campaign/viewcompany','id' => $model->c_id],['target' => '_blank','style' => 'text-decoration:none;color:#ffffff;background-color:#940094;padding:3%;border-radius:5px;font-size:15px']) ?>
+                            <?= Html::img('@web/'.$model->cAuthor->image,['style' => 'height:40px;width:40px;border-radius:10px;margin-bottom:10%']) ?>
+                            <br />
+                            <?= Html::a('View',['campaign/viewcompany'],[
+                                'id' => 'view-company',
+                                'class' => 'view-company',
+                                'data-toggle' => 'modal',
+                                'data-target' => '#view-author',
+                                'style' => 'text-decoration:none;color:#ffffff;background-color:#940094;padding:3px;border-radius:5px;font-size:15px;'
+                            ])
+                            ?>
                         </div>
                         <div style="clear:both; display: inline-block;vertical-align: middle;margin-left: 10%;width: 75%;">
                         <h1 class="title" style="color: #6b0d7ce8"><?=$model->c_title?></h1>
@@ -197,6 +203,28 @@ frontend\assets\RoadmapAsset::register($this);
     </div>
 </div>
 
+<?php
+Modal::begin([
+    'id' => 'view-author',
+    'header' => '<h4 class="modal-title">About the author</h4>',
+]);
+
+$campaignId = $model->c_id;
+$requestCreateUrl = Url::toRoute('viewcompany');
+$js = <<<JS
+$('.view-company').on('click', function () {
+    $('.modal-title').html('About the author');
+    $.get('{$requestCreateUrl}',{id: $model->c_id},
+        function (data) {
+            $('.modal-body').html(data);
+        }  
+    );
+});
+JS;
+$this->registerJs($js);
+Modal::end();
+?>
+
 <script>
     // Set the date we're counting down to
     var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime();
@@ -227,3 +255,6 @@ frontend\assets\RoadmapAsset::register($this);
         }
     }, 1000);
 </script>
+
+
+
