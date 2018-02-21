@@ -62,7 +62,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <p style="font-size: 20px;font-weight: 400">Website</p>
                                             </div>
                                             <div style="clear: both;display: inline-block;margin-left: 10%;width: 50%;height: 400px">
+                                                <?php if ($model->cAuthor->website == null){ ?>
+                                                    <p><i>The user has not leave website.</i></p>
+                                                <?php } else{?>
                                                 <?= Html::a($model->cAuthor->website,['campaign/linkexternal','website' => $model->cAuthor->website],['target' => '_blank']) ?>
+                                                <?php }?>
                                             </div>
                                         </div>
                                     </div>

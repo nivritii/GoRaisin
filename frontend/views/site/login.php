@@ -9,6 +9,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
+
 frontend\assets\LoginAsset::register($this);
 
 $this->title = 'Log in - GoRaisin';
