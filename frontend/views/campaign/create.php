@@ -85,7 +85,7 @@ $campaign_draft = new Campaign();
                             <div class="container">
                                 <br/>
                                 <div class="form-group">
-                                    <div style="width: 100%;height: 80px">
+                                    <div style="width: 100%;">
                                         <div style="float: left;display: inline-block;width: 20%">
                                             <p class="item-title">Campaign title</p>
                                         </div>
@@ -93,14 +93,14 @@ $campaign_draft = new Campaign();
                                             <input type="text" style="width: 100%" name="cTitle" id="cTitle" required>
                                         </div>
                                     </div>
-                                    <div style="clear:both;height: 80px">
+                                    <div style="clear:both;">
                                         <div style="float: left;display: inline-block;width: 20%">
                                             <p class="item-title">Category</p>
                                         </div>
                                         <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
                                             <select name="cCategory" id="search_categories"
                                                     data-default-caption="Select Category"
-                                                    style="border-radius: 10px;width: 100%">
+                                                    style="border-radius: 0px;width: 100%">
                                                 <option selected value=""><?=$model->cCat->name?></option>
                                                 <?php foreach ($categories as $category) { ?>
                                                     <option value=<?= $category->id ?>><?= $category->name ?></option>
@@ -108,12 +108,11 @@ $campaign_draft = new Campaign();
                                             </select>
                                         </div>
                                     </div>
-
-                                    <div style="clear:both;height: 460px">
+                                    <div style="clear:both;padding-top: 20px">
                                         <div style="float: left;display: inline-block;width: 20%">
                                             <p class="item-title">Campaign image</p>
                                         </div>
-                                        <div style="float: left;display: inline-block;width: 60%;margin-left: 2%">
+                                        <div style="float: left;display: inline-block;width: 50%;margin-left: 2%">
                                             <div class="file-upload">
                                                 <button class="file-upload-btn" type="button"
                                                         onclick="$('.file-upload-input').trigger( 'click' )">Add Image
@@ -139,20 +138,20 @@ $campaign_draft = new Campaign();
                                         </div>
                                     </div>
 
-                                    <div style="clear:both;height: 140px">
+                                    <div style="clear:both;padding-top: 20px">
                                         <div style="float: left;display: inline-block;width: 20%">
                                             <p class="item-title">Short description</p>
                                         </div>
                                         <div style="display: inline-block;float: left;margin-left: 2%;width: 60%;class="textEditor">
-                                        <textarea rows="2" type="text" style="width: 100%;" name="cDesc" id="cDesc"> </textarea>
+                                        <textarea rows="2" type="text" style="width: 84%;" name="cDesc" id="cDesc"> </textarea>
                                     </div>
                                 </div>
 
-                                <div style="clear:both;height: 80px">
+                                <div style="clear:both;padding-top: 20px">
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Start date</p>
                                     </div>
-                                    <div style="float: left;display: inline-block;width: 20%;margin-left: 2%">
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 2%">
                                         <?php
                                         echo DatePicker::widget([
                                             'name' => 'cStartdate',
@@ -166,11 +165,11 @@ $campaign_draft = new Campaign();
                                     </div>
                                 </div>
 
-                                <div style="clear:both;height: 80px">
+                                <div style="clear:both;padding-top: 20px">
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">End date</p>
                                     </div>
-                                    <div style="float: left;display: inline-block;width: 20%;margin-left: 2%">
+                                    <div style="float: left;display: inline-block;width: 50%;margin-left: 2%">
                                         <?php
                                         echo DatePicker::widget([
                                             'name' => 'cEnddate',
@@ -184,7 +183,7 @@ $campaign_draft = new Campaign();
                                     </div>
                                 </div>
 
-                                <div style="clear:both;height: 80px">
+                                <div style="clear:both;padding-top: 20px">
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Target</p>
                                     </div>
@@ -192,8 +191,8 @@ $campaign_draft = new Campaign();
                                         <div style="display: inline-block;float: left;text-align: center;padding-top: 1%">
                                             <i class="fa fa-bitcoin fa-2x" style="float: left;"></i>
                                         </div>
-                                        <div style="display: inline-block;width: 40%;float: left">
-                                            <input type="text" style="width: 40%;float: left" name="cGoal" id="cGoal">
+                                        <div style="display: inline-block;width: 95%;float: right">
+                                            <input type="text" style="width: 100%;float: left" name="cGoal" id="cGoal">
                                         </div>
                                     </div>
                                 </div>
