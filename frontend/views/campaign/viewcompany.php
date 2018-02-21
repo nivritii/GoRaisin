@@ -22,6 +22,11 @@ $this->title = 'About '.$model->c_display_name.' - GoRaisin';
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<div style="margin-left: 10%;margin-top: 6%;display: inline-block">
+    <p style="font-size: 25px;font-weight: 500">About the author</p>
+</div>
+<button type="button" class="close" data-dismiss="modal" style="margin-top: 6%;margin-right: 2%"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+<hr />
 <div style="margin-left: 15%;margin-top: 2%">
     <p style="font-size: 25px;font-weight: 500"><?php echo $model->c_display_name ?></p>
 </div>

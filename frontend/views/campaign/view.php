@@ -40,9 +40,10 @@ frontend\assets\RoadmapAsset::register($this);
                         <div style="display: inline-block;vertical-align: middle;padding-top:5%">
                             <?= Html::img('@web/'.$model->cAuthor->image,['style' => 'height:40px;width:40px;border-radius:10px;margin-bottom:10%']) ?>
                             <br />
-                            <?= Html::a('View',['campaign/viewcompany'],[
+                            <?=
+                            Html::a('View',['viewcompany','id' => $model->c_id],[
                                 'id' => 'view-company',
-                                'class' => 'view-company',
+                                'class' => 'view-author',
                                 'data-toggle' => 'modal',
                                 'data-target' => '#view-author',
                                 'style' => 'text-decoration:none;color:#ffffff;background-color:#940094;padding:3px;border-radius:5px;font-size:15px;'
@@ -212,7 +213,7 @@ Modal::begin([
 $campaignId = $model->c_id;
 $requestCreateUrl = Url::toRoute('viewcompany');
 $js = <<<JS
-$('.view-company').on('click', function () {
+$('#view-author').on('click', function () {
     $('.modal-title').html('About the author');
     $.get('{$requestCreateUrl}',{id: $model->c_id},
         function (data) {
@@ -255,6 +256,3 @@ Modal::end();
         }
     }, 1000);
 </script>
-
-
-
