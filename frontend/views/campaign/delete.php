@@ -27,7 +27,7 @@ CampaignAsset::register($this);
                 <div style="margin-top: 20px; margin-bottom: 10px;">Enter your GoRaisin password for verification</div>
                 <div>
                 <input type="password" name="password" id="password"></div>
-            <input onclick="validate()" class="btn btn-md btn-danger" type="submit" value="Delete Project" style="border: 0;width: 35%">
+            <input onclick="return validate()" class="btn btn-md btn-danger" type="submit" value="Delete Project" style="border: 0;width: 35%">
                 <a style="margin-left: 20px; text-underline: #0a6bbe" href="<?=Url::to(['campaign/mycampaign'])?>">No, keep the project</a>
                 <hr class="no_line" style="margin: 30px auto 30px;" />
                 <p class="text-left" style="font-size: medium;margin-bottom: 20px;"><b>Forgot your password</b></p>
@@ -41,30 +41,9 @@ CampaignAsset::register($this);
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" <?=$model?>>
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script>
     var password = document.passwordForm.password;
-    var error_messge = "";
+    var error_message = "";
     function validate() {
         if(password.value==""){
             password.focus();
@@ -73,10 +52,11 @@ CampaignAsset::register($this);
         if(error_message){
             $('.alert-success').removeClass('hide').html(error_message);
             error_message='';
-            //return false;
+            return false;
         }else{
             error_message='';
-            //return true;
+            return true;
         }
+        return false
     }
 </script>

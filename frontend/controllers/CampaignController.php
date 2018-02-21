@@ -3,6 +3,7 @@
 namespace frontend\controllers;
 
 use common\models\LoginForm;
+use frontend\models\Faq;
 use frontend\models\Reward;
 use frontend\models\Update;
 use frontend\tests\unit\models\PasswordResetRequestFormTest;
@@ -23,6 +24,7 @@ use frontend\models\Model;
 use yii\web\UploadedFile;
 use atans\actionlog\models\ActionLog;
 use frontend\models\PasswordResetRequestForm;
+use yii2mod\alert;
 
 ActionLog::error('Some error message');
 ActionLog::info('Some info message');
@@ -413,25 +415,34 @@ class CampaignController extends Controller
     {
         $campaign = $this->findModel($id);
         $user = new LoginForm();
-        $model="";
 
         if($_SERVER["REQUEST_METHOD"]=="POST"){
             $user->username=Yii::$app->user->getIdentity()->username;
             $user->password=$_POST['password'];
             if($user->login()){
-                return $this->redirect(['mycampaign']);
+                if($this->countRewards($id)>0){
+                    $this->deleteRewards($id);
+                }
+                if($this->countComments($id)>0){
+                    $this->deleteComments($id);
+                }
+                if($this->countUpdates($id)>0){
+                    $this->deleteUpdates($id);
+                }
+                if($this->countfaqs($id)>0){
+                    $this->deletefaqs($id);
+                }
+                $this->findModel($id)->delete();
+                Yii::$app->session->setFlash('success', 'You have deleted successfully your project!');
+                return $this->redirect('mycampaign');
             }else{
-                $model="hidden";
                 return $this->render('delete',[
                     'campaign' => $campaign,
-                    'model' => $model,
                     ]);
             }
         }
-
         return $this->render('delete',[
            'campaign' => $campaign,
-            'model' => $model,
         ]);
     }
 
@@ -462,5 +473,69 @@ class CampaignController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function countRewards($id)
+    {
+        $count = Reward::find()->where(['c_id'=>$id])->count();
+        return $count;
+    }
+
+    protected function deleteRewards($id)
+    {
+        $rewards = Reward::find()->where(['c_id'=>$id])->all();
+        foreach ($rewards as $reward){
+            $reward->delete();
+            return true;
+        }
+        return false;
+    }
+
+    protected function countComments($id)
+    {
+        $count = Comment::find()->where(['comment_camp_id'=>$id])->count();
+        return $count;
+    }
+
+    protected function deleteComments($id)
+    {
+        $comments = Comment::find()->where(['comment_camp_id'=>$id])->all();
+        foreach ($comments as $comment){
+            $comment->delete();
+            return true;
+        }
+        return false;
+    }
+
+    protected function countUpdates($id)
+    {
+        $count = Update::find()->where(['campaign_id'=>$id])->count();
+        return $count;
+    }
+
+    protected function deleteUpdates($id)
+    {
+        $updates = Update::find()->where(['campaign_id'=>$id])->all();
+        foreach ($updates as $update){
+            $update->delete();
+            return true;
+        }
+        return false;
+    }
+
+    protected function countfaqs($id)
+    {
+        $count = Faq::find()->where(['campaign_id'=>$id])->count();
+        return $count;
+    }
+
+    protected function deleteFaqs($id)
+    {
+        $faqs = Update::find()->where(['campaign_id'=>$id])->all();
+        foreach ($faqs as $faq){
+            $faq->delete();
+            return true;
+        }
+        return false;
     }
 }

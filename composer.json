@@ -13,7 +13,8 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "artkost/yii2-trumbowyg": "@stable",
         "2amigos/yii2-chartjs-widget": "~2.0",
-        "atans/yii2-actionlog": "^1.0"
+        "atans/yii2-actionlog": "^1.0",
+        "yii2mod/yii2-sweet-alert": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",
