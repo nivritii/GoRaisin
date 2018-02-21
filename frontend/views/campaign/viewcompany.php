@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div style="margin-left: 15%;margin-top: 5%">
     <p style="font-size: 17px;font-weight: 400">Company Profile</p>
 </div>
-<div style="margin-left: 15%;margin-top: 1%;height:200px">
+<div style="margin-left: 15%;margin-top: 1%;height:200px;margin-right: 3%">
     <p style="font-size: 17px;font-weight: 300"><?php echo $model->c_biography ?></p>
 </div>
 <div style="margin-left: 15%;margin-top: 3%">

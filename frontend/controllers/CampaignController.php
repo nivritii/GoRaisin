@@ -269,7 +269,6 @@ class CampaignController extends Controller
             if ($model->save()){
 
                 $number = count($_POST['rTitle']);
-                echo("<script>console.log('PHP: ".$number."');</script>");
                 for ($i=0; $i<$number; $i++){
                     $reward->c_id=$model->c_id;
                     $reward->r_title=$_POST['rTitle'][$i];
