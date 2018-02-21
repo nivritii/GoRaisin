@@ -8,6 +8,7 @@ use frontend\models\Update;
 use frontend\tests\unit\models\PasswordResetRequestFormTest;
 use Yii;
 use frontend\models\Campaign;
+use frontend\models\Location;
 use frontend\models\CampaignSearch;
 use frontend\models\CampaignReward;
 use yii\web\Controller;
@@ -171,9 +172,37 @@ class CampaignController extends Controller
      * @return mixed
      */
 
-    public function actionCreate()
+      public function actionNew()
+      {
+          $newCampaign = new Campaign();
+          $categories = Category::find()->all();
+          $countries = Location::find()->all();
+
+          if($_SERVER["REQUEST_METHOD"]=="POST"){
+              $newCampaign->c_author= Yii::$app->user->identity->getId();
+              $newCampaign->c_cat_id=$_POST['cCategory'];
+              $newCampaign->c_description=$_POST['cDesc'];
+              $newCampaign->c_location=$_POST['cLocation'];
+
+              if($newCampaign->save(false)){
+                  return $this->redirect(['create', 'id'=>$newCampaign->c_id]);
+              }
+          }
+
+          return $this->render('new',[
+              'categories' =>$categories,
+              'countries' => $countries,
+          ]);
+      }
+
+    /**
+     * @param $id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionCreate($id)
     {
-        $model = new Campaign();
+        $model = $this->findModel($id);
         $categories = Category::find()->all();
         $reward = new Reward();
 
