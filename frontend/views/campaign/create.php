@@ -4,6 +4,8 @@ use frontend\assets\HomePageAsset;
 use frontend\assets\CampaignAsset;
 use frontend\models\Campaign;
 use yii\helpers\Html;
+use yii\helpers\Url;
+use kartik\tabs\TabsX;
 use frontend\models\Category;
 use kartik\date\DatePicker;
 HomePageAsset::register($this);
@@ -99,7 +101,7 @@ $campaign_draft = new Campaign();
                                             <select name="cCategory" id="search_categories"
                                                     data-default-caption="Select Category"
                                                     style="border-radius: 10px;width: 100%">
-                                                <option selected value="">Select Category</option>
+                                                <option selected value=""><?=$model->cCat->name?></option>
                                                 <?php foreach ($categories as $category) { ?>
                                                     <option value=<?= $category->id ?>><?= $category->name ?></option>
                                                 <?php } ?>
@@ -402,86 +404,190 @@ $campaign_draft = new Campaign();
     </div>
 <!--Step 5-->
 <div class="row setup-content" id="step-5">
-<!--    --><?php //$this->render('view',[
-//        'model' => $campaign_draft,
-//        'backed' => 0,
-//        'progress' => 0,
-//        'categories' => $categories,
-//        'comments' => [],
-//        'updates' => [],
-//    ]) ?>
-<!--    <div class="col-xs-12">-->
-<!--        <div class="col-md-12 well text-center">-->
-<!--            <h1 class="tabpage-title">Company</h1>-->
-<!---->
-<!--            <div class="container col-xs-12">-->
-<!--                <div class="container">-->
-<!--                    <br />-->
-<!--                    <div class="form-group">-->
-<!--                        <div style="width: 100%;height: 80px">-->
-<!--                            <div style="float: left;display: inline-block;width: 20%">-->
-<!--                                <p class="item-title">Author name</p>-->
-<!--                            </div>-->
-<!--                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">-->
-<!--                                <input type="text" style="width: 100%" name="cName">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!---->
-<!--                        <div style="clear:both;height: 80px">-->
-<!--                            <div style="float: left;display: inline-block;width: 20%">-->
-<!--                                <p class="item-title">Email</p>-->
-<!--                            </div>-->
-<!--                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">-->
-<!--                                --><?php ///*echo Yii::$app->user->identity->email */?><!--<!---->
-<!--                                        --><?php ///*if (!empty(Yii::$app->user->identity->email)) {
-//                                            $email = Yii::$app->user->identity->email*/?>
-<!--                                        <input type="text" style="width: 100%" name="cEmail" value=--><?php ///*$email */?><!-->-->
-<!--                                        -->--><?php ///*}else { */?>
-<!--                                <input type="text" style="width: 100%" name="cEmail">-->
-<!--                                --><?php ///*}*/?>
-<!--                            </div>-->
-<!--                        </div>-->
-<!---->
-<!--                        <div style="clear:both;height: 180px;">-->
-<!--                            <div style="float: left;display: inline-block;width: 20%">-->
-<!--                                <p class="item-title">Company biography</p>-->
-<!--                            </div>-->
-<!--                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">-->
-<!--                                <textarea rows="5" type="text" style="width: 100%" name="cBio"> </textarea>-->
-<!--                                <p align="left">Simply introduce your company can help backers learn about your campaign better!</p>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!---->
-<!--                        <div style="clear:both;height: 80px;">-->
-<!--                            <div style="float: left;display: inline-block;width: 20%">-->
-<!--                                <p class="item-title">Company location</p>-->
-<!--                            </div>-->
-<!--                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">-->
-<!--                                <input type="text" style="width: 100%" name="cLocation">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!---->
-<!--                        <div style="clear:both;height: 80px;">-->
-<!--                            <div style="float: left;display: inline-block;width: 20%">-->
-<!--                                <p class="item-title">Company website</p>-->
-<!--                            </div>-->
-<!--                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">-->
-<!--                                <input type="text" style="width: 100%" name="cProfile">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!---->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <!--</form> -->-->
-<!---->
-<!--            <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">-->
-<!--            <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">-->
-<!---->
-<!--            <div class="form-group">-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
+    <div class="campaign-view">
+        <!-- Main Content -->
+        <div id="Content" style="padding: 0px">
+            <div class="content_wrapper clearfix">
+                <!--<div class="sidebar sidebar-1 four columns" style="width: 0%;float: left; margin-left: 9%; border-right: .5px solid #f0f0f0; padding-top: 4%">
+                <div style="padding-left: 20%">
+                    <div style="width: 35px; height: 42px;margin-left: 10%">
+                        <?/*= Html::img('@web/'.$model->cAuthor->image,['style' => 'margin-left:55%']) */?>
+                        <?/*=Html::img(Url::to('@web/'.$model->cAuthor->image))*/?>
+                    </div>
+                    <p style="margin-left: 55%"><?/*=$model->cAuthor->username*/?></p>
+                </div>
+            </div>-->
+                <div class="sections_group" style="width: 55%;float: left;margin-left: 10%">
+                    <div style="border-right: .5px solid #f0f0f0; padding-top: 3%">
+                        <div class="column zero" style="width: 100%">
+                            <div style="display: inline-block;vertical-align: middle;padding-top:5%">
+                                <?= Html::img('@web/'.$model->cAuthor->image,['style' => 'height:40px;width:40px;border-radius:10px;margin-bottom:10%']) ?>
+                                <br />
+                                <?=
+                                Html::a('View',['viewcompany','id' => $model->c_id],[
+                                    'id' => 'view-company',
+                                    'class' => 'view-author',
+                                    'data-toggle' => 'modal',
+                                    'data-target' => '#view-author',
+                                    'style' => 'text-decoration:none;color:#ffffff;background-color:#940094;padding:3px;border-radius:5px;font-size:15px;'
+                                ])
+                                ?>
+                            </div>
+                            <div style="clear:both; display: inline-block;vertical-align: middle;margin-left: 10%;width: 75%;">
+                                <h1 class="title" style="color: #6b0d7ce8" value="cName"></h1>
+                                <p class="" style="font-size: 13px;"><?=$model->c_description?></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sections_group" style="width: 55%;float: left; margin-left: 10%; border-right: .5px solid #f0f0f0">
+                    <div id=" " class="no-title no-share  post  format-standard has-post-thumbnail  category-hot-news   ">
+                        <div class="section section-post-header">
+                            <div class="section_wrapper clearfix">
+                                <!-- Post Featured Element (image / video / gallery)-->
+                                <!-- One full width row-->
+                                <div class="column one single-photo-wrapper image" style="margin-top: 0px; margin-right: 0%; margin-bottom: 0px; margin-left: 0%">
+                                    <div class="image_frame scale-with-grid ">
+                                        <div class="image_wrapper">
+                                            <a href="#" rel="prettyphoto">
+                                                <div class="mask"></div>
+                                                <?=Html::img(Url::to('@web/images/uploads/campaign/'.$model->c_image),['class' => 'attachment-blog-navi size-blog-navi wp-post-image'],['alt'=>'Image'],['align'=>'left'],['width'=>'80'],['height'=>'80'])?>
+                                            </a>
+                                            <div class="image_links">
+                                                <a href="<?= Url::to(['campaign/fund','id'=>$model->c_id])?>" class="link"><i class="glyphicon glyphicon-gift"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Post Header-->
+                                <!-- One full width row-->
+                                <div class="column one post-header">
+                                    <div class="title_wrapper">
+                                        <div class="post-meta clearfix">
+                                            <!--<div class="author-date">
+                                            <span class="vcard author post-author"> Published by <i class="icon-user"></i> <span class="fn"><a href="#"><?/*=$model->cAuthor->username*/?></a></span> </span><span class="date"> at <i class="icon-clock"></i>
+														<time class="entry-date" datetime="2014-03-12T09:15:13+00:00" itemprop="datePublished" pubdate>
+															<?/*=$model->c_created_at*/?>
+														</time> </span>
+                                        </div>-->
+                                            <div class="category meta-categories" style="width: 100%">
+                                                <div style="display: inline-block;float: right;margin-right: 3%">
+                                                    <p style="font-size: 15px;color: #000000;"><i class="glyphicon glyphicon-map-marker"></i>&nbsp;<?php echo $model->c_location ?></p>
+                                                </div>
+                                                <div style="clear: both;display: inline-block;margin-left: 60%">
+                                                    <p style="font-size: 15px;color: #000000;"><i class="glyphicon glyphicon-tag"></i>&nbsp;<?php echo $model->cCat->name ?></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Post Content-->
+                        <div class="post-wrapper-content">
+                            <div class="section the_content has_content">
+                                <div class="section_wrapper">
+                                    <div class="the_content_wrapper">
+                                        <div class="mcb-column one-second column_tabs ">
+                                            <?php
+                                            $items = [
+                                                [
+                                                    'label'=>'<i class="glyphicon glyphicon-picture"></i> Story',
+                                                    'content'=> Html::getAttributeName("cDesc"),
+                                                    'active'=>true
+                                                ],
+                                                [
+                                                    'label'=>'<i class="glyphicon glyphicon-bell"></i> Updates',
+                                                    'content'=>"",
+                                                    'disabled'=>true
+                                                ],
+                                                [
+                                                    'label'=>'<i class="glyphicon glyphicon-comment"></i> Comments',
+                                                    'content'=>"",
+                                                    'disabled'=>true
+                                                ],
+                                                [
+                                                    'label'=>'<i class="glyphicon glyphicon-question-sign"></i> FAQ',
+                                                    'content'=>"",
+                                                    'disabled'=>true
+                                                ],
+                                            ];
+
+                                            // Tab Below Centered
+                                            echo TabsX::widget([
+                                                'items'=>$items,
+                                                'position'=>TabsX::POS_ABOVE,
+                                                'align'=>TabsX::ALIGN_CENTER,
+                                                'bordered'=>false,
+                                                'encodeLabels'=>false
+                                            ]);
+
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sidebar area-->
+                <div class="sidebar sidebar-1 four columns" style="width: 25%;float: left; margin-right: 8%;">
+                    <div class="widget-area clearfix" style="padding: 9px 0px 0px;">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%; background-color:#8f13a5f0;color: black;">0%
+                            </div>
+                        </div>
+                        <h3 style="margin-top:25px; margin-bottom:0px;">0</h3>
+                        <h3 class="title-price" style="margin-top:0px;"><small>pledged of U$S<div value="cGoal"></div> goal</small></h3>
+
+                        <h3 style="margin-top:25px; margin-bottom:0px;">199</h3>
+                        <h3 class="title-price" style="margin-top:0px;"><small>backers</small></h3>
+
+                        <h3 style="margin-top:25px; margin-bottom:0px;" id="endDate"><?=$model->c_end_date?></h3>
+                        <h3 class="title-price" style="margin-top:0px;"><small>days to go</small></h3>
+
+                        <?php if (Yii::$app->user->isGuest || Yii::$app->user->identity->id != $model->c_author) { ?>
+                            <div class="section" style="margin-top:25px; padding-bottom:20px;">
+                                <a href="<?= Url::to(['campaign/fund','id'=>$model->c_id])?>">
+                                    <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-gift" aria-hidden="true"></span>Fund this Campaign</h4></button>
+                                </a>
+                            </div>
+                        <?php }elseif(Yii::$app->user->id == $model->c_author && $model->c_status == 'publish') { ?>
+                            <div class="section" style="margin-top:25px; padding-bottom:20px;">
+                                <a href="<?= Url::to(['campaign/update','id'=>$model->c_id])?>">
+                                    <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</h4></button>
+                                </a>
+                            </div>
+                        <?php }elseif (Yii::$app->user->id == $model->c_author && $model->c_status == 'draft'){ ?>
+                            <a href="<?= Url::to(['campaign/update','id'=>$model->c_id])?>">
+                                <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</h4></button>
+                            </a>
+                            <br /><br />
+
+                            <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>" style="margin-left: 32%;text-decoration: none">
+                                <?= Html::submitButton('Submit for Review',['class' => 'btn btn-default','value' => 'moderation','name' => 'moderation','style' => 'background-color:#add8e6;color:#ffffff;border-radius: 10px']) ?>
+                            </a>
+                            <br /><br />
+                            <a href="<?= Url::to(['campaign/delete','id'=>$model->c_id])?>">
+                                <p><span class="glyphicon glyphicon-trash"></span> Delete Project</p>
+                            </a>
+                        <?php }elseif (Yii::$app->user->id == $model->c_author && $model->c_status == 'moderation') { ?>
+                            <a href="<?= Url::to(['campaign/view','id'=>$model->c_id])?>">
+                                <button disabled class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Under Review</h4></button>
+                            </a>
+                            <br /><br />
+                            <a href="<?= Url::to(['campaign/delete','id'=>$model->c_id])?>">
+                                <p><span class="glyphicon glyphicon-trash"></span> Delete Project</p>
+                            </a>
+                        <?php } ?>
+                        <div class="section" style="padding-bottom:20px;">
+                            <h6><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> All or nothing. This project will only be funded if it reaches its goal by <?=$model->c_end_date?>.</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!--</div>-->
 </form>

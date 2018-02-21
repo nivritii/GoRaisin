@@ -31,15 +31,18 @@ $this->title = 'GoRaisin';
                                         <h2 class="tabpage-title">First, let’s get you set up.</h2>
                                         <p>You can always update this later.</p>
                                         <br/>
+                                        <div class="row form-group">
+                                            <div class="col-xs-12">
+                                                <div class="alert alert-success hide" style="padding-top: 0px"></div>
+                                            </div>
+                                        </div>
                                         <div style="clear:both;height: 80px">
                                             <p>Pick a project category to connect with a specific community. </p>
                                             <div style="display: inline-block;float:center;margin-left: 2%;width: 50%">
-                                                <select name="cCategory" id="search_categories"
-                                                        data-default-caption="Select Category"
-                                                        style="border-radius: 10px;width: 100%">
+                                                <select name="cCategory" style="border-radius: 10px;width: 100%">
                                                     <option selected value="">Select Category</option>
                                                     <?php foreach ($categories as $category) { ?>
-                                                        <option value=<?= $category->id ?>><?= $category->name ?></option>
+                                                        <option value=<?=$category->id?>><?= $category->name ?></option>
                                                     <?php } ?>
                                                 </select>
                                             </div>
@@ -48,7 +51,7 @@ $this->title = 'GoRaisin';
                                         <div style="clear:both;height: 80px">
                                             <p>Describe what you’ll be creating.</p>
                                             <div style="display: inline-block;float: left;margin-left: 2%;width: 60%;class="textEditor">
-                                                <textarea rows="3" type="text" style="width: 83%;margin-left:40%;" name="cDesc" id="cDesc"> </textarea>
+                                                <textarea rows="3" type="text" style="width: 83%;margin-left:40%;" name="cDesc" id="cDesc" value=""></textarea>
                                             </div>
                                         </div>
                                         <br/>
@@ -56,7 +59,7 @@ $this->title = 'GoRaisin';
                                     <div style="clear:both;height: 80px; padding-top: 22px">
                                         <p>Tell us know where you’re based. </p>
                                         <div style="display: inline-block;float:center;margin-left: 2%;width: 50%">
-                                            <select name="cLocation" id="search_categories"
+                                            <select name="cLocation" id="search_countries"
                                                     data-default-caption="Select Country"
                                                     style="border-radius: 10px;width: 100%">
                                                 <option selected value="">Select Country</option>
@@ -68,7 +71,7 @@ $this->title = 'GoRaisin';
                                     </div>
                                     <br/>
                                     <div style="padding-left:26%; padding-top: 30px;padding-bottom: 30px; width: 100%">
-                                    <input class="btn btn-md btn-info" type="submit" value="Get started with your campaign creation" id="submit">
+                                    <input onclick="return step1Next();" class="btn btn-md btn-info" type="submit" id="submit" value="Get started with your campaign creation" id="submit">
                                     </div>
                                         </form>
                                     </div>
@@ -81,3 +84,42 @@ $this->title = 'GoRaisin';
         </div>
     </div>
 </div>
+
+<script>
+    var cCategory = document.basicform.cCategory;
+    var cDesc = document.basicform.cDesc;
+    var cLocation = document.basicform.cLocation;
+    var error_message='';
+
+    function validateStep1() {
+        if(cCategory.value == ""){
+            cCategory.focus();
+            error_message+="<br>Please select Category";
+        }
+        if(cDesc.value == ""){
+            cDesc.focus();
+            error_message+="<br>Please give Short Description";
+        }
+        if(cLocation.value == ""){
+            cLocation.focus();
+            error_message+="<br>Please set your Location";
+        }
+        if(error_message){
+            $('.alert-success').removeClass('hide').html(error_message);
+            error_message='';
+            return false;
+        }else{
+            error_message='';
+            return true;
+        }
+    }
+
+    function step1Next() {
+        if(validateStep1()){
+            $('#submit').click();
+            return true;
+        }
+        return false;
+    }
+
+</script>
