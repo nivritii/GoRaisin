@@ -100,6 +100,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
         return Yii::$app->user->identity->username;
     }
 
+    public function getEmail(){
+        return Yii::$app->user->identity->email;
+    }
+
     public function getName(){
         return Yii::$app->user->identity->name;
     }
