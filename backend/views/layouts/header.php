@@ -8,11 +8,11 @@ $imagePath = '/'.Yii::$app->user->identity->image;
 
 <header class="main-header">
 
-    <?= Html::a('<span class="logo-mini">Raisin</span><span class="logo-lg">GoRaisin Dashboard</span>', Yii::$app->homeUrl, ['class' => 'logo']) ?>
+    <?= Html::a('<span class="logo-mini">Raisin</span><span class="logo-lg">GoRaisin Dashboard</span>', Yii::$app->homeUrl, ['class' => 'logo','style' => 'text-decoration:none']) ?>
 
     <nav class="navbar navbar-static-top" role="navigation">
 
-        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" style="text-decoration: none">
             <span class="sr-only">Toggle navigation</span>
         </a>
 
