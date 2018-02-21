@@ -128,7 +128,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                     </div>
                                                                 </div>
                                                                 <div class="post-links">
-                                                                    <i class="glyphicon glyphicon-link" style="color: #337ab7"></i>&nbsp&nbsp;<a href="<?= Url::to(['campaign/view', 'id' => $campaign->c_id])?>" class="post-more" style="text-decoration: none">Read more</a>
+                                                                    <i class="glyphicon glyphicon-link" style="color: #337ab7"></i>&nbsp&nbsp;<a href="<?= Url::to(['campaign/view', 'id' => $campaign->c_id])?>" class="post-more" style="text-decoration: none">Continue Editing</a>
                                                                 </div>
                                                             </div>
                                                         </div>
