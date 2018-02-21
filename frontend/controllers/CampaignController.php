@@ -212,7 +212,6 @@ class CampaignController extends Controller
         if($_SERVER["REQUEST_METHOD"]=="POST"){
             $model->c_title=$_POST['cTitle'];
             $model->c_cat_id=$_POST['cCategory'];
-            $model->c_author= Yii::$app->user->identity->getId();
 
             if(isset($_FILES['cImage']['name']) && $_FILES['cImage']['size'] > 0){
                 $uploaddir = '/web/images/uploads/campaign/';
