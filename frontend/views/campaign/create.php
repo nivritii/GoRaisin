@@ -99,7 +99,7 @@ $campaign_draft = new Campaign();
                                             <select name="cCategory" id="search_categories"
                                                     data-default-caption="Select Category"
                                                     style="border-radius: 10px;width: 100%">
-                                                <option selected value="">Select Category</option>
+                                                <option selected value=""><?=$model->cCat->name?></option>
                                                 <?php foreach ($categories as $category) { ?>
                                                     <option value=<?= $category->id ?>><?= $category->name ?></option>
                                                 <?php } ?>

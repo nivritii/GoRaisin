@@ -154,7 +154,10 @@ class CampaignController extends Controller
         $updates = Update::find()->where(['campaign_id'=>$id])->orderBy(['id' => SORT_DESC])->all();
         $comments = Comment::find()->where(['comment_camp_id'=>$id])->orderBy(['comment_datetime'=>SORT_DESC])->all();
         $backed = Fund::find()->where(['fund_c_id'=>$id])->sum('fund_amt');
-        $progress = ($backed/$this->findModel($id)->c_goal)*100;
+        if($backed!=0){
+            $progress = ($backed/$this->findModel($id)->c_goal)*100;
+        }else
+            $progress=0;
 
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -203,7 +206,7 @@ class CampaignController extends Controller
     public function actionCreate($id)
     {
         $model = $this->findModel($id);
-        $categories = Category::find()->all();
+        $categories = Category::find()->where(['!=', 'id', $model->c_cat_id])->all();
         $reward = new Reward();
 
         if($_SERVER["REQUEST_METHOD"]=="POST"){
@@ -252,6 +255,7 @@ class CampaignController extends Controller
             }
 
             return $this->render('create',[
+                'model' => $model,
                 'categories' =>$categories,
             ]);
         }

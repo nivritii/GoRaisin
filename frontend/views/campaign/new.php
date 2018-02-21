@@ -56,7 +56,7 @@ $this->title = 'GoRaisin';
                                     <div style="clear:both;height: 80px; padding-top: 22px">
                                         <p>Tell us know where you’re based. </p>
                                         <div style="display: inline-block;float:center;margin-left: 2%;width: 50%">
-                                            <select name="cLocation" id="search_categories"
+                                            <select name="cLocation" id="search_countries"
                                                     data-default-caption="Select Country"
                                                     style="border-radius: 10px;width: 100%">
                                                 <option selected value="">Select Country</option>
