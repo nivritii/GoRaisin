@@ -2,6 +2,7 @@
 
 use frontend\assets\HomePageAsset;
 use frontend\assets\CampaignAsset;
+use frontend\models\Campaign;
 use yii\helpers\Html;
 use frontend\models\Category;
 use kartik\date\DatePicker;
@@ -10,6 +11,7 @@ CampaignAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
+$campaign_draft = new Campaign();
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
@@ -398,6 +400,89 @@ CampaignAsset::register($this);
             </div>
         </div>
     </div>
+<!--Step 5-->
+<div class="row setup-content" id="step-5">
+<!--    --><?php //$this->render('view',[
+//        'model' => $campaign_draft,
+//        'backed' => 0,
+//        'progress' => 0,
+//        'categories' => $categories,
+//        'comments' => [],
+//        'updates' => [],
+//    ]) ?>
+<!--    <div class="col-xs-12">-->
+<!--        <div class="col-md-12 well text-center">-->
+<!--            <h1 class="tabpage-title">Company</h1>-->
+<!---->
+<!--            <div class="container col-xs-12">-->
+<!--                <div class="container">-->
+<!--                    <br />-->
+<!--                    <div class="form-group">-->
+<!--                        <div style="width: 100%;height: 80px">-->
+<!--                            <div style="float: left;display: inline-block;width: 20%">-->
+<!--                                <p class="item-title">Author name</p>-->
+<!--                            </div>-->
+<!--                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">-->
+<!--                                <input type="text" style="width: 100%" name="cName">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!---->
+<!--                        <div style="clear:both;height: 80px">-->
+<!--                            <div style="float: left;display: inline-block;width: 20%">-->
+<!--                                <p class="item-title">Email</p>-->
+<!--                            </div>-->
+<!--                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">-->
+<!--                                --><?php ///*echo Yii::$app->user->identity->email */?><!--<!---->
+<!--                                        --><?php ///*if (!empty(Yii::$app->user->identity->email)) {
+//                                            $email = Yii::$app->user->identity->email*/?>
+<!--                                        <input type="text" style="width: 100%" name="cEmail" value=--><?php ///*$email */?><!-->-->
+<!--                                        -->--><?php ///*}else { */?>
+<!--                                <input type="text" style="width: 100%" name="cEmail">-->
+<!--                                --><?php ///*}*/?>
+<!--                            </div>-->
+<!--                        </div>-->
+<!---->
+<!--                        <div style="clear:both;height: 180px;">-->
+<!--                            <div style="float: left;display: inline-block;width: 20%">-->
+<!--                                <p class="item-title">Company biography</p>-->
+<!--                            </div>-->
+<!--                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">-->
+<!--                                <textarea rows="5" type="text" style="width: 100%" name="cBio"> </textarea>-->
+<!--                                <p align="left">Simply introduce your company can help backers learn about your campaign better!</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!---->
+<!--                        <div style="clear:both;height: 80px;">-->
+<!--                            <div style="float: left;display: inline-block;width: 20%">-->
+<!--                                <p class="item-title">Company location</p>-->
+<!--                            </div>-->
+<!--                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">-->
+<!--                                <input type="text" style="width: 100%" name="cLocation">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!---->
+<!--                        <div style="clear:both;height: 80px;">-->
+<!--                            <div style="float: left;display: inline-block;width: 20%">-->
+<!--                                <p class="item-title">Company website</p>-->
+<!--                            </div>-->
+<!--                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">-->
+<!--                                <input type="text" style="width: 100%" name="cProfile">-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!---->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <!--</form> -->-->
+<!---->
+<!--            <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">-->
+<!--            <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">-->
+<!---->
+<!--            <div class="form-group">-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
 <!--</div>-->
 </form>
 
