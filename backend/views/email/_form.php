@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use kartik\file\FileInput;
+use backend\models\FrontendUser;
+use yii\helpers\ArrayHelper;
+use yii\db\Query;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Email */
@@ -10,12 +13,42 @@ use kartik\file\FileInput;
 ?>
 
 <div class="email-form">
+    <?php $receivers = ArrayHelper::map(FrontendUser::find()
+        ->select('username')
+        ->from('user')
+        ->all(), 'username', 'username');
+    ?>
+
+    <?php $receiverAddrs = ArrayHelper::map(FrontendUser::find()
+        ->select('email')
+        ->from('user')
+        ->all(), 'email', 'email');
+    ?>
+
+    <?php
+    $str = '';
+    $aa = array();
+    $rows = (new \yii\db\Query())
+        ->select(['email'])
+        ->from('user')
+        ->all();
+
+
+    foreach ($rows as $key => $val)
+    {
+        $aa = $rows[$key]['email'];
+        $str = "'" . $rows[$key]['email'] . "'" . ',' . $str;
+        /*$str = $str . "," . $rows[$key]['email'];*/
+    }
+    $str2 = rtrim($str, ',');
+    echo $str2;
+    ?>
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'receiver_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'receiver_name')->dropDownList($receivers) ?>
 
-    <?= $form->field($model, 'receiver_address')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'receiver_address')->dropDownList($receiverAddrs) ?>
 
     <?= $form->field($model, 'subject')->textInput(['maxlength' => true]) ?>
 

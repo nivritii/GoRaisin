@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\FrontendUser;
 use Yii;
 use backend\models\Email;
 use backend\models\EmailSearch;
@@ -9,6 +10,9 @@ use yii\web\UploadedFile;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\ArrayHelper;
+use yii\db\Query;
+use yii\db\Exception;
 
 /**
  * EmailController implements the CRUD actions for Email model.
@@ -110,6 +114,37 @@ class EmailController extends Controller
                     ->send();
             }*/
 
+            $receiverAddr = ArrayHelper::map(FrontendUser::find()
+                ->select('email')
+                ->from('user')
+                ->all(), 'email', 'email');
+            foreach ($receiverAddr as $item){
+                $arrayAddr = "'".$item."'".",";
+            }
+
+            $str = '';
+            $aa = array();
+            $rows = (new \yii\db\Query())
+                ->select(['email'])
+                ->from('user')
+                ->all();
+
+
+            foreach ($rows as $key => $val)
+            {
+                $aa = $rows[$key]['email'];
+                $str = "'" . $rows[$key]['email'] . "'" . ',' . $str;
+            }
+            $str2 = rtrim($str, ',');
+            echo $str2;
+
+
+            $query = new Query;
+            $query->select('email')
+                ->from('user');
+            $command = $query->createCommand();
+            $enderecos = $command->queryAll();
+
             $value = Yii::$app->mailer->compose('mailTemplate')
                 ->setFrom([ 'cherry@webpuppies.com.sg' => 'GoRaisin'])
                 ->setTo($model->receiver_address)
@@ -117,10 +152,6 @@ class EmailController extends Controller
                 /*->setHtmlBody($model->content)*/
                 ->send();
             $model->save();
-            /*print_r($userEmail);
-            $string=implode(' ',$userEmail);
-            echo $string;
-            die();*/
             return $this->redirect(['index']);
         } else {
             return $this->render('create', [
