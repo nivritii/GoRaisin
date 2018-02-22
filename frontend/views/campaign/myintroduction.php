@@ -62,7 +62,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <p style="font-size: 20px;font-weight: 400">Website</p>
                                             </div>
                                             <div style="clear: both;display: inline-block;margin-left: 10%;width: 50%;height: 400px">
+                                                <?php if ($model->cAuthor->website == null){ ?>
+                                                    <p><i>The user has not leave website.</i></p>
+                                                <?php } else{?>
                                                 <?= Html::a($model->cAuthor->website,['campaign/linkexternal','website' => $model->cAuthor->website],['target' => '_blank']) ?>
+                                                <?php }?>
                                             </div>
                                         </div>
                                     </div>
@@ -72,7 +76,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <div class="posts_group lm_wrapper classic col-3">
                                             <?php foreach ($campaigns as $campaign) {
                                                 $backed = Fund::find()->where(['fund_c_id'=>$campaign->c_id])->sum('fund_amt');
-                                                $progress = ($backed/$campaign->c_goal)*100;
+
+                                                if($backed!=0){
+                                                    $progress = ($backed/$campaign->c_goal)*100;
+                                                }else{
+                                                    $progress=0;
+                                                }
                                                 ?>
                                                 <div class="post-item isotope-item clearfix post-2277 post  format-standard has-post-thumbnail  category-lifestyle  tag-video">
                                                     <div class="date_label">
@@ -83,7 +92,11 @@ $this->params['breadcrumbs'][] = $this->title;
                                                             <a href="<?= Url::to(['campaign/view', 'id' => $campaign->c_id])?>">
                                                                 <div class="mask"></div>
                                                                 <?= Html::img(Url::to('@web/images/uploads/campaign/' . $campaign->c_image), ['class' => 'scale-with-grid wp-post-image'], ['alt' => 'Image'], ['align' => 'left'], ['width' => '1200'], ['height' => '480']) ?>
+                                                                <!--<img width="960" height="750" src="images/home_blogger2_lifestyle1-960x750.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_lifestyle1" itemprop="image" />-->
                                                             </a>
+                                                            <!--<div class="image_links double">
+                                                                <a href="images/home_blogger2_lifestyle1-1200x800.jpg" class="zoom" rel="prettyphoto"><i class="icon-search"></i></a><?/*= Html::a('<i class="glyphicon glyphicon-search"></i>',['@web/images/uploads/' . $campaign->c_image],['class' => 'zoom','rel' => 'prettyphoto']) */?><a href="item-8.html" class="link"><i class="icon-link"></i></a>
+                                                            </div>-->
                                                         </div>
                                                     </div>
                                                     <div class="post-desc-wrapper">
