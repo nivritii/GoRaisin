@@ -28,7 +28,7 @@ $this->title = 'GoRaisin';
                                 <div class="col-xs-12">
                                     <div class="col-md-12 well text-center">
                                         <form name="basicform" id="basicform" method="post" action="new">
-                                        <h2 class="tabpage-title">First, let’s get you set up.</h2>
+                                        <h2 class="tabpage-title">First, let’s get you started with the set up.</h2>
                                         <p>You can always update this later.</p>
                                         <br/>
                                         <div class="row form-group">
