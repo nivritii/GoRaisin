@@ -3,11 +3,13 @@
 namespace frontend\controllers;
 
 use common\models\LoginForm;
+use frontend\models\Faq;
 use frontend\models\Reward;
 use frontend\models\Update;
 use frontend\tests\unit\models\PasswordResetRequestFormTest;
 use Yii;
 use frontend\models\Campaign;
+use frontend\models\Location;
 use frontend\models\CampaignSearch;
 use frontend\models\CampaignReward;
 use yii\web\Controller;
@@ -25,6 +27,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
+use yii2mod\alert;
 
 ActionLog::error('Some error message');
 ActionLog::info('Some info message');
@@ -156,7 +159,10 @@ class CampaignController extends Controller
         $updates = Update::find()->where(['campaign_id'=>$id])->orderBy(['id' => SORT_DESC])->all();
         $comments = Comment::find()->where(['comment_camp_id'=>$id])->orderBy(['comment_datetime'=>SORT_DESC])->all();
         $backed = Fund::find()->where(['fund_c_id'=>$id])->sum('fund_amt');
-        $progress = ($backed/$this->findModel($id)->c_goal)*100;
+        if($backed!=0){
+            $progress = ($backed/$this->findModel($id)->c_goal)*100;
+        }else
+            $progress=0;
 
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -174,16 +180,43 @@ class CampaignController extends Controller
      * @return mixed
      */
 
-    public function actionCreate()
+      public function actionNew()
+      {
+          $newCampaign = new Campaign();
+          $categories = Category::find()->all();
+          $countries = Location::find()->all();
+
+          if($_SERVER["REQUEST_METHOD"]=="POST"){
+              $newCampaign->c_author= Yii::$app->user->identity->getId();
+              $newCampaign->c_cat_id=$_POST['cCategory'];
+              $newCampaign->c_description=$_POST['cDesc'];
+              $newCampaign->c_location=$_POST['cLocation'];
+
+              if($newCampaign->save(false)){
+                  return $this->redirect(['create', 'id'=>$newCampaign->c_id]);
+              }
+          }
+
+          return $this->render('new',[
+              'categories' =>$categories,
+              'countries' => $countries,
+          ]);
+      }
+
+    /**
+     * @param $id
+     * @return string|\yii\web\Response
+     * @throws NotFoundHttpException
+     */
+    public function actionCreate($id)
     {
-        $model = new Campaign();
-        $categories = Category::find()->all();
+        $model = $this->findModel($id);
+        $categories = Category::find()->where(['!=', 'id', $model->c_cat_id])->all();
         $reward = new Reward();
 
         if($_SERVER["REQUEST_METHOD"]=="POST"){
             $model->c_title=$_POST['cTitle'];
             $model->c_cat_id=$_POST['cCategory'];
-            $model->c_author= Yii::$app->user->identity->getId();
 
             if(isset($_FILES['cImage']['name']) && $_FILES['cImage']['size'] > 0){
                 $uploaddir = '/web/images/uploads/campaign/';
@@ -226,6 +259,7 @@ class CampaignController extends Controller
             }
 
             return $this->render('create',[
+                'model' => $model,
                 'categories' =>$categories,
             ]);
         }
@@ -383,28 +417,39 @@ class CampaignController extends Controller
     {
         $campaign = $this->findModel($id);
         $user = new LoginForm();
-        $model="";
 
         if($_SERVER["REQUEST_METHOD"]=="POST"){
             $user->username=Yii::$app->user->getIdentity()->username;
             $user->password=$_POST['password'];
             if($user->login()){
-                $reward = Reward::find()->where(['c_id' => $campaign->c_id])->one();
+                /*$reward = Reward::find()->where(['c_id' => $campaign->c_id])->one();
                 $reward->delete();
                 $campaign->delete();
-                return $this->redirect(['mycampaign']);
+                return $this->redirect(['mycampaign']);*/
+
+                if($this->countRewards($id)>0){
+                    $this->deleteRewards($id);
+                }
+                if($this->countComments($id)>0){
+                    $this->deleteComments($id);
+                }
+                if($this->countUpdates($id)>0){
+                    $this->deleteUpdates($id);
+                }
+                if($this->countfaqs($id)>0){
+                    $this->deletefaqs($id);
+                }
+                $this->findModel($id)->delete();
+                Yii::$app->session->setFlash('success', 'You have deleted successfully your project!');
+                return $this->redirect('mycampaign');
             }else{
-                $model="hidden";
                 return $this->render('delete',[
                     'campaign' => $campaign,
-                    'model' => $model,
                     ]);
             }
         }
-
         return $this->render('delete',[
            'campaign' => $campaign,
-            'model' => $model,
         ]);
     }
 
@@ -478,5 +523,69 @@ class CampaignController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function countRewards($id)
+    {
+        $count = Reward::find()->where(['c_id'=>$id])->count();
+        return $count;
+    }
+
+    protected function deleteRewards($id)
+    {
+        $rewards = Reward::find()->where(['c_id'=>$id])->all();
+        foreach ($rewards as $reward){
+            $reward->delete();
+            return true;
+        }
+        return false;
+    }
+
+    protected function countComments($id)
+    {
+        $count = Comment::find()->where(['comment_camp_id'=>$id])->count();
+        return $count;
+    }
+
+    protected function deleteComments($id)
+    {
+        $comments = Comment::find()->where(['comment_camp_id'=>$id])->all();
+        foreach ($comments as $comment){
+            $comment->delete();
+            return true;
+        }
+        return false;
+    }
+
+    protected function countUpdates($id)
+    {
+        $count = Update::find()->where(['campaign_id'=>$id])->count();
+        return $count;
+    }
+
+    protected function deleteUpdates($id)
+    {
+        $updates = Update::find()->where(['campaign_id'=>$id])->all();
+        foreach ($updates as $update){
+            $update->delete();
+            return true;
+        }
+        return false;
+    }
+
+    protected function countfaqs($id)
+    {
+        $count = Faq::find()->where(['campaign_id'=>$id])->count();
+        return $count;
+    }
+
+    protected function deleteFaqs($id)
+    {
+        $faqs = Update::find()->where(['campaign_id'=>$id])->all();
+        foreach ($faqs as $faq){
+            $faq->delete();
+            return true;
+        }
+        return false;
     }
 }

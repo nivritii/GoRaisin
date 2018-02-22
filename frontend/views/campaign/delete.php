@@ -42,30 +42,9 @@ CampaignAsset::register($this);
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" <?=$model?>>
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script>
     var password = document.passwordForm.password;
-    var error_messge = "";
+    var error_message = "";
     function validate() {
         if(password.value==""){
             password.focus();
@@ -74,10 +53,11 @@ CampaignAsset::register($this);
         if(error_message){
             $('.alert-success').removeClass('hide').html(error_message);
             error_message='';
-            //return false;
+            return false;
         }else{
             error_message='';
-            //return true;
+            return true;
         }
+        return false
     }
 </script>
