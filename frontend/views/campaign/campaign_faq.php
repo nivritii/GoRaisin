@@ -24,7 +24,7 @@ $faq = new Faq();
     <p>Project creator will be glad to answer your queries.</p>
     <div class="section" style="margin-top:25px; padding-bottom:20px;">
         <a href="#">
-            <button class="btn btn-info"  data-toggle="modal" data-target="#modalForm">Ask a question</button>
+            <button class="btn btn-info" data-toggle="modal" data-target="#modalForm" style="background-color: #940094;color:#ffffff">Ask a question</button>
         </a>
     </div>
 </div>
@@ -33,7 +33,7 @@ $faq = new Faq();
 <div class="modal fade" id="modalForm" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <!--             Modal Header -->
+
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
@@ -42,7 +42,6 @@ $faq = new Faq();
                 <h4 class="modal-title" id="myModalLabel">Ask a question about: <?=$model->c_title?></h4>
             </div>
 
-            <!--             Modal Body -->
             <div class="modal-body">
                 <p class="statusMsg"></p>
                 <form role="form">
@@ -56,10 +55,9 @@ $faq = new Faq();
                 </form>
             </div>
 
-            <!--             Modal Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <?= Html::submitButton($faq->isNewRecord ? 'Ask a question' : 'Update', ['class' => $faq->isNewRecord ? 'btn btn-info' : 'btn btn-primary']) ?>
+                <?= Html::submitButton($faq->isNewRecord ? 'Ask a question' : 'Update', ['class' => $faq->isNewRecord ? 'btn btn-info' : 'btn btn-primary','style' => 'background-color:#940094;color:#ffffff']) ?>
                 <?php ActiveForm::end(); ?>
             </div>
         </div>
