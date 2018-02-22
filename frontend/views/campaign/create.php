@@ -54,20 +54,6 @@ $campaign_draft = new Campaign();
         <div>
             <div class="col-xs-3" style="padding-left: 0px; ">
                 <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit">
-<!--                <ul class="nav nav-pills nav-justified thumbnail setup-panel" id="myNav" style="margin-bottom: 0px;">-->
-<!--                    <li id="navStep5" class="li-nav" step="#step-5" href="campaign/preview?id=--><?//=$model->c_id?><!--">-->
-<!--                        <a>-->
-<!--                            <h4 class="list-group-item-heading">Preview</h4>-->
-<!--                            <p class="list-group-item-text">Your project</p>-->
-<!--                        </a>-->
-<!--                    </li>-->
-<!--                    <li id="navStep6" class="li-nav" step="#step-6">-->
-<!--                        <a href="--><?//= \yii\helpers\Url::to(['campaign/create']) ?><!--">-->
-<!--                            <h4 class="list-group-item-heading">Submit</h4>-->
-<!--                            <p class="list-group-item-text">For review</p>-->
-<!--                        </a>-->
-<!--                    </li>-->
-<!--                </ul>-->
             </div>
         </div>
     </div>

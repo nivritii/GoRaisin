@@ -269,7 +269,7 @@ class CampaignController extends Controller
         $categories = Category::find()->where(['!=', 'id', $model->c_cat_id])->all();
         $countries = Location::find()->where(['!=', 'id', $model->c_location])->all();
         $reward = new Reward();
-        $company = new Company();
+        $company = $this->findCompany($id);
 
         if($_SERVER["REQUEST_METHOD"]=="POST"){
             $model->c_title=$_POST['cTitle'];
@@ -336,60 +336,19 @@ class CampaignController extends Controller
          * @return mixed
          * @throws NotFoundHttpException if the model cannot be found
          */
-    public function actionUpdate($id)
+    public function actionEdit($id)
     {
         $model = $this->findModel($id);
         $categories = Category::find()->all();
         $reward = new Reward();
+        $company = $this->findCompany($id);
+        $countries = Location::find()->all();
 
-        if($_SERVER["REQUEST_METHOD"]=="POST"){
-            $model->c_title=$_POST['cTitle'];
-            $model->c_cat_id=$_POST['cCategory'];
-            $model->c_author= Yii::$app->user->identity->getId();
-
-            if(isset($_FILES['cImage']['name']) && $_FILES['cImage']['size'] > 0){
-                $uploaddir = '/web/images/uploads/campaign/';
-                $dirpath = realpath(dirname(getcwd())).$uploaddir;
-                $uploadfile = $dirpath . basename($_FILES['cImage']['name']);
-                $model->c_image = basename($_FILES['cImage']['name']);
-                move_uploaded_file($_FILES['cImage']['tmp_name'], $uploadfile);
-            }else {
-                $model->c_image = 'default.jpg';
-            }
-
-            $model->c_description=$_POST['cDesc'];
-            $model->c_start_date=$_POST['cStartdate'];
-            $model->c_end_date=$_POST['cEnddate'];
-            $model->c_goal=$_POST['cGoal'];
-            $model->c_video=$_POST['cVideo'];
-            $model->c_description_long=$_POST['cLDesc'];
-            $model->c_display_name=$_POST['cName'];
-            $model->c_email=$_POST['cEmail'];
-            $model->c_biography=$_POST['cBio'];
-            $model->c_location=$_POST['cLocation'];
-            $model->c_social_profile=$_POST['cProfile'];
-            if ($model->save()){
-
-                $number = count($_POST['rTitle']);
-                echo("<script>console.log('PHP: ".$number."');</script>");
-                for ($i=0; $i<$number; $i++){
-                    $reward->c_id=$model->c_id;
-                    $reward->r_title=$_POST['rTitle'][$i];
-                    echo("<script>console.log('Get Reward hereN: ".$reward->r_title."');</script>");
-                    $reward->r_pledge_amt=$number;
-                    $reward->r_description=$_POST['rDesc'][$i];
-                    $reward->r_limit_availability=$_POST['rLimit'][$i];
-                    $reward->save(false);
-                }
-
-
-                return $this->redirect(['view', 'id'=>$model->c_id]);
-            }
-        }
-
-        return $this->render('update', [
+        return $this->render('edit', [
             'model' => $model,
             'categories' => $categories,
+            'company' => $company,
+            'countries' => $countries,
         ]);
     }
     
@@ -542,6 +501,15 @@ class CampaignController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findCompany($id)
+    {
+        if (($company = Company::find()->where(['campaign_id'=>$id])->one()) !== null){
+            return $company;
+        }
+
+        return new Company();
     }
 
     protected function countRewards($id)
