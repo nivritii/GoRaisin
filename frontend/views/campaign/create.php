@@ -19,6 +19,8 @@ $campaign_draft = new Campaign();
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
+<form class="createCampaign" enctype="multipart/form-data" action="preview?id=<?=$model->c_id?>" method="post" id="tab_logic"
+      name="campaignForm">
 <div class="container" style="margin-top: 10px">
     <div class="row form-group">
         <div class="col-xs-9" style="padding-right: 0px;">
@@ -51,20 +53,21 @@ $campaign_draft = new Campaign();
         </div>
         <div>
             <div class="col-xs-3" style="padding-left: 0px; ">
-                <ul class="nav nav-pills nav-justified thumbnail setup-panel" id="myNav" style="margin-bottom: 0px;">
-                    <li id="navStep5" class="li-nav" step="#step-5" href="campaign/preview?id=<?=$model->c_id?>">
-                        <a>
-                            <h4 class="list-group-item-heading">Preview</h4>
-                            <p class="list-group-item-text">Your project</p>
-                        </a>
-                    </li>
-                    <li id="navStep6" class="li-nav" step="#step-6">
-                        <a href="<?= \yii\helpers\Url::to(['campaign/create']) ?>">
-                            <h4 class="list-group-item-heading">Submit</h4>
-                            <p class="list-group-item-text">For review</p>
-                        </a>
-                    </li>
-                </ul>
+                <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit">
+<!--                <ul class="nav nav-pills nav-justified thumbnail setup-panel" id="myNav" style="margin-bottom: 0px;">-->
+<!--                    <li id="navStep5" class="li-nav" step="#step-5" href="campaign/preview?id=--><?//=$model->c_id?><!--">-->
+<!--                        <a>-->
+<!--                            <h4 class="list-group-item-heading">Preview</h4>-->
+<!--                            <p class="list-group-item-text">Your project</p>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                    <li id="navStep6" class="li-nav" step="#step-6">-->
+<!--                        <a href="--><?//= \yii\helpers\Url::to(['campaign/create']) ?><!--">-->
+<!--                            <h4 class="list-group-item-heading">Submit</h4>-->
+<!--                            <p class="list-group-item-text">For review</p>-->
+<!--                        </a>-->
+<!--                    </li>-->
+<!--                </ul>-->
             </div>
         </div>
     </div>
@@ -76,8 +79,7 @@ $campaign_draft = new Campaign();
         </div>
     </div>
 
-    <form class="createCampaign" enctype="multipart/form-data" action="create" method="post" id="tab_logic"
-          name="campaignForm">
+
         <!--        <div class="container">-->
         <div class="row setup-content" id="step-1">
             <div class="col-xs-12">
@@ -103,7 +105,7 @@ $campaign_draft = new Campaign();
                                         <select name="cCategory" id="search_categories"
                                                 data-default-caption="Select Category"
                                                 style="border-radius: 0px;width: 100%">
-                                            <option selected value=""><?= $model->cCat->name ?></option>
+                                            <option selected value="<?= $model->cCat->id?>"><?= $model->cCat->name ?></option>
                                             <?php foreach ($categories as $category) { ?>
                                                 <option value=<?= $category->id ?>><?= $category->name ?></option>
                                             <?php } ?>
@@ -344,7 +346,7 @@ $campaign_draft = new Campaign();
                                 <p class="item-title">Company name</p>
                             </div>
                             <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                <input type="text" style="width: 100%" name="cName">
+                                <input type="text" style="width: 100%" name="comName">
                             </div>
                         </div>
 
@@ -353,7 +355,7 @@ $campaign_draft = new Campaign();
                                 <p class="item-title">Email</p>
                             </div>
                             <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                <input type="text" style="width: 100%" name="cEmail">
+                                <input type="text" style="width: 100%" name="comEmail">
                             </div>
                         </div>
                         <div style="clear:both;padding: 10px;">
@@ -361,7 +363,7 @@ $campaign_draft = new Campaign();
                                 <p class="item-title">Website URL</p>
                             </div>
                             <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                <input type="text" style="width: 100%" name="cProfile">
+                                <input type="text" style="width: 100%" name="comWebsite">
                             </div>
                         </div>
                         <div style="clear:both;padding: 10px;">
@@ -370,8 +372,8 @@ $campaign_draft = new Campaign();
                             </div>
                             <div style="display: inline-block;float: left;margin-left: 2%;width: 55%;class=" textEditor
                             ">
-                            <textarea rows="3" type="text" style="width: 100%;" name="cDesc"
-                                      id="cDesc"><?= $model->c_description ?></textarea>
+                            <textarea rows="3" type="text" style="width: 100%;" name="comDesc"
+                                      id="comDesc"><?= $model->c_description ?></textarea>
                         </div>
                     </div>
                     <div style="clear:both;padding: 5px;">
@@ -380,7 +382,7 @@ $campaign_draft = new Campaign();
                             <p class="item-title">Industry</p>
                         </div>
                         <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                            <input type="text" style="width: 100%" name="cProfile">
+                            <input type="text" style="width: 100%" name="comIndustry">
                         </div>
                     </div>
                     <div style="clear:both;padding: 10px;">
@@ -388,7 +390,7 @@ $campaign_draft = new Campaign();
                             <p class="item-title"># of employees</p>
                         </div>
                         <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                            <input type="text" style="width: 100%" name="cProfile">
+                            <input type="text" style="width: 100%" name="comEmp">
                         </div>
                     </div>
                     <div style="clear:both;padding: 0px;">
@@ -399,7 +401,7 @@ $campaign_draft = new Campaign();
                         <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
                             <select name="cLocation" id="search_locations"
                                     style="border-radius: 0px;width: 100%">
-                                <option selected value=""><?= $model->cLocation->country ?></option>
+                                <option selected value="<?= $model->cLocation->id?>"><?= $model->cLocation->country ?></option>
                                 <?php foreach ($countries as $country) { ?>
                                     <option value=<?= $country->id ?>><?= $country->country ?></option>
                                 <?php } ?>
@@ -411,7 +413,7 @@ $campaign_draft = new Campaign();
                             <p class="item-title" style="padding-left: 0px">Postal code</p>
                         </div>
                         <div style="display: inline-block;float: left;margin-left: 6.5%;width: 55%">
-                            <input type="text" style="width: 100%" name="cProfile">
+                            <input type="text" style="width: 100%" name="comPostal">
                         </div>
                     </div>
                     <div style="clear:both;">
@@ -420,7 +422,7 @@ $campaign_draft = new Campaign();
                             <p class="item-title">Your Position</p>
                         </div>
                         <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                            <input type="text" style="width: 100%" name="cProfile">
+                            <input type="text" style="width: 100%" name="comPosition">
                         </div>
                     </div>
                 </div>
