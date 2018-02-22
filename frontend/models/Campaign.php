@@ -7,32 +7,28 @@ use Yii;
 /**
  * This is the model class for table "campaign".
  *
+ * @property int $c_id
  * @property string $c_title
+ * @property int $c_cat_id
+ * @property string $c_status
+ * @property string $c_created_at
+ * @property int $c_author
+ * @property int $c_location
  * @property string $c_image
  * @property string $c_description
  * @property string $c_start_date
  * @property string $c_end_date
  * @property int $c_goal
- * @property int $c_id
  * @property string $c_video
  * @property string $c_description_long
- * @property int $c_author
- * @property string $c_created_at
- * @property string $c_display_name
- * @property string $c_email
- * @property int $c_location
- * @property string $c_biography
- * @property string $c_social_profile
- * @property string $c_status
- * @property int $c_cat_id
  * @property int $c_new_tag
  *
  * @property Category $cCat
  * @property User $cAuthor
  * @property Location $cLocation
- * @property CampaignReward[] $campaignRewards
  * @property Category[] $categories
  * @property Comment[] $comments
+ * @property Company[] $companies
  * @property Faq[] $faqs
  * @property Fund[] $funds
  * @property Reward[] $rewards
@@ -55,11 +51,11 @@ class Campaign extends \yii\db\ActiveRecord
     {
         return [
             [['c_author','c_cat_id','c_description', 'c_location'], 'required'],
-            [['c_start_date', 'c_end_date', 'c_created_at'], 'safe'],
-            [['c_goal', 'c_author', 'c_location', 'c_cat_id', 'c_new_tag'], 'integer'],
-            [['c_description_long', 'c_biography'], 'string'],
+            [['c_cat_id', 'c_author', 'c_location', 'c_goal', 'c_new_tag'], 'integer'],
+            [['c_created_at', 'c_start_date', 'c_end_date'], 'safe'],
+            [['c_description_long'], 'string'],
             [['c_title', 'c_image'], 'string', 'max' => 100],
-            [['c_description', 'c_video', 'c_display_name', 'c_email', 'c_social_profile', 'c_status'], 'string', 'max' => 255],
+            [['c_status', 'c_description', 'c_video'], 'string', 'max' => 255],
             [['c_cat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['c_cat_id' => 'id']],
             [['c_author'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['c_author' => 'id']],
             [['c_location'], 'exist', 'skipOnError' => true, 'targetClass' => Location::className(), 'targetAttribute' => ['c_location' => 'id']],
@@ -72,24 +68,20 @@ class Campaign extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
+            'c_id' => 'C ID',
             'c_title' => 'C Title',
+            'c_cat_id' => 'C Cat ID',
+            'c_status' => 'C Status',
+            'c_created_at' => 'C Created At',
+            'c_author' => 'C Author',
+            'c_location' => 'C Location',
             'c_image' => 'C Image',
             'c_description' => 'C Description',
             'c_start_date' => 'C Start Date',
             'c_end_date' => 'C End Date',
             'c_goal' => 'C Goal',
-            'c_id' => 'C ID',
             'c_video' => 'C Video',
             'c_description_long' => 'C Description Long',
-            'c_author' => 'C Author',
-            'c_created_at' => 'C Created At',
-            'c_display_name' => 'C Display Name',
-            'c_email' => 'C Email',
-            'c_location' => 'C Location',
-            'c_biography' => 'C Biography',
-            'c_social_profile' => 'C Social Profile',
-            'c_status' => 'C Status',
-            'c_cat_id' => 'C Cat ID',
             'c_new_tag' => 'C New Tag',
         ];
     }
@@ -121,14 +113,6 @@ class Campaign extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCampaignRewards()
-    {
-        return $this->hasMany(CampaignReward::className(), ['campaign_id' => 'c_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getCategories()
     {
         return $this->hasMany(Category::className(), ['featured_campaign_id' => 'c_id']);
@@ -140,6 +124,14 @@ class Campaign extends \yii\db\ActiveRecord
     public function getComments()
     {
         return $this->hasMany(Comment::className(), ['comment_camp_id' => 'c_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCompanies()
+    {
+        return $this->hasMany(Company::className(), ['campaign_id' => 'c_id']);
     }
 
     /**

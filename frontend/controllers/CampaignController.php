@@ -11,7 +11,7 @@ use Yii;
 use frontend\models\Campaign;
 use frontend\models\Location;
 use frontend\models\CampaignSearch;
-use frontend\models\CampaignReward;
+use frontend\models\Company;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -209,6 +209,7 @@ class CampaignController extends Controller
     {
         $model = $this->findModel($id);
         $categories = Category::find()->where(['!=', 'id', $model->c_cat_id])->all();
+        $countries = Location::find()->where(['!=', 'id', $model->c_location])->all();
         $reward = new Reward();
 
         if($_SERVER["REQUEST_METHOD"]=="POST"){
@@ -258,8 +259,75 @@ class CampaignController extends Controller
             return $this->render('create',[
                 'model' => $model,
                 'categories' =>$categories,
+                'countries' => $countries,
             ]);
         }
+
+    public function actionPreview($id)
+    {
+        $model = $this->findModel($id);
+        $categories = Category::find()->where(['!=', 'id', $model->c_cat_id])->all();
+        $countries = Location::find()->where(['!=', 'id', $model->c_location])->all();
+        $reward = new Reward();
+        $company = new Company();
+
+        if($_SERVER["REQUEST_METHOD"]=="POST"){
+            $model->c_title=$_POST['cTitle'];
+            $model->c_cat_id=$_POST['cCategory'];
+
+            if(isset($_FILES['cImage']['name']) && $_FILES['cImage']['size'] > 0){
+                $uploaddir = '/web/images/uploads/campaign/';
+                $dirpath = realpath(dirname(getcwd())).$uploaddir;
+                $uploadfile = $dirpath . basename($_FILES['cImage']['name']);
+                $model->c_image = basename($_FILES['cImage']['name']);
+                move_uploaded_file($_FILES['cImage']['tmp_name'], $uploadfile);
+            }else {
+                $model->c_image = 'default.jpg';
+            }
+
+            $model->c_description=$_POST['cDesc'];
+            $model->c_start_date=$_POST['cStartdate'];
+            $model->c_end_date=$_POST['cEnddate'];
+            $model->c_goal=$_POST['cGoal'];
+            $model->c_video=$_POST['cVideo'];
+            $model->c_description_long=$_POST['cLDesc'];
+            $model->c_location=$_POST['cLocation'];
+
+            if ($model->save()){
+                $company->campaign_id=$model->c_id;
+                $company->company_name=$_POST['comName'];
+                $company->company_email=$_POST['comEmail'];
+                $company->company_website=$_POST['comWebsite'];
+                $company->company_description=$_POST['comDesc'];
+                $company->company_industry=$_POST['comIndustry'];
+                $company->company_employees_count=$_POST['comEmp'];
+                $company->company_postal=$_POST['comPostal'];
+                $company->company_designation=$_POST['comPosition'];
+                $company->save();
+
+                $number = count($_POST['rTitle']);
+                echo("<script>console.log('PHP: ".$number."');</script>");
+                for ($i=0; $i<$number; $i++){
+                    $reward->c_id=$model->c_id;
+                    $reward->r_title=$_POST['rTitle'][$i];
+                    echo("<script>console.log('Get Reward hereN: ".$reward->r_title."');</script>");
+                    $reward->r_pledge_amt=$number;
+                    $reward->r_description=$_POST['rDesc'][$i];
+                    $reward->r_limit_availability=$_POST['rLimit'][$i];
+                    $reward->save(false);
+                }
+                return $this->render('preview', [
+                    'model' => $this->findModel($id),
+                    ]);
+            }
+        }
+
+        return $this->render('create',[
+            'model' => $model,
+            'categories' =>$categories,
+            'countries' => $countries,
+        ]);
+    }
 
         /**
          * Updates an existing Campaign model.
@@ -432,6 +500,7 @@ class CampaignController extends Controller
                 if($this->countfaqs($id)>0){
                     $this->deletefaqs($id);
                 }
+                //$this->deleteCompany($campaign->c_company);
                 $this->findModel($id)->delete();
                 Yii::$app->session->setFlash('success', 'You have deleted successfully your project!');
                 return $this->redirect('mycampaign');
@@ -537,5 +606,11 @@ class CampaignController extends Controller
             return true;
         }
         return false;
+    }
+
+    protected function deleteCompany($id)
+    {
+        $company = Company::find()->where(['id'=>$id])->one();
+        $company->delete();
     }
 }
