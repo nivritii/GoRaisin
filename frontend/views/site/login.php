@@ -10,10 +10,9 @@ use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
 
-frontend\assets\LoginAsset::register($this);
-
 $this->title = 'Log in - GoRaisin';
 $this->params['breadcrumbs'][] = $this->title;
+frontend\assets\LoginAsset::register($this);
 ?>
 <div class="site-login">
     <div id="login-div">

@@ -8,6 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $form ActiveForm */
 ?>
 <div class="campaign-content">
-    <h4>Description</h4>
+    <h3>Description</h3>
+    <br /><br />
     <p><?=$model->c_description_long?></p>
 </div>
