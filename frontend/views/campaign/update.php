@@ -8,6 +8,9 @@ use kartik\date\DatePicker;
 HomePageAsset::register($this);
 CampaignAsset::register($this);
 
+$this->title = 'Edit '.$model->c_title.' - GoRaisin';
+$this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
 ?>
@@ -117,7 +120,6 @@ CampaignAsset::register($this);
                                                     onclick="$('.file-upload-input').trigger( 'click' )">Add Image
                                             </button>
                                             <div class="image-upload-wrap">
-                                                <?php $campaignImage = '@web/images/uploads/campaign/'.$model->c_image?>
                                                 <input class="file-upload-input" type='file' onchange="readURL(this);"
                                                        accept="image/*" name="cImage"/>
                                                 <div class="drag-text">

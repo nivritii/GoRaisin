@@ -96,12 +96,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                                         <div class="image_wrapper">
                                                             <a href="<?= Url::to(['campaign/view', 'id' => $campaign->c_id])?>">
                                                                 <div class="mask"></div>
-                                                                <?= Html::img(Url::to('@web/images/uploads/' . $campaign->c_image), ['class' => 'scale-with-grid wp-post-image'], ['alt' => 'Image'], ['align' => 'left'], ['width' => '1200'], ['height' => '480']) ?>
+                                                                <?= Html::img(Url::to('@web/images/uploads/campaign/' . $campaign->c_image), ['class' => 'scale-with-grid wp-post-image'], ['alt' => 'Image'], ['align' => 'left'], ['width' => '1200'], ['height' => '480']) ?>
                                                                 <!--<img width="960" height="750" src="images/home_blogger2_lifestyle1-960x750.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_lifestyle1" itemprop="image" />-->
                                                             </a>
-                                                            <div class="image_links double">
-                                                                <a href="images/home_blogger2_lifestyle1-1200x800.jpg" class="zoom" rel="prettyphoto"><i class="icon-search"></i></a><a href="item-8.html" class="link"><i class="icon-link"></i></a>
-                                                            </div>
+                                                            <!--<div class="image_links double">
+                                                                <a href="images/home_blogger2_lifestyle1-1200x800.jpg" class="zoom" rel="prettyphoto"><i class="icon-search"></i></a><?/*= Html::a('<i class="glyphicon glyphicon-search"></i>',['@web/images/uploads/' . $campaign->c_image],['class' => 'zoom','rel' => 'prettyphoto']) */?><a href="item-8.html" class="link"><i class="icon-link"></i></a>
+                                                            </div>-->
                                                         </div>
                                                     </div>
                                                     <div class="post-desc-wrapper">

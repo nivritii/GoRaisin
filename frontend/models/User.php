@@ -54,7 +54,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             [['walletAddress','location','website'], 'string', 'max' => 255],
             [['image'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png,jpg,gif,jpeg,bmp'],
             [['username'], 'unique'],
-            [['email'], 'unique'],
+            [['email'], 'unique','message' => 'This email address has been taken by others.'],
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required', 'message' => 'email can not be blank'],
             ['email', 'email'],
