@@ -24,7 +24,7 @@ class CampaignSearchforDraft extends Campaign
     public function rules()
     {
         return [
-            [['c_title', 'c_image', 'c_description', 'c_start_date', 'c_end_date', 'c_video', 'c_description_long', 'c_created_at', 'c_display_name', 'c_email', 'c_location', 'c_biography', 'c_social_profile', 'c_status'], 'safe'],
+            [['c_title', 'c_image', 'c_description', 'c_start_date', 'c_end_date', 'c_video', 'c_description_long', 'c_created_at', 'c_location', 'c_status'], 'safe'],
             [['c_goal', 'c_id', 'c_author', 'c_cat_id', 'c_new_tag'], 'integer'],
         ];
     }
@@ -81,11 +81,7 @@ class CampaignSearchforDraft extends Campaign
             ->andFilterWhere(['like', 'c_description', $this->c_description])
             ->andFilterWhere(['like', 'c_video', $this->c_video])
             ->andFilterWhere(['like', 'c_description_long', $this->c_description_long])
-            ->andFilterWhere(['like', 'c_display_name', $this->c_display_name])
-            ->andFilterWhere(['like', 'c_email', $this->c_email])
             ->andFilterWhere(['like', 'c_location', $this->c_location])
-            ->andFilterWhere(['like', 'c_biography', $this->c_biography])
-            ->andFilterWhere(['like', 'c_social_profile', $this->c_social_profile])
             ->andFilterWhere(['like', 'c_status', $this->c_status]);
 
         return $dataProvider;

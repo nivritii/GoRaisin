@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p style="font-size: 25px;font-weight: 500"><?php echo $model->cAuthor->username ?></p>
 </div>
 <div style="margin-left: 15%;">
-    <p style="font-size: 17px;font-weight: 300"><?php echo $model->c_location ?></p>
+    <p style="font-size: 17px;font-weight: 300"><?php echo $model->cLocation->country ?></p>
 </div>
 <div style="margin-left: 15%;margin-top: 5%">
     <p style="font-size: 17px;font-weight: 400">Company Profile</p>
