@@ -55,15 +55,18 @@ frontend\assets\RoadmapAsset::register($this);
                             <!-- Post Featured Element (image / video / gallery)-->
                             <!-- One full width row-->
                             <div class="column one single-photo-wrapper image" style="margin-top: 0px; margin-right: 0%; margin-bottom: 0px; margin-left: 0%">
-                                <div class="image_frame scale-with-grid ">
+                                <div class="image_frame scale-with-grid" style="width: 100%">
                                     <div class="image_wrapper">
-                                        <a href="#" rel="prettyphoto">
-                                            <div class="mask"></div>
-                                            <?=Html::img(Url::to('@web/images/uploads/campaign/'.$model->c_image),['class' => 'attachment-blog-navi size-blog-navi wp-post-image'],['alt'=>'Image'],['align'=>'left'],['width'=>'80'],['height'=>'80'])?>
-                                        </a>
-                                        <div class="image_links">
-                                            <a href="<?= Url::to(['campaign/fund','id'=>$model->c_id])?>" class="link"><i class="glyphicon glyphicon-gift"></i></a>
-                                        </div>
+                                            <?php
+                                            $url = 'https://www.youtube.com/watch?v=Qu8xDIUjFUs';
+                                            preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
+                                            $id = $matches[1];
+                                            $width = '800px';
+                                            $height = '450px';
+                                            ?>
+                                            <iframe id="ytplayer" type="text/html" width="<?php echo $width ?>" height="<?php echo $height ?>"
+                                                    src="https://www.youtube.com/embed/<?php echo $id ?>?rel=0&showinfo=0&color=white&iv_load_policy=3"
+                                                    frameborder="0" allowfullscreen></iframe>
                                     </div>
                                 </div>
                             </div>
@@ -152,7 +155,7 @@ frontend\assets\RoadmapAsset::register($this);
                     <h3 style="margin-top:25px; margin-bottom:0px;" id="endDate"><?=$model->c_end_date?></h3>
                     <h3 class="title-price" style="margin-top:0px;"><small>days to go</small></h3>
 
-                    <?php if (Yii::$app->user->isGuest || Yii::$app->user->identity->id != $model->c_author) { ?>
+                    <?php if ((Yii::$app->user->isGuest || Yii::$app->user->identity->id != $model->c_author) && $model->c_status == 'publish') { ?>
                         <div class="section" style="margin-top:25px; padding-bottom:20px;">
                             <a href="<?= Url::to(['campaign/fund','id'=>$model->c_id])?>">
                                 <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-gift" aria-hidden="true"></span>Fund this Campaign</h4></button>

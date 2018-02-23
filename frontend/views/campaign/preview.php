@@ -64,15 +64,18 @@ frontend\assets\RoadmapAsset::register($this);
                             <!-- Post Featured Element (image / video / gallery)-->
                             <!-- One full width row-->
                             <div class="column one single-photo-wrapper image" style="margin-top: 0px; margin-right: 0%; margin-bottom: 0px; margin-left: 0%">
-                                <div class="image_frame scale-with-grid ">
+                                <div class="image_frame scale-with-grid" style="width: 100%">
                                     <div class="image_wrapper">
-                                        <a href="#" rel="prettyphoto">
-                                            <div class="mask"></div>
-                                            <?=Html::img(Url::to('@web/images/uploads/campaign/'.$model->c_image),['class' => 'attachment-blog-navi size-blog-navi wp-post-image'],['alt'=>'Image'],['align'=>'left'],['width'=>'80'],['height'=>'80'])?>
-                                        </a>
-                                        <div class="image_links">
-                                            <a href="<?= Url::to(['campaign/fund','id'=>$model->c_id])?>" class="link"><i class="glyphicon glyphicon-gift"></i></a>
-                                        </div>
+                                        <?php
+                                        $url = 'https://www.youtube.com/watch?v=Qu8xDIUjFUs';
+                                        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
+                                        $id = $matches[1];
+                                        $width = '800px';
+                                        $height = '450px';
+                                        ?>
+                                        <iframe id="ytplayer" type="text/html" width="<?php echo $width ?>" height="<?php echo $height ?>"
+                                                src="https://www.youtube.com/embed/<?php echo $id ?>?rel=0&showinfo=0&color=white&iv_load_policy=3"
+                                                frameborder="0" allowfullscreen></iframe>
                                     </div>
                                 </div>
                             </div>
