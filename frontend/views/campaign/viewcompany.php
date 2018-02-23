@@ -18,7 +18,7 @@ ViewCompantAsset::register($this);
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
 
-$this->title = 'About '.$model->c_display_name.' - GoRaisin';
+$this->title = 'About '.$model->cAuthor->username.' - GoRaisin';
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <button type="button" class="close" data-dismiss="modal" style="margin-top: 6%;margin-right: 2%"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 <hr />
 <div style="margin-left: 15%;margin-top: 2%">
-    <p style="font-size: 25px;font-weight: 500"><?php echo $model->c_display_name ?></p>
+    <p style="font-size: 25px;font-weight: 500"><?php echo $model->cAuthor->username ?></p>
 </div>
 <div style="margin-left: 15%;">
     <p style="font-size: 17px;font-weight: 300"><?php echo $model->c_location ?></p>
@@ -37,13 +37,13 @@ $this->params['breadcrumbs'][] = $this->title;
     <p style="font-size: 17px;font-weight: 400">Company Profile</p>
 </div>
 <div style="margin-left: 15%;margin-top: 1%;height:200px;margin-right: 3%">
-    <p style="font-size: 17px;font-weight: 300"><?php echo $model->c_biography ?></p>
+    <p style="font-size: 17px;font-weight: 300"><?php echo $model->getCompanies()->where(['campaign_id' => $model->c_id])->one() ?></p>
 </div>
 <div style="margin-left: 15%;margin-top: 3%">
     <p style="font-size: 17px;font-weight: 400">Website</p>
 </div>
 <div style="margin-left: 15%;margin-top: 1%">
-    <?php $website = $model->c_social_profile ?>
+    <?php $website = $model->getCompanies()->where(['campaign_id'=> $model->c_id])->one() ?>
     <?= Html::a($website,['campaign/linkexternal','website' => $website],['target' => '_blank','style' => 'text-decoration:none']) ?>
 </div>
 <div style="margin-left: 15%;margin-top: 3%;display: inline-block;">
