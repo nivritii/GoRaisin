@@ -67,7 +67,10 @@ frontend\assets\RoadmapAsset::register($this);
                                 <div class="image_frame scale-with-grid" style="width: 100%">
                                     <div class="image_wrapper">
                                         <?php
-                                        $url = 'https://www.youtube.com/watch?v=Qu8xDIUjFUs';
+                                        $video = \frontend\models\Campaign::find()
+                                            ->where(['c_id' => 143])
+                                            ->one();
+                                        $url=$video['c_video'];
                                         preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
                                         $id = $matches[1];
                                         $width = '800px';

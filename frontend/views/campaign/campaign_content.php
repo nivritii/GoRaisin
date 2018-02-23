@@ -14,4 +14,11 @@ use yii\widgets\ActiveForm;
     <?= Html::img('@web/images/uploads/campaign/'.$model->c_image,['class' => 'attachment-blog-navi size-blog-navi wp-post-image'],['alt'=>'Image'],['align'=>'left'],['width'=>'80'],['height'=>'80']) ?>
     <br /><br />
     <p><?=$model->c_description_long?></p>
+    <?php
+    $video = \frontend\models\Campaign::find()
+        ->where(['c_id' => 142])
+        ->one();
+    /*echo $video['c_video'];*/
+    print_r($video['c_video']);
+    ?>
 </div>
