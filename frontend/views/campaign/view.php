@@ -30,14 +30,15 @@ frontend\assets\RoadmapAsset::register($this);
                     <div class="column zero" style="width: 100%">
                         <div style="display: inline-block;vertical-align: middle;padding-top:5%">
                             <?= Html::img('@web/'.$model->cAuthor->image,['style' => 'height:40px;width:40px;border-radius:10px;margin-bottom:10%']) ?>
-                            <p><?php echo $model->cAuthor->username ?></p>
+                            <!--<p><?php /*echo $model->cAuthor->username */?></p>-->
+                            <br />
                             <?=
-                            Html::a('View',['viewcompany','id' => $model->c_id],[
+                            Html::a($model->cAuthor->username,['viewcompany','id' => $model->c_id],[
                                 'id' => 'view-company',
                                 'class' => 'view-author',
                                 'data-toggle' => 'modal',
                                 'data-target' => '#view-author',
-                                'style' => 'text-decoration:none;color:#ffffff;background-color:#940094;padding:3px;border-radius:5px;font-size:15px;'
+                                'style' => 'color:#494949;padding:3px;border-radius:5px;font-size:15px;'
                             ])
                             ?>
                         </div>
