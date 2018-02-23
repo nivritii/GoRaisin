@@ -477,8 +477,10 @@ class CampaignController extends Controller
                 if($this->countfaqs($id)>0){
                     $this->deletefaqs($id);
                 }
-                //$this->deleteCompany($campaign->c_company);
+                
+                $this->deleteCompany($campaign->c_id);
                 $this->findModel($id)->delete();
+
                 Yii::$app->session->setFlash('success', 'You have deleted successfully your project!');
                 return $this->redirect('mycampaign');
             }else{
@@ -648,7 +650,7 @@ class CampaignController extends Controller
   
     protected function deleteCompany($id)
     {
-        $company = Company::find()->where(['id'=>$id])->one();
+        $company = Company::find()->where(['campaign_id'=>$id])->one();
         $company->delete();
     }
 }
