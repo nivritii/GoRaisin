@@ -23,7 +23,7 @@ $campaign_draft = new Campaign();
       name="campaignForm">
 <div class="container" style="margin-top: 10px">
     <div class="row form-group">
-        <div class="col-xs-9" style="padding-right: 0px;">
+        <div class="col-xs-10" style="padding-right: 0px;">
             <ul class="nav nav-pills nav-justified thumbnail setup-panel" id="myNav" style="margin-bottom: 0px;">
                 <li id="navStep1" class="li-nav active" step="#step-1">
                     <a>
@@ -40,22 +40,34 @@ $campaign_draft = new Campaign();
                 <li id="navStep3" class="li-nav" step="#step-3">
                     <a>
                         <h4 class="list-group-item-heading">The Story</h4>
-                        <p class="list-group-item-text">More about your project</p>
+                        <p class="list-group-item-text">About your project</p>
                     </a>
                 </li>
                 <li id="navStep4" class="li-nav" step="#step-4">
                     <a>
                         <h4 class="list-group-item-heading">Company</h4>
-                        <p class="list-group-item-text">Share about your team</p>
+                        <p class="list-group-item-text">About your team</p>
+                    </a>
+                </li>
+                <li id="navStep4" class="li-nav" step="#step-5">
+                    <a>
+                        <h4 class="list-group-item-heading">Updates</h4>
+                        <p class="list-group-item-text">Manage your updates</p>
+                    </a>
+                </li>
+                <li id="navStep4" class="li-nav" step="#step-6">
+                    <a>
+                        <h4 class="list-group-item-heading">FAQ</h4>
+                        <p class="list-group-item-text">Manage your FAQs</p>
                     </a>
                 </li>
             </ul>
         </div>
         <div>
-            <div class="col-xs-3" style="padding-left: 0px; ">
-                <input class="btn btn-lg btn-default" type="submit" value="Preview" id="submit" style="width:130px;padding: 25px 20px 20px; margin-left: 3%; color: #337ab7;">
-                <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>">
-                <input class="btn btn-lg btn-default" value="Submit" style="width:130px; padding: 25px 20px 20px; margin-left: 1%; color: #337ab7;">
+            <div class="col-xs-2" style="padding-left: 0px; ">
+<!--                <input class="btn btn-lg btn-default" type="submit" value="Preview" id="submit" style="width:80px;padding: 30px 0px 30px; margin-left: 3%; color: #337ab7;">-->
+                <a href="<?= Url::to(['campaign/update','id'=>$model->c_id])?>">
+                <input class="btn btn-lg btn-default" value="Update" style="width:100%; padding: 30px 0px 33px; margin-left: 1%; color: #337ab7;">
                 </a>
             </div>
         </div>
@@ -420,6 +432,110 @@ $campaign_draft = new Campaign();
 </div>
 </div>
 <!--</div>-->
+    <!-- Step 5-->
+    <div class="row setup-content" id="step-5">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1 class="tabpage-title">Post an update</h1>
+
+                <div class="container col-xs-12">
+                    <div class="container">
+                        <br/>
+<!--                        <div class="form-group" style="padding-right: 90px;">-->
+<!--                            <div style="width: 100%;padding: 10px">-->
+<!--                                <div style="float: left;display: inline-block;width: 20%">-->
+<!--                                    <p class="item-title">Company name</p>-->
+<!--                                </div>-->
+<!--                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">-->
+<!--                                    <input type="text" style="width: 100%" name="comName" value="--><?//=$company->company_name?><!--">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!---->
+<!--                            <div style="clear:both;padding: 10px">-->
+<!--                                <div style="float: left;display: inline-block;width: 20%">-->
+<!--                                    <p class="item-title">Email</p>-->
+<!--                                </div>-->
+<!--                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">-->
+<!--                                    <input type="text" style="width: 100%" name="comEmail" value="--><?//=$company->company_email?><!--">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div style="clear:both;padding: 10px;">-->
+<!--                                <div style="float: left;display: inline-block;width: 20%">-->
+<!--                                    <p class="item-title">Website URL</p>-->
+<!--                                </div>-->
+<!--                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">-->
+<!--                                    <input type="text" style="width: 100%" name="comWebsite" value="--><?//=$company->company_website?><!--">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div style="clear:both;padding: 10px;">-->
+<!--                                <div style="float: left;display: inline-block;width: 20%">-->
+<!--                                    <p class="item-title">Description</p>-->
+<!--                                </div>-->
+<!--                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%;">-->
+<!--                            <textarea rows="3" type="text" style="width: 100%;" name="comDesc"-->
+<!--                                      id="comDesc">--><?//=$company->company_description?><!--</textarea>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div style="clear:both;padding: 5px;">-->
+<!--                                <hr style="3; border-color: #e3cece">-->
+<!--                                <div style="float: left;display: inline-block;width: 20%">-->
+<!--                                    <p class="item-title">Industry</p>-->
+<!--                                </div>-->
+<!--                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">-->
+<!--                                    <input type="text" style="width: 100%" name="comIndustry" value="--><?//=$company->company_industry?><!--">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div style="clear:both;padding: 10px;">-->
+<!--                                <div style="float: left;display: inline-block;width: 20%">-->
+<!--                                    <p class="item-title"># of employees</p>-->
+<!--                                </div>-->
+<!--                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">-->
+<!--                                    <input type="text" style="width: 100%" name="comEmp" value="--><?//=$company->company_employees_count?><!--">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div style="clear:both;padding: 0px;">-->
+<!--                                <hr style="3; border-color: #e3cece">-->
+<!--                                <div style="float: left;display: inline-block;width: 20%">-->
+<!--                                    <p class="item-title">Location</p>-->
+<!--                                </div>-->
+<!--                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">-->
+<!--                                    <select name="cLocation" id="search_locations"-->
+<!--                                            style="border-radius: 0px;width: 100%">-->
+<!--                                        <option selected value="--><?//= $model->cLocation->id?><!--">--><?//= $model->cLocation->country ?><!--</option>-->
+<!--                                        --><?php //foreach ($countries as $country) { ?>
+<!--                                            <option value=--><?//= $country->id ?><!-->--><?//= $country->country ?><!--</option>-->
+<!--                                        --><?php //} ?>
+<!--                                    </select>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div style="clear:both;padding: 10px;">-->
+<!--                                <div style="float: left;display: inline-block;width: 15%">-->
+<!--                                    <p class="item-title" style="padding-left: 0px">Postal code</p>-->
+<!--                                </div>-->
+<!--                                <div style="display: inline-block;float: left;margin-left: 6.5%;width: 55%">-->
+<!--                                    <input type="text" style="width: 100%" name="comPostal" value="--><?//=$company->company_postal?><!--">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div style="clear:both;">-->
+<!--                                <hr style="3; border-color: #e3cece">-->
+<!--                                <div style="float: left;display: inline-block;width: 20%">-->
+<!--                                    <p class="item-title">Your Position</p>-->
+<!--                                </div>-->
+<!--                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">-->
+<!--                                    <input type="text" style="width: 100%" name="comPosition" value="--><?//=$company->company_designation?><!--">-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                    </div>
+                </div>
+                <!--</form> -->
+                <!--                <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">-->
+
+                <div class="form-group">
+                </div>
+            </div>
+        </div>
+    </div>
 </form>
 
 

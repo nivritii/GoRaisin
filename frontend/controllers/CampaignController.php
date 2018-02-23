@@ -364,6 +364,29 @@ class CampaignController extends Controller
         ]);
 
     }
+
+    public function actionPublished($id)
+    {
+        if($this->checkStatus($id)){
+
+            $model = $this->findModel($id);
+            $categories = Category::find()->all();
+            $reward = Reward::find()->where(['c_id'=>$id])->one();
+            $company = $this->findCompany($id);
+            $countries = Location::find()->all();
+
+            return $this->render('updatepublished',[
+                'model' => $model,
+                'reward' => $reward,
+                'categories' => $categories,
+                'company' => $company,
+                'countries' => $countries,
+            ]);
+        }
+
+        Yii::$app->session->setFlash('error', 'Your campaign has not been launched yet!');
+        return $this->redirect('mycampaign');
+    }
     
     public function actionShow($id)
     {        
@@ -409,6 +432,9 @@ class CampaignController extends Controller
     public function actionMycampaign()
     {
         $campaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId()])->all();
+        $draftedCampaigns = Campaign::find()->where(['c_status'=>'draft'])->all();
+        $publishedCampaigns = Campaign::find()->where(['c_status'=>'published'])->all();
+
         $fund = Fund::find()->where(['fund_user_id'=>Yii::$app->user->getId()])->all();
 
         $cIds = Fund::find()->select(['fund_c_id'])->where(['fund_user_id'=>Yii::$app->user->getId()])->distinct();
@@ -416,6 +442,8 @@ class CampaignController extends Controller
 
         return $this->render('mycampaign',[
             'campaigns' => $campaigns,
+            'draftedCampaigns' => $draftedCampaigns,
+            'publishedCampaigns' => $publishedCampaigns,
             'activities' => $fund,
             'cIds' => $cIds,
             'fundedCampaigns' => $fundedCampaigns,
@@ -477,7 +505,7 @@ class CampaignController extends Controller
                 if($this->countfaqs($id)>0){
                     $this->deletefaqs($id);
                 }
-                
+
                 $this->deleteCompany($campaign->c_id);
                 $this->findModel($id)->delete();
 
@@ -582,6 +610,15 @@ class CampaignController extends Controller
         }
 
         return new Company();
+    }
+
+    protected function checkStatus($id)
+    {
+        $campaign = Campaign::find()->where(['c_id'=>$id])->one();
+        if($campaign->c_status=='published'){
+            return true;
+        }
+        return false;
     }
 
     protected function countRewards($id)

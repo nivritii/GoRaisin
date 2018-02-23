@@ -79,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <h3>Ongoing projects</h3>
                                         <br /><br />
                                         <div class="posts_group lm_wrapper classic col-3">
-                                            <?php foreach ($campaigns as $campaign) {
+                                            <?php foreach ($publishedCampaigns as $campaign) {
                                                 $backed = Fund::find()->where(['fund_c_id'=>$campaign->c_id])->sum('fund_amt');
 
                                                 if($backed!=0){
@@ -129,7 +129,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                     </div>
                                                                 </div>
                                                                 <div class="post-links">
-                                                                    <i class="glyphicon glyphicon-link" style="color: #337ab7"></i>&nbsp&nbsp;<a href="<?= Url::to(['campaign/view', 'id' => $campaign->c_id])?>" class="post-more" style="text-decoration: none">Continue Editing</a>
+                                                                    <i class="glyphicon glyphicon-link" style="color: #337ab7"></i>&nbsp&nbsp;<a href="<?= Url::to(['campaign/published', 'id' => $campaign->c_id])?>" class="post-more" style="text-decoration: none">Continue Editing</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -142,7 +142,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <h3>Started Projects</h3>
                                         <br /><br />
                                         <div class="posts_group lm_wrapper classic col-3">
-                                            <?php foreach ($campaigns as $campaign) {
+                                            <?php foreach ($draftedCampaigns as $campaign) {
                                                 $backed = Fund::find()->where(['fund_c_id'=>$campaign->c_id])->sum('fund_amt');
 
                                                 if($backed!=0){
