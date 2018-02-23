@@ -439,94 +439,21 @@ $campaign_draft = new Campaign();
                 <h1 class="tabpage-title">Post an update</h1>
 
                 <div class="container col-xs-12">
-                    <div class="container">
-                        <br/>
-<!--                        <div class="form-group" style="padding-right: 90px;">-->
-<!--                            <div style="width: 100%;padding: 10px">-->
-<!--                                <div style="float: left;display: inline-block;width: 20%">-->
-<!--                                    <p class="item-title">Company name</p>-->
-<!--                                </div>-->
-<!--                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">-->
-<!--                                    <input type="text" style="width: 100%" name="comName" value="--><?//=$company->company_name?><!--">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!---->
-<!--                            <div style="clear:both;padding: 10px">-->
-<!--                                <div style="float: left;display: inline-block;width: 20%">-->
-<!--                                    <p class="item-title">Email</p>-->
-<!--                                </div>-->
-<!--                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">-->
-<!--                                    <input type="text" style="width: 100%" name="comEmail" value="--><?//=$company->company_email?><!--">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div style="clear:both;padding: 10px;">-->
-<!--                                <div style="float: left;display: inline-block;width: 20%">-->
-<!--                                    <p class="item-title">Website URL</p>-->
-<!--                                </div>-->
-<!--                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">-->
-<!--                                    <input type="text" style="width: 100%" name="comWebsite" value="--><?//=$company->company_website?><!--">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div style="clear:both;padding: 10px;">-->
-<!--                                <div style="float: left;display: inline-block;width: 20%">-->
-<!--                                    <p class="item-title">Description</p>-->
-<!--                                </div>-->
-<!--                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%;">-->
-<!--                            <textarea rows="3" type="text" style="width: 100%;" name="comDesc"-->
-<!--                                      id="comDesc">--><?//=$company->company_description?><!--</textarea>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div style="clear:both;padding: 5px;">-->
-<!--                                <hr style="3; border-color: #e3cece">-->
-<!--                                <div style="float: left;display: inline-block;width: 20%">-->
-<!--                                    <p class="item-title">Industry</p>-->
-<!--                                </div>-->
-<!--                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">-->
-<!--                                    <input type="text" style="width: 100%" name="comIndustry" value="--><?//=$company->company_industry?><!--">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div style="clear:both;padding: 10px;">-->
-<!--                                <div style="float: left;display: inline-block;width: 20%">-->
-<!--                                    <p class="item-title"># of employees</p>-->
-<!--                                </div>-->
-<!--                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">-->
-<!--                                    <input type="text" style="width: 100%" name="comEmp" value="--><?//=$company->company_employees_count?><!--">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div style="clear:both;padding: 0px;">-->
-<!--                                <hr style="3; border-color: #e3cece">-->
-<!--                                <div style="float: left;display: inline-block;width: 20%">-->
-<!--                                    <p class="item-title">Location</p>-->
-<!--                                </div>-->
-<!--                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">-->
-<!--                                    <select name="cLocation" id="search_locations"-->
-<!--                                            style="border-radius: 0px;width: 100%">-->
-<!--                                        <option selected value="--><?//= $model->cLocation->id?><!--">--><?//= $model->cLocation->country ?><!--</option>-->
-<!--                                        --><?php //foreach ($countries as $country) { ?>
-<!--                                            <option value=--><?//= $country->id ?><!-->--><?//= $country->country ?><!--</option>-->
-<!--                                        --><?php //} ?>
-<!--                                    </select>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div style="clear:both;padding: 10px;">-->
-<!--                                <div style="float: left;display: inline-block;width: 15%">-->
-<!--                                    <p class="item-title" style="padding-left: 0px">Postal code</p>-->
-<!--                                </div>-->
-<!--                                <div style="display: inline-block;float: left;margin-left: 6.5%;width: 55%">-->
-<!--                                    <input type="text" style="width: 100%" name="comPostal" value="--><?//=$company->company_postal?><!--">-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div style="clear:both;">-->
-<!--                                <hr style="3; border-color: #e3cece">-->
-<!--                                <div style="float: left;display: inline-block;width: 20%">-->
-<!--                                    <p class="item-title">Your Position</p>-->
-<!--                                </div>-->
-<!--                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">-->
-<!--                                    <input type="text" style="width: 100%" name="comPosition" value="--><?//=$company->company_designation?><!--">-->
-<!--                                </div>-->
-<!--                            </div>-->
+<!--                    <div class="container">-->
+<!--                        <div style="clear:both;height: 500px">-->
+                            <div style="display: inline-block;float: center;width: 75%;height: 40%">
+                                <?php
+                                echo \artkost\yii2\trumbowyg\Trumbowyg::widget([
+                                    'name' => 'cLDesc',
+                                    'value' => $model->c_description_long,
+                                    'settings' => [
+                                        'lang' => 'en'
+                                    ]
+                                ]);
+                                ?>
+                            </div>
 <!--                        </div>-->
-                    </div>
+<!--                    </div>-->
                 </div>
                 <!--</form> -->
                 <!--                <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">-->

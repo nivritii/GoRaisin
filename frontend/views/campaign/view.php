@@ -28,10 +28,12 @@ frontend\assets\RoadmapAsset::register($this);
             <div class="sections_group" style="width: 55%;float: left;margin-left: 10%">
                 <div style="border-right: .5px solid #f0f0f0; padding-top: 3%">
                     <div class="column zero" style="width: 100%">
-                        <div style="display: inline-block;vertical-align: middle;padding-top:5%">
+                        <div class="col-xs-1" style="display: block; margin: 0 auto;padding-top:5%">
                             <?= Html::img('@web/'.$model->cAuthor->image,['style' => 'height:40px;width:40px;border-radius:10px;margin-bottom:10%']) ?>
+
                             <!--<p><?php /*echo $model->cAuthor->username */?></p>-->
                             <br />
+
                             <?=
                             Html::a($model->cAuthor->username,['viewcompany','id' => $model->c_id],[
                                 'id' => 'view-company',
