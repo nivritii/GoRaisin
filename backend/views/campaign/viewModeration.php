@@ -51,7 +51,7 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
                     },
                     'update' => function ($url) {
                         return Html::a('Review', $url, [
-                            'title' => 'view',
+                            'title' => 'review',
                             'style' => 'background-color: #00a65a; color: #ffffff; padding:2%;border-radius:5px',
                         ]);
                     },
