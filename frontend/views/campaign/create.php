@@ -53,7 +53,7 @@ $campaign_draft = new Campaign();
         </div>
         <div>
             <div class="col-xs-3" style="padding-left: 0px; ">
-                <input class="btn btn-lg btn-default" type="submit" value="Preview" id="submit" style="width:130px;padding: 25px 20px 20px; margin-left: 2%; color: #337ab7;">
+                <input class="btn btn-lg btn-default" type="submit" value="Preview" id="submit" style="width:130px;padding: 25px 20px 20px; margin-left: 3%; color: #337ab7;">
                 <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>">
                 <input class="btn btn-lg btn-default" value="Submit" style="width:130px; padding: 25px 20px 20px; margin-left: 1%; color: #337ab7;">
                 </a>
