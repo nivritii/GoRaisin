@@ -626,17 +626,6 @@ class CampaignController extends Controller
         }
         return false;
     }
-
-    /*protected function createFaqs()
-    {
-        $model = new Faq();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->campaign->c_id]);
-        }
-
-        return $this->redirect(['view','id' => $model->campaign->c_id]);
-    }*/
   
     protected function deleteCompany($id)
     {

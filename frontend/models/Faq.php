@@ -35,7 +35,7 @@ class Faq extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['campaign_id', 'user_id', 'question', 'answer', 'to_email_id', 'from_email_id'], 'required'],
+            [['campaign_id', 'user_id', 'question', 'to_email_id', 'from_email_id'], 'required'],
             [['campaign_id', 'user_id'], 'integer'],
             [['question', 'answer'], 'string'],
             [['timestamp'], 'safe'],
