@@ -155,7 +155,7 @@ frontend\assets\RoadmapAsset::register($this);
                     <h3 style="margin-top:25px; margin-bottom:0px;">0</h3>
                     <h3 class="title-price" style="margin-top:0px;"><small>pledged of U$S<?=$model->c_goal?> goal</small></h3>
 
-                    <h3 style="margin-top:25px; margin-bottom:0px;">199</h3>
+                    <h3 style="margin-top:25px; margin-bottom:0px;">0</h3>
                     <h3 class="title-price" style="margin-top:0px;"><small>backers</small></h3>
 
                     <h3 style="margin-top:25px; margin-bottom:0px;" id="endDate"><?=$model->c_end_date?></h3>
@@ -170,17 +170,17 @@ frontend\assets\RoadmapAsset::register($this);
                     <?php }elseif(Yii::$app->user->id == $model->c_author && $model->c_status == 'publish') { ?>
                     <div class="section" style="margin-top:25px; padding-bottom:20px;">
                         <a href="<?= Url::to(['campaign/update','id'=>$model->c_id])?>">
-                            <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</h4></button>
+                            <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</button>
                         </a>
                     </div>
                     <?php }elseif (Yii::$app->user->id == $model->c_author && $model->c_status == 'draft'){ ?>
                         <a href="<?= Url::to(['campaign/update','id'=>$model->c_id])?>">
-                            <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</h4></button>
+                            <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</button>
                         </a>
                         <br /><br />
 
-                        <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>" style="margin-left: 32%;text-decoration: none">
-                            <?= Html::submitButton('Submit for Review',['class' => 'btn btn-default','value' => 'moderation','name' => 'moderation','style' => 'background-color:#add8e6;color:#ffffff;border-radius: 10px']) ?>
+                        <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>" style="text-decoration: none">
+                            <?= Html::submitButton('Submit for Review',['class' => 'btn btn-info btn-lg','value' => 'moderation','name' => 'moderation','style' => 'border-radius: 10px; width:100%']) ?>
                         </a>
                         <br /><br />
                         <a href="<?= Url::to(['campaign/delete','id'=>$model->c_id])?>">

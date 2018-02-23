@@ -340,16 +340,26 @@ class CampaignController extends Controller
     {
         $model = $this->findModel($id);
         $categories = Category::find()->all();
-        $reward = new Reward();
+        $reward = Reward::find()->where(['c_id'=>$id])->one();
         $company = $this->findCompany($id);
         $countries = Location::find()->all();
 
+        if($reward != null){
+            return $this->render('edit', [
+                'model' => $model,
+                'reward' => $reward,
+                'categories' => $categories,
+                'company' => $company,
+                'countries' => $countries,
+            ]);
+        }
         return $this->render('edit', [
             'model' => $model,
             'categories' => $categories,
             'company' => $company,
             'countries' => $countries,
         ]);
+
     }
     
     public function actionShow($id)
@@ -501,6 +511,15 @@ class CampaignController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findReward($id)
+    {
+        if(($rewards = Reward::find()->where(['c_id'=>$id])->all()) !=null){
+            return $rewards;
+        }
+
+        return new Reward();
     }
 
     protected function findCompany($id)

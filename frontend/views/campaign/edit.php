@@ -31,7 +31,7 @@ $campaign_draft = new Campaign();
                         <p class="list-group-item-text">Introduce your project</p>
                     </a>
                 </li>
-                <li id="navStep2" class="li-nav active" step="#step-2">
+                <li id="navStep2" class="li-nav" step="#step-2">
                     <a>
                         <h4 class="list-group-item-heading">Rewards</h4>
                         <p class="list-group-item-text">Backers benefits</p>
@@ -53,7 +53,10 @@ $campaign_draft = new Campaign();
         </div>
         <div>
             <div class="col-xs-3" style="padding-left: 0px; ">
-                <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit">
+                <input class="btn btn-lg btn-default" type="submit" value="Preview" id="submit" style="width:130px;padding: 25px 20px 20px; margin-left: 2%; color: #337ab7;">
+                <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>">
+                <input class="btn btn-lg btn-default" value="Submit" style="width:130px; padding: 25px 20px 20px; margin-left: 1%; color: #337ab7;">
+                </a>
             </div>
         </div>
     </div>
@@ -148,6 +151,7 @@ $campaign_draft = new Campaign();
                                     <?php
                                     echo DatePicker::widget([
                                         'name' => 'cStartdate',
+                                        'value' => $model->c_start_date,
                                         'type' => DatePicker::TYPE_COMPONENT_PREPEND,
                                         'pluginOptions' => [
                                             'format' => 'yyyy-mm-dd',
@@ -166,6 +170,7 @@ $campaign_draft = new Campaign();
                                     <?php
                                     echo DatePicker::widget([
                                         'name' => 'cEnddate',
+                                        'value' => $model->c_end_date,
                                         'type' => DatePicker::TYPE_COMPONENT_PREPEND,
                                         'pluginOptions' => [
                                             'format' => 'yyyy-mm-dd',
@@ -236,16 +241,16 @@ $campaign_draft = new Campaign();
                                     1
                                 </td>
                                 <td>
-                                    <input type="text" name='rTitle[]' id='rTitle' class="form-control"/>
+                                    <input type="text" name='rTitle[]' id='rTitle' class="form-control" value="<?=$reward->r_title?>"/>
                                 </td>
                                 <td>
-                                    <input type="text" name='rAmt[]' class="form-control"/>
+                                    <input type="text" name='rAmt[]' class="form-control" value="<?=$reward->r_pledge_amt?>"/>
                                 </td>
                                 <td>
-                                    <input type="text" name='rDesc[]' class="form-control"/>
+                                    <input type="text" name='rDesc[]' class="form-control" value="<?=$reward->r_description?>"/>
                                 </td>
                                 <td>
-                                    <input type="text" name='rLimit[]' class="form-control"/>
+                                    <input type="text" name='rLimit[]' class="form-control" value="<?=$reward->r_limit_availability?>"/>
                                 </td>
                             </tr>
                             <tr id='addr1'></tr>
@@ -360,7 +365,7 @@ $campaign_draft = new Campaign();
                             <p class="item-title">Industry</p>
                         </div>
                         <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                            <input type="text" style="width: 100%" name="comIndustry" value="<?=$company->company_industry?>>
+                            <input type="text" style="width: 100%" name="comIndustry" value="<?=$company->company_industry?>">
                         </div>
                     </div>
                     <div style="clear:both;padding: 10px;">
