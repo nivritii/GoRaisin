@@ -13,6 +13,7 @@ use Yii;
  * @property string $subject
  * @property string $content
  * @property string $attachment
+ * @property string $created_time
  */
 class Email extends \yii\db\ActiveRecord
 {
@@ -34,7 +35,7 @@ class Email extends \yii\db\ActiveRecord
             [['receiver_name', 'receiver_address', 'subject', 'content'], 'required'],
             [['content'], 'string'],
             [['receiver_name'], 'string', 'max' => 45],
-            [['receiver_address'], 'string', 'max' => 200],
+            [['receiver_address'], 'string', 'max' => 1000],
             [['subject', 'attachment'], 'string', 'max' => 255],
             [['attachment'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png,jpg,gif,jpeg,bmp,txt,doc,docx,xlsx,csv'],
         ];
@@ -52,6 +53,7 @@ class Email extends \yii\db\ActiveRecord
             'subject' => 'Subject',
             'content' => 'Content',
             'attachment' => 'Attachment',
+            'created_time' => 'Created Time'
         ];
     }
 }

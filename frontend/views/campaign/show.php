@@ -12,7 +12,7 @@ use frontend\models\Fund;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
 
-$this->title = 'All Campaigns';
+$this->title = 'All Campaigns - GoRaisin';
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -85,7 +85,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     <a href="<?= Url::to(['campaign/view', 'id' => $campaign->c_id])?>">
                                                         <div class="mask"></div>
                                                         <?= Html::img(Url::to('@web/images/uploads/' . $campaign->c_image), ['class' => 'scale-with-grid wp-post-image'], ['alt' => 'Image'], ['align' => 'left'], ['width' => '1200'], ['height' => '480']) ?>
-<!--                                                        <img width="960" height="750" src="images/home_blogger2_lifestyle1-960x750.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_lifestyle1" itemprop="image" />-->
+                                                        <!--<img width="960" height="750" src="images/home_blogger2_lifestyle1-960x750.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_lifestyle1" itemprop="image" />-->
                                                     </a>
                                                     <div class="image_links single">
                                                         <a href="<?=Url::to(['campaign/view', 'id' => $campaign->c_id])?>" class="zoom"><i class="glyphicon glyphicon-eye-open"></i></a>
@@ -97,7 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     <div class="post-head">
                                                         <div class="post-meta clearfix">
                                                             <div class="author-date">
-                                                                <span class="vcard author post-author"><span class="label" style="color: #adadad;font-size: 12px">Published by </span>&nbsp&nbsp<i class="glyphicon glyphicon-user"></i>&nbsp;<span class="fn"><a href="#"><?= $campaign->cAuthor->username?></a></span></span><span class="date"><span class="label">at </span><i class="glyphicon glyphicon-time"></i> <span class="post-date updated"><?= $campaign->c_created_at?></span></span>
+                                                                <span class="vcard author post-author"><span class="label" style="color: #adadad;font-size: 12px">Published by </span>&nbsp&nbsp<i class="glyphicon glyphicon-user"></i>&nbsp;<span class="fn"><!--<a href="#"><?/*= $campaign->cAuthor->username*/?></a>--><?= Html::a($campaign->cAuthor->username,['myintroduction','id' => $campaign->c_id],['target' => '_blank']) ?></span></span><span class="date"><span class="label">at </span><i class="glyphicon glyphicon-time"></i> <span class="post-date updated"><?= $campaign->c_created_at?></span></span>
                                                             </div>
                                                             <div class="category">
                                                                 <p style="color: #337ab7;font-weight: 500"><i class="glyphicon glyphicon-tag" style="color: #337ab7"></i>&nbsp<?= $campaign->cCat->name?></p>

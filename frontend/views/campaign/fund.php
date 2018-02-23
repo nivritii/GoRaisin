@@ -34,9 +34,9 @@ $reward = new Reward();
                 <div class="container">
                     <div class="panel-group" id="faqAccordion" style="width: 89%">
                         <div class="panel panel-default panel-faq">
-                            <div class="panel-heading">
-                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#noReward">
-                                    <h4 class="panel-title">
+                            <div class="panel-heading" style="background-color: #ffffff">
+                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#noReward" style="text-decoration: none;">
+                                    <h4 class="panel-title" style="font-size: 20px">
                                         Pleage without a reward
                                     </h4>
                                 </a>
@@ -44,53 +44,53 @@ $reward = new Reward();
                             <div id="noReward" class="panel-collapse collapse">
                                 <div class="panel-body">
                                     <div class="form-group">
-                                    <div style="alignment:center">
-                                        <div style="display: inline-block;width: 20%">
-                                            <p class="item-title">Pledge Amount</p>
+                                        <div style="alignment:center">
+                                            <div style="display: inline-block;width: 12%;">
+                                                <p class="item-title">Pledge Amount:</p>
+                                            </div>
+                                            <div style="display: inline-block;margin-left: 1%;width: 45%">
+                                                <input type="text" style="width: 100%" name="reward">
+                                            </div>
                                         </div>
-                                        <div style="display: inline-block;margin-left: 2%;width: 50%">
-                                            <input type="text" style="width: 100%" name="reward">
-                                        </div>
-                                    </div>
-                                        <input class="btn btn-md btn-info" type="submit" value="Pledge" id="submit"  style="color: #ffffff;width: 25%">
+                                        <input class="btn btn-md btn-info" type="submit" value="Pledge" id="submit" style="color: #ffffff;width: 25%;background-color: #940094;border: none;float: left;margin-left: 38%">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <?php foreach ($rewards as $reward) {?>
                         <div class="panel panel-default panel-faq">
-                            <div class="panel-heading">
-                                <a  data-toggle="collapse" data-parent="#accordion-cat-1" href="#<?=$reward->r_id?>">
-                                    <h4 class="panel-title">
+                            <div class="panel-heading" style="background-color: #ffffff">
+                                <a  data-toggle="collapse" data-parent="#accordion-cat-1" href="#<?=$reward->r_id?>" style="text-decoration: none">
+                                    <h4 class="panel-title" style="font-size: 20px">
                                         <input type="radio" name="reward" value="<?=$reward->r_pledge_amt?>" hidden>
                                         <?=$reward->r_title?>
                                     </h4>
                                 </a>
                             </div>
                             <div id="<?=$reward->r_id?>" class="panel-collapse collapse">
-                                <div class="panel-body">
+                                <div id="fund-div">
                                     <table>
                                         <tr>
-                                            <td style="width: 5%"><input type="radio" name="reward" value="<?=$reward->r_pledge_amt?>"></td>
+                                            <td style="width: 1%"><input type="radio" name="reward" value="<?=$reward->r_pledge_amt?>"></td>
                                             <td style="width: 95%">
                                                 <div class="form-group">
-                                                    <div style="alignment:center">
-                                                        <div style="display: inline-block;">
-                                                            <?=$reward->r_description?>
+                                                    <div style="text-align: left">
+                                                        <div style="margin-left: 18.5%;margin-right: 15%">
+                                                            <p style="font-size: 20px"><?=$reward->r_description?></p>
                                                         </div>
                                                     </div>
                                                     <br/>
-                                                    <div style="alignment:center">
-                                                        <div style="display: inline-block">
+                                                    <div style="alignment:center;text-align: left">
+                                                        <div style="display: inline-block;margin-left: 18.5%">
                                                             <p class="item-title">Pledge Amount: </p>
                                                         </div>
-                                                        <div style="display: inline-block">
-                                                            <input type="text" disabled value="<?=$reward->r_pledge_amt?>">
+                                                        <div style="display: inline-block;margin-left: 2%;width: 47%">
+                                                            <input type="text" disabled value="<?=$reward->r_pledge_amt?>" style="width: 100%">
                                                         </div>
                                                     </div>
                                                     <br/>
-                                                    <div style="alignment:center">
-                                                        <input class="btn btn-md btn-info" type="submit" id="submit" value="Pledge" style="color: #ffffff;width: 25%">
+                                                    <div style="alignment:center;text-align: left">
+                                                        <input class="btn btn-md btn-info" type="submit" id="submit" value="Pledge" style="color: #ffffff;width: 25%;background-color: #940094;border: none;float: left;margin-left: 36%">
                                                     </div>
                                                 </div>
                                             </td>

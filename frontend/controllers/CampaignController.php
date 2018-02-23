@@ -24,6 +24,9 @@ use frontend\models\Model;
 use yii\web\UploadedFile;
 use atans\actionlog\models\ActionLog;
 use frontend\models\PasswordResetRequestForm;
+use frontend\models\ResetPasswordForm;
+use yii\base\InvalidParamException;
+use yii\web\BadRequestHttpException;
 use yii2mod\alert;
 
 ActionLog::error('Some error message');
@@ -457,6 +460,11 @@ class CampaignController extends Controller
             $user->username=Yii::$app->user->getIdentity()->username;
             $user->password=$_POST['password'];
             if($user->login()){
+                /*$reward = Reward::find()->where(['c_id' => $campaign->c_id])->one();
+                $reward->delete();
+                $campaign->delete();
+                return $this->redirect(['mycampaign']);*/
+
                 if($this->countRewards($id)>0){
                     $this->deleteRewards($id);
                 }
@@ -486,15 +494,58 @@ class CampaignController extends Controller
 
     public function actionForgotpassword()
     {
-        $emailUser = new PasswordResetRequestForm();
-        $emailUser->email=Yii::$app->user->getIdentity()->email;
+        $model = new PasswordResetRequestForm();
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->sendEmail()) {
+                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+
+                return $this->goHome();
+            } else {
+                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
+            }
+        }
+
+        return $this->render('forgotpassword', [
+            'model' => $model,
+        ]);
+
+
+
+        /*$emailUser->email=Yii::$app->user->getIdentity()->email;
 
         if ($emailUser->sendEmail()) {
             Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
             return $this->goHome();
         } else {
             Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for the provided email address.');
+        }*/
+    }
+
+    /**
+     * Resets password.
+     *
+     * @param string $token
+     * @return mixed
+     * @throws BadRequestHttpException
+     */
+    public function actionResetPassword($token)
+    {
+        try {
+            $model = new ResetPasswordForm($token);
+        } catch (InvalidParamException $e) {
+            throw new BadRequestHttpException($e->getMessage());
         }
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
+            Yii::$app->session->setFlash('success', 'New password saved.');
+
+            return $this->goHome();
+        }
+
+        return $this->render('resetPassword', [
+            'model' => $model,
+        ]);
     }
 
     /**

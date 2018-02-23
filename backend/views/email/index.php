@@ -62,8 +62,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
             /*'id',*/
             'receiver_name',
-            'receiver_address',
+            /*'receiver_address',*/
             'subject',
+            'created_time',
             /*'content:ntext',*/
             // 'attachment',
 

@@ -16,11 +16,8 @@ $this->title = 'GoRaisin Backend';
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
 <div class="site-index">
-
     <div id="page-wrapper">
-
         <div class="container-fluid">
-
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
@@ -42,7 +39,7 @@ $this->title = 'GoRaisin Backend';
                         <div class="icon">
                             <i class="ion ion-bag"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <?= Html::a('More info <i class="fa fa-arrow-circle-right"></i>',['campaign/index'],['class' => 'small-box-footer']) ?>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -70,7 +67,8 @@ $this->title = 'GoRaisin Backend';
                         <div class="icon">
                             <i class="ion ion-person-add"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <?= Html::a('More info <i class="fa fa-arrow-circle-right"></i>',['frontend-user/index'],['class' => 'small-box-footer']) ?>
+                        <!--<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>-->
                     </div>
                 </div>
                 <!-- ./col -->
@@ -90,67 +88,43 @@ $this->title = 'GoRaisin Backend';
                 <!-- ./col -->
             </div>
             <!-- /.row -->
-<div class="row">
-    <div id="columnchart_material" style="width: 'auto'; height: 500px;"></div>
-</div>
+            <div class="row">
+                <div id="columnchart_material" style="width: auto; height: 700px;text-align: center"></div>
+            </div>
 
-<script type="text/javascript">
-    google.load("visualization", "1.1", {packages:["bar"]});
-    google.setOnLoadCallback(drawChart);
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Data', 'Count'],
-            <?php
-            // $days1 = ['Mon','Tuesday','Wed','Thu','Fri','Sat','Sun'];
-            $elements = ['Active Posts','Categories','Users',' Comments'];
-            $element_data = [$campaignCount,$commentCount,$userCount,$categoryCount];
+            <script type="text/javascript">
+                google.load("visualization", "1.1", {packages:["bar"]});
+                google.setOnLoadCallback(drawChart);
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Data', 'Count'],
+                        <?php
+                        // $days1 = ['Mon','Tuesday','Wed','Thu','Fri','Sat','Sun'];
+                        $elements = ['Active Posts','Categories','Users',' Comments'];
+                        $element_data = [$campaignCount,$commentCount,$userCount,$categoryCount];
 
-            for($i=0;$i<4; $i++){
-                echo   "['{$elements[$i]}'" . "," . "{$element_data[$i]}],";
-            }
-            ?>
+                        for($i=0;$i<4; $i++){
+                            echo   "['{$elements[$i]}'" . "," . "{$element_data[$i]}],";
+                        }
+                        ?>
 
-        ]);
+                    ]);
 
-        var options = {
-            chart: {
-                title: 'Campaign Count',
-                //subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-            }
-        };
+                    var options = {
+                        chart: {
+                            title: 'Campaign Count',
+                            //subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+                        }
+                    };
 
-        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+                    var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 
-        chart.draw(data, options);
-    }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    chart.draw(data, options);
+                }
+            </script>
         </div>
         <!-- /.container-fluid -->
-
     </div>
-
-
-
-
-
     <!-- /#page-wrapper -->
-
-
 </div>
 
