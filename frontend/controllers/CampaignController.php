@@ -459,7 +459,7 @@ class CampaignController extends Controller
     {
         $model = $this->findModel($id);
         $authorId = $model->cAuthor->id;
-        $campaigns = Campaign::find()->where(['c_author'=>$authorId])->all();
+        $campaigns = Campaign::find()->where(['c_author'=>$authorId,'c_status'=>'publish'])->all();
 
         $cIds = Fund::find()->select(['fund_c_id'])->where(['fund_user_id'=>$authorId])->distinct();
         $fundedCampaigns = Campaign::find()->where(['c_id'=>$cIds])->all();
