@@ -33,19 +33,19 @@ $this->params['breadcrumbs'][] = $this->title;
 <div style="margin-left: 15%;">
     <p style="font-size: 17px;font-weight: 300"><?php echo $model->cLocation->country ?></p>
 </div>
-<div style="margin-left: 15%;margin-top: 5%">
+<!--<div style="margin-left: 15%;margin-top: 5%">
     <p style="font-size: 17px;font-weight: 400">Company Profile</p>
 </div>
 <div style="margin-left: 15%;margin-top: 1%;height:200px;margin-right: 3%">
-    <p style="font-size: 17px;font-weight: 300"><?php echo $model->getCompanies()->where(['campaign_id' => $model->c_id])->one() ?></p>
+    <p style="font-size: 17px;font-weight: 300"><?php /*echo $model->getCompanies()->where(['campaign_id' => $model->c_id])->one() */?></p>
 </div>
 <div style="margin-left: 15%;margin-top: 3%">
     <p style="font-size: 17px;font-weight: 400">Website</p>
 </div>
 <div style="margin-left: 15%;margin-top: 1%">
-    <?php $website = $model->getCompanies()->where(['campaign_id'=> $model->c_id])->one() ?>
-    <?= Html::a($website,['campaign/linkexternal','website' => $website],['target' => '_blank','style' => 'text-decoration:none']) ?>
-</div>
+    <?php /*$website = $model->getCompanies()->where(['campaign_id'=> $model->c_id])->one() */?>
+    <?/*= Html::a($website,['campaign/linkexternal','website' => $website],['target' => '_blank','style' => 'text-decoration:none']) */?>
+</div>-->
 <div style="margin-left: 15%;margin-top: 3%;display: inline-block;">
     <p style="font-size: 17px;font-weight: 400"><i class="fa fa-user-circle fa-1x"></i>&nbsp;Author</p>
 </div>

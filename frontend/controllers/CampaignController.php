@@ -367,12 +367,12 @@ class CampaignController extends Controller
     
     public function actionShow($id)
     {        
-        $model = Campaign::find()->all();
+        $model = Campaign::find()/*->where(['c_status' => 'publish'])*/->all();
         $categories = Category::find()->all();
 
         if($id!='NULL'){
             
-            $model = Campaign::find()->where(['c_cat_id'=>$id])->all();            
+            $model = Campaign::find()->where(['c_cat_id'=>$id])->all();
             return $this->render('show',[
             'model'=>$model,
             'categories'=>$categories,
