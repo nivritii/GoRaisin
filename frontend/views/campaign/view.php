@@ -162,13 +162,13 @@ frontend\assets\RoadmapAsset::register($this);
                     <h3 style="margin-top:25px; margin-bottom:0px;" id="endDate"><?=$model->c_end_date?></h3>
                     <h3 class="title-price" style="margin-top:0px;"><small>days to go</small></h3>
 
-                    <?php if ((Yii::$app->user->isGuest || Yii::$app->user->identity->id != $model->c_author) && $model->c_status == 'publish') { ?>
+                    <?php if ((Yii::$app->user->isGuest || Yii::$app->user->identity->id != $model->c_author) /*&& $model->c_status == 'published'*/) { ?>
                         <div class="section" style="margin-top:25px; padding-bottom:20px;">
                             <a href="<?= Url::to(['campaign/fund','id'=>$model->c_id])?>">
                                 <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-gift" aria-hidden="true"></span>Fund this Campaign</h4></button>
                             </a>
                         </div>
-                    <?php }elseif(Yii::$app->user->id == $model->c_author && $model->c_status == 'publish') { ?>
+                    <?php }elseif(Yii::$app->user->id == $model->c_author && $model->c_status == 'published') { ?>
                         <div class="section" style="margin-top:25px; padding-bottom:20px;">
                             <a href="<?= Url::to(['campaign/update','id'=>$model->c_id])?>">
                                 <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</h4></button>
@@ -200,6 +200,81 @@ frontend\assets\RoadmapAsset::register($this);
                         <h6><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> All or nothing. This project will only be funded if it reaches its goal by <?=$model->c_end_date?>.</h6>
                     </div>
                 </div>
+                <hr class="style4">
+                <form enctype="multipart/form-data" action="fund?id=<?=$model->c_id?>" method="post">
+
+<!--                        <div class="container">-->
+                            <div class="panel-group" id="faqAccordion" style="width: 100%">
+                                <div class="panel panel-default panel-faq">
+                                    <div class="panel-heading" style="background-color: #ffffff">
+                                        <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#noReward" style="text-decoration: none;">
+                                            <h4 class="panel-title" style="font-size: 20px">
+                                                Pleage without a reward
+                                            </h4>
+                                        </a>
+                                    </div>
+                                    <div id="noReward" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            <div class="form-group">
+                                                <div style="alignment:center">
+                                                    <div style="display: inline-block;width: 12%;">
+                                                        <p class="item-title">Pledge Amount:</p>
+                                                    </div>
+                                                    <div style="display: inline-block;margin-left: 1%;width: 45%">
+                                                        <input type="text" style="width: 100%" name="reward">
+                                                    </div>
+                                                </div>
+                                                <input class="btn btn-md btn-info" type="submit" value="Pledge" id="submit" style="color: #ffffff;width: 25%;background-color: #940094;border: none;float: left;margin-left: 38%">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php foreach ($rewards as $reward) {?>
+                                    <div class="panel panel-default panel-faq">
+                                        <div class="panel-heading" style="background-color: #ffffff">
+                                            <a  data-toggle="collapse" data-parent="#accordion-cat-1" href="#<?=$reward->r_id?>" style="text-decoration: none">
+                                                <h4 class="panel-title" style="font-size: 20px">
+                                                    <input type="radio" name="reward" value="<?=$reward->r_pledge_amt?>" hidden>
+                                                    <?=$reward->r_title?>
+                                                </h4>
+                                            </a>
+                                        </div>
+                                        <div id="<?=$reward->r_id?>" class="panel-collapse collapse">
+                                            <div id="fund-div">
+                                                <table>
+                                                    <tr>
+                                                        <td style="width: 1%"><input type="radio" name="reward" value="<?=$reward->r_pledge_amt?>"></td>
+                                                        <td style="width: 95%">
+                                                            <div class="form-group">
+                                                                <div style="text-align: left">
+                                                                    <div style="margin-left: 18.5%;margin-right: 15%">
+                                                                        <p style="font-size: 20px"><?=$reward->r_description?></p>
+                                                                    </div>
+                                                                </div>
+                                                                <br/>
+                                                                <div style="alignment:center;text-align: left">
+                                                                    <div style="display: inline-block;margin-left: 18.5%">
+                                                                        <p class="item-title">Pledge Amount: </p>
+                                                                    </div>
+                                                                    <div style="display: inline-block;margin-left: 2%;width: 47%">
+                                                                        <input type="text" disabled value="<?=$reward->r_pledge_amt?>" style="width: 100%">
+                                                                    </div>
+                                                                </div>
+                                                                <br/>
+                                                                <div style="alignment:center;text-align: left">
+                                                                    <input class="btn btn-md btn-info" type="submit" id="submit" value="Pledge" style="color: #ffffff;width: 25%;background-color: #940094;border: none;float: left;margin-left: 36%">
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php }?>
+                            </div>
+<!--                        </div>-->
+                </form>
             </div>
         </div>
     </div>
@@ -226,34 +301,3 @@ JS;
 $this->registerJs($js);
 Modal::end();
 ?>
-
-<script>
-    // Set the date we're counting down to
-    var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime();
-
-    // Update the count down every 1 second
-    var x = setInterval(function() {
-
-        // Get todays date and time
-        var now = new Date().getTime();
-
-        // Find the distance between now an the count down date
-        var distance = countDownDate - now;
-
-        // Time calculations for days, hours, minutes and seconds
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Output the result in an element with id="demo"
-        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-            + minutes + "m " + seconds + "s ";
-
-        // If the count down is over, write some text
-        if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("endDate").innerHTML = "EXPIRED";
-        }
-    }, 1000);
-</script>
