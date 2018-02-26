@@ -64,8 +64,8 @@ frontend\assets\RoadmapAsset::register($this);
                                             $video = \frontend\models\Campaign::find()
                                                 ->where(['c_id' => 143])
                                                 ->one();
-                                            $url=$video['c_video'];
-                                            /*$url = 'https://'.'www.youtube.com/watch?v=StRSjgb8QK4&t=3s';*/
+//                                            $url=$video['c_video'];
+                                            $url = 'https://'.'www.youtube.com/watch?v=StRSjgb8QK4&t=3s';
                                             preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
                                             $id = $matches[1];
                                             $width = '800px';
@@ -116,7 +116,7 @@ frontend\assets\RoadmapAsset::register($this);
                                             ],
                                             [
                                                 'label'=>'<i class="glyphicon glyphicon-bell"></i> Updates',
-                                                'content'=>$this->render('campaign_update',['updates'=>$updates]),
+                                                'content'=>$this->render('campaign_update',['updates'=>$updates, 'user_update'=> new \frontend\models\Update()]),
                                                 //'linkOptions'=>['data-url'=>\yii\helpers\Url::to(['/campaign/form'])]
                                             ],
                                             [
@@ -180,8 +180,8 @@ frontend\assets\RoadmapAsset::register($this);
                         </a>
                         <br /><br />
 
-                        <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>" style="margin-left: 32%;text-decoration: none">
-                            <?= Html::submitButton('Submit for Review',['class' => 'btn btn-default','value' => 'moderation','name' => 'moderation','style' => 'background-color:#add8e6;color:#ffffff;border-radius: 10px']) ?>
+                        <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>" style="text-decoration: none">
+                            <?= Html::submitButton('Submit for Review',['class' => 'btn btn-info','value' => 'moderation','name' => 'moderation','style' => 'width: 100%']) ?>
                         </a>
                         <br /><br />
                         <a href="<?= Url::to(['campaign/delete','id'=>$model->c_id])?>">

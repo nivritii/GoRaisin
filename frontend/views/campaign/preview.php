@@ -68,7 +68,7 @@ frontend\assets\RoadmapAsset::register($this);
                                     <div class="image_wrapper">
                                         <?php
                                         $video = \frontend\models\Campaign::find()
-                                            ->where(['c_id' => 143])
+                                            ->where(['c_id' => 142])
                                             ->one();
                                         $url=$video['c_video'];
                                         preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
