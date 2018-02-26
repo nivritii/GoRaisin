@@ -14,7 +14,8 @@
         "artkost/yii2-trumbowyg": "@stable",
         "2amigos/yii2-chartjs-widget": "~2.0",
         "atans/yii2-actionlog": "^1.0",
-        "yii2mod/yii2-sweet-alert": "*"
+        "yii2mod/yii2-sweet-alert": "*",
+        "2amigos/yii2-ckeditor-widget": "^2.1"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

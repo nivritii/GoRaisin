@@ -387,6 +387,23 @@ class CampaignController extends Controller
         Yii::$app->session->setFlash('error', 'Your campaign has not been launched yet!');
         return $this->redirect('mycampaign');
     }
+
+   /*public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+        $categories = Category::find()->all();
+        $reward = Reward::find()->where(['c_id'=>$id])->one();
+        $company = $this->findCompany($id);
+        $countries = Location::find()->all();
+
+        return $this->render('update',[
+            'model' => $model,
+            'reward' => $reward,
+            'categories' => $categories,
+            'company' => $company,
+            'countries' => $countries,
+        ]);
+    }*/
     
     public function actionShow($id)
     {        
