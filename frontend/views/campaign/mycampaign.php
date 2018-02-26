@@ -56,6 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                             <div style="margin-top: 2%;margin-left: 1.5%">
                                                 <div>
                                                     <div style="clear: both;display: inline-block;margin-left: 2%;width: 15%">
+                                                        <a href="view?id=<?=$activity->fundC->c_id?>">
                                                         <p style="font-size: 15px"><?=$activity->fundC->c_title?></p>
                                                     </div>
                                                     <div style="clear: both;display: inline-block;width: 5%">
