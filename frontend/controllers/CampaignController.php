@@ -452,8 +452,8 @@ class CampaignController extends Controller
     public function actionMycampaign()
     {
         $campaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId()])->all();
-        $draftedCampaigns = Campaign::find()->where(['c_status'=>'draft'])->all();
-        $publishedCampaigns = Campaign::find()->where(['c_status'=>'published'])->all();
+        $draftedCampaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId(),'c_status'=>'draft'])->all();
+        $publishedCampaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId(),'c_status'=>'publish'])->all();
 
         $fund = Fund::find()->where(['fund_user_id'=>Yii::$app->user->getId()])->all();
 
