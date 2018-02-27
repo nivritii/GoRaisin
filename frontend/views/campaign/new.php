@@ -9,7 +9,7 @@ use frontend\models\Category;
 use frontend\models\Campaign;
 
 HomePageAsset::register($this);
-$this->title = 'GoRaisin';
+$this->title = 'Create Campaign - GoRaisin';
 ?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

@@ -30,8 +30,6 @@ frontend\assets\RoadmapAsset::register($this);
                     <div class="column zero" style="width: 100%">
                         <div class="col-xs-1" style="display: block; margin: 0 auto;padding-top:5%">
                             <?= Html::img('@web/'.$model->cAuthor->image,['style' => 'height:40px;width:40px;border-radius:10px;margin-bottom:10%']) ?>
-
-                            <!--<p><?php /*echo $model->cAuthor->username */?></p>-->
                             <br />
 
                             <?=

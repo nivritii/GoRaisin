@@ -41,12 +41,12 @@ frontend\assets\RoadmapAsset::register($this);
                             <?= Html::img('@web/'.$model->cAuthor->image,['style' => 'height:40px;width:40px;border-radius:10px;margin-bottom:10%']) ?>
                             <br />
                             <?=
-                            Html::a('View',['viewcompany','id' => $model->c_id],[
+                            Html::a($model->cAuthor->username,['viewcompany','id' => $model->c_id],[
                                 'id' => 'view-company',
                                 'class' => 'view-author',
                                 'data-toggle' => 'modal',
                                 'data-target' => '#view-author',
-                                'style' => 'text-decoration:none;color:#ffffff;background-color:#940094;padding:3px;border-radius:5px;font-size:15px;'
+                                'style' => 'color:#494949;padding:3px;border-radius:5px;font-size:15px;'
                             ])
                             ?>
                         </div>
@@ -186,21 +186,20 @@ frontend\assets\RoadmapAsset::register($this);
                         <br /><br />
 
                         <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>" style="text-decoration: none">
-                            <?= Html::submitButton('<span class="glyphicon glyphicon-cloud-upload"></span> Submit for Review',['class' => 'btn btn-info','value' => 'moderation','name' => 'moderation','style' => 'width: 100%;background-color:#6363ff;color:#ffffff;border-radius:10px']) ?>
+                            <?= Html::submitButton('Submit for Review',['class' => 'btn btn-info btn-lg','value' => 'moderation','name' => 'moderation','style' => 'border-radius: 10px; width:100%']) ?>
                         </a>
                         <br /><br />
-                        <div style="text-align: center">
-                            <?= Html::a('<span class="glyphicon glyphicon-remove"></span>Delete Campaign',['campaign/delete','id' => $model->c_id],['style' => 'font-size:15px;color:#000000']) ?>
-                        </div>
+                        <!--<a href="<?/*= Url::to(['campaign/delete','id'=>$model->c_id])*/?>">
+                            <p><span class="glyphicon glyphicon-trash"></span> Delete Project</p>
+                        </a>-->
                     <?php }elseif (Yii::$app->user->id == $model->c_author && $model->c_status == 'moderation') { ?>
                         <a href="<?= Url::to(['campaign/view','id'=>$model->c_id])?>">
                             <button disabled class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Under Review</h4></button>
                         </a>
                         <br /><br />
-                        <div style="text-align: center">
-                            <?= Html::a('<span class="glyphicon glyphicon-remove"></span>Delete Campaign',['campaign/delete','id' => $model->c_id],['style' => 'font-size:15px;color:#000000']) ?>
-                        </div>
-                        <br />
+                        <!--<a href="<?/*= Url::to(['campaign/delete','id'=>$model->c_id])*/?>">
+                            <p><span class="glyphicon glyphicon-trash"></span> Delete Project</p>
+                        </a>-->
                     <?php } ?>
                     <div class="section" style="padding-bottom:20px;">
                         <h6><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> All or nothing. This project will only be funded if it reaches its goal by <?=$model->c_end_date?>.</h6>
