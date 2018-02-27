@@ -109,7 +109,9 @@ class CampaignController extends Controller
         $reviewCampaign = $this->findModel($id);
         $reviewCampaign->c_status='moderation';
         $reviewCampaign->save();
+        $reviewCampaign->sendReviewEmail();
         return $this->redirect(['view', 'id' => $reviewCampaign->c_id]);
+
     }
     /**
      * View campaign company profile
@@ -452,7 +454,7 @@ class CampaignController extends Controller
     public function actionMycampaign()
     {
         $campaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId()])->all();
-        $draftedCampaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId(),'c_status'=>'draft'])->all();
+        $draftedCampaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId()])->all();
         $publishedCampaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId(),'c_status'=>'publish'])->all();
 
         $fund = Fund::find()->where(['fund_user_id'=>Yii::$app->user->getId()])->all();
