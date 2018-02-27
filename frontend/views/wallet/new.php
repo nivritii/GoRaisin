@@ -41,7 +41,7 @@ HomePageAsset::register($this);
                                                     <div class="item-title">Username:</div>
                                                 </div>
                                                 <div style="display: inline-block; padding-left: 5%;width: 58%">
-                                                    <input type="text" style="width: 100%" name="username">
+                                                    <input type="text" style="width: 100%" name="username" value="<?=$response?>">
                                                 </div>
                                             </div>
 <!--                                            <div style="width: 100%;float: left;">-->
