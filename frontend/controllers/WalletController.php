@@ -8,6 +8,7 @@ use frontend\models\WalletSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use frontend\rpc\jsonRPCClient;
 
 /**
  * WalletController implements the CRUD actions for Wallet model.
@@ -29,18 +30,37 @@ class WalletController extends Controller
         ];
     }
 
+    public function beforeAction($action)
+    {
+        $this->enableCsrfValidation = false;
+        return parent::beforeAction($action);
+    }
+
     /**
      * Lists all Wallet models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new WalletSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+//        $searchModel = new WalletSearch();
+//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $rpc = new jsonRPCClient("http://172.23.207.109:8092/rpc",true);
+        //$rpc->__construct("http://172.23.207.109:8092/rpc",true);
+
+        if($_SERVER["REQUEST_METHOD"]=="POST"){
+            $username=$_POST['username'];
+            $rpc->setRPCNotification(true);
+            $response=$rpc->__call("suggest_brain_key", []);
+
+            return $this-> render('new',[
+                'response' => $response,
+            ]);
+
+        }
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+//            'searchModel' => $searchModel,
+//            'dataProvider' => $dataProvider,
         ]);
     }
 
