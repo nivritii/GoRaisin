@@ -14,6 +14,7 @@ CampaignAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
+$this->title = 'Create Campaign - GoRaisin';
 $campaign_draft = new Campaign();
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -54,8 +55,8 @@ $campaign_draft = new Campaign();
         <div>
             <div class="col-xs-3" style="padding-left: 0px; ">
                 <input class="btn btn-lg btn-default" type="submit" value="Preview" id="submit" style="width:130px;padding: 25px 20px 20px; margin-left: 3%; color: #337ab7;">
-                <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>">
-                <input class="btn btn-lg btn-default" value="Submit" style="width:130px; padding: 25px 20px 20px; margin-left: 1%; color: #337ab7;">
+                <a href="<?= Url::to(['campaign/review','id'=>$model->c_id],['style' => 'background-color: #8f13a5f0'])?>">
+                <input class="btn btn-lg btn-default" value="Submit" style="width:130px; padding: 25px 20px 20px; margin-left: 1%; background-color: #8f13a5f0;">
                 </a>
             </div>
         </div>
@@ -138,7 +139,7 @@ $campaign_draft = new Campaign();
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 60%;class="
                                          textEditor
                                     ">
-                                    <textarea rows="2" type="text" style="width: 84%;" name="cDesc"
+                                    <textarea rows="2" type="text" style="width: 84%" name="cDesc"
                                               id="cDesc"><?= $model->c_description ?></textarea>
                                 </div>
                             </div>
@@ -378,7 +379,7 @@ $campaign_draft = new Campaign();
                         <div style="float: left;display: inline-block;width: 20%">
                             <p class="item-title"># of employees</p>
                         </div>
-                        <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
+                        <div style="display: inline-block;float: left;margin-left: 1.7%;width: 55.5%">
                             <input type="text" style="width: 100%" name="comEmp">
                         </div>
                     </div>
@@ -401,7 +402,7 @@ $campaign_draft = new Campaign();
                         <div style="float: left;display: inline-block;width: 15%">
                             <p class="item-title" style="padding-left: 0px">Postal code</p>
                         </div>
-                        <div style="display: inline-block;float: left;margin-left: 6.5%;width: 55%">
+                        <div style="display: inline-block;float: left;margin-left: 6.5%;width: 56%">
                             <input type="text" style="width: 100%" name="comPostal">
                         </div>
                     </div>

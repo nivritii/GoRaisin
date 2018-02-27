@@ -33,7 +33,7 @@ CampaignAsset::register($this);
                     <hr class="no_line" style="margin: 30px auto 30px;" />
                     <p class="text-left" style="font-size: medium;margin-bottom: 20px;"><b>Forgot your password</b></p>
                     <a href="<?=Url::to(['campaign/forgotpassword'])?>">
-                        <input class="btn btn-md btn-info" value="Send email to reset password" style="border: 0;width: 45%; margin-bottom: 30px">
+                        <input class="btn btn-md btn-info" value="Send email to reset password" style="border: 0;width: 45%; margin-bottom: 30px;background-color: #8f13a5f0">
                     </a>
                 </div>
             </form>
