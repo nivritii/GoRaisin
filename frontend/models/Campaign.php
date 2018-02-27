@@ -36,6 +36,7 @@ use Yii;
  */
 class Campaign extends \yii\db\ActiveRecord
 {
+    public $email;
     /**
      * @inheritdoc
      */
@@ -164,5 +165,22 @@ class Campaign extends \yii\db\ActiveRecord
     public function getUpdates()
     {
         return $this->hasMany(Update::className(), ['campaign_id' => 'c_id']);
+    }
+
+    /**
+     * Sends an email to inform user about activity they do.
+     *
+     * @return bool whether the email was send
+     */
+    public function sendReviewEmail()
+    {
+        return Yii::$app
+            ->mailer
+            ->compose()
+            ->setFrom([Yii::$app->params['supportEmail'] => 'GoRaisin'])
+            ->setTo($this->cAuthor->email)
+            ->setSubject('Your Campaign is being moderated!')
+            ->setHtmlBody('Dear '.$this->cAuthor->username.', <br /> Your campaign '.$this->c_title.' has been sent to review for moderation.')
+            ->send();
     }
 }

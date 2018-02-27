@@ -62,8 +62,8 @@ frontend\assets\RoadmapAsset::register($this);
                                         $video = \frontend\models\Campaign::find()
                                             ->where(['c_id' => 143])
                                             ->one();
-                                        /*$url=$video['c_video'];*/
-                                        $url = 'https://'.'www.youtube.com/watch?v=StRSjgb8QK4&t=3s';
+                                        $url='https://'.$video['c_video'];
+                                        /*$url = 'https://'.'www.youtube.com/watch?v=StRSjgb8QK4&t=3s';*/
                                         preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
                                         $id = $matches[1];
                                         $width = '800px';
