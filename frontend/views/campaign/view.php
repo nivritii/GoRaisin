@@ -181,25 +181,28 @@ frontend\assets\RoadmapAsset::register($this);
                         </div>
                     <?php }elseif (Yii::$app->user->id == $model->c_author && $model->c_status == 'draft'){ ?>
                         <a href="<?= Url::to(['campaign/update','id'=>$model->c_id])?>">
-                            <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</h4></button>
+                            <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white;border-radius: 10px"><h4><span style="margin-right:15px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</h4></button>
                         </a>
                         <br /><br />
 
                         <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>" style="text-decoration: none">
-                            <?= Html::submitButton('Submit for Review',['class' => 'btn btn-info','value' => 'moderation','name' => 'moderation','style' => 'width: 100%']) ?>
+                            <?= Html::submitButton('<span class="glyphicon glyphicon-cloud-upload"></span> Submit for Review',['class' => 'btn btn-info','value' => 'moderation','name' => 'moderation','style' => 'width: 100%;background-color:#6363ff;color:#ffffff;border-radius:10px']) ?>
                         </a>
                         <br /><br />
-                        <a href="<?= Url::to(['campaign/delete','id'=>$model->c_id])?>">
+                        <div style="text-align: center">
+                            <?= Html::a('<span class="glyphicon glyphicon-remove"></span>Delete Campaign',['campaign/delete','id' => $model->c_id],['style' => 'font-size:15px;color:#000000']) ?>
+                        </div>
+                        <!--<a href="<?/*= Url::to(['campaign/delete','id'=>$model->c_id])*/?>">
                             <p><span class="glyphicon glyphicon-remove"></span> Delete Project</p>
-                        </a>
+                        </a>-->
                     <?php }elseif (Yii::$app->user->id == $model->c_author && $model->c_status == 'moderation') { ?>
                         <a href="<?= Url::to(['campaign/view','id'=>$model->c_id])?>">
                             <button disabled class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Under Review</h4></button>
                         </a>
                         <br /><br />
-                        <a href="<?= Url::to(['campaign/delete','id'=>$model->c_id])?>">
-                            <p><span class="glyphicon glyphicon-remove"></span> Delete Project</p>
-                        </a>
+                        <div style="text-align: center">
+                            <?= Html::a('<span class="glyphicon glyphicon-remove"></span>Delete Campaign',['campaign/delete','id' => $model->c_id],['style' => 'font-size:15px;color:#000000']) ?>
+                        </div>
                     <?php } ?>
                     <div class="section" style="padding-bottom:20px;">
                         <h6><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> All or nothing. This project will only be funded if it reaches its goal by <?=$model->c_end_date?>.</h6>
@@ -252,13 +255,13 @@ frontend\assets\RoadmapAsset::register($this);
                                                 <td style="width: 95%">
                                                     <div class="form-group">
                                                         <div style="text-align: left">
-                                                            <div style="margin-left: 18.5%;margin-right: 15%">
-                                                                <p style="font-size: 20px"><?=$reward->r_description?></p>
+                                                            <div>
+                                                                <p style="font-size: 15px"><?=$reward->r_description?></p>
                                                             </div>
                                                         </div>
                                                         <br/>
                                                         <div style="alignment:center;text-align: left">
-                                                            <div style="display: inline-block;margin-left: 18.5%">
+                                                            <div style="display: inline-block;">
                                                                 <p class="item-title">Pledge Amount: </p>
                                                             </div>
                                                             <div style="display: inline-block;margin-left: 2%;width: 47%">
