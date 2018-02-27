@@ -51,13 +51,12 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 </div>
                                             </div>
                                         </div>
-                                        <!--<h3>Activity</h3>-->
                                         <?php foreach ($activities as $activity){?>
                                             <div style="margin-top: 2%;margin-left: 1.5%">
                                                 <div>
                                                     <div style="clear: both;display: inline-block;margin-left: 2%;width: 15%">
                                                         <a href="view?id=<?=$activity->fundC->c_id?>">
-                                                        <p style="font-size: 15px"><?=$activity->fundC->c_title?></p>
+                                                            <p style="font-size: 15px"><?=$activity->fundC->c_title?></p>
                                                     </div>
                                                     <div style="clear: both;display: inline-block;width: 5%">
                                                         <p><?=$activity->fund_amt?></p>
@@ -68,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 </div>
                                             </div>
                                             <hr style=" height:1px;border:none;border-top:1px solid #f9f9f9;" />
-                                        <!--<div class="card">
+                                            <!--<div class="card">
                                             <div class="card-block">
                                                 <h4 class="card-title">Campaign <?php /*echo $activity->fundC->c_title*/?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspFund Amount <?/*=$activity->fund_amt*/?></h4>
                                                 <h6 class="card-subtitle mb-2 text-muted"><?/*=$activity->fund_created_on*/?></h6>
@@ -76,8 +75,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                         </div>-->
                                         <?php }?>
                                     </div>
+
+
                                     <div id="menu1" class="tab-pane fade">
-                                        <h3>Ongoing projects</h3>
                                         <br /><br />
                                         <div class="posts_group lm_wrapper classic col-3">
                                             <?php foreach ($publishedCampaigns as $campaign) {
@@ -101,7 +101,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                 <!--<img width="960" height="750" src="images/home_blogger2_lifestyle1-960x750.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_lifestyle1" itemprop="image" />-->
                                                             </a>
                                                             <!--<div class="image_links double">
-                                                                <a href="images/home_blogger2_lifestyle1-1200x800.jpg" class="zoom" rel="prettyphoto"><i class="icon-search"></i></a><?/*= Html::a('<i class="glyphicon glyphicon-search"></i>',['@web/images/uploads/' . $campaign->c_image],['class' => 'zoom','rel' => 'prettyphoto']) */?><a href="item-8.html" class="link"><i class="icon-link"></i></a>
+                                                                <a href="images/home_blogger2_lifestyle1-1200x800.jpg" class="zoom" rel="prettyphoto"><i class="icon-search"></i></a><a href="item-8.html" class="link"><i class="icon-link"></i></a>
                                                             </div>-->
                                                         </div>
                                                     </div>
@@ -130,7 +130,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                     </div>
                                                                 </div>
                                                                 <div class="post-links">
-                                                                    <i class="glyphicon glyphicon-link" style="color: #337ab7"></i>&nbsp&nbsp;<a href="<?= Url::to(['campaign/published', 'id' => $campaign->c_id])?>" class="post-more" style="text-decoration: none">Continue Editing</a>
+                                                                    <i class="glyphicon glyphicon-link" style="color: #337ab7"></i>&nbsp&nbsp;<a href="<?= Url::to(['campaign/edit', 'id' => $campaign->c_id])?>" class="post-more" style="text-decoration: none">Continue Editing</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -139,8 +139,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                             <?php } ?>
                                         </div>
                                     </div>
+
+
                                     <div id="menu2" class="tab-pane fade">
-                                        <h3>Started Projects</h3>
                                         <br /><br />
                                         <div class="posts_group lm_wrapper classic col-3">
                                             <?php foreach ($draftedCampaigns as $campaign) {
@@ -202,14 +203,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                             <?php } ?>
                                         </div>
                                     </div>
-
-
-
                                     <div id="menu3" class="tab-pane fade">
                                         <div class="container">
-                                            <!--<h2><bold>Backed Projects</bold></h2>-->
                                             <br /><br />
-                                        <p>A place to keep track of all your backed projects</p>
+                                            <p>A place to keep track of all your backed projects</p>
                                             <h3>Live Projects</h3>
                                             <p>Tracks both live and dropped projects</p>
                                             <br/>
@@ -225,15 +222,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 </thead>
                                                 <tbody>
                                                 <?php foreach ($fundedCampaigns as $fundCampaign){
-                                                  $fundamt = Fund::find()->where(['fund_c_id'=>$fundCampaign->c_id,'fund_user_id'=>Yii::$app->user->getId()])->sum('fund_amt');
+                                                    $fundamt = Fund::find()->where(['fund_c_id'=>$fundCampaign->c_id,'fund_user_id'=>Yii::$app->user->getId()])->sum('fund_amt');
                                                     ?>
-                                                <tr>
-                                                    <td><?=$fundCampaign->c_title?></td>
-                                                    <td><?=$fundamt?></td>
-                                                    <td>Null</td>
-                                                    <td><?=$fundCampaign->c_end_date?></td>
-                                                    <td><a href="#">New Message</a></td>
-                                                </tr>
+                                                    <tr>
+                                                        <td><?=$fundCampaign->c_title?></td>
+                                                        <td><?=$fundamt?></td>
+                                                        <td>Null</td>
+                                                        <td><?=$fundCampaign->c_end_date?></td>
+                                                        <td><a href="#">New Message</a></td>
+                                                    </tr>
                                                 <?php }?>
                                                 </tbody>
                                             </table>
