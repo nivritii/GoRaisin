@@ -3,6 +3,7 @@
 namespace backend\models;
 
 use Yii;
+use backend\models\FrontendUser;
 
 /**
  * This is the model class for table "campaign".
@@ -24,7 +25,7 @@ use Yii;
  * @property int $c_new_tag
  *
  * @property Category $cCat
- * @property User $cAuthor
+ * @property FrontendUser $cAuthor
  * @property Location $cLocation
  * @property Category[] $categories
  * @property Comment[] $comments
@@ -100,7 +101,7 @@ class Campaign extends \yii\db\ActiveRecord
      */
     public function getCAuthor()
     {
-        return $this->hasOne(User::className(), ['id' => 'c_author']);
+        return $this->hasOne(FrontendUser::className(), ['id' => 'c_author']);
     }
 
     /**
@@ -165,5 +166,26 @@ class Campaign extends \yii\db\ActiveRecord
     public function getUpdates()
     {
         return $this->hasMany(Update::className(), ['campaign_id' => 'c_id']);
+    }
+
+    /**
+     * Sends an email to inform author when their campaign to be published.
+     *
+     * @return bool whether the email was send
+     */
+    public function sendPublishEmail()
+    {
+        if ($this->c_status == 'publish'){
+            return Yii::$app
+                ->mailer
+                ->compose()
+                ->setFrom([Yii::$app->params['supportEmail'] => 'GoRaisin'])
+                ->setTo($this->cAuthor->email)
+                ->setSubject('Your Campaign is now published!')
+                ->setHtmlBody('Dear '.$this->cAuthor->username.', <br /> Your campaign '.$this->c_title.' has been reviewed and now it is published!.')
+                ->send();
+        }else{
+            return null;
+        }
     }
 }
