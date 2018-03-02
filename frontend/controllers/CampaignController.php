@@ -120,7 +120,20 @@ class CampaignController extends Controller
      */
     public function actionViewcompany($id)
     {
-        return $this->renderAjax('viewcompany',['model' => $this->findModel($id)]);
+        $model = $this->findModel($id);
+        $company = \frontend\models\Company::find()
+            ->where(['campaign_id' => $model->c_id])
+            ->one();
+        $companyName = $company['company_name'];
+        $companyDesc = $company['company_description'];
+        $companyWebsite = $company['company_website'];
+        return $this->renderAjax('viewcompany',[
+            'model' => $this->findModel($id),
+            'companyName'=> $companyName,
+            'companyDesc' => $companyDesc,
+            'companyWebsite' => $companyWebsite,
+        ]);
+
     }
     /**
      * Link to external website

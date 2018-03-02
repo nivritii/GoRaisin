@@ -31,32 +31,37 @@ $this->params['breadcrumbs'][] = $this->title;
     <p style="font-size: 25px;font-weight: 500"><?php echo $model->cAuthor->username ?></p>
 </div>
 <div style="margin-left: 15%;">
-    <p style="font-size: 17px;font-weight: 300"><?php echo $model->cLocation->country ?></p>
+    <p style="font-size: 17px;font-weight: 600"><?php echo $model->cLocation->country ?></p>
 </div>
-<!--<div style="margin-left: 15%;margin-top: 5%">
-    <p style="font-size: 17px;font-weight: 400">Company Profile</p>
+<div style="margin-left: 15%;margin-top: 5%">
+    <p style="font-size: 17px;font-weight: 400">Company Name</p>
 </div>
-<div style="margin-left: 15%;margin-top: 1%;height:200px;margin-right: 3%">
-    <p style="font-size: 17px;font-weight: 300"><?php /*echo $model->getCompanies()->where(['campaign_id' => $model->c_id])->one() */?></p>
+<div style="margin-left: 15%;margin-top: 1%;margin-right: 3%">
+    <p style="font-size: 17px;font-weight: 300"><?php echo $companyName?></p>
 </div>
 <div style="margin-left: 15%;margin-top: 3%">
     <p style="font-size: 17px;font-weight: 400">Website</p>
 </div>
 <div style="margin-left: 15%;margin-top: 1%">
-    <?php /*$website = $model->getCompanies()->where(['campaign_id'=> $model->c_id])->one() */?>
-    <?/*= Html::a($website,['campaign/linkexternal','website' => $website],['target' => '_blank','style' => 'text-decoration:none']) */?>
-</div>-->
+    <?= Html::a($companyWebsite,['campaign/linkexternal','website' => $companyWebsite],['target' => '_blank','style' => 'text-decoration:none']) ?>
+</div>
+<div style="margin-left: 15%;margin-top: 5%">
+    <p style="font-size: 17px;font-weight: 400">Company Profile</p>
+</div>
+<div style="margin-left: 15%;margin-top: 1%;height:200px;margin-right: 3%">
+    <p style="font-size: 17px;font-weight: 300"><?php echo $companyDesc?></p>
+</div>
 <div style="margin-left: 15%;margin-top: 3%;display: inline-block;">
     <p style="font-size: 17px;font-weight: 400"><i class="fa fa-user-circle fa-1x"></i>&nbsp;Author</p>
 </div>
 <div style="clear:both;display: inline-block;width: 7%;margin-left: 5%">
     <p style="font-size: 15px;font-weight: 600"><?php echo $model->cAuthor->username ?></p>
 </div>
-<div style="clear:both;display: inline-block;margin-left: 5%">
+<div style="clear:both;display: inline-block;margin-left: 10%">
     <p style="font-size: 17px;font-weight: 400"><i class="fa fa-clock-o fa-1x"></i>&nbsp;Created at</p>
 </div>
 <div style="clear:both;display: inline-block;margin-left: 2%">
-    <p><?php echo $model->cAuthor->created_at ?></p>
+    <p style="font-size: 15px;font-weight: 600"><?php echo $model->cAuthor->created_at ?></p>
 </div>
 <div style="margin-left: 15%;margin-top: 1%;margin-bottom: 3%">
     <?= Html::a('Full Profile',['campaign/myintroduction','id' => $model->c_id],['target' => '_blank','style' => 'text-decoration:none;font-size:15px;background-color:#940094;color:#ffffff;padding:7px;border-radius:7px']) ?>
