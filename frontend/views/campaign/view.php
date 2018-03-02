@@ -154,7 +154,7 @@ frontend\assets\RoadmapAsset::register($this);
                     <?php
                     $currectDate = date('Y-m-d');
                     $diff = strtotime($model->c_end_date) - strtotime($currectDate);
-                    $days = $diff/86400;
+                    $days = ceil($diff/86400);
                     ?>
                     <h3 style="margin-top:25px; margin-bottom:0px;" id="endDate"><?php echo $days;?></h3>
                     <h3 class="title-price" style="margin-top:0px;"><small>days to go</small></h3>
