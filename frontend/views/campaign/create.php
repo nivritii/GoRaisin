@@ -25,58 +25,58 @@ $campaign_draft = new Campaign();
 
 <form class="createCampaign" enctype="multipart/form-data" action="preview?id=<?=$model->c_id?>" method="post" id="tab_logic"
       name="campaignForm">
-<div class="container" style="margin-top: 10px">
-    <div class="row form-group">
-        <div class="col-xs-9" style="padding-right: 0px;">
-            <ul class="nav nav-pills nav-justified thumbnail setup-panel" id="myNav" style="margin-bottom: 0px;">
-                <li id="navStep1" class="li-nav active" step="#step-1">
-                    <a>
-                        <h4 class="list-group-item-heading">Basics</h4>
-                        <p class="list-group-item-text">Introduce your project</p>
+    <div class="container" style="margin-top: 10px">
+        <div class="row form-group">
+            <div class="col-xs-9" style="padding-right: 0px;">
+                <ul class="nav nav-pills nav-justified thumbnail setup-panel" id="myNav" style="margin-bottom: 0px;">
+                    <li id="navStep1" class="li-nav active" step="#step-1">
+                        <a>
+                            <h4 class="list-group-item-heading">Basics</h4>
+                            <p class="list-group-item-text">Introduce your project</p>
+                        </a>
+                    </li>
+                    <li id="navStep2" class="li-nav" step="#step-2">
+                        <a>
+                            <h4 class="list-group-item-heading">The Story</h4>
+                            <p class="list-group-item-text">About your project</p>
+                        </a>
+                    </li>
+                    <li id="navStep3" class="li-nav" step="#step-3">
+                        <a>
+                            <h4 class="list-group-item-heading">Company</h4>
+                            <p class="list-group-item-text">About your team</p>
+                        </a>
+                    </li>
+                    <li id="navStep4" class="li-nav" step="#step-4">
+                        <a>
+                            <h4 class="list-group-item-heading">Token</h4>
+                            <p class="list-group-item-text">Name your token</p>
+                        </a>
+                    </li>
+                    <li id="navStep5" class="li-nav" step="#step-5">
+                        <a>
+                            <h4 class="list-group-item-heading">Perks</h4>
+                            <p class="list-group-item-text">For Backers</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div class="col-xs-3" style="padding-left: 0px; ">
+                    <input class="btn btn-lg btn-default" type="submit" value="Preview" id="submit" style="width:130px;padding: 25px 20px 20px; margin-left: 3%; color: #337ab7;">
+                    <a href="<?= Url::to(['campaign/review','id'=>$model->c_id],['style' => 'background-color: #8f13a5f0'])?>">
+                        <input class="btn btn-lg btn-default" value="Submit" style="width:130px; padding: 25px 20px 20px; margin-left: 1%; background-color: #8f13a5f0;color: #ffffff">
                     </a>
-                </li>
-                <li id="navStep2" class="li-nav" step="#step-2">
-                    <a>
-                        <h4 class="list-group-item-heading">The Story</h4>
-                        <p class="list-group-item-text">About your project</p>
-                    </a>
-                </li>
-                <li id="navStep3" class="li-nav" step="#step-3">
-                    <a>
-                        <h4 class="list-group-item-heading">Company</h4>
-                        <p class="list-group-item-text">About your team</p>
-                    </a>
-                </li>
-                <li id="navStep4" class="li-nav" step="#step-4">
-                    <a>
-                        <h4 class="list-group-item-heading">Token</h4>
-                        <p class="list-group-item-text">Name your token</p>
-                    </a>
-                </li>
-                <li id="navStep5" class="li-nav" step="#step-5">
-                    <a>
-                        <h4 class="list-group-item-heading">Perks</h4>
-                        <p class="list-group-item-text">For Backers</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div>
-            <div class="col-xs-3" style="padding-left: 0px; ">
-                <input class="btn btn-lg btn-default" type="submit" value="Preview" id="submit" style="width:130px;padding: 25px 20px 20px; margin-left: 3%; color: #337ab7;">
-                <a href="<?= Url::to(['campaign/review','id'=>$model->c_id],['style' => 'background-color: #8f13a5f0'])?>">
-                <input class="btn btn-lg btn-default" value="Submit" style="width:130px; padding: 25px 20px 20px; margin-left: 1%; background-color: #8f13a5f0;color: #ffffff">
-                </a>
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <div class="row form-group">
-        <div class="col-xs-12">
-            <div class="alert alert-success hide"></div>
+        <div class="row form-group">
+            <div class="col-xs-12">
+                <div class="alert alert-success hide"></div>
+            </div>
         </div>
-    </div>
 
 
         <!--        <div class="container">-->
@@ -198,227 +198,227 @@ $campaign_draft = new Campaign();
             </div>
         </div>
         <!--        </div>-->
-</div>
+    </div>
 
-<!--<div class="container">-->
-<div class="row setup-content" id="step-2">
-    <div class="col-xs-12">
-        <div class="col-md-12 well text-center">
-            <h1 class="tabpage-title">The Story</h1>
+    <!--<div class="container">-->
+    <div class="row setup-content" id="step-2">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1 class="tabpage-title">The Story</h1>
 
-            <!--<form>-->
-            <div class="container col-xs-12">
-                <div class="container">
-                    <br/>
-                    <div class="form-group">
-                        <div style="clear:both;height: 150px">
-                            <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Campaign video</p>
+                <!--<form>-->
+                <div class="container col-xs-12">
+                    <div class="container">
+                        <br/>
+                        <div class="form-group">
+                            <div style="clear:both;height: 150px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Campaign video</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                    <input type="text" style="width: 100%" name="cVideo" id="youtubeId">
+                                    <p align="left">Please upload your video to YouTube and paste video id (11 characters) here. Projects with a video have a much higher chance of success.</p>
+                                    <p style="font-weight: 600;display: inline-block;">Example:&nbsp</p><p style="font-weight: 400;display: inline-block">https://www.youtube.com/watch?v=</p><p style="display: inline-block;font-weight: 600">yNAsk4Zw2p0</p><p style="display: inline-block">.</p><p style="display: inline-block">&nbspThen put</p><p style="display: inline-block;font-weight: 600">&nbsp;yNAsk4Zw2p0</p><p style="display: inline-block">&nbsp;in.</p>
+                                    <div id="info" style="font-weight: 500;font-size: 15px"></div>
+                                    <iframe id="myIframe" width="600" height="300"></iframe>
+                                </div>
                             </div>
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                <input type="text" style="width: 100%" name="cVideo" id="youtubeId">
-                                <p align="left">Please upload your video to YouTube and paste video link here here.
-                                        Projects with a video have a much higher chance of success.</p>
-                                    <div id="info"></div>
-                                    <iframe id="myIframe" width="426" height="240"></iframe>
-                            </div>
-                        </div>
 
-                        <div style="clear:both;height: 500px">
-                            <div style="float: left;display: inline-block;width: 20%;">
-                                <p class="item-title">Main Description</p>
-                            </div>
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;height: 400px">
-                                <?php
-                                echo \artkost\yii2\trumbowyg\Trumbowyg::widget([
-                                    'name' => 'cLDesc',
-                                    'settings' => [
-                                        'lang' => 'en'
-                                    ]
-                                ]);
-                                ?>
+                            <div style="clear:both;height: 500px">
+                                <div style="float: left;display: inline-block;width: 20%;">
+                                    <p class="item-title">Main Description</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;height: 400px">
+                                    <?php
+                                    echo \artkost\yii2\trumbowyg\Trumbowyg::widget([
+                                        'name' => 'cLDesc',
+                                        'settings' => [
+                                            'lang' => 'en'
+                                        ]
+                                    ]);
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!--</form> -->
+
+                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                <input onclick="step2Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+
             </div>
-            <!--</form> -->
-
-                            <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-                            <input onclick="step2Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-
         </div>
     </div>
-</div>
-<!--</div>-->
-<!--<div class="container">-->
-<div class="row setup-content" id="step-3">
-    <div class="col-xs-12">
-        <div class="col-md-12 well text-center">
-            <h1 class="tabpage-title">Company</h1>
+    <!--</div>-->
+    <!--<div class="container">-->
+    <div class="row setup-content" id="step-3">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1 class="tabpage-title">Company</h1>
 
-            <div class="container col-xs-12">
-                <div class="container">
-                    <br/>
-                    <div class="form-group" style="padding-right: 90px;">
-                        <div style="width: 100%;padding: 10px">
-                            <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Company name</p>
+                <div class="container col-xs-12">
+                    <div class="container">
+                        <br/>
+                        <div class="form-group" style="padding-right: 90px;">
+                            <div style="width: 100%;padding: 10px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Company name</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
+                                    <input type="text" style="width: 100%" name="comName">
+                                </div>
                             </div>
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                <input type="text" style="width: 100%" name="comName">
+                            <hr>
+                            <div style="width: 100%;padding: 10px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Registration No</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
+                                    <input type="text" style="width: 100%" name="comNo">
+                                </div>
+                            </div>
+                            <div style="clear:both;padding: 10px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Email</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
+                                    <input type="text" style="width: 100%" name="comEmail">
+                                </div>
+                            </div>
+                            <div style="clear:both;padding: 10px;">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Website URL</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
+                                    <input type="text" style="width: 100%" name="comWebsite">
+                                </div>
+                            </div>
+                            <div style="clear:both;padding: 10px;">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Description</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%;class=" textEditor
+                                ">
+                                <textarea rows="3" type="text" style="width: 100%;" name="comDesc"
+                                          id="comDesc"><?= $model->c_description ?></textarea>
                             </div>
                         </div>
-                        <hr>
-                        <div style="width: 100%;padding: 10px">
+                        <div style="clear:both;padding: 5px;">
+                            <hr style="3; border-color: #e3cece">
                             <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Registration No</p>
+                                <p class="item-title">Industry</p>
                             </div>
                             <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                <input type="text" style="width: 100%" name="comNo">
-                            </div>
-                        </div>
-                        <div style="clear:both;padding: 10px">
-                            <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Email</p>
-                            </div>
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                <input type="text" style="width: 100%" name="comEmail">
+                                <input type="text" style="width: 100%" name="comIndustry">
                             </div>
                         </div>
                         <div style="clear:both;padding: 10px;">
                             <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Website URL</p>
+                                <p class="item-title"># of employees</p>
+                            </div>
+                            <div style="display: inline-block;float: left;margin-left: 1.7%;width: 55.5%">
+                                <input type="text" style="width: 100%" name="comEmp">
+                            </div>
+                        </div>
+                        <div style="clear:both;padding: 0px;">
+                            <hr style="3; border-color: #e3cece">
+                            <div style="float: left;display: inline-block;width: 20%">
+                                <p class="item-title">Location</p>
                             </div>
                             <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                <input type="text" style="width: 100%" name="comWebsite">
+                                <select name="cLocation" id="search_locations"
+                                        style="border-radius: 0px;width: 100%">
+                                    <option selected value="<?= $model->cLocation->id?>"><?= $model->cLocation->country ?></option>
+                                    <?php foreach ($countries as $country) { ?>
+                                        <option value=<?= $country->id ?>><?= $country->country ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
                         <div style="clear:both;padding: 10px;">
-                            <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Description</p>
+                            <div style="float: left;display: inline-block;width: 15%">
+                                <p class="item-title" style="padding-left: 0px">Postal code</p>
                             </div>
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 55%;class=" textEditor
-                            ">
-                            <textarea rows="3" type="text" style="width: 100%;" name="comDesc"
-                                      id="comDesc"><?= $model->c_description ?></textarea>
+                            <div style="display: inline-block;float: left;margin-left: 6.5%;width: 56%">
+                                <input type="text" style="width: 100%" name="comPostal">
+                            </div>
                         </div>
-                    </div>
-                    <div style="clear:both;padding: 5px;">
-                        <hr style="3; border-color: #e3cece">
-                        <div style="float: left;display: inline-block;width: 20%">
-                            <p class="item-title">Industry</p>
-                        </div>
-                        <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                            <input type="text" style="width: 100%" name="comIndustry">
-                        </div>
-                    </div>
-                    <div style="clear:both;padding: 10px;">
-                        <div style="float: left;display: inline-block;width: 20%">
-                            <p class="item-title"># of employees</p>
-                        </div>
-                        <div style="display: inline-block;float: left;margin-left: 1.7%;width: 55.5%">
-                            <input type="text" style="width: 100%" name="comEmp">
-                        </div>
-                    </div>
-                    <div style="clear:both;padding: 0px;">
-                        <hr style="3; border-color: #e3cece">
-                        <div style="float: left;display: inline-block;width: 20%">
-                            <p class="item-title">Location</p>
-                        </div>
-                        <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                            <select name="cLocation" id="search_locations"
-                                    style="border-radius: 0px;width: 100%">
-                                <option selected value="<?= $model->cLocation->id?>"><?= $model->cLocation->country ?></option>
-                                <?php foreach ($countries as $country) { ?>
-                                    <option value=<?= $country->id ?>><?= $country->country ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div style="clear:both;padding: 10px;">
-                        <div style="float: left;display: inline-block;width: 15%">
-                            <p class="item-title" style="padding-left: 0px">Postal code</p>
-                        </div>
-                        <div style="display: inline-block;float: left;margin-left: 6.5%;width: 56%">
-                            <input type="text" style="width: 100%" name="comPostal">
-                        </div>
-                    </div>
-                    <div style="clear:both;">
-                        <hr style="3; border-color: #e3cece">
-                        <div style="float: left;display: inline-block;width: 20%">
-                            <p class="item-title">Your Position</p>
-                        </div>
-                        <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                            <input type="text" style="width: 100%" name="comPosition">
+                        <div style="clear:both;">
+                            <hr style="3; border-color: #e3cece">
+                            <div style="float: left;display: inline-block;width: 20%">
+                                <p class="item-title">Your Position</p>
+                            </div>
+                            <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
+                                <input type="text" style="width: 100%" name="comPosition">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+            <input onclick="step3Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+
         </div>
-        <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-        <input onclick="step3Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-
     </div>
-</div>
-</div>
-<!--</div>-->
-<!--<div class="container">-->
-<div class="row setup-content" id="step-4">
-    <div class="col-xs-12">
-        <div class="col-md-12 well text-center">
-            <h1 class="tabpage-title">Token</h1>
+    </div>
+    <!--</div>-->
+    <!--<div class="container">-->
+    <div class="row setup-content" id="step-4">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1 class="tabpage-title">Token</h1>
 
-            <!--<form>-->
-            <div class="container col-xs-12">
-                <div class="container">
-                    <br/>
-                    <div class="form-group">
-                        <div style="width: 100%;">
-                            <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Name your token</p>
-                            </div>
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                <input type="text" style="width: 100%" name="cTitle" id="cTitle" required>
-                            </div>
-                        </div>
-                        <div style="clear:both;padding-top: 0px">
-                            <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Token value</p>
-                            </div>
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                <div style="display: inline-block;float: left;text-align: center;">
-                                    <input type="text" style="width: 18%;float: left" value="1" disabled><i class="fa fa-bitcoin fa-2x" style="float: left;padding: 3% 5% 0;"></i><span class="glyphicon glyphicon-transfer" style="padding: 7% 0 0;"></span>
+                <!--<form>-->
+                <div class="container col-xs-12">
+                    <div class="container">
+                        <br/>
+                        <div class="form-group">
+                            <div style="width: 100%;">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Name your token</p>
                                 </div>
-                                <div style="display: inline-block;width: 60%;float: right">
-                                    <input type="text" name="cGoal" id="cGoal" style="width: 100%; float: right">
-                                </div>
-                                <p align="left">Please provide how many of your tokens equivalent to 1 Rasin.</p>
-                            </div>
-                        </div>
-                        <div style="clear:both;padding-top: 20px">
-                            <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Target</p>
-                            </div>
-                            <div style="display: inline-block;float: left; margin-left: 2%; width: 50%">
-                                <div style="display: inline-block;width: 100%;float: right">
-                                    <input type="text" style="width: 100%;float: left" name="cGoal" id="cGoal">
-                                    <p align="left">Please provide the amount you are targeting to raise <b>in SGD</b>.</p>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                    <input type="text" style="width: 100%" name="cTitle" id="cTitle" required>
                                 </div>
                             </div>
-                        </div>
-                        <div style="clear:both;padding-top: 30px">
-                            <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-                            <input onclick="step4Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-                        </div>
+                            <div style="clear:both;padding-top: 0px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Token value</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                    <div style="display: inline-block;float: left;text-align: center;">
+                                        <input type="text" style="width: 18%;float: left" value="1" disabled><i class="fa fa-bitcoin fa-2x" style="float: left;padding: 3% 5% 0;"></i><span class="glyphicon glyphicon-transfer" style="padding: 7% 0 0;"></span>
+                                    </div>
+                                    <div style="display: inline-block;width: 60%;float: right">
+                                        <input type="text" name="cGoal" id="cGoal" style="width: 100%; float: right">
+                                    </div>
+                                    <p align="left">Please provide how many of your tokens equivalent to 1 Rasin.</p>
+                                </div>
+                            </div>
+                            <div style="clear:both;padding-top: 20px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Target</p>
+                                </div>
+                                <div style="display: inline-block;float: left; margin-left: 2%; width: 50%">
+                                    <div style="display: inline-block;width: 100%;float: right">
+                                        <input type="text" style="width: 100%;float: left" name="cGoal" id="cGoal">
+                                        <p align="left">Please provide the amount you are targeting to raise <b>in SGD</b>.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="clear:both;padding-top: 30px">
+                                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                                <input onclick="step4Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                            </div>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--</form> -->
-            </form>
-        </div>
-    </div>
+                <!--</form> -->
+</form>
+</div>
+</div>
 </div>
 <!--<div class="container">-->
 <div class="row setup-content" id="step-5">
@@ -426,72 +426,72 @@ $campaign_draft = new Campaign();
         <div class="col-md-12 well text-center">
             <h1 class="tabpage-title">Perks</h1>
             <p class="tabpage">Please provide the discounts that backers would get for the amounts they pledge.</p>
-             </div>
-            <!--<form>-->
+        </div>
+        <!--<form>-->
 
-            <!--</form> -->
-            <div class="panel panel-default">
-                <div class="panel-body">
+        <!--</form> -->
+        <div class="panel panel-default">
+            <div class="panel-body">
 
-                    <div class="col-sm-3 nopadding">
-                        <div class="form-group">
-                            <p style="float: left">% of discount given</p>
-                                <select class="form-control" id="discount" name="discount[]">
-                                    <option value="">% of discount</option>
-                                    <option value="5">5%</option>
-                                    <option value="10">10%</option>
-                                    <option value="15">15%</option>
-                                    <option value="20">20%</option>
-                                    <option value="25">25%</option>
-                                </select>
-                        </div>
+                <div class="col-sm-3 nopadding">
+                    <div class="form-group">
+                        <p style="float: left">% of discount given</p>
+                        <select class="form-control" id="discount" name="discount[]">
+                            <option value="">% of discount</option>
+                            <option value="5">5%</option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                        </select>
                     </div>
-                    <div class="col-sm-3 nopadding">
-                        <div class="form-group">
-                            <p style="float: left">For the stated amount pledged & more</p>
-                            <input type="text" class="form-control" id="amount" name="amount[]" value="" placeholder="Amount pledged">
-                        </div>
+                </div>
+                <div class="col-sm-3 nopadding">
+                    <div class="form-group">
+                        <p style="float: left">For the stated amount pledged & more</p>
+                        <input type="text" class="form-control" id="amount" name="amount[]" value="" placeholder="Amount pledged">
                     </div>
-                    <div class="col-sm-3 nopadding">
-                        <div class="form-group">
-                            <p style="float: left">Is valid from campaign end date to</p>
-<!--                            <input type="text" class="form-control" id="expiry" name="expiry[]" value="" placeholder="Validity">-->
-                            <?php
-                            echo DatePicker::widget([
-                                'name' => 'cStartdate',
-                                'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                                'pluginOptions' => [
-                                    'format' => 'yyyy-mm-dd',
-                                    'autoclose' => true,
-                                    'todayHighlight' => true,
-                                ],
-                            ]); ?>
-                        </div>
+                </div>
+                <div class="col-sm-3 nopadding">
+                    <div class="form-group">
+                        <p style="float: left">Is valid from campaign end date to</p>
+                        <!--                            <input type="text" class="form-control" id="expiry" name="expiry[]" value="" placeholder="Validity">-->
+                        <?php
+                        echo DatePicker::widget([
+                            'name' => 'cStartdate',
+                            'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                            'pluginOptions' => [
+                                'format' => 'yyyy-mm-dd',
+                                'autoclose' => true,
+                                'todayHighlight' => true,
+                            ],
+                        ]); ?>
                     </div>
-                    <div class="col-sm-3 nopadding">
-                        <div class="form-group">
-                            <div class="input-group">
-                                    <p style="float: left">Reward description</p>
-                                    <input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="" placeholder="Reward Description">
-                                <div class="input-group-btn" style="vertical-align: bottom;">
-                                    <button class="btn btn-success" type="button"  onclick="add_rewards();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
-                                </div>
+                </div>
+                <div class="col-sm-3 nopadding">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <p style="float: left">Reward description</p>
+                            <input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="" placeholder="Reward Description">
+                            <div class="input-group-btn" style="vertical-align: bottom;">
+                                <button class="btn btn-success" type="button"  onclick="add_rewards();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
                             </div>
                         </div>
                     </div>
-                    <div class="clear"></div>
-                    <div id="add_rewards">
-
-                    </div>
                 </div>
+                <div class="clear"></div>
+                <div id="add_rewards">
 
-                <div class="panel-footer"><small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another reward</small>, <small>Press <span class="glyphicon glyphicon-minus gs"></span> to remove rewards</small>
-                </div>
-                <hr/>
-                <div style="clear:both;padding-bottom: 30px">
-                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
                 </div>
             </div>
+
+            <div class="panel-footer"><small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another reward</small>, <small>Press <span class="glyphicon glyphicon-minus gs"></span> to remove rewards</small>
+            </div>
+            <hr/>
+            <div style="clear:both;padding-bottom: 30px">
+                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+            </div>
+        </div>
     </div>
 </div>
 <!--</div>-->
