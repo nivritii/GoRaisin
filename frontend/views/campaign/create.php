@@ -160,7 +160,7 @@ $campaign_draft = new Campaign();
                                     <?php
                                     echo DatePicker::widget([
                                         'name' => 'cStartdate',
-                                        'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                                        'type' => DatePicker::TYPE_COMPONENT_APPEND,
                                         'pluginOptions' => [
                                             'format' => 'yyyy-mm-dd',
                                             'autoclose' => true,
@@ -178,7 +178,7 @@ $campaign_draft = new Campaign();
                                     <?php
                                     echo DatePicker::widget([
                                         'name' => 'cEnddate',
-                                        'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                                        'type' => DatePicker::TYPE_COMPONENT_APPEND,
                                         'pluginOptions' => [
                                             'format' => 'yyyy-mm-dd',
                                             'autoclose' => true,
@@ -452,7 +452,17 @@ $campaign_draft = new Campaign();
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
                             <p style="float: left">Is valid from campaign end date to</p>
-                            <input type="text" class="form-control" id="expiry" name="expiry[]" value="" placeholder="Validity">
+<!--                            <input type="text" class="form-control" id="expiry" name="expiry[]" value="" placeholder="Validity">-->
+                            <?php
+                            echo DatePicker::widget([
+                                'name' => 'cStartdate',
+                                'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                                'pluginOptions' => [
+                                    'format' => 'yyyy-mm-dd',
+                                    'autoclose' => true,
+                                    'todayHighlight' => true,
+                                ],
+                            ]); ?>
                         </div>
                     </div>
                     <div class="col-sm-3 nopadding">
@@ -460,7 +470,7 @@ $campaign_draft = new Campaign();
                             <div class="input-group">
                                     <p style="float: left">Reward description</p>
                                     <input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="" placeholder="Reward Description">
-                                <div class="input-group-btn" style="    vertical-align: bottom;">
+                                <div class="input-group-btn" style="vertical-align: bottom;">
                                     <button class="btn btn-success" type="button"  onclick="add_rewards();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
                                 </div>
                             </div>
