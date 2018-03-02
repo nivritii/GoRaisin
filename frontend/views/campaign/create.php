@@ -22,6 +22,7 @@ $campaign_draft = new Campaign();
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+
 <form class="createCampaign" enctype="multipart/form-data" action="preview?id=<?=$model->c_id?>" method="post" id="tab_logic"
       name="campaignForm">
 <div class="container" style="margin-top: 10px">
@@ -376,7 +377,7 @@ $campaign_draft = new Campaign();
                                 <p class="item-title">Name your token</p>
                             </div>
                             <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                <input type="text" style="width: 100%" name="cTitle" id="cTitle" required>
+                                <input type="text" style="width: 100%" name="tokenName" id="tokenName" required>
                             </div>
                         </div>
                         <div style="clear:both;padding-top: 0px">
@@ -388,7 +389,7 @@ $campaign_draft = new Campaign();
                                     <input type="text" style="width: 18%;float: left" value="1" disabled><i class="fa fa-bitcoin fa-2x" style="float: left;padding: 3% 5% 0;"></i><span class="glyphicon glyphicon-transfer" style="padding: 7% 0 0;"></span>
                                 </div>
                                 <div style="display: inline-block;width: 60%;float: right">
-                                    <input type="text" name="cGoal" id="cGoal" style="width: 100%; float: right">
+                                    <input type="text" name="tokenValue" id="tokenValue" style="width: 100%; float: right">
                                 </div>
                                 <p align="left">Please provide how many of your tokens equivalent to 1 Rasin.</p>
                             </div>
@@ -429,20 +430,6 @@ $campaign_draft = new Campaign();
             <!--</form> -->
             <div class="panel panel-default">
                 <div class="panel-body">
-
-                    <div class="col-sm-3 nopadding">
-                        <div class="form-group">
-                            <p style="float: left">% of discount given</p>
-                                <select class="form-control" id="discount" name="discount[]">
-                                    <option value="">% of discount</option>
-                                    <option value="5">5%</option>
-                                    <option value="10">10%</option>
-                                    <option value="15">15%</option>
-                                    <option value="20">20%</option>
-                                    <option value="25">25%</option>
-                                </select>
-                        </div>
-                    </div>
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
                             <p style="float: left">For the stated amount pledged & more</p>
@@ -451,25 +438,28 @@ $campaign_draft = new Campaign();
                     </div>
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
-                            <p style="float: left">Is valid from campaign end date to</p>
-<!--                            <input type="text" class="form-control" id="expiry" name="expiry[]" value="" placeholder="Validity">-->
-                            <?php
-                            echo DatePicker::widget([
-                                'name' => 'cStartdate',
-                                'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                                'pluginOptions' => [
-                                    'format' => 'yyyy-mm-dd',
-                                    'autoclose' => true,
-                                    'todayHighlight' => true,
-                                ],
-                            ]); ?>
+                            <p style="float: left">% of discount given</p>
+                            <select class="form-control" id="discount" name="discount[]">
+                                <option value="">% of discount</option>
+                                <option value="5">5%</option>
+                                <option value="10">10%</option>
+                                <option value="15">15%</option>
+                                <option value="20">20%</option>
+                                <option value="25">25%</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 nopadding">
+                        <div class="form-group">
+                            <p style="float: left"># of months it is valid after launch</p>
+                            <input type="text" class="form-control" id="expiry" name="expiry[]" value="" placeholder="Validity">
                         </div>
                     </div>
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
                             <div class="input-group">
-                                    <p style="float: left">Reward description</p>
-                                    <input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="" placeholder="Reward Description">
+                                    <p style="float: left">Conditions/Description</p>
+                                    <input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="" placeholder="Conditions/Description">
                                 <div class="input-group-btn" style="vertical-align: bottom;">
                                     <button class="btn btn-success" type="button"  onclick="add_rewards();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
                                 </div>
@@ -542,6 +532,20 @@ $campaign_draft = new Campaign();
             }
         });
         $('#navStep1').click();
+
+        $('#submit').click(function(){
+            $.ajax({
+                //url:"name.php",
+                method:"POST",
+                data:$('#amount').serialize(),
+                success:function(data)
+                {
+                    alert(data);
+                    $('#amount')[0].reset();
+                }
+            });
+        });
+
     });
 
     function step1Next() {

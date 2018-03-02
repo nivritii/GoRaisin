@@ -32,11 +32,11 @@ use Yii;
  * @property Faq[] $faqs
  * @property Fund[] $funds
  * @property Reward[] $rewards
+ * @property Token[] $tokens
  * @property Update[] $updates
  */
 class Campaign extends \yii\db\ActiveRecord
 {
-    public $email;
     /**
      * @inheritdoc
      */
@@ -52,11 +52,12 @@ class Campaign extends \yii\db\ActiveRecord
     {
         return [
             [['c_author','c_cat_id','c_description', 'c_location'], 'required'],
-            [['c_cat_id', 'c_author', 'c_location', 'c_goal', 'c_new_tag'], 'integer'],
+            [['c_cat_id', 'c_author', 'c_location', 'c_goal'], 'integer'],
             [['c_created_at', 'c_start_date', 'c_end_date'], 'safe'],
             [['c_description_long'], 'string'],
             [['c_title', 'c_image'], 'string', 'max' => 100],
             [['c_status', 'c_description', 'c_video'], 'string', 'max' => 255],
+            [['c_new_tag'], 'string', 'max' => 1],
             [['c_cat_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['c_cat_id' => 'id']],
             [['c_author'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['c_author' => 'id']],
             [['c_location'], 'exist', 'skipOnError' => true, 'targetClass' => Location::className(), 'targetAttribute' => ['c_location' => 'id']],
@@ -162,25 +163,16 @@ class Campaign extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUpdates()
+    public function getTokens()
     {
-        return $this->hasMany(Update::className(), ['campaign_id' => 'c_id']);
+        return $this->hasMany(Token::className(), ['c_id' => 'c_id']);
     }
 
     /**
-     * Sends an email to inform user about activity they do.
-     *
-     * @return bool whether the email was send
+     * @return \yii\db\ActiveQuery
      */
-    public function sendReviewEmail()
+    public function getUpdates()
     {
-        return Yii::$app
-            ->mailer
-            ->compose()
-            ->setFrom([Yii::$app->params['supportEmail'] => 'GoRaisin'])
-            ->setTo($this->cAuthor->email)
-            ->setSubject('Your Campaign is being moderated!')
-            ->setHtmlBody('Dear '.$this->cAuthor->username.', <br /> Your campaign '.$this->c_title.' has been sent to review for moderation.')
-            ->send();
+        return $this->hasMany(Update::className(), ['campaign_id' => 'c_id']);
     }
 }
