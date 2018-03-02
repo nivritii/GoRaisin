@@ -217,11 +217,11 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Campaign video</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                    <input type="text" style="width: 100%" name="cVideo" id="youtubeId">
+                                    <input type="text" style="width: 100%" name="cVideo" id="youtubeId" data-target="#myIframe">
                                     <p align="left">Please upload your video to YouTube and paste video id (11 characters) here. Projects with a video have a much higher chance of success.</p>
                                     <p style="font-weight: 600;display: inline-block;">Example:&nbsp</p><p style="font-weight: 400;display: inline-block">https://www.youtube.com/watch?v=</p><p style="display: inline-block;font-weight: 600">yNAsk4Zw2p0</p><p style="display: inline-block">.</p><p style="display: inline-block">&nbspThen put</p><p style="display: inline-block;font-weight: 600">&nbsp;yNAsk4Zw2p0</p><p style="display: inline-block">&nbsp;in.</p>
                                     <div id="info" style="font-weight: 500;font-size: 15px"></div>
-                                    <iframe id="myIframe" width="600" height="300"></iframe>
+                                    <iframe id="myIframe" width="600" height="300" hidden></iframe>
                                 </div>
                             </div>
 
@@ -550,6 +550,24 @@ $campaign_draft = new Campaign();
             });
         });
 
+        $( "#youtubeId" ).click(function() {
+
+            var target_selector = $(this).attr('data-target');
+            var $target = $( target_selector );
+
+            if ($target.is(':hidden'))
+            {
+                $target.show( "slow" );
+            }
+            else
+            {
+                $target.hide( "slow" );
+            }
+
+            console.log($target.is(':visible'));
+
+
+        });
     });
 
     function step1Next() {
