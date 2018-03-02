@@ -18,6 +18,7 @@ use yii\filters\VerbFilter;
 use frontend\models\Category;
 use frontend\models\Comment;
 use frontend\models\Fund;
+use frontend\models\Token;
 use yii\filters\AccessControl;
 use frontend\models\RewardItem;
 use frontend\models\Model;
@@ -291,6 +292,7 @@ class CampaignController extends Controller
         $countries = Location::find()->where(['!=', 'id', $model->c_location])->all();
         $reward = new Reward();
         $company = $this->findCompany($id);
+        $token = $this->findToken($id);
 
         if($_SERVER["REQUEST_METHOD"]=="POST"){
             $model->c_title=$_POST['cTitle'];
@@ -326,15 +328,18 @@ class CampaignController extends Controller
                 $company->company_designation=$_POST['comPosition'];
                 $company->save();
 
-                $number = count($_POST['rTitle']);
-                echo("<script>console.log('PHP: ".$number."');</script>");
+                $token->t_name=$_POST['tokenName'];
+                $token->t_value=$_POST['tokenValue'];
+                $token->save();
+
+                $number = count($_POST['amount']);
                 for ($i=0; $i<$number; $i++){
                     $reward->c_id=$model->c_id;
-                    $reward->r_title=$_POST['rTitle'][$i];
-                    echo("<script>console.log('Get Reward hereN: ".$reward->r_title."');</script>");
-                    $reward->r_pledge_amt=$number;
-                    $reward->r_description=$_POST['rDesc'][$i];
-                    $reward->r_limit_availability=$_POST['rLimit'][$i];
+                    $reward->r_pledge_amt=$_POST['amount'][$i];
+                    //echo("<script>console.log('Get Reward hereN: ".$reward->r_title."');</script>");
+                    $reward->r_discount=$number;
+                    $reward->r_description=$_POST['rewardDesc'][$i];
+                    $reward->r_validity=$_POST['expiry'][$i];
                     $reward->save(false);
                 }
                 return $this->render('preview', [
@@ -645,6 +650,15 @@ class CampaignController extends Controller
         }
 
         return new Company();
+    }
+
+    protected function findToken($id)
+    {
+        if (($token = Token::find()->where(['c_id'=>$id])->one()) !== null){
+            return $token;
+        }
+
+        return new Token();
     }
 
     protected function checkStatus($id)

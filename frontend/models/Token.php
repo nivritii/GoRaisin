@@ -5,25 +5,23 @@ namespace frontend\models;
 use Yii;
 
 /**
- * This is the model class for table "reward".
+ * This is the model class for table "token".
  *
- * @property int $r_id
+ * @property int $t_id
  * @property int $c_id
- * @property int $r_discount
- * @property int $r_pledge_amt
- * @property string $r_description
- * @property int $r_validity
+ * @property string $t_name
+ * @property int $t_value
  *
  * @property Campaign $c
  */
-class Reward extends \yii\db\ActiveRecord
+class Token extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'reward';
+        return 'token';
     }
 
     /**
@@ -32,9 +30,9 @@ class Reward extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['c_id', 'r_discount', 'r_pledge_amt', 'r_description', 'r_validity'], 'required'],
-            [['c_id', 'r_discount', 'r_pledge_amt', 'r_validity'], 'integer'],
-            [['r_description'], 'string', 'max' => 255],
+            [['c_id', 't_name', 't_value'], 'required'],
+            [['c_id', 't_value'], 'integer'],
+            [['t_name'], 'string', 'max' => 255],
             [['c_id'], 'exist', 'skipOnError' => true, 'targetClass' => Campaign::className(), 'targetAttribute' => ['c_id' => 'c_id']],
         ];
     }
@@ -45,12 +43,10 @@ class Reward extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'r_id' => 'R ID',
+            't_id' => 'T ID',
             'c_id' => 'C ID',
-            'r_discount' => 'R Discount',
-            'r_pledge_amt' => 'R Pledge Amt',
-            'r_description' => 'R Description',
-            'r_validity' => 'R Validity',
+            't_name' => 'T Name',
+            't_value' => 'T Value',
         ];
     }
 
