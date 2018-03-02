@@ -26,7 +26,7 @@ $user_update = new Update();
     <button class="btn btn-info" id="toggle-visibility" data-target="#post-update" style="display: block; margin: 0 auto;width: 40%; class: btn btn-info">Post an Update
     </button>
 
-    <div id="post-update">
+    <div id="post-update" hidden>
         <?php $form = ActiveForm::begin(); ?>
             <div>
                 <?php

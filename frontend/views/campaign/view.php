@@ -59,12 +59,8 @@ frontend\assets\RoadmapAsset::register($this);
                                 <div class="image_frame scale-with-grid" style="width: 100%">
                                     <div class="image_wrapper">
                                         <?php
-                                        $video = \frontend\models\Campaign::find()
-                                            ->where(['c_id' => 143])
-                                            ->one();
-                                        $url='https://'.$video['c_video'];
-                                        /*$url = 'https://'.'www.youtube.com/watch?v=StRSjgb8QK4&t=3s';*/
-                                        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
+                                        $video = $model->c_video;
+                                        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $video, $matches);
                                         $id = $matches[1];
                                         $width = '800px';
                                         $height = '450px';
@@ -156,7 +152,7 @@ frontend\assets\RoadmapAsset::register($this);
                     $diff = strtotime($model->c_end_date) - strtotime($currectDate);
                     $days = ceil($diff/86400);
                     ?>
-                    <h3 style="margin-top:25px; margin-bottom:0px;" id="endDate"><?php echo $days;?></h3>
+                    <h3 style="margin-top:25px; margin-bottom:0px;" id="endDate"><?=$diff;?></h3>
                     <h3 class="title-price" style="margin-top:0px;"><small>days to go</small></h3>
 
                     <?php if ((Yii::$app->user->isGuest || Yii::$app->user->identity->id != $model->c_author) /*&& $model->c_status == 'published'*/) { ?>
