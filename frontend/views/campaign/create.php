@@ -419,69 +419,66 @@ $campaign_draft = new Campaign();
 </div>
 <!--<div class="container">-->
 <div class="row setup-content" id="step-5">
-    <div class="col-xs-12">
+    <div class="col-xs-12 text-center">
         <div class="col-md-12 well text-center">
             <h1 class="tabpage-title">Perks</h1>
-
+            <p class="tabpage">Please provide the details of the discounts given for the amounts backers pledge.</p>
+             </div>
             <!--<form>-->
-            <div class="container col-xs-12">
-                <br/>
-                <div class="row clearfix">
-                    <div class="col-md-12 column">
-                        <table class="table table-bordered table-hover" id="rewardTab">
-                            <thead>
-                            <tr>
-                                <th class="text-center">
-                                    #
-                                </th>
-                                <th class="text-center">
-                                    Title
-                                </th>
-                                <th class="text-center">
-                                    Pledge Amount
-                                </th>
-                                <th class="text-center">
-                                    Description
-                                </th>
-                                <th class="text-center">
-                                    Limit
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr id='addr0'>
-                                <td>
-                                    1
-                                </td>
-                                <td>
-                                    <input type="text" name='rTitle[]' id='rTitle' class="form-control"/>
-                                </td>
-                                <td>
-                                    <input type="text" name='rAmt[]' class="form-control"/>
-                                </td>
-                                <td>
-                                    <input type="text" name='rDesc[]' class="form-control"/>
-                                </td>
-                                <td>
-                                    <input type="text" name='rLimit[]' class="form-control"/>
-                                </td>
-                            </tr>
-                            <tr id='addr1'></tr>
-                            </tbody>
-                        </table>
+
+            <!--</form> -->
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                    <div class="col-sm-3 nopadding">
+                        <div class="form-group">
+                            <p style="float: left">% of discount given</p>
+                                <select class="form-control" id="educationDate" name="educationDate[]">
+
+                                    <option value="">% of discount</option>
+                                    <option value="2015">5%</option>
+                                    <option value="2016">10%</option>
+                                    <option value="2017">15%</option>
+                                    <option value="2018">20%</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 nopadding">
+                        <div class="form-group">
+                            <p style="float: left">For the stated amount pledged & more</p>
+                            <input type="text" class="form-control" id="Major" name="Major[]" value="" placeholder="Amount pledged">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 nopadding">
+                        <div class="form-group">
+                            <p style="float: left">Is valid from campaign end date to</p>
+                            <input type="text" class="form-control" id="Major" name="Major[]" value="" placeholder="Validity">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 nopadding">
+                        <div class="form-group">
+                            <div class="input-group">
+                                    <p style="float: left">Reward description</p>
+                                    <input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Reward Description">
+                                <div class="input-group-btn" style="    vertical-align: bottom;">
+                                    <button class="btn btn-success" type="button"  onclick="education_fields();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div id="education_fields">
+
                     </div>
                 </div>
-                <a id="add_row" class="btn btn-success pull-left">Add Reward</a><a id='delete_row'
-                                                                                   class="btn btn-danger pull-right">Remove
-                    Reward</a>
-                <br/><br/><br/>
+
+                <div class="panel-footer"><small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another reward</small>, <small>Press <span class="glyphicon glyphicon-minus gs"></span> to remove rewards</small>
+                </div>
+                <hr/>
+                <div style="clear:both;padding-bottom: 30px">
+                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                </div>
             </div>
-            <!--</form> -->
-            <hr>
-
-            <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-
-        </div>
     </div>
 </div>
 <!--</div>-->
@@ -576,35 +573,20 @@ $campaign_draft = new Campaign();
     }
 
     // Add , Delete row dynamically
+    var room = 1;
+    function education_fields() {
 
-    $(document).ready(function () {
-        var i = 1;
+        room++;
+        var objTo = document.getElementById('education_fields')
+        var divtest = document.createElement("div");
+        divtest.setAttribute("class", "form-group removeclass"+room);
+        var rdiv = 'removeclass'+room;
+        divtest.innerHTML = '<div class="col-sm-3 nopadding"><div class="form-group"><select class="form-control" id="educationDate" name="educationDate[]"><option value="">% of discount</option><option value="2015">5%</option><option value="2016">10%</option><option value="2017">15%</option><option value="2018">20%</option></select></div></div><div class="col-sm-3 nopadding"><div class="form-group"><input type="text" class="form-control" id="Major" name="Major[]" value="" placeholder="Amount pledged"></div></div><div class="col-sm-3 nopadding"><div class="form-group"><input type="text" class="form-control" id="Major" name="Major[]" value="" placeholder="Validity"></div></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="input-group"><input type="text" class="form-control" id="Schoolname" name="Schoolname[]" value="" placeholder="Reward Description"><div class="input-group-btn"><button class="btn btn-danger" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div><div class="clear"></div>';
 
-        $("#add_row").click(function () {
+        objTo.appendChild(divtest)
+    }
+    function remove_education_fields(rid) {
+        $('.removeclass'+rid).remove();
+    }
 
-            i++;
-            $('#addr' + (i - 1)).html("<td>" + (i) + "</td><td><input name='rTitle[]' id='rTitle' type='text' placeholder='Title' class='form-control input-md'  /> </td><td><input  name='rAmt[]' type='text' placeholder='Pledge Amount'  class='form-control input-md'></td><td><input  name='rDesc[]' type='text' placeholder='Description'  class='form-control input-md'></td><td><input  name='rLimit[]' type='text' placeholder='Limit'  class='form-control input-md'></td>");
-            $('#rewardTab').append('<tr id="addr' + i + '"></tr>');
-        });
-
-
-        $("#delete_row").click(function () {
-            if (i > 1) {
-                $("#addr" + (i - 1)).html('');
-                i--;
-            }
-        });
-
-        $("#submit").click(function () {
-
-            $.ajax({
-                method: "POST",
-                data: $("#tab_logic").serialize(),
-                success: function (data) {
-                    alert(data);
-                    $("#tab_logic")[0].reset();
-                }
-            })
-        });
-    });
 </script>
