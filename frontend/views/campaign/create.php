@@ -19,55 +19,56 @@ $campaign_draft = new Campaign();
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script data-require="jquery" data-semver="2.1.3" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 
 <form class="createCampaign" enctype="multipart/form-data" action="preview?id=<?=$model->c_id?>" method="post" id="tab_logic"
       name="campaignForm">
-<div class="container" style="margin-top: 10px">
-    <div class="row form-group">
-        <div class="col-xs-9" style="padding-right: 0px;">
-            <ul class="nav nav-pills nav-justified thumbnail setup-panel" id="myNav" style="margin-bottom: 0px;">
-                <li id="navStep1" class="li-nav active" step="#step-1">
-                    <a>
-                        <h4 class="list-group-item-heading">Basics</h4>
-                        <p class="list-group-item-text">Introduce your project</p>
+    <div class="container" style="margin-top: 10px">
+        <div class="row form-group">
+            <div class="col-xs-9" style="padding-right: 0px;">
+                <ul class="nav nav-pills nav-justified thumbnail setup-panel" id="myNav" style="margin-bottom: 0px;">
+                    <li id="navStep1" class="li-nav active" step="#step-1">
+                        <a>
+                            <h4 class="list-group-item-heading">Basics</h4>
+                            <p class="list-group-item-text">Introduce your project</p>
+                        </a>
+                    </li>
+                    <li id="navStep2" class="li-nav active" step="#step-2">
+                        <a>
+                            <h4 class="list-group-item-heading">Rewards</h4>
+                            <p class="list-group-item-text">Backers benefits</p>
+                        </a>
+                    </li>
+                    <li id="navStep3" class="li-nav" step="#step-3">
+                        <a>
+                            <h4 class="list-group-item-heading">The Story</h4>
+                            <p class="list-group-item-text">More about your project</p>
+                        </a>
+                    </li>
+                    <li id="navStep4" class="li-nav" step="#step-4">
+                        <a>
+                            <h4 class="list-group-item-heading">Company</h4>
+                            <p class="list-group-item-text">Share about your team</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <div class="col-xs-3" style="padding-left: 0px; ">
+                    <input class="btn btn-lg btn-default" type="submit" value="Preview" id="submit" style="width:130px;padding: 25px 20px 20px; margin-left: 3%; color: #337ab7;">
+                    <a href="<?= Url::to(['campaign/review','id'=>$model->c_id],['style' => 'background-color: #8f13a5f0'])?>">
+                        <input class="btn btn-lg btn-default" value="Submit" style="width:130px; padding: 25px 20px 20px; margin-left: 1%; background-color: #8f13a5f0;color: #ffffff">
                     </a>
-                </li>
-                <li id="navStep2" class="li-nav active" step="#step-2">
-                    <a>
-                        <h4 class="list-group-item-heading">Rewards</h4>
-                        <p class="list-group-item-text">Backers benefits</p>
-                    </a>
-                </li>
-                <li id="navStep3" class="li-nav" step="#step-3">
-                    <a>
-                        <h4 class="list-group-item-heading">The Story</h4>
-                        <p class="list-group-item-text">More about your project</p>
-                    </a>
-                </li>
-                <li id="navStep4" class="li-nav" step="#step-4">
-                    <a>
-                        <h4 class="list-group-item-heading">Company</h4>
-                        <p class="list-group-item-text">Share about your team</p>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <div>
-            <div class="col-xs-3" style="padding-left: 0px; ">
-                <input class="btn btn-lg btn-default" type="submit" value="Preview" id="submit" style="width:130px;padding: 25px 20px 20px; margin-left: 3%; color: #337ab7;">
-                <a href="<?= Url::to(['campaign/review','id'=>$model->c_id],['style' => 'background-color: #8f13a5f0'])?>">
-                <input class="btn btn-lg btn-default" value="Submit" style="width:130px; padding: 25px 20px 20px; margin-left: 1%; background-color: #8f13a5f0;color: #ffffff">
-                </a>
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <div class="row form-group">
-        <div class="col-xs-12">
-            <div class="alert alert-success hide"></div>
+        <div class="row form-group">
+            <div class="col-xs-12">
+                <div class="alert alert-success hide"></div>
+            </div>
         </div>
-    </div>
 
 
         <!--        <div class="container">-->
@@ -202,245 +203,234 @@ $campaign_draft = new Campaign();
             </div>
         </div>
         <!--        </div>-->
-</div>
-<!--<div class="container">-->
-<div class="row setup-content" id="step-2">
-    <div class="col-xs-12">
-        <div class="col-md-12 well text-center">
-            <h1 class="tabpage-title">Rewards</h1>
-
-            <!--<form>-->
-            <div class="container col-xs-12">
-                <br/>
-                <div class="row clearfix">
-                    <div class="col-md-12 column">
-                        <table class="table table-bordered table-hover" id="rewardTab">
-                            <thead>
-                            <tr>
-                                <th class="text-center">
-                                    #
-                                </th>
-                                <th class="text-center">
-                                    Title
-                                </th>
-                                <th class="text-center">
-                                    Pledge Amount
-                                </th>
-                                <th class="text-center">
-                                    Description
-                                </th>
-                                <th class="text-center">
-                                    Limit
-                                </th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr id='addr0'>
-                                <td>
-                                    1
-                                </td>
-                                <td>
-                                    <input type="text" name='rTitle[]' id='rTitle' class="form-control"/>
-                                </td>
-                                <td>
-                                    <input type="text" name='rAmt[]' class="form-control"/>
-                                </td>
-                                <td>
-                                    <input type="text" name='rDesc[]' class="form-control"/>
-                                </td>
-                                <td>
-                                    <input type="text" name='rLimit[]' class="form-control"/>
-                                </td>
-                            </tr>
-                            <tr id='addr1'></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <a id="add_row" class="btn btn-success pull-left">Add Reward</a><a id='delete_row'
-                                                                                   class="btn btn-danger pull-right">Remove
-                    Reward</a>
-                <br/><br/><br/>
-            </div>
-            <!--</form> -->
-            <hr>
-
-            <!--                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">-->
-            <!--                <input onclick="step2Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">-->
-
-        </div>
     </div>
-</div>
-<!--</div>-->
-<!--<div class="container">-->
-<div class="row setup-content" id="step-3">
-    <div class="col-xs-12">
-        <div class="col-md-12 well text-center">
-            <h1 class="tabpage-title">The Story</h1>
+    <!--<div class="container">-->
+    <div class="row setup-content" id="step-2">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1 class="tabpage-title">Rewards</h1>
 
-            <!--<form>-->
-            <div class="container col-xs-12">
-                <div class="container">
+                <!--<form>-->
+                <div class="container col-xs-12">
                     <br/>
-                    <div class="form-group">
-                        <div style="clear:both;height: 150px">
-                            <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Campaign video</p>
-                            </div>
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                <input type="text" style="width: 100%" name="cVideo">
-                                <p align="left">Please upload your video to YouTube and paste the link here.
-                                    Projects with a video have a much higher chance of success.</p>
-                            </div>
-                        </div>
-
-                        <div style="clear:both;height: 500px">
-                            <div style="float: left;display: inline-block;width: 20%;">
-                                <p class="item-title">Main Description</p>
-                            </div>
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;height: 400px">
-                                <?php
-                                echo \artkost\yii2\trumbowyg\Trumbowyg::widget([
-                                    'name' => 'cLDesc',
-                                    'settings' => [
-                                        'lang' => 'en'
-                                    ]
-                                ]);
-                                ?>
-                            </div>
+                    <div class="row clearfix">
+                        <div class="col-md-12 column">
+                            <table class="table table-bordered table-hover" id="rewardTab">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">
+                                        #
+                                    </th>
+                                    <th class="text-center">
+                                        Title
+                                    </th>
+                                    <th class="text-center">
+                                        Pledge Amount
+                                    </th>
+                                    <th class="text-center">
+                                        Description
+                                    </th>
+                                    <th class="text-center">
+                                        Limit
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr id='addr0'>
+                                    <td>
+                                        1
+                                    </td>
+                                    <td>
+                                        <input type="text" name='rTitle[]' id='rTitle' class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input type="text" name='rAmt[]' class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input type="text" name='rDesc[]' class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <input type="text" name='rLimit[]' class="form-control"/>
+                                    </td>
+                                </tr>
+                                <tr id='addr1'></tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
+                    <a id="add_row" class="btn btn-success pull-left">Add Reward</a><a id='delete_row'
+                                                                                       class="btn btn-danger pull-right">Remove
+                        Reward</a>
+                    <br/><br/><br/>
                 </div>
+                <!--</form> -->
+                <hr>
+
+                <!--                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">-->
+                <!--                <input onclick="step2Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">-->
+
             </div>
-            <!--</form> -->
-
-            <!--                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">-->
-            <!--                <input onclick="step3Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">-->
-
         </div>
     </div>
-</div>
-<!--</div>-->
-<!--<div class="container">-->
-<div class="row setup-content" id="step-4">
-    <div class="col-xs-12">
-        <div class="col-md-12 well text-center">
-            <h1 class="tabpage-title">Company</h1>
+    <!--</div>-->
+    <!--<div class="container">-->
+    <div class="row setup-content" id="step-3">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1 class="tabpage-title">The Story</h1>
 
-            <div class="container col-xs-12">
-                <div class="container">
-                    <br/>
-                    <div class="form-group" style="padding-right: 90px;">
-                        <div style="width: 100%;padding: 10px">
-                            <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Company name</p>
+                <!--<form>-->
+                <div class="container col-xs-12">
+                    <div class="container">
+                        <br/>
+                        <div class="form-group">
+                            <div style="clear:both;height: 150px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Campaign video</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                    <input type="text" style="width: 100%" name="cVideo" id="youtubeId">
+                                    <p align="left">Please upload your video to YouTube and paste video id (11 characters) here.
+                                        Projects with a video have a much higher chance of success.</p>
+                                    <div id="info"></div>
+                                    <iframe id="myIframe" width="426" height="240"></iframe>
+                                </div>
                             </div>
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                <input type="text" style="width: 100%" name="comName">
+
+                            <div style="clear:both;height: 500px">
+                                <div style="float: left;display: inline-block;width: 20%;">
+                                    <p class="item-title">Main Description</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;height: 400px">
+                                    <?php
+                                    echo \artkost\yii2\trumbowyg\Trumbowyg::widget([
+                                        'name' => 'cLDesc',
+                                        'settings' => [
+                                            'lang' => 'en'
+                                        ]
+                                    ]);
+                                    ?>
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <!--</form> -->
 
-                        <div style="clear:both;padding: 10px">
+                <!--                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">-->
+                <!--                <input onclick="step3Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">-->
+
+            </div>
+        </div>
+    </div>
+    <!--</div>-->
+    <!--<div class="container">-->
+    <div class="row setup-content" id="step-4">
+        <div class="col-xs-12">
+            <div class="col-md-12 well text-center">
+                <h1 class="tabpage-title">Company</h1>
+
+                <div class="container col-xs-12">
+                    <div class="container">
+                        <br/>
+                        <div class="form-group" style="padding-right: 90px;">
+                            <div style="width: 100%;padding: 10px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Company name</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
+                                    <input type="text" style="width: 100%" name="comName">
+                                </div>
+                            </div>
+
+                            <div style="clear:both;padding: 10px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Email</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
+                                    <input type="text" style="width: 100%" name="comEmail">
+                                </div>
+                            </div>
+                            <div style="clear:both;padding: 10px;">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Website URL</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
+                                    <input type="text" style="width: 100%" name="comWebsite">
+                                </div>
+                            </div>
+                            <div style="clear:both;padding: 10px;">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Description</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%;class=" textEditor
+                                ">
+                                <textarea rows="3" type="text" style="width: 100%;" name="comDesc"
+                                          id="comDesc"><?= $model->c_description ?></textarea>
+                            </div>
+                        </div>
+                        <div style="clear:both;padding: 5px;">
+                            <hr style="3; border-color: #e3cece">
                             <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Email</p>
+                                <p class="item-title">Industry</p>
                             </div>
                             <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                <input type="text" style="width: 100%" name="comEmail">
+                                <input type="text" style="width: 100%" name="comIndustry">
                             </div>
                         </div>
                         <div style="clear:both;padding: 10px;">
                             <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Website URL</p>
+                                <p class="item-title"># of employees</p>
+                            </div>
+                            <div style="display: inline-block;float: left;margin-left: 1.7%;width: 55.5%">
+                                <input type="text" style="width: 100%" name="comEmp">
+                            </div>
+                        </div>
+                        <div style="clear:both;padding: 0px;">
+                            <hr style="3; border-color: #e3cece">
+                            <div style="float: left;display: inline-block;width: 20%">
+                                <p class="item-title">Location</p>
                             </div>
                             <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                <input type="text" style="width: 100%" name="comWebsite">
+                                <select name="cLocation" id="search_locations"
+                                        style="border-radius: 0px;width: 100%">
+                                    <option selected value="<?= $model->cLocation->id?>"><?= $model->cLocation->country ?></option>
+                                    <?php foreach ($countries as $country) { ?>
+                                        <option value=<?= $country->id ?>><?= $country->country ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
                         <div style="clear:both;padding: 10px;">
-                            <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Description</p>
+                            <div style="float: left;display: inline-block;width: 15%">
+                                <p class="item-title" style="padding-left: 0px">Postal code</p>
                             </div>
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 55%;class=" textEditor
-                            ">
-                            <textarea rows="3" type="text" style="width: 100%;" name="comDesc"
-                                      id="comDesc"><?= $model->c_description ?></textarea>
+                            <div style="display: inline-block;float: left;margin-left: 6.5%;width: 56%">
+                                <input type="text" style="width: 100%" name="comPostal">
+                            </div>
                         </div>
-                    </div>
-                    <div style="clear:both;padding: 5px;">
-                        <hr style="3; border-color: #e3cece">
-                        <div style="float: left;display: inline-block;width: 20%">
-                            <p class="item-title">Industry</p>
-                        </div>
-                        <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                            <input type="text" style="width: 100%" name="comIndustry">
-                        </div>
-                    </div>
-                    <div style="clear:both;padding: 10px;">
-                        <div style="float: left;display: inline-block;width: 20%">
-                            <p class="item-title"># of employees</p>
-                        </div>
-                        <div style="display: inline-block;float: left;margin-left: 1.7%;width: 55.5%">
-                            <input type="text" style="width: 100%" name="comEmp">
-                        </div>
-                    </div>
-                    <div style="clear:both;padding: 0px;">
-                        <hr style="3; border-color: #e3cece">
-                        <div style="float: left;display: inline-block;width: 20%">
-                            <p class="item-title">Location</p>
-                        </div>
-                        <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                            <select name="cLocation" id="search_locations"
-                                    style="border-radius: 0px;width: 100%">
-                                <option selected value="<?= $model->cLocation->id?>"><?= $model->cLocation->country ?></option>
-                                <?php foreach ($countries as $country) { ?>
-                                    <option value=<?= $country->id ?>><?= $country->country ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div style="clear:both;padding: 10px;">
-                        <div style="float: left;display: inline-block;width: 15%">
-                            <p class="item-title" style="padding-left: 0px">Postal code</p>
-                        </div>
-                        <div style="display: inline-block;float: left;margin-left: 6.5%;width: 56%">
-                            <input type="text" style="width: 100%" name="comPostal">
-                        </div>
-                    </div>
-                    <div style="clear:both;">
-                        <hr style="3; border-color: #e3cece">
-                        <div style="float: left;display: inline-block;width: 20%">
-                            <p class="item-title">Your Position</p>
-                        </div>
-                        <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                            <input type="text" style="width: 100%" name="comPosition">
+                        <div style="clear:both;">
+                            <hr style="3; border-color: #e3cece">
+                            <div style="float: left;display: inline-block;width: 20%">
+                                <p class="item-title">Your Position</p>
+                            </div>
+                            <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
+                                <input type="text" style="width: 100%" name="comPosition">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!--</form> -->
-        <!--                <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">-->
+            <!--</form> -->
+            <!--                <input class="btn btn-md btn-info" type="submit" value="Submit" id="submit" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">-->
 
-        <div class="form-group">
+            <div class="form-group">
+            </div>
         </div>
     </div>
-</div>
-</div>
-<!--</div>-->
+    </div>
+    <!--</div>-->
 </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <script>
     var currentStep = 1;

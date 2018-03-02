@@ -2,6 +2,7 @@
 
 namespace common\tests\unit\models;
 
+use PHPUnit\Framework\TestResult;
 use Yii;
 use common\models\LoginForm;
 use common\fixtures\UserFixture;
@@ -62,5 +63,31 @@ class LoginFormTest extends \Codeception\Test\Unit
         expect('model should login user', $model->login())->true();
         expect('error message should not be set', $model->errors)->hasntKey('password');
         expect('user should be logged in', Yii::$app->user->isGuest)->false();
+    }
+
+    /**
+     * Count elements of an object
+     * @link http://php.net/manual/en/countable.count.php
+     * @return int The custom count as an integer.
+     * </p>
+     * <p>
+     * The return value is cast to an integer.
+     * @since 5.1.0
+     */
+    public function count()
+    {
+        // TODO: Implement count() method.
+    }
+
+    /**
+     * Runs a test and collects its result in a TestResult instance.
+     *
+     * @param TestResult $result
+     *
+     * @return TestResult
+     */
+    public function run(TestResult $result = null)
+    {
+        // TODO: Implement run() method.
     }
 }

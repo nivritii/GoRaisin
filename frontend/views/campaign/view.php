@@ -80,12 +80,6 @@ frontend\assets\RoadmapAsset::register($this);
                             <div class="column one post-header">
                                 <div class="title_wrapper">
                                     <div class="post-meta clearfix">
-                                        <!--<div class="author-date">
-                                            <span class="vcard author post-author"> Published by <i class="icon-user"></i> <span class="fn"><a href="#"><?/*=$model->cAuthor->username*/?></a></span> </span><span class="date"> at <i class="icon-clock"></i>
-														<time class="entry-date" datetime="2014-03-12T09:15:13+00:00" itemprop="datePublished" pubdate>
-															<?/*=$model->c_created_at*/?>
-														</time> </span>
-                                        </div>-->
                                         <div class="category meta-categories" style="width: 100%">
                                             <div style="display: inline-block;float: right;margin-right: 3%">
                                                 <p style="font-size: 15px;color: #000000;"><i class="glyphicon glyphicon-map-marker"></i>&nbsp;<?php echo $model->c_location ?></p>
