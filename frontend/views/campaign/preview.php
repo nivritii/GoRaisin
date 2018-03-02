@@ -92,7 +92,7 @@ frontend\assets\RoadmapAsset::register($this);
                                         </div>-->
                                         <div class="category meta-categories" style="width: 100%">
                                             <div style="display: inline-block;float: right;margin-right: 3%">
-                                                <p style="font-size: 15px;color: #000000;"><i class="glyphicon glyphicon-map-marker"></i>&nbsp;<?php echo $model->c_location ?></p>
+                                                <p style="font-size: 15px;color: #000000;"><i class="glyphicon glyphicon-map-marker"></i>&nbsp;<?php echo $model->cLocation->country ?></p>
                                             </div>
                                             <div style="clear: both;display: inline-block;margin-left: 60%">
                                                 <p style="font-size: 15px;color: #000000;"><i class="glyphicon glyphicon-tag"></i>&nbsp;<?php echo $model->cCat->name ?></p>
