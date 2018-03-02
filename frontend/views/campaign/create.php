@@ -19,6 +19,7 @@ $campaign_draft = new Campaign();
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -57,25 +58,16 @@ $campaign_draft = new Campaign();
                         <h4 class="list-group-item-heading">Perks</h4>
                         <p class="list-group-item-text">For Backers</p>
                     </a>
-                </li>
-            </ul>
-        </div>
-        <div>
-            <div class="col-xs-3" style="padding-left: 0px; ">
-                <input class="btn btn-lg btn-default" type="submit" value="Preview" id="submit" style="width:130px;padding: 25px 20px 20px; margin-left: 3%; color: #337ab7;">
-                <a href="<?= Url::to(['campaign/review','id'=>$model->c_id],['style' => 'background-color: #8f13a5f0'])?>">
-                <input class="btn btn-lg btn-default" value="Submit" style="width:130px; padding: 25px 20px 20px; margin-left: 1%; background-color: #8f13a5f0;color: #ffffff">
-                </a>
+                </div>
             </div>
         </div>
-    </div>
 
 
-    <div class="row form-group">
-        <div class="col-xs-12">
-            <div class="alert alert-success hide"></div>
+        <div class="row form-group">
+            <div class="col-xs-12">
+                <div class="alert alert-success hide"></div>
+            </div>
         </div>
-    </div>
 
 
         <!--        <div class="container">-->
@@ -218,34 +210,37 @@ $campaign_draft = new Campaign();
                                 <input type="text" style="width: 100%" name="cVideo">
                                 <p align="left">Please upload your video to YouTube and paste the link here.
                                     Projects with a video have a much higher chance of success.</p>
-                            </div>
-                        </div>
 
-                        <div style="clear:both;height: 500px">
-                            <div style="float: left;display: inline-block;width: 20%;">
-                                <p class="item-title">Main Description</p>
                             </div>
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;height: 400px">
-                                <?php
-                                echo \artkost\yii2\trumbowyg\Trumbowyg::widget([
-                                    'name' => 'cLDesc',
-                                    'settings' => [
-                                        'lang' => 'en'
-                                    ]
-                                ]);
-                                ?>
+
+                            <div style="clear:both;height: 500px">
+                                <div style="float: left;display: inline-block;width: 20%;">
+                                    <p class="item-title">Main Description</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;height: 400px">
+                                    <?php
+                                    echo \artkost\yii2\trumbowyg\Trumbowyg::widget([
+                                        'name' => 'cLDesc',
+                                        'settings' => [
+                                            'lang' => 'en'
+                                        ]
+                                    ]);
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!--</form> -->
+                <!--</form> -->
+
 
                             <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
                             <input onclick="step2Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
 
+            </div>
         </div>
     </div>
+
 </div>
 <!--</div>-->
 <!--<div class="container">-->
@@ -262,10 +257,34 @@ $campaign_draft = new Campaign();
                             <div style="float: left;display: inline-block;width: 20%">
                                 <p class="item-title">Company name</p>
                             </div>
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                <input type="text" style="width: 100%" name="comName">
+
+                            <div style="clear:both;padding: 10px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Email</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
+                                    <input type="text" style="width: 100%" name="comEmail">
+                                </div>
+                            </div>
+                            <div style="clear:both;padding: 10px;">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Website URL</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
+                                    <input type="text" style="width: 100%" name="comWebsite">
+                                </div>
+                            </div>
+                            <div style="clear:both;padding: 10px;">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Description</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%;class=" textEditor
+                                ">
+                                <textarea rows="3" type="text" style="width: 100%;" name="comDesc"
+                                          id="comDesc"><?= $model->c_description ?></textarea>
                             </div>
                         </div>
+
                         <hr>
                         <div style="width: 100%;padding: 10px">
                             <div style="float: left;display: inline-block;width: 20%">
@@ -277,81 +296,56 @@ $campaign_draft = new Campaign();
                         </div>
                         <div style="clear:both;padding: 10px">
                             <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Email</p>
+                                <p class="item-title">Industry</p>
                             </div>
                             <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                <input type="text" style="width: 100%" name="comEmail">
+                                <input type="text" style="width: 100%" name="comIndustry">
                             </div>
                         </div>
                         <div style="clear:both;padding: 10px;">
                             <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Website URL</p>
+                                <p class="item-title"># of employees</p>
+                            </div>
+                            <div style="display: inline-block;float: left;margin-left: 1.7%;width: 55.5%">
+                                <input type="text" style="width: 100%" name="comEmp">
+                            </div>
+                        </div>
+                        <div style="clear:both;padding: 0px;">
+                            <hr style="3; border-color: #e3cece">
+                            <div style="float: left;display: inline-block;width: 20%">
+                                <p class="item-title">Location</p>
                             </div>
                             <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                <input type="text" style="width: 100%" name="comWebsite">
+                                <select name="cLocation" id="search_locations"
+                                        style="border-radius: 0px;width: 100%">
+                                    <option selected value="<?= $model->cLocation->id?>"><?= $model->cLocation->country ?></option>
+                                    <?php foreach ($countries as $country) { ?>
+                                        <option value=<?= $country->id ?>><?= $country->country ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
                         <div style="clear:both;padding: 10px;">
-                            <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Description</p>
+                            <div style="float: left;display: inline-block;width: 15%">
+                                <p class="item-title" style="padding-left: 0px">Postal code</p>
                             </div>
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 55%;class=" textEditor
-                            ">
-                            <textarea rows="3" type="text" style="width: 100%;" name="comDesc"
-                                      id="comDesc"><?= $model->c_description ?></textarea>
+                            <div style="display: inline-block;float: left;margin-left: 6.5%;width: 56%">
+                                <input type="text" style="width: 100%" name="comPostal">
+                            </div>
                         </div>
-                    </div>
-                    <div style="clear:both;padding: 5px;">
-                        <hr style="3; border-color: #e3cece">
-                        <div style="float: left;display: inline-block;width: 20%">
-                            <p class="item-title">Industry</p>
-                        </div>
-                        <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                            <input type="text" style="width: 100%" name="comIndustry">
-                        </div>
-                    </div>
-                    <div style="clear:both;padding: 10px;">
-                        <div style="float: left;display: inline-block;width: 20%">
-                            <p class="item-title"># of employees</p>
-                        </div>
-                        <div style="display: inline-block;float: left;margin-left: 1.7%;width: 55.5%">
-                            <input type="text" style="width: 100%" name="comEmp">
-                        </div>
-                    </div>
-                    <div style="clear:both;padding: 0px;">
-                        <hr style="3; border-color: #e3cece">
-                        <div style="float: left;display: inline-block;width: 20%">
-                            <p class="item-title">Location</p>
-                        </div>
-                        <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                            <select name="cLocation" id="search_locations"
-                                    style="border-radius: 0px;width: 100%">
-                                <option selected value="<?= $model->cLocation->id?>"><?= $model->cLocation->country ?></option>
-                                <?php foreach ($countries as $country) { ?>
-                                    <option value=<?= $country->id ?>><?= $country->country ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div style="clear:both;padding: 10px;">
-                        <div style="float: left;display: inline-block;width: 15%">
-                            <p class="item-title" style="padding-left: 0px">Postal code</p>
-                        </div>
-                        <div style="display: inline-block;float: left;margin-left: 6.5%;width: 56%">
-                            <input type="text" style="width: 100%" name="comPostal">
-                        </div>
-                    </div>
-                    <div style="clear:both;">
-                        <hr style="3; border-color: #e3cece">
-                        <div style="float: left;display: inline-block;width: 20%">
-                            <p class="item-title">Your Position</p>
-                        </div>
-                        <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                            <input type="text" style="width: 100%" name="comPosition">
+                        <div style="clear:both;">
+                            <hr style="3; border-color: #e3cece">
+                            <div style="float: left;display: inline-block;width: 20%">
+                                <p class="item-title">Your Position</p>
+                            </div>
+                            <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
+                                <input type="text" style="width: 100%" name="comPosition">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
         <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
         <input onclick="step3Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
@@ -486,7 +480,6 @@ $campaign_draft = new Campaign();
 </div>
 <!--</div>-->
 </form>
-
 
 <script>
     var currentStep = 1;
