@@ -33,7 +33,6 @@ use Yii;
  * @property Fund[] $funds
  * @property Reward[] $rewards
  * @property Update[] $updates
- * @property Company $cCompany
  */
 class Campaign extends \yii\db\ActiveRecord
 {
@@ -166,13 +165,6 @@ class Campaign extends \yii\db\ActiveRecord
     public function getUpdates()
     {
         return $this->hasMany(Update::className(), ['campaign_id' => 'c_id']);
-    }
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCCompany()
-    {
-        return $this->hasOne(Company::className(), ['id' => 'c_company']);
     }
 
     /**
