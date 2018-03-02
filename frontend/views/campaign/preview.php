@@ -67,11 +67,8 @@ frontend\assets\RoadmapAsset::register($this);
                                 <div class="image_frame scale-with-grid" style="width: 100%">
                                     <div class="image_wrapper">
                                         <?php
-                                        $video = \frontend\models\Campaign::find()
-                                            ->where(['c_id' => 142])
-                                            ->one();
-                                        $url=$video['c_video'];
-                                        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
+                                        $video=$model->c_video;
+                                        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $video, $matches);
                                         $id = $matches[1];
                                         $width = '800px';
                                         $height = '450px';
@@ -175,12 +172,12 @@ frontend\assets\RoadmapAsset::register($this);
                     </div>
                     <?php }elseif(Yii::$app->user->id == $model->c_author && $model->c_status == 'publish') { ?>
                     <div class="section" style="margin-top:25px; padding-bottom:20px;">
-                        <a href="<?= Url::to(['campaign/update','id'=>$model->c_id])?>">
+                        <a href="<?= Url::to(['campaign/edit','id'=>$model->c_id])?>">
                             <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</button>
                         </a>
                     </div>
                     <?php }elseif (Yii::$app->user->id == $model->c_author && $model->c_status == 'draft'){ ?>
-                        <a href="<?= Url::to(['campaign/update','id'=>$model->c_id])?>">
+                        <a href="<?= Url::to(['campaign/edit','id'=>$model->c_id])?>">
                             <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</button>
                         </a>
                         <br /><br />
