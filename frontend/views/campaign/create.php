@@ -290,7 +290,7 @@ $campaign_draft = new Campaign();
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
                                     <input type="text" style="width: 100%" name="cVideo" id="youtubeId">
-                                    <p align="left">Please upload your video to YouTube and paste video id (11 characters) here.
+                                    <p align="left">Please upload your video to YouTube and paste video link here here.
                                         Projects with a video have a much higher chance of success.</p>
                                     <div id="info"></div>
                                     <iframe id="myIframe" width="426" height="240"></iframe>
