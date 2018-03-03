@@ -68,13 +68,13 @@ frontend\assets\RoadmapAsset::register($this);
                                     <div class="image_wrapper">
                                         <?php
                                         $video=$model->c_video;
-                                        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $video, $matches);
-                                        $id = $matches[1];
+//                                        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $video, $matches);
+//                                        $id = $matches[1];
                                         $width = '800px';
                                         $height = '450px';
                                         ?>
-                                        <iframe id="ytplayer" type="text/html" width="<?php echo $width ?>" height="<?php echo $height ?>"
-                                                src="https://www.youtube.com/embed/<?php echo $id ?>?rel=0&showinfo=0&color=white&iv_load_policy=3"
+                                        <iframe id="ytplayer" type="text/html" width="<?=$width ?>" height="<?=$height ?>"
+                                                src="https://www.youtube.com/embed/<?=$video ?>?rel=0&showinfo=0&color=white&iv_load_policy=3"
                                                 frameborder="0" allowfullscreen></iframe>
                                     </div>
                                 </div>
