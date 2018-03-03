@@ -20,8 +20,6 @@ $campaign_draft = new Campaign();
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script data-require="jquery" data-semver="2.1.3" src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 
 
 <form class="createCampaign" enctype="multipart/form-data" action="preview?id=<?=$model->c_id?>" method="post" id="tab_logic"
@@ -219,7 +217,7 @@ $campaign_draft = new Campaign();
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
                                     <input type="text" style="width: 100%" name="cVideo" id="youtubeId" data-target="#myIframe">
                                     <p align="left">Please upload your video to YouTube and paste video id (11 characters) here. Projects with a video have a much higher chance of success.</p>
-                                    <p style="font-weight: 600;display: inline-block;">Example:&nbsp</p><p style="font-weight: 400;display: inline-block">https://www.youtube.com/watch?v=</p><p style="display: inline-block;font-weight: 600">yNAsk4Zw2p0</p><p style="display: inline-block">.</p><p style="display: inline-block">&nbspThen put</p><p style="display: inline-block;font-weight: 600">&nbsp;yNAsk4Zw2p0</p><p style="display: inline-block">&nbsp;in.</p>
+                                    <p style="font-weight: 600;display: inline-block;">Example:&nbsp</p><p style="font-weight: 400;display: inline-block">https://www.youtube.com/watch?v=</p><p style="display: inline-block;font-weight: 600">yNAsk4Zw2p0</p><p style="display: inline-block">.</p><p style="display: inline-block">&nbspVideo ID: </p><p style="display: inline-block;font-weight: 600">&nbsp;yNAsk4Zw2p0</p><p style="display: inline-block">&nbsp;.</p>
                                     <div id="info" style="font-weight: 500;font-size: 15px"></div>
                                     <iframe id="myIframe" width="600" height="300" hidden></iframe>
                                 </div>
@@ -417,7 +415,7 @@ $campaign_draft = new Campaign();
                     </div>
                 </div>
                 <!--</form> -->
-</form>
+<!--</form>-->
 </div>
 </div>
 </div>
@@ -617,9 +615,9 @@ $campaign_draft = new Campaign();
         var divtest = document.createElement("div");
         divtest.setAttribute("class", "form-group removeclass"+room);
         var rdiv = 'removeclass'+room;
-        divtest.innerHTML = '<div class="col-sm-3 nopadding"><div class="form-group"><select class="form-control" id="discount" name="discount[]"><option value="">% of discount</option><option value="2015">5%</option><option value="2016">10%</option><option value="2017">15%</option><option value="2018">20%</option></select></div></div><div class="col-sm-3 nopadding"><div class="form-group"><input type="text" class="form-control" id="amount" name="amount[]" value="" placeholder="Amount pledged"></div></div><div class="col-sm-3 nopadding"><div class="form-group"><input type="text" class="form-control" id="expiry" name="expiry[]" value="" placeholder="Validity"></div></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="input-group"><input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="" placeholder="Reward Description"><div class="input-group-btn"><button class="btn btn-danger" type="button" onclick="remove_add_rewards('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div><div class="clear"></div>';
+        divtest.innerHTML = '<div class="col-sm-3 nopadding"><input type="text" class="form-control" id="amount" name="amount[]" value="" placeholder="Amount pledged"></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="form-group"><select class="form-control" id="discount" name="discount[]"><option value="">% of discount</option><option value="2015">5%</option><option value="2016">10%</option><option value="2017">15%</option><option value="2018">20%</option></select></div></div></div><div class="col-sm-3 nopadding"><div class="form-group"><input type="text" class="form-control" id="expiry" name="expiry[]" value="" placeholder="Validity"></div></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="input-group"><input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="" placeholder="Reward Description"><div class="input-group-btn"><button class="btn btn-danger" type="button" onclick="remove_add_rewards('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div><div class="clear"></div>';
 
-        objTo.appendChild(divtest)
+        objTo.appendChild(divtest);
     }
     function remove_add_rewards(rid) {
         $('.removeclass'+rid).remove();

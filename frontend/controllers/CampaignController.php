@@ -316,7 +316,7 @@ class CampaignController extends Controller
             $model->c_description_long=$_POST['cLDesc'];
             $model->c_location=$_POST['cLocation'];
 
-            if ($model->save()){
+            if ($model->save(false)){
                 $company->campaign_id=$model->c_id;
                 $company->company_name=$_POST['comName'];
                 $company->company_email=$_POST['comEmail'];
@@ -328,6 +328,7 @@ class CampaignController extends Controller
                 $company->company_designation=$_POST['comPosition'];
                 $company->save();
 
+                $token->c_id=$model->c_id;
                 $token->t_name=$_POST['tokenName'];
                 $token->t_value=$_POST['tokenValue'];
                 $token->save();
@@ -340,12 +341,20 @@ class CampaignController extends Controller
                     $reward->r_discount=$number;
                     $reward->r_description=$_POST['rewardDesc'][$i];
                     $reward->r_validity=$_POST['expiry'][$i];
-                    $reward->save(false);
+                    $reward->r_id = NULL;
+                    $reward->isNewRecord = TRUE;
+                    $reward->save(true);
                 }
+
                 return $this->render('preview', [
                     'model' => $this->findModel($id),
-                    ]);
+                ]);
             }
+
+            Yii::$app->session->setFlash('error', 'Company and rewards details not getting stored!');
+            return $this->render('preview', [
+                'model' => $this->findModel($id),
+            ]);
         }
 
         return $this->render('create',[

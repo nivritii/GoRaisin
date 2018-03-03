@@ -53,8 +53,7 @@ HomePageAsset::register($this);
 <!--                                                </div>-->
 <!--                                            </div>-->
                                             <div style="padding-top: 30px;padding-bottom: 30px; width: 100%; float: left">
-                                                <input class="btn btn-md btn-info" type="submit" id="submit"
-                                                       value="Create your wallet" id="submit">
+                                                <input class="btn btn-md btn-info" type="submit"                                value="Create your wallet" id="submit">
                                             </div>
                                         </form>
                                     </div>
