@@ -467,11 +467,12 @@ $campaign_draft = new Campaign();
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="clear"></div>
-                <div id="add_rewards">
+                    <div class="clear"></div>
+                    <div id="add_rewards">
 
+                    </div>
                 </div>
+
             </div>
 
             <div class="panel-footer"><small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another reward</small>, <small>Press <span class="glyphicon glyphicon-minus gs"></span> to remove rewards</small>
