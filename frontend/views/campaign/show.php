@@ -84,7 +84,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 <div class="image_wrapper">
                                                     <a href="<?= Url::to(['campaign/view', 'id' => $campaign->c_id])?>">
                                                         <div class="mask"></div>
-                                                        <?= Html::img(Url::to('@web/images/uploads/' . $campaign->c_image), ['class' => 'scale-with-grid wp-post-image'], ['alt' => 'Image'], ['align' => 'left'], ['width' => '1200'], ['height' => '480']) ?>
+                                                        <?= Html::img(Url::to('@web/images/uploads/campaign/' . $campaign->c_image), ['class' => 'scale-with-grid wp-post-image'], ['alt' => 'Image'], ['align' => 'left'], ['width' => '1200'], ['height' => '480']) ?>
                                                         <!--<img width="960" height="750" src="images/home_blogger2_lifestyle1-960x750.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_lifestyle1" itemprop="image" />-->
                                                     </a>
                                                     <div class="image_links single">
