@@ -10,6 +10,7 @@ use Yii;
  * @property int $id
  * @property int $campaign_id
  * @property string $company_name
+ * @property string $company_reg_no
  * @property string $company_email
  * @property string $company_website
  * @property string $company_description
@@ -36,9 +37,9 @@ class Company extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['campaign_id', 'company_name', 'company_email', 'company_website', 'company_description', 'company_industry', 'company_employees_count', 'company_postal', 'company_designation'], 'required'],
+            [['campaign_id', 'company_name', 'company_reg_no', 'company_email', 'company_website', 'company_description', 'company_industry', 'company_employees_count', 'company_postal', 'company_designation'], 'required'],
             [['campaign_id', 'company_employees_count', 'company_postal'], 'integer'],
-            [['company_name', 'company_email', 'company_website', 'company_description', 'company_industry', 'company_designation'], 'string', 'max' => 255],
+            [['company_name', 'company_reg_no', 'company_email', 'company_website', 'company_description', 'company_industry', 'company_designation'], 'string', 'max' => 255],
             [['campaign_id'], 'exist', 'skipOnError' => true, 'targetClass' => Campaign::className(), 'targetAttribute' => ['campaign_id' => 'c_id']],
         ];
     }
@@ -52,6 +53,7 @@ class Company extends \yii\db\ActiveRecord
             'id' => 'ID',
             'campaign_id' => 'Campaign ID',
             'company_name' => 'Company Name',
+            'company_reg_no' => 'Company Reg No',
             'company_email' => 'Company Email',
             'company_website' => 'Company Website',
             'company_description' => 'Company Description',
