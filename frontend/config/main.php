@@ -69,6 +69,19 @@ return [
                 'from'=>['cherry@webpuppies.com.sg'=>'GoRaisin']
             ],
         ],
+
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'facebook' => [
+                    'class' => 'yii\authclient\clients\Facebook',
+                    'authUrl' => 'https://www.facebook.com/dialog/oauth?display=popup',
+                    'clientId' => '1794027837316015',
+                    'clientSecret' => '8c4ac8d55a129a1a5282f79b4976bcd2',
+                    'attributeNames' => ['name', 'email', 'first_name', 'last_name'],
+                ],
+            ],
+        ],
     ],
     'modules' => [
         'redactor' => [
@@ -78,5 +91,7 @@ return [
             'imageAllowExtensions'=>['jpg','png','gif','jpeg']
         ],
     ],
+
+
     'params' => $params,
 ];

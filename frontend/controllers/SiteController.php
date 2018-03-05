@@ -1,8 +1,11 @@
 <?php
+
 namespace frontend\controllers;
 
+use frontend\models\User;
 use Yii;
 use yii\base\InvalidParamException;
+use yii\helpers\Url;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -21,6 +24,7 @@ use frontend\models\Category;
  */
 class SiteController extends Controller
 {
+    public $successUrl = 'Success';
     /**
      * @inheritdoc
      */
@@ -58,6 +62,10 @@ class SiteController extends Controller
     public function actions()
     {
         return [
+            'auth' => [
+                'class' => 'yii\authclient\AuthAction',
+                'successCallback' => [$this, 'oAuthSuccess'],
+            ],
             'error' => [
                 'class' => 'yii\web\ErrorAction',
             ],
@@ -69,35 +77,58 @@ class SiteController extends Controller
     }
 
     /**
+     * This function will be triggered when user is successfuly authenticated using some oAuth client.
+     *
+     * @param yii\authclient\ClientInterface $client
+     * @return boolean|yii\web\Response
+     */
+    public function oAuthSuccess($client)
+    {
+        // get user data from client
+        $userAttributes = $client->getUserAttributes();
+
+        // do some thing with user data. for example with $userAttributes['email']
+
+        $user = User::find()->where(['email'=> $userAttributes['email']])->one();
+        if(!empty($user)){
+            Yii::$app->user->login($user);
+        }else{
+            $session = Yii::$app->session;
+            $session['attributes']=$userAttributes;
+            $this->successUrl=Url::to(['signup']);
+        }
+    }
+
+    /**
      * Displays homepage.
      *
      * @return mixed
      */
     public function actionIndex()
     {
-          $limit = 1;
-          $model = Campaign::find()->limit($limit)->all();
-          $categories = Category::find()->all();
-          
-          $category1 = Campaign::find()->limit(4)->all();
-          $category2 = Campaign::find()->where(['c_cat_id'=>'10'])->limit(2)->all();
-          $category3 = Campaign::find()->where(['c_cat_id'=>'8'])->limit(2)->all();
-                    
-          $fund = new Fund();
-          if(Yii::$app->request->post()){
+        $limit = 1;
+        $model = Campaign::find()->limit($limit)->all();
+        $categories = Category::find()->all();
+
+        $category1 = Campaign::find()->limit(4)->all();
+        $category2 = Campaign::find()->where(['c_cat_id' => '10'])->limit(2)->all();
+        $category3 = Campaign::find()->where(['c_cat_id' => '8'])->limit(2)->all();
+
+        $fund = new Fund();
+        if (Yii::$app->request->post()) {
             $fund->fund_user_id = Yii::$app->user->identity->getId();
             $fund->save();
-            return $this->render('index',['model'=>$model]);
-              
-          }else{
-               return $this->render('index',[
-                        'model'=>$model,
-                        'categories'=>$categories,
-                        'category1' => $category1,
-                        'category2' => $category2,
-                        'category3' => $category3,
-                   ]);
-          }
+            return $this->render('index', ['model' => $model]);
+
+        } else {
+            return $this->render('index', [
+                'model' => $model,
+                'categories' => $categories,
+                'category1' => $category1,
+                'category2' => $category2,
+                'category3' => $category3,
+            ]);
+        }
 //        return $this->render('index');
     }
 
@@ -242,6 +273,6 @@ class SiteController extends Controller
      */
     public function actionRedirect($website)
     {
-        return $this->redirect('http://'.$website);
+        return $this->redirect('http://' . $website);
     }
 }

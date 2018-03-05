@@ -319,6 +319,7 @@ class CampaignController extends Controller
             if ($model->save(false)){
                 $company->campaign_id=$model->c_id;
                 $company->company_name=$_POST['comName'];
+                $company->company_reg_no=$_POST['comNo'];
                 $company->company_email=$_POST['comEmail'];
                 $company->company_website=$_POST['comWebsite'];
                 $company->company_description=$_POST['comDesc'];
