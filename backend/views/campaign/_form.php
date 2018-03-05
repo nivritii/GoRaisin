@@ -15,11 +15,14 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'c_title')
         ->textInput(['maxlength' => true,'readonly' => true,'style' => 'background-color:#ffffff'])
     ?>
-    <p style="font-weight: 600">Campaign Image</p>
-    <?= Html::img(Yii::getAlias('@frontend') . "/web/images/uploads/campaign/".$model->c_image,['alt'=>'Image'],['align'=>'left'],['width'=>'400'],['height'=>'600']) ?>
-    <?/*= $form->field($model, 'c_image')->textInput(['maxlength' => true,'readonly' => true,'style' => 'background-color:#ffffff']) */?>
 
-    <?= $form->field($model, 'c_description')->textInput(['maxlength' => true,'readonly' => true,'style' => 'background-color:#ffffff']) ?>
+    <div>
+        <p style="font-weight: 600">Campaign Image</p>
+        <p><?php echo Yii::$app->urlManagerFrontend->baseUrl;?></p>
+        <?= Html::img(Yii::$app->urlManagerFrontend->baseUrl."/images/uploads/campaign/".$model->c_image,['alt'=>'Image'],['align'=>'left'],['width'=>'400'],['height'=>'600']) ?>
+    </div>
+
+    <?= $form->field($model, 'c_description')->textInput(['rows' => 3,'maxlength' => true,'readonly' => true,'style' => 'background-color:#ffffff']) ?>
 
     <?= $form->field($model, 'c_start_date')->textInput(['readonly' => true,'style' => 'background-color:#ffffff']) ?>
 
@@ -41,21 +44,39 @@ use yii\widgets\ActiveForm;
                 frameborder="0" allowfullscreen></iframe>
     </div>
 
-    <?/*= $form->field($model, 'c_video')->textInput(['maxlength' => true,'readonly' => true,'style' => 'background-color:#ffffff']) */?>
+    <div>
+        <p style="font-weight: 600">Camapign Description</p>
+        <div style="background-color: #ffffff;border: 1px solid #dbdbdb;border-radius: 5px">
+            <p><?=$model->c_description_long?></p>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'c_description_long')->textarea(['rows' => 10,'readonly' => true,'style' => 'background-color:#ffffff']) ?>
-
-    <?= $form->field($model, 'c_author')->textInput(['readonly' => true,'style' => 'background-color:#ffffff']) ?>
+    <div>
+        <p style="font-weight: 600">Campaign Author</p>
+        <div style="background-color: #ffffff;height: 2%;vertical-align: center;border: 1px solid #dbdbdb;">
+            <p style="margin-left: 1%;margin-top: 0.5%"><?php echo $model->cAuthor->username ?></p>
+        </div>
+    </div>
 
     <?= $form->field($model, 'c_created_at')->textInput(['readonly' => true,'style' => 'background-color:#ffffff']) ?>
 
-    <?= $form->field($model, 'c_location')->textInput(['maxlength' => true,'readonly' => true,'style' => 'background-color:#ffffff']) ?>
+    <div>
+        <p style="font-weight: 600">Location</p>
+        <div style="background-color: #ffffff;height: 2%;vertical-align: center;border: 1px solid #dbdbdb;">
+            <p style="margin-left: 1%;margin-top: 0.5%"><?php echo $model->cLocation->country ?></p>
+        </div>
+    </div>
 
     <?= $form->field($model, 'c_status')->dropDownList(['draft' => 'draft','publish' => 'publish','moderation' => 'moderation']) ?>
 
-    <?= $form->field($model, 'c_cat_id')->textInput(['readonly' => true,'style' => 'background-color:#ffffff']) ?>
+    <div>
+        <p style="font-weight: 600">Category</p>
+        <div style="background-color: #ffffff;height: 2%;vertical-align: center;border: 1px solid #dbdbdb">
+            <p style="margin-left: 1%;margin-top: 0.5%"><?php echo $model->cCat->name ?></p>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'c_new_tag')->textInput(['readonly' => true,'style' => 'background-color:#ffffff']) ?>
+    <?= $form->field($model, 'c_new_tag')->dropDownList(['0' => 'not new','1' => 'new campaign']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

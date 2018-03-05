@@ -8,7 +8,7 @@ use frontend\assets\HomePageAsset;
 /* @var $searchModel frontend\models\WalletSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Create Wallet';
+$this->title = 'Create Wallet - Go Raisin';
 $this->params['breadcrumbs'][] = $this->title;
 HomePageAsset::register($this);
 ?>
@@ -41,7 +41,7 @@ HomePageAsset::register($this);
                                                     <div class="item-title">Username:</div>
                                                 </div>
                                                 <div style="display: inline-block; padding-left: 5%;width: 58%">
-                                                    <input type="text" style="width: 100%" name="username">
+                                                    <input type="text" style="width: 73%" name="username">
                                                 </div>
                                             </div>
 <!--                                            <div style="width: 100%;float: left;">-->
@@ -54,7 +54,7 @@ HomePageAsset::register($this);
 <!--                                            </div>-->
                                             <div style="padding-top: 30px;padding-bottom: 30px; width: 100%; float: left">
                                                 <input class="btn btn-md btn-info" type="submit" id="submit"
-                                                       value="Create your wallet" id="submit">
+                                                       value="Create your wallet" id="submit" style="background-color: #8f13a5f0;color: #ffffff;border: none">
                                             </div>
                                         </form>
                                     </div>

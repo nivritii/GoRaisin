@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'class')->textInput(['maxlength' => true]) ?>
+    <?/*= $form->field($model, 'class')->textInput(['maxlength' => true]) */?>
 
     <?= $form->field($model, 'featured_campaign_id')->textInput() ?>
 
