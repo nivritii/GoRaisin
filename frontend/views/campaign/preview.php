@@ -51,7 +51,7 @@ frontend\assets\RoadmapAsset::register($this);
                             ?>
                         </div>
                         <div style="clear:both; display: inline-block;vertical-align: middle;margin-left: 10%;width: 75%;">
-                        <h1 class="title" style="color: #6b0d7ce8"><?=$model->c_title?></h1>
+                        <h1 class="title" style="color: #6b0d7ce8;font-size: 35px"><?=$model->c_title?></h1>
                         <p class="" style="font-size: 13px;"><?=$model->c_description?></p>
                         </div>
                     </div>

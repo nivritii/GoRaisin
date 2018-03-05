@@ -42,7 +42,7 @@ frontend\assets\RoadmapAsset::register($this);
                             ])
                             ?>
                         </div>
-                        <div style="clear:both; display: inline-block;vertical-align: middle;margin-left: 10%;width: 75%;">
+                        <div style="clear:both; display: inline-block;vertical-align: middle;margin-left: 10%;width: 80%;">
                             <h1 class="title" style="color: #6b0d7ce8"><?=$model->c_title?></h1>
                             <p class="" style="font-size: 13px;"><?=$model->c_description?></p>
                         </div>
@@ -231,7 +231,7 @@ frontend\assets\RoadmapAsset::register($this);
                                     <a  data-toggle="collapse" data-parent="#accordion-cat-1" href="#<?=$reward->r_id?>" style="text-decoration: none">
                                         <h4 class="panel-title" style="font-size: 20px">
                                             <input type="radio" name="reward" value="<?=$reward->r_pledge_amt?>" hidden>
-                                            <?=$reward->r_title?>
+                                            <?=$reward->r_description?>
                                         </h4>
                                     </a>
                                 </div>
