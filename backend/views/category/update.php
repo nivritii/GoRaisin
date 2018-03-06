@@ -39,8 +39,8 @@ $this->params['breadcrumbs'][] = 'Update';
     <div>
         <p style="font-weight: 600">Featured Campaign</p>
         <?= $form->field($model, 'featured_campaign_id')
-            ->dropDownList(ArrayHelper::map(Campaign::find()->all(), 'c_id', 'c_title'),
-                ['prompt' => 'Select Car Name'])
+            ->dropDownList(ArrayHelper::map(Campaign::find()->where(['c_cat_id' => $model->id])->all(), 'c_id', 'c_title'),
+                ['prompt' => 'Select Campaign Name'])
             ->label(false)
         ?>
     </div>
