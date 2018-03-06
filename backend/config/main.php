@@ -22,7 +22,7 @@ return [
     'components' => [
         'urlManagerFrontend' => [
             'class' => 'yii\web\urlManager',
-            'baseUrl' => 'frontend/web/',
+            'baseUrl' => '/GoRaisin/frontend/web/',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
         ],
