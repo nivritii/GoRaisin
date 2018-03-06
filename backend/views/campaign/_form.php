@@ -54,7 +54,7 @@ use yii\helpers\Url;
     <br />
 
     <div>
-        <p style="font-weight: 600">Camapign Description</p>
+        <p style="font-weight: 600">Campaign Long Description</p>
         <div style="background-color: #ffffff;border: 1px solid #dbdbdb;border-radius: 5px">
             <p><?=$model->c_description_long?></p>
         </div>
