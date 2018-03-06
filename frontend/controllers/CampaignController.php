@@ -177,6 +177,7 @@ class CampaignController extends Controller
         $comments = Comment::find()->where(['comment_camp_id'=>$id])->orderBy(['comment_datetime'=>SORT_DESC])->all();
         $backed = Fund::find()->where(['fund_c_id'=>$id])->sum('fund_amt');
         $rewards = Reward::find()->where(['c_id'=>$id])->all();
+        $faqs = Faq::find()->where(['campaign_id'=>$id])->all();
 
         if($backed!=0){
             $progress = ($backed/$this->findModel($id)->c_goal)*100;
@@ -191,6 +192,7 @@ class CampaignController extends Controller
             'comments' => $comments,
             'updates' => $updates,
             'rewards' => $rewards,
+            'faqs' => $faqs,
         ]);
     }
 
@@ -521,9 +523,6 @@ class CampaignController extends Controller
     public function actionPostupdate($id)
     {
         $model= $this->findModel($id);
-        $categories = Category::find()->all();
-        $company = $this->findCompany($id);
-        $countries = Location::find()->all();
         $updates = Update::find()->where(['campaign_id'=>$id])->all();
         $imagesName = UpdateImage::find()->all();
         $newUpdate = new Update();
@@ -541,14 +540,34 @@ class CampaignController extends Controller
 
         return $this->render('postupdate',[
             'model' => $model,
-            'categories' => $categories,
-            'company' => $company,
-            'countries' => $countries,
             'updates' => $updates,
-            'model'=>$model,
             'imagesName' => $imagesName,
         ]);
     }
+
+    public function actionPostfaq($id)
+    {
+        $model= $this->findModel($id);
+        $faqs = Faq::find()->where(['campaign_id'=>$id])->all();
+        $newFaq = new Faq();
+
+        if($_SERVER["REQUEST_METHOD"]=="POST"){
+
+            $newFaq->campaign_id=$id;
+            $newFaq->user_id=Yii::$app->user->id;
+            $newFaq->question=$_POST['faqQn'];
+            $newFaq->answer=$_POST['faqAns'];
+            $newFaq->save();
+
+            return $this->redirect(['view', 'id'=>$id]);
+        }
+
+        return $this->render('postfaq',[
+            'model' => $model,
+            'faqs' => $faqs,
+        ]);
+    }
+
     /**
      * Other people view introduction of campaign author
      * @param integer $id

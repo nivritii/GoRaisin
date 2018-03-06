@@ -18,15 +18,33 @@ $faq = new Faq();
 
 <!-- Latest minified bootstrap js -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 
 <div class="campaign-faq">
     <h4>Frequently asked questions</h4>
     <p>Project creator will be glad to answer your queries.</p>
     <div class="section" style="margin-top:25px; padding-bottom:20px;">
         <a href="#">
-            <button class="btn btn-info" data-toggle="modal" data-target="#modalForm" style="background-color: #940094;color:#ffffff">Ask a question</button>
+            <button class="btn btn-info" data-toggle="modal" data-target="#modalForm">Ask a question</button>
         </a>
     </div>
+
+    <div class="panel-group" id="accordion">
+        <?php foreach ($faqs as $faq) {?>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 data-toggle="collapse" data-parent="#accordion" href="#collapse1" class="panel-title expand">
+                    <div class="right-arrow pull-right">+</div>
+                    <a href="#"><?=$faq->question?></a>
+                </h4>
+            </div>
+            <div id="collapse1" class="panel-collapse collapse">
+                <div class="panel-body"><?=$faq->answer?></div>
+            </div>
+        </div>
+        <?php }?>
+    </div>
+
 </div>
 
 <!-- Modal -->
@@ -41,6 +59,7 @@ $faq = new Faq();
                 </button>
                 <h4 class="modal-title" id="myModalLabel">Ask a question about: <?=$model->c_title?></h4>
             </div>
+            <!-- Modal body -->
 
             <div class="modal-body">
                 <p class="statusMsg"></p>
@@ -63,3 +82,18 @@ $faq = new Faq();
         </div>
     </div>
 </div>
+
+<script>
+$(function() {
+$(".expand").on( "click", function() {
+// $(this).next().slideToggle(200);
+$expand = $(this).find(">:first-child");
+
+if($expand.text() == "+") {
+$expand.text("-");
+} else {
+$expand.text("+");
+}
+});
+});
+</script>

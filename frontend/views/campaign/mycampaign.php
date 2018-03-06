@@ -132,7 +132,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                 <div class="post-links" style="float: left">
                                                                     <i class="glyphicon glyphicon-edit" style="color: #337ab7"></i>&nbsp;<a href="<?= Url::to(['campaign/edit', 'id' => $campaign->c_id])?>" class="post-more" style="text-decoration: none">Edit Campaign &nbsp;&nbsp;</a>
                                                                     <i class="glyphicon glyphicon-bell" style="color: #337ab7;"></i>&nbsp;<a href="<?= Url::to(['campaign/postupdate', 'id' => $campaign->c_id])?>" class="post-more" style="text-decoration: none">&nbsp;Post an Update &nbsp;&nbsp;</a>
-                                                                    <i class="glyphicon glyphicon-question-sign" style="color: #337ab7;"></i>&nbsp;<a href="<?= Url::to(['campaign/edit', 'id' => $campaign->c_id])?>" class="post-more" style="text-decoration: none">Add FAQ</a>
+                                                                    <i class="glyphicon glyphicon-question-sign" style="color: #337ab7;"></i>&nbsp;<a href="<?= Url::to(['campaign/postfaq', 'id' => $campaign->c_id])?>" class="post-more" style="text-decoration: none">Add FAQ</a>
                                                                 </div>
                                                             </div>
                                                         </div>
