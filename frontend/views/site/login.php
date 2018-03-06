@@ -44,7 +44,7 @@ frontend\assets\LoginAsset::register($this);
                     <legend>Or</legend>
                 </fieldset>
                 <br />
-                
+
                 <?= yii\authclient\widgets\AuthChoice::widget([
                     'baseAuthUrl' => ['site/auth']
                 ]) ?>

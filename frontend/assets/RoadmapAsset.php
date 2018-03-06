@@ -14,6 +14,7 @@ class RoadmapAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        'css/roadmap/tab-view.css',
         'css/roadmap/reset.css',
         'css/roadmap/style.css',
         'http://fonts.googleapis.com/css?family=Droid+Serif|Open+Sans:400,700',
