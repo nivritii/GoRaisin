@@ -33,8 +33,11 @@ class WalletController extends Controller
     public function beforeAction($action)
     {
         $this->enableCsrfValidation = false;
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         return parent::beforeAction($action);
     }
+
+    public $url = 'http://192.168.1.138:8092/rpc';
 
     /**
      * Lists all Wallet models.
@@ -44,13 +47,14 @@ class WalletController extends Controller
     {
 //        $searchModel = new WalletSearch();
 //        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $rpc = new jsonRPCClient("http://172.23.207.109:8092/rpc",true);
+        $rpc = new jsonRPCClient('http://192.168.1.138:8092/rpc',true);
         //$rpc->__construct("http://172.23.207.109:8092/rpc",true);
 
         if($_SERVER["REQUEST_METHOD"]=="POST"){
             $username=$_POST['username'];
             $rpc->setRPCNotification(true);
             $response=$rpc->__call("suggest_brain_key", []);
+            $response = BaseJson::decode($response,true);
 
             return $this-> render('new',[
                 'response' => $response,
@@ -61,6 +65,19 @@ class WalletController extends Controller
         return $this->render('index', [
 //            'searchModel' => $searchModel,
 //            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionMywallet()
+    {
+        $rpc = new jsonRPCClient('http://192.168.1.138:8092/rpc',true);
+        $rpc->setRPCNotification(true);
+        $response=$rpc->__call("get_account_history", ["test1", 1000]);
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $response = ['description'];
+
+        return $this->render('mywallet',[
+           'response' => $response,
         ]);
     }
 
