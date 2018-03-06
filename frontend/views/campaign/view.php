@@ -42,7 +42,7 @@ frontend\assets\RoadmapAsset::register($this);
                             ])
                             ?>
                         </div>
-                        <div style="clear:both; display: inline-block;vertical-align: middle;margin-left: 10%;width: 75%;">
+                        <div style="clear:both; display: inline-block;vertical-align: middle;margin-left: 10%;width: 80%;">
                             <h1 class="title" style="color: #6b0d7ce8"><?=$model->c_title?></h1>
                             <p class="" style="font-size: 13px;"><?=$model->c_description?></p>
                         </div>
@@ -150,7 +150,7 @@ frontend\assets\RoadmapAsset::register($this);
                     $diff = strtotime($model->c_end_date) - strtotime($currectDate);
                     $days = ceil($diff/86400);
                     ?>
-                    <h3 style="margin-top:25px; margin-bottom:0px;" id="endDate"><?=$diff;?></h3>
+                    <h3 style="margin-top:25px; margin-bottom:0px;" id="endDate"><?php echo $days;?></h3>
                     <h3 class="title-price" style="margin-top:0px;"><small>days to go</small></h3>
 
                     <?php if ((Yii::$app->user->isGuest || Yii::$app->user->identity->id != $model->c_author) /*&& $model->c_status == 'published'*/) { ?>

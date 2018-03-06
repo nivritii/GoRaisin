@@ -51,7 +51,7 @@ frontend\assets\RoadmapAsset::register($this);
                             ?>
                         </div>
                         <div style="clear:both; display: inline-block;vertical-align: middle;margin-left: 10%;width: 75%;">
-                        <h1 class="title" style="color: #6b0d7ce8"><?=$model->c_title?></h1>
+                        <h1 class="title" style="color: #6b0d7ce8;font-size: 35px"><?=$model->c_title?></h1>
                         <p class="" style="font-size: 13px;"><?=$model->c_description?></p>
                         </div>
                     </div>
@@ -68,8 +68,6 @@ frontend\assets\RoadmapAsset::register($this);
                                     <div class="image_wrapper">
                                         <?php
                                         $video=$model->c_video;
-//                                        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $video, $matches);
-//                                        $id = $matches[1];
                                         $width = '800px';
                                         $height = '450px';
                                         ?>
@@ -84,12 +82,6 @@ frontend\assets\RoadmapAsset::register($this);
                             <div class="column one post-header">
                                 <div class="title_wrapper">
                                     <div class="post-meta clearfix">
-                                        <!--<div class="author-date">
-                                            <span class="vcard author post-author"> Published by <i class="icon-user"></i> <span class="fn"><a href="#"><?/*=$model->cAuthor->username*/?></a></span> </span><span class="date"> at <i class="icon-clock"></i>
-														<time class="entry-date" datetime="2014-03-12T09:15:13+00:00" itemprop="datePublished" pubdate>
-															<?/*=$model->c_created_at*/?>
-														</time> </span>
-                                        </div>-->
                                         <div class="category meta-categories" style="width: 100%">
                                             <div style="display: inline-block;float: right;margin-right: 3%">
                                                 <p style="font-size: 15px;color: #000000;"><i class="glyphicon glyphicon-map-marker"></i>&nbsp;<?php echo $model->cLocation->country ?></p>

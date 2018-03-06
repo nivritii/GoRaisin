@@ -20,6 +20,12 @@ return [
         '@mdm/admin' => '@vendor/mdmsoft/yii2-admin',
     ],
     'components' => [
+        'urlManagerFrontend' => [
+            'class' => 'yii\web\urlManager',
+            'baseUrl' => '/GoRaisin/frontend/web/',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
+        ],
         'view' => [
             /*'theme' => [
                 // 'basePath' => '@app/themes/spring',
