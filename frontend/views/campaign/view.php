@@ -111,7 +111,7 @@ frontend\assets\RoadmapAsset::register($this);
                                             ],
                                             [
                                                 'label'=>'<i class="glyphicon glyphicon-question-sign"></i> FAQ',
-                                                'content'=>$this->render('campaign_faq',['model'=>$model]),
+                                                'content'=>$this->render('campaign_faq',['model'=>$model, 'faqs'=>$faqs]),
                                             ],
                                         ];
 

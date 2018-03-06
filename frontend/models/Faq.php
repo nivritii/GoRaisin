@@ -13,8 +13,6 @@ use Yii;
  * @property string $question
  * @property string $answer
  * @property string $timestamp
- * @property string $to_email_id
- * @property string $from_email_id
  *
  * @property Campaign $campaign
  * @property User $user
@@ -35,11 +33,10 @@ class Faq extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['campaign_id', 'user_id', 'question', 'to_email_id', 'from_email_id'], 'required'],
+            [['campaign_id', 'user_id', 'question'], 'required'],
             [['campaign_id', 'user_id'], 'integer'],
             [['question', 'answer'], 'string'],
             [['timestamp'], 'safe'],
-            [['to_email_id', 'from_email_id'], 'string', 'max' => 255],
             [['campaign_id'], 'exist', 'skipOnError' => true, 'targetClass' => Campaign::className(), 'targetAttribute' => ['campaign_id' => 'c_id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -57,8 +54,6 @@ class Faq extends \yii\db\ActiveRecord
             'question' => 'Question',
             'answer' => '',
             'timestamp' => 'Timestamp',
-            'to_email_id' => 'To Email ID',
-            'from_email_id' => 'From Email ID',
         ];
     }
 
