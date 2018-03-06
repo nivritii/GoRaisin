@@ -47,7 +47,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'mobile',
             'position',
             'phone',
-            'image',
+            /*'image',*/
 
             /*['class' => 'yii\grid\ActionColumn'],*/
             ['class' => 'yii\grid\ActionColumn',
