@@ -114,7 +114,7 @@ $this->title = 'GoRaisin';
                                                         <div class="image_frame scale-with-grid">
                                                             <div class="image_wrapper">
                                                                 <a href="<?= Url::to(['campaign/view', 'id' => $campaign_1->c_id]) ?>">
-                                                                    <?= Html::img(Url::to('@web/images/uploads/' . $campaign_1->c_image), ['class' => 'scale-with-grid wp-post-image'], ['alt' => 'Image'], ['align' => 'left'], ['width' => '1200'], ['height' => '480']) ?>
+                                                                    <?= Html::img(Url::to('@web/images/uploads/campaign/' . $campaign_1->c_image), ['class' => 'scale-with-grid wp-post-image'], ['alt' => 'Image'], ['align' => 'left'], ['width' => '1200'], ['height' => '480']) ?>
                                                                     <!--                                                                    <img width="1200" height="800" src="content/blogger2/images/home_blogger2_news2.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_news2" />-->
                                                                 </a>
                                                             </div>
