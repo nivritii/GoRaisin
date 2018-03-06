@@ -30,19 +30,10 @@ $campaign_draft = new Campaign();
             <div class="col-md-2 bhoechie-tab-menu">
                 <div class="list-group">
                     <a href="#" class="list-group-item active text-center">
-                        <h4 class="glyphicon glyphicon-bell"></h4><br/>Add a FAQ
+                        <h4 class="glyphicon glyphicon-question-sign"></h4><br/>Add a FAQ
                     </a>
                     <a href="#" class="list-group-item text-center">
                         <h4 class="glyphicon glyphicon-eye-open"></h4><br/>View All FAQ
-                    </a>
-                    <a href="#" class="list-group-item text-center">
-                        <h4 class="glyphicon glyphicon-home"></h4><br/>Hotel
-                    </a>
-                    <a href="#" class="list-group-item text-center">
-                        <h4 class="glyphicon glyphicon-cutlery"></h4><br/>Restaurant
-                    </a>
-                    <a href="#" class="list-group-item text-center">
-                        <h4 class="glyphicon glyphicon-credit-card"></h4><br/>Credit Card
                     </a>
                 </div>
             </div>
@@ -86,25 +77,6 @@ $campaign_draft = new Campaign();
                             </div>
                         <?php }?>
                     </div>
-                </div>
-
-                <!-- hotel search -->
-                <div class="bhoechie-tab-content">
-
-                </div>
-                <div class="bhoechie-tab-content">
-                    <center>
-                        <h1 class="glyphicon glyphicon-cutlery" style="font-size:12em;color:#55518a"></h1>
-                        <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
-                        <h3 style="margin-top: 0;color:#55518a">Restaurant Diirectory</h3>
-                    </center>
-                </div>
-                <div class="bhoechie-tab-content">
-                    <center>
-                        <h1 class="glyphicon glyphicon-credit-card" style="font-size:12em;color:#55518a"></h1>
-                        <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
-                        <h3 style="margin-top: 0;color:#55518a">Credit Card</h3>
-                    </center>
                 </div>
             </div>
         </div>
