@@ -15,7 +15,7 @@ use yii\bootstrap\Modal;
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
 
-$this->title = $model->c_title.' - GoRaisin';
+$this->title = $model->c_title.'GoRaisin';
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 /*frontend\assets\HomePageAsset::register($this);*/
@@ -59,14 +59,12 @@ frontend\assets\RoadmapAsset::register($this);
                                 <div class="image_frame scale-with-grid" style="width: 100%">
                                     <div class="image_wrapper">
                                         <?php
-                                        $video = $model->c_video;
-                                        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $video, $matches);
-                                        $id = $matches[1];
+                                        $video=$model->c_video;
                                         $width = '800px';
                                         $height = '450px';
                                         ?>
-                                        <iframe id="ytplayer" type="text/html" width="<?php echo $width ?>" height="<?php echo $height ?>"
-                                                src="https://www.youtube.com/embed/<?php echo $id ?>?rel=0&showinfo=0&color=white&iv_load_policy=3"
+                                        <iframe id="ytplayer" type="text/html" width="<?=$width ?>" height="<?=$height ?>"
+                                                src="https://www.youtube.com/embed/<?=$video ?>?rel=0&showinfo=0&color=white&iv_load_policy=3"
                                                 frameborder="0" allowfullscreen></iframe>
                                     </div>
                                 </div>
@@ -104,7 +102,7 @@ frontend\assets\RoadmapAsset::register($this);
                                             ],
                                             [
                                                 'label'=>'<i class="glyphicon glyphicon-bell"></i> Updates',
-                                                'content'=>$this->render('campaign_update',['updates'=>$updates, 'user_update'=> new \frontend\models\Update()]),
+                                                'content'=>$this->render('campaign_update',['model'=>$model, 'updates'=>$updates, 'user_update'=> new \frontend\models\Update()]),
                                                 //'linkOptions'=>['data-url'=>\yii\helpers\Url::to(['/campaign/form'])]
                                             ],
                                             [
@@ -231,7 +229,7 @@ frontend\assets\RoadmapAsset::register($this);
                                     <a  data-toggle="collapse" data-parent="#accordion-cat-1" href="#<?=$reward->r_id?>" style="text-decoration: none">
                                         <h4 class="panel-title" style="font-size: 20px">
                                             <input type="radio" name="reward" value="<?=$reward->r_pledge_amt?>" hidden>
-                                            <?=$reward->r_title?>
+                                            <?=$reward->r_description?>
                                         </h4>
                                     </a>
                                 </div>

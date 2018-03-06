@@ -163,7 +163,7 @@ $campaign_draft = new Campaign();
                                     echo DatePicker::widget([
                                         'name' => 'cStartdate',
                                         'value' => $model->c_start_date,
-                                        'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                                        'type' => DatePicker::TYPE_COMPONENT_APPEND,
                                         'pluginOptions' => [
                                             'format' => 'yyyy-mm-dd',
                                             'autoclose' => true,
@@ -182,7 +182,7 @@ $campaign_draft = new Campaign();
                                     echo DatePicker::widget([
                                         'name' => 'cEnddate',
                                         'value' => $model->c_end_date,
-                                        'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                                        'type' => DatePicker::TYPE_COMPONENT_APPEND,
                                         'pluginOptions' => [
                                             'format' => 'yyyy-mm-dd',
                                             'autoclose' => true,
@@ -396,7 +396,7 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Name your token</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                    <input type="text" style="width: 100%" name="cTitle" id="cTitle" required>
+                                    <input type="text" style="width: 100%" name="tokenName" id="tokenName" required>
                                 </div>
                             </div>
                             <div style="clear:both;padding-top: 0px">
@@ -411,7 +411,7 @@ $campaign_draft = new Campaign();
                                                 class="glyphicon glyphicon-transfer" style="padding: 7% 0 0;"></span>
                                     </div>
                                     <div style="display: inline-block;width: 60%;float: right">
-                                        <input type="text" name="cGoal" id="cGoal" style="width: 100%; float: right">
+                                        <input type="text" name="tokenValue" id="tokenValue" style="width: 100%; float: right">
                                     </div>
                                     <p align="left">Please provide how many of your tokens equivalent to 1 Rasin.</p>
                                 </div>
@@ -453,14 +453,14 @@ $campaign_draft = new Campaign();
                 <div class="col-sm-3 nopadding">
                     <div class="form-group">
                         <p style="float: left">For the stated amount pledged & more</p>
-                        <input type="text" class="form-control" id="amount" name="amount[]" value="" placeholder="Amount pledged">
+                        <input type="text" class="form-control" id="amount" name="amount[]" value="<?=$mandatoryReward->r_pledge_amt?>" placeholder="Amount pledged">
                     </div>
                 </div>
                 <div class="col-sm-3 nopadding">
                     <div class="form-group">
                         <p style="float: left">% of discount given</p>
                         <select class="form-control" id="discount" name="discount[]">
-                            <option value="">% of discount</option>
+                            <option value=""><?=$mandatoryReward->r_discount?></option>
                             <option value="5">5%</option>
                             <option value="10">10%</option>
                             <option value="15">15%</option>
@@ -472,20 +472,56 @@ $campaign_draft = new Campaign();
                 <div class="col-sm-3 nopadding">
                     <div class="form-group">
                         <p style="float: left"># of months it is valid after launch</p>
-                        <input type="text" class="form-control" id="expiry" name="expiry[]" value="" placeholder="Validity">
+                        <input type="text" class="form-control" id="expiry" name="expiry[]" value="<?=$mandatoryReward->r_validity?>" placeholder="Validity">
                     </div>
                 </div>
                 <div class="col-sm-3 nopadding">
                     <div class="form-group">
                         <div class="input-group">
                             <p style="float: left">Conditions/Description</p>
-                            <input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="" placeholder="Conditions/Description">
+                            <input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="<?=$mandatoryReward->r_description?>" placeholder="Conditions/Description">
                             <div class="input-group-btn" style="vertical-align: bottom;">
                                 <button class="btn btn-success" type="button"  onclick="add_rewards();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="clear"></div>
+                <?php foreach ($rewards as $reward) {?>
+                <div class="col-sm-3 nopadding">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="amount" name="amount[]" value="<?=$reward->r_pledge_amt?>" placeholder="Amount pledged">
+                    </div>
+                </div>
+                <div class="col-sm-3 nopadding">
+                    <div class="form-group">
+                        <select class="form-control" id="discount" name="discount[]">
+                            <option value=""><?=$reward->r_discount?></option>
+                            <option value="5">5%</option>
+                            <option value="10">10%</option>
+                            <option value="15">15%</option>
+                            <option value="20">20%</option>
+                            <option value="25">25%</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-3 nopadding">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="expiry" name="expiry[]" value="<?=$reward->r_validity?>" placeholder="Validity">
+                    </div>
+                </div>
+                <div class="col-sm-3 nopadding">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="<?=$reward->r_description?>" placeholder="Conditions/Description">
+                            <div class="input-group-btn" style="vertical-align: bottom;">
+                                <button class="btn btn-danger" type="button"  onclick="remove_add_rewards();"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="clear"></div>
+                <?php }?>
                 <div class="clear"></div>
                 <div id="add_rewards">
 

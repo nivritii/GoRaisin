@@ -21,25 +21,7 @@ $user_update = new Update();
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
-
 <div class="roadmap-index">
-    <button class="btn btn-info" id="toggle-visibility" data-target="#post-update" style="display: block; margin: 0 auto;width: 40%; class: btn btn-info">Post an Update
-    </button>
-
-    <div id="post-update" hidden>
-        <?php $form = ActiveForm::begin(); ?>
-            <div>
-                <?php
-                echo $form->field($user_update, 'content')->widget(Trumbowyg::className(), [
-                    'settings' => [
-                        'lang' => 'ru'
-                    ]
-                ]);
-                ?>
-            </div>
-        <?php $form = ActiveForm::end(); ?>
-    </div>
-
     <section id="cd-timeline" class="cd-container">
         <?php foreach ($updates as $update) { ?>
             <div class="cd-timeline-block">

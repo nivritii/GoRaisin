@@ -129,8 +129,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                     <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:<?=$progress?>%;color: black"><?=$progress?>%
                                                                     </div>
                                                                 </div>
-                                                                <div class="post-links">
-                                                                    <i class="glyphicon glyphicon-link" style="color: #337ab7"></i>&nbsp&nbsp;<a href="<?= Url::to(['campaign/edit', 'id' => $campaign->c_id])?>" class="post-more" style="text-decoration: none">Continue Editing</a>
+                                                                <div class="post-links" style="float: left">
+                                                                    <i class="glyphicon glyphicon-edit" style="color: #337ab7"></i>&nbsp;<a href="<?= Url::to(['campaign/edit', 'id' => $campaign->c_id])?>" class="post-more" style="text-decoration: none">Edit Campaign &nbsp;&nbsp;</a>
+                                                                    <i class="glyphicon glyphicon-bell" style="color: #337ab7;"></i>&nbsp;<a href="<?= Url::to(['campaign/postupdate', 'id' => $campaign->c_id])?>" class="post-more" style="text-decoration: none">&nbsp;Post an Update &nbsp;&nbsp;</a>
+                                                                    <i class="glyphicon glyphicon-question-sign" style="color: #337ab7;"></i>&nbsp;<a href="<?= Url::to(['campaign/edit', 'id' => $campaign->c_id])?>" class="post-more" style="text-decoration: none">Add FAQ</a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -194,7 +196,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                                     </div>
                                                                 </div>
                                                                 <div class="post-links">
-                                                                    <i class="glyphicon glyphicon-link" style="color: #337ab7"></i>&nbsp&nbsp;<a href="<?= Url::to(['campaign/edit', 'id' => $campaign->c_id])?>" class="post-more" style="text-decoration: none">Continue Editing</a>
+                                                                    <i class="glyphicon glyphicon-edit" style="color: #337ab7"></i>&nbsp&nbsp;<a href="<?= Url::to(['campaign/edit', 'id' => $campaign->c_id])?>" class="post-more" style="text-decoration: none">Continue Editing</a>
                                                                 </div>
                                                             </div>
                                                         </div>

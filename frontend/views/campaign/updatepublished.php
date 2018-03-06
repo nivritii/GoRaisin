@@ -253,16 +253,16 @@ $campaign_draft = new Campaign();
                                     1
                                 </td>
                                 <td>
-                                    <input type="text" name='rTitle[]' id='rTitle' class="form-control" value="<?=$reward->r_title?>"/>
+                                    <input type="text" name='rTitle[]' id='rTitle' class="form-control" value=""/>
                                 </td>
                                 <td>
-                                    <input type="text" name='rAmt[]' class="form-control" value="<?=$reward->r_pledge_amt?>"/>
+                                    <input type="text" name='rAmt[]' class="form-control" value=""/>
                                 </td>
                                 <td>
-                                    <input type="text" name='rDesc[]' class="form-control" value="<?=$reward->r_description?>"/>
+                                    <input type="text" name='rDesc[]' class="form-control" value=""/>
                                 </td>
                                 <td>
-                                    <input type="text" name='rLimit[]' class="form-control" value="<?=$reward->r_limit_availability?>"/>
+                                    <input type="text" name='rLimit[]' class="form-control" value=""/>
                                 </td>
                             </tr>
                             <tr id='addr1'></tr>

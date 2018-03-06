@@ -6,6 +6,7 @@ use common\models\LoginForm;
 use frontend\models\Faq;
 use frontend\models\Reward;
 use frontend\models\Update;
+use frontend\models\UpdateImage;
 use frontend\tests\unit\models\PasswordResetRequestFormTest;
 use Yii;
 use frontend\models\Campaign;
@@ -376,14 +377,16 @@ class CampaignController extends Controller
     {
         $model = $this->findModel($id);
         $categories = Category::find()->all();
-        $reward = Reward::find()->where(['c_id'=>$id])->one();
+        $mandatoryReward = Reward::find()->where(['c_id'=>$id, 'r_mandatory'=>true])->one();
+        $rewards = Reward::find()->where(['c_id'=>$id, 'r_mandatory'=>false])->all();
         $company = $this->findCompany($id);
         $countries = Location::find()->all();
 
-        if($reward != null){
+        if($rewards != null){
             return $this->render('edit', [
                 'model' => $model,
-                'reward' => $reward,
+                'mandatoryReward' => $mandatoryReward,
+                'rewards' => $rewards,
                 'categories' => $categories,
                 'company' => $company,
                 'countries' => $countries,
@@ -483,7 +486,7 @@ class CampaignController extends Controller
     {
         $campaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId()])->all();
         $draftedCampaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId()])->all();
-        $publishedCampaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId(),'c_status'=>'publish'])->all();
+        $publishedCampaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId(),'c_status'=>'published'])->all();
 
         $fund = Fund::find()->where(['fund_user_id'=>Yii::$app->user->getId()])->all();
 
@@ -497,6 +500,53 @@ class CampaignController extends Controller
             'activities' => $fund,
             'cIds' => $cIds,
             'fundedCampaigns' => $fundedCampaigns,
+        ]);
+    }
+
+    public function actionUpdatepublished($id)
+    {
+        $model= $this->findModel($id);
+        $categories = Category::find()->all();
+        $company = $this->findCompany($id);
+        $countries = Location::find()->all();
+
+        return $this->render('updatepublished',[
+            'model' => $model,
+            'categories' => $categories,
+            'company' => $company,
+            'countries' => $countries,
+        ]);
+    }
+
+    public function actionPostupdate($id)
+    {
+        $model= $this->findModel($id);
+        $categories = Category::find()->all();
+        $company = $this->findCompany($id);
+        $countries = Location::find()->all();
+        $updates = Update::find()->where(['campaign_id'=>$id])->all();
+        $imagesName = UpdateImage::find()->all();
+        $newUpdate = new Update();
+
+        if($_SERVER["REQUEST_METHOD"]=="POST"){
+
+            $newUpdate->campaign_id=$id;
+            $newUpdate->title=$_POST['updateTitle'];
+            $newUpdate->content=$_POST['updateContent'];
+            $newUpdate->image_id=$_POST['uImage'];
+            $newUpdate->save();
+
+            return $this->redirect(['view', 'id'=>$id]);
+        }
+
+        return $this->render('postupdate',[
+            'model' => $model,
+            'categories' => $categories,
+            'company' => $company,
+            'countries' => $countries,
+            'updates' => $updates,
+            'model'=>$model,
+            'imagesName' => $imagesName,
         ]);
     }
     /**
