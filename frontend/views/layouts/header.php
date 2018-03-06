@@ -13,7 +13,7 @@ frontend\assets\HomePageAsset::register($this);
     <div id="Header_wrapper">
         <!-- Header -->
         <header id="Header">
-            <div id="Top_bar">
+            <div id="Top_bar" style="height: 80px">
                 <div class="container" style="width:1200px; padding-left: 0px;">
                     <div class="column one">
                             <div class="top_bar_left clearfix" style="width:1250px">
@@ -45,7 +45,7 @@ frontend\assets\HomePageAsset::register($this);
                                             </li>
                                         <?php } else { ?>
                                             <li>
-                                                <div class="image-div">
+                                                <div class="image-div" style="padding-top: 20px">
                                                     <span><span>
                                                     <img class="user-image" src="<?php $imagePath = '/'.Yii::$app->user->identity->image;
                                                     echo Yii::$app->request->baseUrl.$imagePath?>">

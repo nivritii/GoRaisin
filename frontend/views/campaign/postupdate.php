@@ -35,15 +35,6 @@ $campaign_draft = new Campaign();
                     <a href="#" class="list-group-item text-center">
                         <h4 class="glyphicon glyphicon-eye-open"></h4><br/>View All Updates
                     </a>
-                    <a href="#" class="list-group-item text-center">
-                        <h4 class="glyphicon glyphicon-home"></h4><br/>Hotel
-                    </a>
-                    <a href="#" class="list-group-item text-center">
-                        <h4 class="glyphicon glyphicon-cutlery"></h4><br/>Restaurant
-                    </a>
-                    <a href="#" class="list-group-item text-center">
-                        <h4 class="glyphicon glyphicon-credit-card"></h4><br/>Credit Card
-                    </a>
                 </div>
             </div>
             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
@@ -109,29 +100,6 @@ $campaign_draft = new Campaign();
                             </div> <!-- cd-timeline-block -->
                         <?php } ?>
                     </section>
-                </div>
-
-                <!-- hotel search -->
-                <div class="bhoechie-tab-content">
-                    <center>
-                        <h1 class="glyphicon glyphicon-home" style="font-size:12em;color:#55518a"></h1>
-                        <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
-                        <h3 style="margin-top: 0;color:#55518a">Hotel Directory</h3>
-                    </center>
-                </div>
-                <div class="bhoechie-tab-content">
-                    <center>
-                        <h1 class="glyphicon glyphicon-cutlery" style="font-size:12em;color:#55518a"></h1>
-                        <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
-                        <h3 style="margin-top: 0;color:#55518a">Restaurant Diirectory</h3>
-                    </center>
-                </div>
-                <div class="bhoechie-tab-content">
-                    <center>
-                        <h1 class="glyphicon glyphicon-credit-card" style="font-size:12em;color:#55518a"></h1>
-                        <h2 style="margin-top: 0;color:#55518a">Cooming Soon</h2>
-                        <h3 style="margin-top: 0;color:#55518a">Credit Card</h3>
-                    </center>
                 </div>
             </div>
         </div>
