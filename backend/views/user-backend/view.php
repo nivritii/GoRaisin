@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <br />
 
-    <?= DetailView::widget([
+    <?/*= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'id',
@@ -29,7 +29,46 @@ $this->params['breadcrumbs'][] = $this->title;
             'phone',
             'image',
         ],
-    ]) ?>
+    ]) */?>
+
+    <div>
+        <p style="font-weight: 600">Name</p>
+        <p><?php echo $model->username ?></p>
+    </div>
+    <br />
+
+    <div>
+        <p style="font-weight: 600">Image</p>
+        <div>
+            <?= Html::img("@web/".$model->image,['style' => 'width:100px;border-radius:50px']) ?>
+        </div>
+    </div>
+    <br />
+
+    <div>
+        <p style="font-weight: 600">Email</p>
+        <p><?php echo $model->email ?></p>
+    </div>
+    <br />
+
+    <div>
+        <p style="font-weight: 600">Mobile</p>
+        <p><?php echo $model->mobile ?></p>
+    </div>
+    <br />
+
+    <div>
+        <p style="font-weight: 600">Position</p>
+        <p><?php echo $model->position ?></p>
+    </div>
+    <br />
+
+    <div>
+        <p style="font-weight: 600">Phone</p>
+        <p><?php echo $model->phone ?></p>
+    </div>
+    <br />
+
 
     <div style="text-align: center">
     <p>
