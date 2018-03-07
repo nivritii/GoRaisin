@@ -28,10 +28,10 @@ class Wallet extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id', 'userId', 'walletAddress', 'balance'], 'required'],
-            [['id', 'userId', 'balance'], 'integer'],
+            [['userId', 'walletAddress', 'balance'], 'required'],
+            ['walletAddress', 'required', 'message' => 'Wallet address cannot be blank'],
+            [['userId', 'balance'], 'integer'],
             [['walletAddress'], 'string', 'max' => 255],
-            [['id'], 'unique'],
         ];
     }
 

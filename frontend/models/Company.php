@@ -39,6 +39,7 @@ class Company extends \yii\db\ActiveRecord
         return [
             [['campaign_id', 'company_name', 'company_reg_no', 'company_email', 'company_website', 'company_description', 'company_industry', 'company_employees_count', 'company_postal', 'company_designation'], 'required'],
             [['campaign_id', 'company_employees_count', 'company_postal'], 'integer'],
+            ['company_email', 'email'],
             [['company_name', 'company_reg_no', 'company_email', 'company_website', 'company_description', 'company_industry', 'company_designation'], 'string', 'max' => 255],
             [['campaign_id'], 'exist', 'skipOnError' => true, 'targetClass' => Campaign::className(), 'targetAttribute' => ['campaign_id' => 'c_id']],
         ];
