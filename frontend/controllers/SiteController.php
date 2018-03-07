@@ -92,10 +92,11 @@ class SiteController extends Controller
         $user = User::find()->where(['email'=> $userAttributes['email']])->one();
         if(!empty($user)){
             Yii::$app->user->login($user);
+            return $this->goHome();
         }else{
             $session = Yii::$app->session;
             $session['attributes']=$userAttributes;
-            $this->successUrl=Url::to(['signup']);
+            return $this->redirect(['signup']);
         }
     }
 

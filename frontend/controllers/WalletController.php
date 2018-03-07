@@ -54,10 +54,10 @@ class WalletController extends Controller
             $username=$_POST['username'];
             $rpc->setRPCNotification(true);
             $response=$rpc->__call("suggest_brain_key", []);
-            $response = BaseJson::decode($response,true);
+            $response1 = BaseJson::decode($response,true);
 
             return $this-> render('new',[
-                'response' => $response,
+                'response' => $response1['result']['op']['id'],
             ]);
 
         }
