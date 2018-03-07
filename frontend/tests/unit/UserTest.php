@@ -12,10 +12,12 @@ class UserTest extends \Codeception\Test\Unit
     
     protected function _before()
     {
+        $user = new User();
     }
 
     protected function _after()
     {
+        $user = null;
     }
 
     // tests
@@ -31,15 +33,16 @@ class UserTest extends \Codeception\Test\Unit
     {
         // Test initialize user object
         $user = new User();
+
         $user -> username = null;
-        $this->assertFalse($user->validate(['username']));
         $user -> email = null;
+        $this->assertFalse($user->validate(['username']));
         $this->assertFalse($user->validate(['email']));
 
         // Test valid input about sign up
         $user->username = "bob";
-        $this->assertTrue($user->validate(['username']));
         $user->email = "bob@gmail.com";
+        $this->assertTrue($user->validate(['username']));
         $this->assertTrue($user->validate(['email']));
 
         //Test invalid input of email
@@ -56,17 +59,17 @@ class UserTest extends \Codeception\Test\Unit
         $user->username = "bob";
         $this->assertTrue($user->username == 'bob');
         $user->email = "bob@gmail.com";
-        $this->assertTrue($user->validate(['email']));
+        $this->assertTrue($user->email == 'bob@gmail.com');
         $user->companyName = "Webpuppies";
-        $this->assertTrue($user->validate(['companyName']));
+        $this->assertTrue($user->companyName == 'Webpuppies');
         $user->walletAddress = "231312fdhsjfhasj";
-        $this->assertTrue($user->validate(['walletAddress']));
+        $this->assertTrue($user->walletAddress == '231312fdhsjfhasj');
         $user->location = "Singapore";
-        $this->assertTrue($user->validate(['location']));
+        $this->assertTrue($user->location == 'Singapore');
         $user->website = "webpuppies.com.sg";
-        $this->assertTrue($user->validate(['website']));
+        $this->assertTrue($user->website == 'webpuppies.com.sg');
         $user->biography = "DAME was founded by Celia Pool and Alec Mills, two friends on a mission to create beautiful more sustainable products that enrich our everyday lives.";
-        $this->assertTrue($user->validate(['biography']));
+        $this->assertTrue($user->biography == 'DAME was founded by Celia Pool and Alec Mills, two friends on a mission to create beautiful more sustainable products that enrich our everyday lives.');
     }
     /*
      * Test save user
