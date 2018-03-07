@@ -86,6 +86,7 @@ class SiteController extends Controller
     {
         // get user data from client
         $userAttributes = $client->getUserAttributes();
+        $profilePic = $userAttributes['public_profile']['picture'];
 
         // do some thing with user data. for example with $userAttributes['email']
 
@@ -107,29 +108,29 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $limit = 1;
-        $model = Campaign::find()->limit($limit)->all();
+//        $limit = 1;
+//        $model = Campaign::find()->limit($limit)->all();
         $categories = Category::find()->all();
 
-        $category1 = Campaign::find()->limit(4)->all();
-        $category2 = Campaign::find()->where(['c_cat_id' => '10'])->limit(2)->all();
-        $category3 = Campaign::find()->where(['c_cat_id' => '8'])->limit(2)->all();
+        $category1 = Campaign::find()->where(['c_status'=>'published'])->limit(4)->all();
+//        $category2 = Campaign::find()->where(['c_cat_id' => '10'])->limit(2)->all();
+//        $category3 = Campaign::find()->where(['c_cat_id' => '8'])->limit(2)->all();
 
-        $fund = new Fund();
-        if (Yii::$app->request->post()) {
-            $fund->fund_user_id = Yii::$app->user->identity->getId();
-            $fund->save();
-            return $this->render('index', ['model' => $model]);
-
-        } else {
+//        $fund = new Fund();
+//        if (Yii::$app->request->post()) {
+//            $fund->fund_user_id = Yii::$app->user->identity->getId();
+//            $fund->save();
+//            return $this->render('index', ['model' => $model]);
+//
+//        } else {
             return $this->render('index', [
-                'model' => $model,
+//                'model' => $model,
                 'categories' => $categories,
                 'category1' => $category1,
-                'category2' => $category2,
-                'category3' => $category3,
+//                'category2' => $category2,
+//                'category3' => $category3,
             ]);
-        }
+//        }
 //        return $this->render('index');
     }
 

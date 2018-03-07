@@ -40,9 +40,6 @@ frontend\assets\HomePageAsset::register($this);
                                             <li>
                                                 <a href="<?=Url::to(['/site/login'])?>"><span>Login</span></a>
                                             </li>
-                                            <li>
-                                                <a href="<?=Url::to(['/site/signup'])?>"><span>Sign up</span></a>
-                                            </li>
                                         <?php } else { ?>
                                             <li>
                                                 <div class="image-div" style="padding-top: 20px">

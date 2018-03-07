@@ -172,7 +172,7 @@ frontend\assets\RoadmapAsset::register($this);
                         <br /><br />
 
                         <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>" style="text-decoration: none">
-                            <?= Html::submitButton('<span class="glyphicon glyphicon-cloud-upload"></span> Submit for Review',['class' => 'btn btn-info','value' => 'moderation','name' => 'moderation','style' => 'width: 100%;background-color:#6363ff;color:#ffffff;border-radius:10px']) ?>
+                            <?= Html::submitButton('<span class="glyphicon glyphicon-cloud-upload"></span> Submit for Review',['class' => 'btn btn-info','value' => 'moderation','name' => 'moderation','style' => 'width: 100%;border-radius:10px']) ?>
                         </a>
                         <br /><br />
                         <div style="text-align: center">

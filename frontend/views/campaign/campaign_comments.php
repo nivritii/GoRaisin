@@ -17,13 +17,17 @@ $userComment = new Comment();
             <div class="column one comments">
                 <div id="comments">
                     <form action="comment?id=<?=$model->c_id?>" method="post" role="form">
+                        <p class="item-title">Leave a comment</p>
                         <div class="form-group">
                             <div style="display: inline-block;float: left;width: 100%;class="textEditor">
                             <textarea rows="3" type="text" style="width: 100%;" name="comment" id="comment"></textarea>
                         </div>
+                        <hr style="no-line">
+                        <p><u>Be respectful and considerate.</u></p>
+                        <button class="btn btn-info">Comment</button>
                 </div>
 
-                <button class="btn btn-info" style="margin-top: 3%">Comment</button>
+
                 </form>
                 <br />
                 <hr class="no_line" style="margin: 0 auto 30px;" />

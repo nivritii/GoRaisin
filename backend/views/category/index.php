@@ -32,15 +32,14 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <hr style=" height:1px;border:none;border-top:1px solid #185598;" />
 
-    <?= GridView::widget([
+    <?=
+        GridView::widget([
         'dataProvider' => $dataProvider,
         /*'filterModel' => $searchModel,*/
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
             'name',
-            /*'class',*/
             'featured_campaign_id',
 
             /*['class' => 'yii\grid\ActionColumn'],*/
