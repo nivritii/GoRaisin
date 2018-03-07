@@ -50,7 +50,11 @@ frontend\assets\LoginAsset::register($this);
                 </fieldset>
                 <br />
 
-                <?= Html::submitButton('<i class="fa fa-facebook-square fa-lg"></i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbspLog in with Facebook', ['class' => 'login-facebook', 'name' => 'login-button']) ?>
+                <div style="text-align: center">
+                <?= yii\authclient\widgets\AuthChoice::widget([
+                    'baseAuthUrl' => ['site/auth'],
+                ]) ?>
+                </div>
                 <p class="notice-facebook2">We'll never post anything on Facebook without your permission.</p>
             </div>
         </div>
