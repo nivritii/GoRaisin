@@ -190,6 +190,7 @@ class CampaignController extends Controller
         $faqs = Faq::find()->where(['campaign_id'=>$id])->all();
 
         $checkIfBacker = $this->checkIfBacker($id);
+        $checkIfGuest = $this->checkIfGuest();
 
         if($backed!=0){
             $progress = ($backed/$this->findModel($id)->c_goal)*100;
@@ -206,6 +207,7 @@ class CampaignController extends Controller
             'rewards' => $rewards,
             'faqs' => $faqs,
             'checkIfBacker'=> $checkIfBacker,
+            'checkIfGuest' => $checkIfGuest,
         ]);
     }
 
@@ -846,6 +848,14 @@ class CampaignController extends Controller
     {
         $fund = Fund::find()->where(['fund_c_id'=> $id, 'fund_user_id'=>Yii::$app->user->id])->all();
         if(!empty($fund)){
+            return true;
+        }
+        return false;
+    }
+
+    protected function checkIfGuest()
+    {
+        if(Yii::$app->user->isGuest){
             return true;
         }
         return false;
