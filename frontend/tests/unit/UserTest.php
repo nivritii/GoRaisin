@@ -31,7 +31,7 @@ class UserTest extends \Codeception\Test\Unit
      */
     public function testValidation()
     {
-        // Test initialize user object
+        // Test null input
         $user = new User();
 
         $user -> username = null;
