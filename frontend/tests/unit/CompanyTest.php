@@ -29,7 +29,7 @@ class CompanyTest extends \Codeception\Test\Unit
     {
         $company = new Company();
 
-        //Test initialize company object
+        //Test null input
         $company->company_name = null;
         $company->company_email = null;
         $company->company_website = null;

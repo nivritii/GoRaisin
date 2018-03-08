@@ -27,7 +27,7 @@ class WalletTest extends \Codeception\Test\Unit
      */
     public function testValidation()
     {
-        // Test initialize wallet object
+        // Test null input
         $wallet = new Wallet();
 
         $wallet->userId = null;

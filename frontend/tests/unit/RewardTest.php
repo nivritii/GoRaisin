@@ -29,7 +29,7 @@ class RewardTest extends \Codeception\Test\Unit
     {
         $reward = new Reward();
 
-        //Test initialize reward object
+        //Test null input
         Yii::$app->db->createCommand('set foreign_key_checks=0')->execute();
         $reward->c_id = null;
         $this->assertFalse($reward->validate(['c_id']));

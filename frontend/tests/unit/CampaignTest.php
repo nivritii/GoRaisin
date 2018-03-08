@@ -33,7 +33,7 @@ class CampaignTest extends \Codeception\Test\Unit
     {
         $camp = new Campaign();
 
-        // Test initialize campaign object
+        // Test null input
         $camp->c_cat_id = null;
         $camp->c_author = null;
         $camp->c_location = null;
