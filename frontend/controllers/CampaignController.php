@@ -189,6 +189,8 @@ class CampaignController extends Controller
         $rewards = Reward::find()->where(['c_id'=>$id])->all();
         $faqs = Faq::find()->where(['campaign_id'=>$id])->all();
 
+        $checkIfBacker = $this->checkIfBacker($id);
+
         if($backed!=0){
             $progress = ($backed/$this->findModel($id)->c_goal)*100;
         }else
@@ -203,6 +205,7 @@ class CampaignController extends Controller
             'updates' => $updates,
             'rewards' => $rewards,
             'faqs' => $faqs,
+            'checkIfBacker'=> $checkIfBacker,
         ]);
     }
 
@@ -837,5 +840,14 @@ class CampaignController extends Controller
         if(!empty($company)){
             $company->delete();
         }
+    }
+
+    protected function checkIfBacker($id)
+    {
+        $fund = Fund::find()->where(['fund_c_id'=> $id, 'fund_user_id'=>Yii::$app->user->id])->all();
+        if(!empty($fund)){
+            return true;
+        }
+        return false;
     }
 }

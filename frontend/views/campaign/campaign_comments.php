@@ -15,7 +15,12 @@ $userComment = new Comment();
         <div class="section_wrapper clearfix">
             <!--         One full width row-->
             <div class="column one comments">
-                <div id="comments">
+                <?php if(Yii::$app->user->isGuest){?>
+                <div class="well text-center">
+                    <p style="padding-top: 10px">Only backers can post comments. <b><a href=<?= Url::to(['site/login'])?>>Log In</a></b></p>
+                </div>
+                <?php }elseif(!Yii::$app->user->isGuest && $checkIfBacker){?>
+                <div>
                     <form action="comment?id=<?=$model->c_id?>" method="post" role="form">
                         <p class="item-title">Leave a comment</p>
                         <div class="form-group">
@@ -26,8 +31,11 @@ $userComment = new Comment();
                         <p><u>Be respectful and considerate.</u></p>
                         <button class="btn btn-info">Comment</button>
                 </div>
-
-
+                <?php }elseif (!Yii::$app->user->isGuest && !$checkIfBacker){?>
+                <div class="well text-center">
+                    <p style="padding-top: 10px">Only backers can post comments.</p>
+                </div>
+                <?php }?>
                 </form>
                 <br />
                 <hr class="no_line" style="margin: 0 auto 30px;" />
@@ -53,3 +61,4 @@ $userComment = new Comment();
     </div>
 </div>
 </div><!-- _form -->
+

@@ -107,7 +107,7 @@ frontend\assets\RoadmapAsset::register($this);
                                             ],
                                             [
                                                 'label'=>'<i class="glyphicon glyphicon-comment"></i> Comments',
-                                                'content'=>$this->render('campaign_comments',['comments'=>$comments, 'model'=>$model]),
+                                                'content'=>$this->render('campaign_comments',['comments'=>$comments, 'model'=>$model, 'checkIfBacker'=>$checkIfBacker]),
                                             ],
                                             [
                                                 'label'=>'<i class="glyphicon glyphicon-question-sign"></i> FAQ',
