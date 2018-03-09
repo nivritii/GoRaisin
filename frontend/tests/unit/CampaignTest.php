@@ -151,6 +151,5 @@ class CampaignTest extends \Codeception\Test\Unit
         $camp->delete();
         $this->assertFalse($camp == null);
         Yii::$app->db->createCommand('set foreign_key_checks=1')->execute();
-
     }
 }
