@@ -35,7 +35,7 @@ class Email extends \yii\db\ActiveRecord
             [['receiver_name', 'receiver_address', 'subject', 'content'], 'required'],
             [['content'], 'string'],
             [['receiver_name'], 'string', 'max' => 45],
-            [['receiver_address'], 'string', 'max' => 1000],
+            [['receiver_address'], 'string', 'max' => 100],
             [['subject', 'attachment'], 'string', 'max' => 255],
             [['attachment'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png,jpg,gif,jpeg,bmp,txt,doc,docx,xlsx,csv'],
         ];
