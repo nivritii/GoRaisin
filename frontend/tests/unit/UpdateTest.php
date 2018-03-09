@@ -63,4 +63,34 @@ class UpdateTest extends \Codeception\Test\Unit
         $this->assertEquals($update->image_id,1);
         Yii::$app->db->createCommand('set foreign_key_checks=1')->execute();
     }
+
+    /*
+     * Test save update
+     */
+    public function testSaveUpdate()
+    {
+        $update = new Update();
+
+        Yii::$app->db->createCommand('set foreign_key_checks=0')->execute();
+        $update->setAttributes(['campaign_id' => 1,'title' => 'update title','content' => 'update content is a content that is about the campaign update. Its constraint is 200.','timestamp' => '2018-03-05 12:26:48','image_id' => 1]);
+        $update->save(false);
+        $this->tester->canSeeRecord('frontend\models\Update',array('campaign_id' => 1,'title' => 'update title','content' => 'update content is a content that is about the campaign update. Its constraint is 200.','timestamp' => '2018-03-05 12:26:48','image_id' => 1));
+        Yii::$app->db->createCommand('set foreign_key_checks=1')->execute();
+    }
+
+    /*
+     * Test delete update
+     */
+    public function testDeleteUpdate()
+    {
+        $update = new Update();
+
+        Yii::$app->db->createCommand('set foreign_key_checks=0')->execute();
+        $update->setAttributes(['campaign_id' => 1,'title' => 'update title','content' => 'update content is a content that is about the campaign update. Its constraint is 200.','timestamp' => '2018-03-05 12:26:48','image_id' => 1]);
+        $update->save(false);
+        $this->tester->canSeeRecord('frontend\models\Update',array('campaign_id' => 1,'title' => 'update title','content' => 'update content is a content that is about the campaign update. Its constraint is 200.','timestamp' => '2018-03-05 12:26:48','image_id' => 1));
+        $update->delete();
+        $this->assertFalse($update == null);
+        Yii::$app->db->createCommand('set foreign_key_checks=1')->execute();
+    }
 }
