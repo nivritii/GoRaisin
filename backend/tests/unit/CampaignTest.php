@@ -130,7 +130,7 @@ class CampaignTest extends \Codeception\Test\Unit
             'c_new_tag' => '0',
         ]);
         $camp->save(false);
-        $this->tester->canSeeRecord('frontend\models\Campaign',array('c_title' => 'Campaign Title',
+        $this->tester->canSeeRecord('backend\models\Campaign',array('c_title' => 'Campaign Title',
             'c_status' => 'draft',
             'c_author' => 1,
             'c_location' => 1,
