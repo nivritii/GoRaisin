@@ -89,4 +89,61 @@ class BackendUserTest extends \Codeception\Test\Unit
         $bUser->delete();
         $this->assertFalse($bUser == null);
     }
+
+    /*
+     * Test get id
+     */
+    public function testGetId()
+    {
+        $bUser = new UserBackend();
+
+        $bUser->setAttributes([
+            'username' => 'username',
+            'auth_key' => 'hhsdashdjkashjka',
+            'password_hash' => 'dshajkdhaskj642783',
+            'email' => 'email@email.com',
+            'mobile' => '12345678',
+            'position' => 'position',
+            'image' => 'image.jpg'
+        ]);
+        $bUser->getId();
+    }
+
+    /*
+     * Test get auth key
+     */
+    public function testGetAuthKey()
+    {
+        $bUser = new UserBackend();
+
+        $bUser->setAttributes([
+            'username' => 'username',
+            'auth_key' => 'hhsdashdjkashjka',
+            'password_hash' => 'dshajkdhaskj642783',
+            'email' => 'email@email.com',
+            'mobile' => '12345678',
+            'position' => 'position',
+            'image' => 'image.jpg'
+        ]);
+        $bUser->getAuthKey();
+    }
+
+    /*
+     * Test validate auth key
+     */
+    public function testValidateAuthKey()
+    {
+        $bUser = new UserBackend();
+
+        $bUser->setAttributes([
+            'username' => 'username',
+            'auth_key' => 'hhsdashdjkashjka',
+            'password_hash' => 'dshajkdhaskj642783',
+            'email' => 'email@email.com',
+            'mobile' => '12345678',
+            'position' => 'position',
+            'image' => 'image.jpg'
+        ]);
+        $bUser->validateAuthKey($bUser->auth_key);
+    }
 }
