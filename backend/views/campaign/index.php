@@ -22,12 +22,6 @@ $model = new Campaign();
 
 
     <?php
-    echo TabsX::widget([
-        'items'=>$items,
-        'position'=>TabsX::POS_ABOVE,
-        'encodeLabels'=>false
-    ]);
-
     $items = [
         [
             'label'=>' Moderation',
@@ -43,6 +37,12 @@ $model = new Campaign();
             'content'=>$this->render('viewDraft',['model' => $model]),
         ],
     ];
+
+    echo TabsX::widget([
+        'items'=>$items,
+        'position'=>TabsX::POS_ABOVE,
+        'encodeLabels'=>false
+    ]);
     ?>
 
 </div>
