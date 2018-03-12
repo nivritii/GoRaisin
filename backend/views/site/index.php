@@ -100,7 +100,7 @@ $this->title = 'GoRaisin Backend';
                         ['Data', 'Count'],
                         <?php
                         // $days1 = ['Mon','Tuesday','Wed','Thu','Fri','Sat','Sun'];
-                        $elements = ['Active Posts','Categories','Users',' Comments'];
+                        $elements = ['Active Posts','Comments','Users',' Category'];
                         $element_data = [$campaignCount,$commentCount,$userCount,$categoryCount];
 
                         for($i=0;$i<4; $i++){
