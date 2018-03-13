@@ -53,7 +53,7 @@ frontend\assets\HomePageAsset::register($this);
                                                         <?= Html::a('Profile',['user/update','id' => $userId],['class' => 'image-a'])?>
                                                         <!--<a class="image-a">Profile</a>-->
                                                         <a class="image-a" href="<?=Url::to(['/campaign/mycampaign'])?>">My Projects</a>
-                                                        <a class="image-a" href="<?=Url::to(['/wallet/mywallet'])?>">Wallet</a>
+                                                        <a class="image-a" href="<?=Url::to(['/wallet/index'])?>">Wallet</a>
                                                         <hr />
                                                         <?= Html::a('Log out', ['/site/logout'], ['data-method' => 'post', 'class' => 'logout-a']) ?>
                                                     </div>

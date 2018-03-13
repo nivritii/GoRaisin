@@ -2,6 +2,7 @@
 
 use frontend\assets\HomePageAsset;
 use frontend\assets\CampaignAsset;
+use frontend\assests\WalletAsset;
 use frontend\models\Campaign;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -11,6 +12,7 @@ use kartik\date\DatePicker;
 
 HomePageAsset::register($this);
 CampaignAsset::register($this);
+WalletAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
@@ -30,17 +32,20 @@ $campaign_draft = new Campaign();
             <div class="col-md-2 bhoechie-tab-menu">
                 <div class="list-group">
                     <a href="#" class="list-group-item active text-center">
-                        <h4 class="glyphicon glyphicon-question-sign"></h4><br/>Add a FAQ
+                        <h4 class="glyphicon glyphicon-tower"></h4><br/>Assests
                     </a>
                     <a href="#" class="list-group-item text-center">
-                        <h4 class="glyphicon glyphicon-eye-open"></h4><br/>View All FAQ
+                        <h4 class="glyphicon glyphicon-open-file"></h4><br/>Portfolio
+                    </a>
+                    <a href="#" class="list-group-item text-center">
+                        <h4 class="glyphicon glyphicon-credit-card"></h4><br/>Transactions
                     </a>
                 </div>
             </div>
             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 bhoechie-tab">
                 <!-- flight section -->
                 <div class="bhoechie-tab-content active">
-                    <form class="postFAQ" enctype="multipart/form-data" action="postfaq?id=<?= $model->c_id ?>"
+                    <form class="postFAQ" enctype="multipart/form-data" action="postfaq?id="
                           method="post" id="postFAQ" name="postFAQ">
                         <h1 class="tabpage-title" style="margin-bottom: 20px; text-align: center">New FAQ</h1>
                         <div style="width: 100%;">
@@ -52,7 +57,7 @@ $campaign_draft = new Campaign();
                         <div style="width: 100%;">
                             <div style="display: inline-block;float: left;margin-left: 2%;width: 100%; margin-bottom: 20px">
                                 <p><b>What's the answer?</b></p>
-                                <textarea rows="6" type="text" style="width: 100%" name="faqAns" id="faqAns" value="<?=$response?>"></textarea>
+                                <textarea rows="6" type="text" style="width: 100%" name="faqAns" id="faqAns" value=""></textarea>
                             </div>
                         </div>
                         <div style="clear:both; text-align: center; margin-bottom: 20px">
@@ -62,18 +67,42 @@ $campaign_draft = new Campaign();
                 </div>
                 <!-- train section -->
                 <div class="bhoechie-tab-content">
-                    <div class="panel-group" id="accordion">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h4 data-toggle="collapse" data-parent="#accordion" href="#collapse1" class="panel-title expand">
-                                        <div class="right-arrow pull-right">+</div>
-                                        <a href="#"></a>
-                                    </h4>
-                                </div>
-                                <div id="collapse1" class="panel-collapse collapse">
-                                    <div class="panel-body"></div>
+                    <div class="row margin-0 list-header hidden-sm hidden-xs">
+                        <div class="col-md-3"><div class="header">Property</div></div>
+                        <div class="col-md-2"><div class="header">Type</div></div>
+                        <div class="col-md-2"><div class="header">Required</div></div>
+                        <div class="col-md-5"><div class="header">Description</div></div>
+                    </div>
+
+                    <div class="row margin-0">
+                        <div class="col-md-3">
+                            <div class="cell">
+                                <div class="propertyname">
+                                    CurrencyCode  <span class="mobile-isrequired">[Required]</span>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="cell">
+                                <div class="type">
+                                    <code>String</code>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="cell">
+                                <div class="isrequired">
+                                    Yes
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="cell">
+                                <div class="description">
+                                    The standard ISO 4217 3-letter currency code
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

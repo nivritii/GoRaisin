@@ -41,7 +41,7 @@ HomePageAsset::register($this);
                                                     <div class="item-title">Username:</div>
                                                 </div>
                                                 <div style="display: inline-block; padding-left: 5%;width: 58%">
-                                                    <input type="text" style="width: 100%" name="username" value="<?=$response?>">
+                                                    <input type="text" style="width: 100%" name="username" value="">
                                                 </div>
                                             </div>
 <!--                                            <div style="width: 100%;float: left;">-->
@@ -53,7 +53,7 @@ HomePageAsset::register($this);
 <!--                                                </div>-->
 <!--                                            </div>-->
                                             <div style="padding-top: 30px;padding-bottom: 30px; width: 100%; float: left">
-                                                <input class="btn btn-md btn-info" type="submit"                                value="Create your wallet" id="submit">
+                                                <input class="btn btn-md btn-info" type="submit" value="Create your wallet" id="submit">
                                             </div>
                                         </form>
                                     </div>
