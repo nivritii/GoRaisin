@@ -155,11 +155,21 @@ class CampaignController extends Controller
     {
         $comment = new Comment();
         if($_SERVER["REQUEST_METHOD"]=="POST"){
-            $comment->comment_camp_id = $id;
-            $comment->comment_user_id = Yii::$app->user->identity->getId();
-            $comment->comment_content = $_POST['comment'];
-            $comment->save(false);
-            return $this->redirect(['view', 'id' => $id]);
+            if($_POST['comment']!=null){
+
+                $comment->comment_camp_id = $id;
+                $comment->comment_user_id = Yii::$app->user->identity->getId();
+                $comment->comment_content = $_POST['comment'];
+                $comment->save(false);
+                return $this->redirect(['view', 'id' => $id]);
+
+            }else{
+
+                Yii::$app->session->setFlash('warning', 'Comment body cannot be empty.');
+                return $this->redirect(['view', 'id' => $id]);
+
+            }
+
         }
         return $this->redirect(['view', 'id' => $id]);
     }
@@ -179,6 +189,9 @@ class CampaignController extends Controller
         $rewards = Reward::find()->where(['c_id'=>$id])->all();
         $faqs = Faq::find()->where(['campaign_id'=>$id])->all();
 
+        $checkIfBacker = $this->checkIfBacker($id);
+        $checkIfGuest = $this->checkIfGuest();
+
         if($backed!=0){
             $progress = ($backed/$this->findModel($id)->c_goal)*100;
         }else
@@ -193,6 +206,8 @@ class CampaignController extends Controller
             'updates' => $updates,
             'rewards' => $rewards,
             'faqs' => $faqs,
+            'checkIfBacker'=> $checkIfBacker,
+            'checkIfGuest' => $checkIfGuest,
         ]);
     }
 
@@ -601,40 +616,42 @@ class CampaignController extends Controller
     public function actionDelete($id)
     {
         $campaign = $this->findModel($id);
+        if($campaign->c_status!='published'){
         $user = new LoginForm();
-
         if($_SERVER["REQUEST_METHOD"]=="POST"){
-            $user->username=Yii::$app->user->getIdentity()->username;
-            $user->password=$_POST['password'];
-            if($user->login()){
-                /*$reward = Reward::find()->where(['c_id' => $campaign->c_id])->one();
-                $reward->delete();
-                $campaign->delete();
-                return $this->redirect(['mycampaign']);*/
 
-                if($this->countRewards($id)>0){
-                    $this->deleteRewards($id);
-                }
-                if($this->countComments($id)>0){
-                    $this->deleteComments($id);
-                }
-                if($this->countUpdates($id)>0){
-                    $this->deleteUpdates($id);
-                }
-                if($this->countfaqs($id)>0){
-                    $this->deletefaqs($id);
-                }
+                $user->username=Yii::$app->user->getIdentity()->username;
+                $user->password=$_POST['password'];
+                if($user->login()){
 
-                $this->deleteCompany($campaign->c_id);
-                $this->findModel($id)->delete();
+                    if($this->countRewards($id)>0){
+                        $this->deleteRewards($id);
+                    }
+                    if($this->countComments($id)>0){
+                        $this->deleteComments($id);
+                    }
+                    if($this->countUpdates($id)>0){
+                        $this->deleteUpdates($id);
+                    }
+                    if($this->countfaqs($id)>0){
+                        $this->deletefaqs($id);
+                    }
 
-                Yii::$app->session->setFlash('success', 'You have deleted successfully your project!');
-                return $this->redirect('mycampaign');
-            }else{
-                return $this->render('delete',[
-                    'campaign' => $campaign,
+                    $this->deleteCompany($campaign->c_id);
+                    $this->findModel($id)->delete();
+
+                    Yii::$app->session->setFlash('success', 'You have deleted successfully your project!');
+                    return $this->redirect('mycampaign');
+                }else{
+                    Yii::$app->session->setFlash('warning', 'Invalid user login and unable to delete campaign.');
+                    return $this->render('delete',[
+                        'campaign' => $campaign,
                     ]);
+                }
             }
+        }else{
+            Yii::$app->session->setFlash('warning', 'Published campaign cannot be deleted.');
+            return $this->redirect(['view']);
         }
         return $this->render('delete',[
            'campaign' => $campaign,
@@ -758,9 +775,11 @@ class CampaignController extends Controller
     protected function deleteRewards($id)
     {
         $rewards = Reward::find()->where(['c_id'=>$id])->all();
-        foreach ($rewards as $reward){
-            $reward->delete();
-            return true;
+        if(!empty($rewards)){
+            foreach ($rewards as $reward){
+                $reward->delete();
+                return true;
+            }
         }
         return false;
     }
@@ -774,9 +793,11 @@ class CampaignController extends Controller
     protected function deleteComments($id)
     {
         $comments = Comment::find()->where(['comment_camp_id'=>$id])->all();
-        foreach ($comments as $comment){
-            $comment->delete();
-            return true;
+        if(!empty($comments)){
+            foreach ($comments as $comment){
+                $comment->delete();
+                return true;
+            }
         }
         return false;
     }
@@ -790,9 +811,11 @@ class CampaignController extends Controller
     protected function deleteUpdates($id)
     {
         $updates = Update::find()->where(['campaign_id'=>$id])->all();
-        foreach ($updates as $update){
-            $update->delete();
-            return true;
+        if(!empty($updates)){
+            foreach ($updates as $update){
+                $update->delete();
+                return true;
+            }
         }
         return false;
     }
@@ -816,6 +839,25 @@ class CampaignController extends Controller
     protected function deleteCompany($id)
     {
         $company = Company::find()->where(['campaign_id'=>$id])->one();
-        $company->delete();
+        if(!empty($company)){
+            $company->delete();
+        }
+    }
+
+    protected function checkIfBacker($id)
+    {
+        $fund = Fund::find()->where(['fund_c_id'=> $id, 'fund_user_id'=>Yii::$app->user->id])->all();
+        if(!empty($fund)){
+            return true;
+        }
+        return false;
+    }
+
+    protected function checkIfGuest()
+    {
+        if(Yii::$app->user->isGuest){
+            return true;
+        }
+        return false;
     }
 }

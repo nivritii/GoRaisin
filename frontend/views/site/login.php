@@ -51,7 +51,7 @@ frontend\assets\LoginAsset::register($this);
                 <p class="notice-facebook">We'll never post anything on Facebook without your permission.</p>
 
                 <hr />
-                <p class="signup-notice">New to GoRaisin?<?= Html::a('Sign up', ['site/signup'],['class' => 'signup-a']) ?></p>
+                <p class="signup-notice">New to GoRaisin? <?= Html::a('Sign up', ['site/signup'],['class' => 'signup-a']) ?></p>
             </div>
         </div>
     </div>

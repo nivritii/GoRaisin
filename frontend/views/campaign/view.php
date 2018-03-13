@@ -107,7 +107,7 @@ frontend\assets\RoadmapAsset::register($this);
                                             ],
                                             [
                                                 'label'=>'<i class="glyphicon glyphicon-comment"></i> Comments',
-                                                'content'=>$this->render('campaign_comments',['comments'=>$comments, 'model'=>$model]),
+                                                'content'=>$this->render('campaign_comments',['comments'=>$comments, 'model'=>$model, 'checkIfBacker'=>$checkIfBacker,'checkIfGuest'=>$checkIfGuest]),
                                             ],
                                             [
                                                 'label'=>'<i class="glyphicon glyphicon-question-sign"></i> FAQ',
@@ -172,7 +172,7 @@ frontend\assets\RoadmapAsset::register($this);
                         <br /><br />
 
                         <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>" style="text-decoration: none">
-                            <?= Html::submitButton('<span class="glyphicon glyphicon-cloud-upload"></span> Submit for Review',['class' => 'btn btn-info','value' => 'moderation','name' => 'moderation','style' => 'width: 100%;background-color:#6363ff;color:#ffffff;border-radius:10px']) ?>
+                            <?= Html::submitButton('<span class="glyphicon glyphicon-cloud-upload"></span> Submit for Review',['class' => 'btn btn-info','value' => 'moderation','name' => 'moderation','style' => 'width: 100%;border-radius:10px']) ?>
                         </a>
                         <br /><br />
                         <div style="text-align: center">
