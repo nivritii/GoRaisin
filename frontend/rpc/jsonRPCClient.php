@@ -160,7 +160,9 @@ class jsonRPCClient {
             }
             return $response['result'];
         } else {
-            return true;
+            //return true;
+            return $response;
         }
+
     }
 }

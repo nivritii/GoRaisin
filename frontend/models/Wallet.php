@@ -9,7 +9,8 @@ use Yii;
  *
  * @property int $id
  * @property int $userId
- * @property string $walletAddress
+ * @property string $brainKey
+ * @property string $accname
  * @property int $balance
  */
 class Wallet extends \yii\db\ActiveRecord
@@ -28,10 +29,9 @@ class Wallet extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['userId', 'walletAddress', 'balance'], 'required'],
-            ['walletAddress', 'required', 'message' => 'Wallet address cannot be blank'],
+            [['userId', 'brainKey', 'accname', 'balance'], 'required'],
             [['userId', 'balance'], 'integer'],
-            [['walletAddress'], 'string', 'max' => 255],
+            [['brainKey', 'accname'], 'string', 'max' => 255],
         ];
     }
 
@@ -43,7 +43,8 @@ class Wallet extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'userId' => 'User ID',
-            'walletAddress' => 'Wallet Address',
+            'brainKey' => 'Brain Key',
+            'accname' => 'Accname',
             'balance' => 'Balance',
         ];
     }

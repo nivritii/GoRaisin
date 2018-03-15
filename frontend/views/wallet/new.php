@@ -27,7 +27,7 @@ HomePageAsset::register($this);
                             <div class="container" style="padding-left:0px">
                                 <div class="col-xs-12">
                                     <div class="col-md-12 well text-center">
-                                        <form name="basicform" id="basicform" method="post" action="index">
+                                        <form name="basicform" id="basicform" method="post" action="create">
                                             <h2 class="tabpage-title">Create your Bitshares wallet</h2>
                                             <br/>
                                             <br/>
@@ -36,22 +36,23 @@ HomePageAsset::register($this);
 <!--                                                       value="Generate brain key of the wallet" id="submit"-->
 <!--                                                       disabled>-->
 <!--                                            </div>-->
-                                            <div style="width: 100%; float: left;">
-                                                <div style="display: inline-block;padding-top: 10px; margin-right: 3%">
-                                                    <div class="item-title">Username:</div>
+                                            <div style="width: 100%;float: left;">
+                                                <div style="display: inline-block;padding-top: 10px">
+                                                    <div class="item-title">Generated Brain key:</div>
                                                 </div>
-                                                <div style="display: inline-block; padding-left: 5%;width: 58%">
-                                                    <input type="text" style="width: 100%" name="username" value="">
+                                                <div style="display: inline-block; padding-left: 2%;width: 55%">
+                                                    <input type="text" style="width: 100%" name="brainKey" value="<?=$brainKey?>">
                                                 </div>
                                             </div>
-<!--                                            <div style="width: 100%;float: left;">-->
-<!--                                                <div style="display: inline-block;padding-top: 10px">-->
-<!--                                                    <div class="item-title">Generated Brain key:</div>-->
-<!--                                                </div>-->
-<!--                                                <div style="display: inline-block; padding-left: 2%;width: 55%">-->
-<!--                                                    <input type="text" style="width: 100%" name="#">-->
-<!--                                                </div>-->
-<!--                                            </div>-->
+                                            <div style="width: 100%; float: left;">
+                                                <div style="display: inline-block;padding-top: 10px;">
+                                                    <div class="item-title">Account name:</div>
+                                                </div>
+                                                <div style="display: inline-block; padding-left: 2%;width: 55%">
+                                                    <input type="text" style="width: 100%" name="accName" value="">
+                                                </div>
+                                            </div>
+
                                             <div style="padding-top: 30px;padding-bottom: 30px; width: 100%; float: left">
                                                 <input class="btn btn-md btn-info" type="submit" value="Create your wallet" id="submit">
                                             </div>

@@ -90,6 +90,17 @@ return [
             'uploadUrl' => 'uplaods/campaign/image',
             'imageAllowExtensions'=>['jpg','png','gif','jpeg']
         ],
+
+        'social' => [
+            // the module class
+            'class' => 'kartik\social\Module',
+
+            // the global settings for the google-analytics widget
+            'google-analytics' => [
+                'id' => 'UA-115738204-1',
+                'domain' => 'localhost'
+            ],
+        ],
     ],
 
 

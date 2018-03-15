@@ -3,6 +3,9 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\helpers\Url;
 use yii\helpers\Html;
+use kartik\social\Module;
+
+//echo \kartik\social\GoogleAnalytics::widget();
 
 frontend\assets\HomePageAsset::register($this);
 /*$imagePath = '/'.Yii::$app->user->identity->image;*/
