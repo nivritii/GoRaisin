@@ -13,6 +13,7 @@ class WalletAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/wallet/method.css',
+        'css/wallet/tab.css',
     ];
     public $js = [
     ];

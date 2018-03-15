@@ -7,6 +7,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use frontend\rpc\jsonRPCClient;
+use Yii;
 
 class WalletController extends \yii\web\Controller
 {
@@ -18,17 +19,20 @@ class WalletController extends \yii\web\Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['logout', 'signup'],
                 'rules' => [
                     [
-                        'actions' => ['signup'],
                         'allow' => true,
-                        'roles' => ['?'],
+                        'roles' => ['*'],
                     ],
+                    // allow authenticated users
                     [
-                        'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['index','create','mywallet'],
+                        'allow' => true,
+                        'roles' => ['?'],
                     ],
                 ],
             ],
@@ -56,36 +60,72 @@ class WalletController extends \yii\web\Controller
      */
     public function actionIndex()
     {
-        $rpc = new jsonRPCClient('http://192.168.1.138:8092/rpc',true);
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $brainKey = $this->createBrainKey();
 
-        if($_SERVER["REQUEST_METHOD"]=="POST"){
-            $username=$_POST['username'];
-            $rpc->setRPCNotification(true);
-            $response=$rpc->__call("suggest_brain_key", []);
-            $response1 = BaseJson::decode($response,true);
-
-            return $this-> render('new',[
-                'response' => $response1['result']['op']['id'],
+            return $this->render('new', [
+                'brainKey' => $brainKey,
             ]);
         }
 
-        if($this->getWallet()){
+        if ($this->getWallet()) {
             return $this->redirect(['mywallet']);
         }
 
-        return $this->render('new');
+        return $this->render('create');
+    }
 
+    public function actionCreate()
+    {
+        $wallet = new Wallet();
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $wallet->accname = $_POST['accName'];
+            $wallet->brainKey = $_POST['brainKey'];
+            $wallet->id = Yii::$app->user->getId();
+            $wallet->save(false);
+
+            $response = $this->createAccount($wallet->brainKey, $wallet->accname);
+            return $this->render(['mywallet']);
+        }
+        return $this->redirect(['index']);
+    }
+
+    protected function createBrainKey()
+    {
+        $rpc = new jsonRPCClient('http://192.168.1.138:8092/rpc', true);
+        $rpc->setRPCNotification(true);
+        $response = $rpc->__call("suggest_brain_key", []);
+        $response1 = $response['result'];
+
+        return $response1['brain_priv_key'];
+    }
+
+    protected function createAccount($brain_priv_key, $accname)
+    {
+        $rpc = new jsonRPCClient('http://192.168.1.138:8092/rpc', true);
+        $rpc->setRPCNotification(true);
+        $response = $rpc->__call("suggest_brain_key", [$brain_priv_key, $accname, "kiru", "kiru", true]);
+        return $response;
     }
 
     public function actionMywallet()
     {
+        $this->getBalance();
         return $this->render('mywallet');
+    }
+
+    protected function getBalance()
+    {
+        $rpc = new jsonRPCClient('http://192.168.1.138:8092/rpc', true);
+        $rpc->setRPCNotification(true);
+        $response = $rpc->__call("list_account_balances", [$brain_priv_key, $accname, "kiru", "kiru", true]);
     }
 
     protected function getWallet()
     {
-        $wallet = Wallet::find()->where(['userId'=>\Yii::$app->user->id])->one();
-        if(!empty($wallet)){
+        $wallet = Wallet::find()->where(['userId' => \Yii::$app->user->id])->one();
+        if (!empty($wallet)) {
             return true;
         }
 
