@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 use frontend\models\Campaign;
 use frontend\models\Reward;
 use frontend\assets\HomePageAsset;
+use yii\helpers\Url;
 
 HomePageAsset::register($this);
 /* @var $this yii\web\View */
@@ -29,7 +30,7 @@ $reward = new Reward();
             <h1 class="text-center" >Fund the Project</h1>
             <br/>
             <!--<form>-->
-            <form enctype="multipart/form-data" action="fund?id=<?=$c_id?>" method="post">
+            <form enctype="multipart/form-data" action="<?=Url::to(['wallet/fund', 'id' => $c_id])?>" method="post">
             <div class="container col-xs-12">
                 <div class="container">
                     <div class="panel-group" id="faqAccordion" style="width: 89%">
