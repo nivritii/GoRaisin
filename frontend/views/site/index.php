@@ -8,6 +8,7 @@ use yii\helpers\Url;
 use frontend\models\Category;
 use frontend\models\Campaign;
 
+
 HomePageAsset::register($this);
 $this->title = 'GoRaisin';
 ?>
