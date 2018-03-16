@@ -82,11 +82,11 @@ class WalletController extends \yii\web\Controller
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $wallet->accname = $_POST['accName'];
             $wallet->brainKey = $_POST['brainKey'];
-            $wallet->id = Yii::$app->user->getId();
+            $wallet->userId = Yii::$app->user->identity->getId();
             $wallet->save(false);
 
             $response = $this->createAccount($wallet->brainKey, $wallet->accname);
-            return $this->render(['mywallet']);
+            return $this->render('mywallet');
         }
         return $this->redirect(['index']);
     }
@@ -105,7 +105,7 @@ class WalletController extends \yii\web\Controller
     {
         $rpc = new jsonRPCClient('http://192.168.1.138:8092/rpc', true);
         $rpc->setRPCNotification(true);
-        $response = $rpc->__call("suggest_brain_key", [$brain_priv_key, $accname, "kiru", "kiru", true]);
+        $response = $rpc->__call("create_account_with_brain_key", [$brain_priv_key, $accname, "kiru", "kiru", true]);
         return $response;
     }
 
