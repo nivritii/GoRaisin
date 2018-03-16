@@ -67,7 +67,7 @@ class CampaignSearch extends Campaign
             'c_created_at' => $this->c_created_at,
             'c_cat_id' => $this->c_cat_id,
             'c_new_tag' => $this->c_new_tag,
-            'c_status' => 'publish',
+            'c_status' => 'published',
         ]);
 
         $query->andFilterWhere(['like', 'c_title', $this->c_title])
