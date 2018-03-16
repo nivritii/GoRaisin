@@ -12,6 +12,8 @@ use Yii;
  * @property string $brainKey
  * @property string $accname
  * @property int $balance
+ *
+ * @property User $user
  */
 class Wallet extends \yii\db\ActiveRecord
 {
@@ -32,6 +34,7 @@ class Wallet extends \yii\db\ActiveRecord
             [['userId', 'brainKey', 'accname', 'balance'], 'required'],
             [['userId', 'balance'], 'integer'],
             [['brainKey', 'accname'], 'string', 'max' => 255],
+            [['userId'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userId' => 'id']],
         ];
     }
 
@@ -47,5 +50,13 @@ class Wallet extends \yii\db\ActiveRecord
             'accname' => 'Accname',
             'balance' => 'Balance',
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'userId']);
     }
 }
