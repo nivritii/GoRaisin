@@ -507,16 +507,16 @@ class CampaignController extends Controller
     public function actionFund($id)
     {
         $rewards = Reward::find()->where(['c_id' => $id])->all();
-        $fund = new Fund();
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $fund->fund_c_id = $id;
-            $fund->fund_user_id = Yii::$app->user->identity->getId();
-            $fund->fund_amt = $_POST['reward'];
-            if ($fund->save(false)) {
-                return $this->redirect(['mycampaign']);
-            }
-        }
+//        $fund = new Fund();
+//
+//        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//            $fund->fund_c_id = $id;
+//            $fund->fund_user_id = Yii::$app->user->identity->getId();
+//            $fund->fund_amt = $_POST['reward'];
+//            if ($fund->save(false)) {
+//                return $this->redirect(['mycampaign']);
+//            }
+//        }
 
         return $this->render('fund', [
             'rewards' => $rewards,

@@ -8,6 +8,8 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use frontend\rpc\jsonRPCClient;
 use Yii;
+use frontend\models\Fund;
+use frontend\models\Campaign;
 
 class WalletController extends \yii\web\Controller
 {
@@ -68,7 +70,7 @@ class WalletController extends \yii\web\Controller
             ]);
         }
 
-        if ($this->getWallet()) {
+        if ($this->checkForWallet()) {
             return $this->redirect(['mywallet']);
         }
 
@@ -91,11 +93,68 @@ class WalletController extends \yii\web\Controller
                 $balanceRpc = $this->listAccBalance($wallet->accname);
 
                 return $this->render('mywallet',[
-                    'response' => $balanceRpc->amount,
+                    'response' => $balanceRpc,
                 ]);
             }
         }
         return $this->redirect(['index']);
+    }
+
+    public function actionMywallet()
+    {
+        $wallet = Wallet::find()->where(['userId' => \Yii::$app->user->id])->one();
+        $response = $this->listAccBalance($wallet->accname);
+
+        foreach($response as $row){
+            $amount = $row['amount'];
+        }
+
+        return $this->render('mywallet',[
+            'amount' => $amount,
+        ]);
+    }
+
+    public function actionFund($id)
+    {
+        $fund = new Fund();
+        $campaign = $this->findCampaign($id);
+        $receiverAccName = $this->getWallet($campaign->c_author);
+        $senderAccName = $this->getWallet(Yii::$app->user->identity->getId());
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+            $fund->fund_c_id = $id;
+            $fund->fund_user_id = Yii::$app->user->identity->getId();
+            $amt = $_POST['reward'];
+            $fund->fund_amt = $amt;
+
+            $response = $this->fundCampaign($senderAccName->accname, $receiverAccName->accname, $amt);
+            if (!empty($response)) {
+                $fund->save(false);
+                return $this->redirect(['campaign/mycampaign']);
+            }
+        }
+
+        return $this->redirect(['campaign/fund']);
+    }
+
+    protected function getWallet($userId)
+    {
+        $wallet = Wallet::find()->where(['userId'=>$userId])->one();
+        if (!empty($wallet)) {
+            return $wallet;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function findCampaign($id)
+    {
+        if (($model = Campaign::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 
     protected function listAccBalance($accName)
@@ -112,6 +171,16 @@ class WalletController extends \yii\web\Controller
         $rpc = new jsonRPCClient('http://192.168.1.138:8092/rpc', true);
         $rpc->setRPCNotification(true);
         $response = $rpc->__call("transfer", ["kiru",$accName,"5000","BTS","", true]);
+        $response = $response['result'];
+
+        return $response;
+    }
+
+    protected function fundCampaign($senderAcc, $receiverAcc, $amount)
+    {
+        $rpc = new jsonRPCClient('http://192.168.1.138:8092/rpc', true);
+        $rpc->setRPCNotification(true);
+        $response = $rpc->__call("transfer", [$senderAcc,$receiverAcc,$amount,"BTS","", true]);
         $response = $response['result'];
 
         return $response;
@@ -135,18 +204,7 @@ class WalletController extends \yii\web\Controller
         return $response;
     }
 
-    public function actionMywallet()
-    {
-        $wallet = Wallet::find()->where(['userId' => \Yii::$app->user->id])->one();
-        $response = $this->listAccBalance($wallet->accname);
-        $response1 = $response['']['amount'];
-
-        return $this->render('mywallet',[
-            'response' => $response1,
-        ]);
-    }
-
-    protected function getWallet()
+    protected function checkForWallet()
     {
         $wallet = Wallet::find()->where(['userId' => \Yii::$app->user->id])->one();
         if (!empty($wallet)) {
