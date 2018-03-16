@@ -80,7 +80,7 @@ use yii\helpers\Url;
     </div>
     <br />
 
-    <?= $form->field($model, 'c_status')->dropDownList(['draft' => 'draft','publish' => 'publish','moderation' => 'moderation']) ?>
+    <?= $form->field($model, 'c_status')->dropDownList(['draft' => 'draft','publish' => 'published','moderation' => 'moderation']) ?>
     <br />
 
     <div>

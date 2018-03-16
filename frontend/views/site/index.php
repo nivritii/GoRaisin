@@ -41,8 +41,8 @@ $this->title = 'GoRaisin';
                                                 <h2 class="featured-campaign-text"><?= $category->name ?></h2>
                                                 <h6>FEATURED CAMPAIGN</h6>
                                                 <?php
-                                                $featured_campaign = Campaign::find()->where(['c_id' => $category->featured_campaign_id, 'c_status'=>'publish'])->one();
-                                                $new_campaigns = Campaign::find()->where(['c_cat_id' => $category->id, 'c_new_tag' => 1,'c_status'=>'publish'])->limit(4)->all();
+                                                $featured_campaign = Campaign::find()->where(['c_id' => $category->featured_campaign_id, 'c_status'=>'published'])->one();
+                                                $new_campaigns = Campaign::find()->where(['c_cat_id' => $category->id, 'c_new_tag' => 1,'c_status'=>'published'])->limit(4)->all();
                                                 ?>
 
                                                 <a class="featured-campaign-image" style="width: 700px;"
@@ -116,7 +116,7 @@ $this->title = 'GoRaisin';
                                                             <div class="image_wrapper">
                                                                 <a href="<?= Url::to(['campaign/view', 'id' => $campaign_1->c_id]) ?>">
                                                                     <?= Html::img(Url::to('@web/images/uploads/campaign/' . $campaign_1->c_image), ['class' => 'scale-with-grid wp-post-image'], ['alt' => 'Image'], ['align' => 'left'], ['width' => '1200'], ['height' => '480']) ?>
-                                                                    <!--                                                                    <img width="1200" height="800" src="content/blogger2/images/home_blogger2_news2.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_news2" />-->
+                                                                    <!--<img width="1200" height="800" src="content/blogger2/images/home_blogger2_news2.jpg" class="scale-with-grid wp-post-image" alt="home_blogger2_news2" />-->
                                                                 </a>
                                                             </div>
                                                         </div>
