@@ -176,4 +176,23 @@ class Campaign extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Update::className(), ['campaign_id' => 'c_id']);
     }
+
+    /**
+     * Sends an email to publisher, for notify moderate campaign.
+     *
+     * @return bool whether the email was send
+     */
+    public function sendReviewEmail()
+    {
+        $this->c_status = "moderation";
+
+        return Yii::$app
+            ->mailer
+            ->compose()
+            ->setFrom([Yii::$app->params['supportEmail'] => 'GoRaisin'])
+            ->setTo($this->cAuthor->email)
+            ->setSubject('Campaign is sent to moderation!')
+            ->setHtmlBody('Dear '.$this->cAuthor->username.', <br /><br /> Your campaign '.$this->c_title.' has been sent to moderate! Please wait for our review patiently.')
+            ->send();
+    }
 }
