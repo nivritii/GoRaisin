@@ -18,6 +18,7 @@ use frontend\models\ContactForm;
 use frontend\models\Campaign;
 use frontend\models\Fund;
 use frontend\models\Category;
+use yii2mod\alert;
 
 /**
  * Site controller
@@ -101,6 +102,7 @@ class SiteController extends Controller
             return $this->redirect(['signup']);
         }
     }
+
 
     /**
      * Displays homepage.
@@ -195,7 +197,9 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
                 if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
+                    //return $this->goHome();
+                    Yii::$app->session->setFlash('success', 'You have successfully completed the registration. Please proceed to complete your wallet setup.');
+                    return $this->redirect(['wallet/index']);
                 }
             }
         }

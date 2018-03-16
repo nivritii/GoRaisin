@@ -37,7 +37,7 @@ frontend\assets\HomePageAsset::register($this);
                                         </li>
 
                                         <li>
-                                            <a target="_blank" href="<?=Url::to(['/campaign/new'])?>"><span><span style="padding: 0; color: #8f13a5f0;">Start Campaign</span></span></a>
+                                            <a target="_blank" href="<?=Url::to(['/campaign/create'])?>"><span><span style="padding: 0; color: #8f13a5f0;">Start Campaign</span></span></a>
                                         </li>
                                         <?php if(Yii::$app->user->isGuest){ ?>
                                             <li>

@@ -30,6 +30,7 @@ use frontend\models\ResetPasswordForm;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii2mod\alert;
+use frontend\models\Wallet;
 
 ActionLog::error('Some error message');
 ActionLog::info('Some info message');
@@ -71,7 +72,7 @@ class CampaignController extends Controller
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['show','view','viewcompany','myintroduction'],
+                        'actions' => ['show', 'view', 'viewcompany', 'myintroduction'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -116,6 +117,7 @@ class CampaignController extends Controller
         return $this->redirect(['view', 'id' => $reviewCampaign->c_id]);
 
     }
+
     /**
      * View campaign company profile
      * @param $id
@@ -130,14 +132,15 @@ class CampaignController extends Controller
         $companyName = $company['company_name'];
         $companyDesc = $company['company_description'];
         $companyWebsite = $company['company_website'];
-        return $this->renderAjax('viewcompany',[
+        return $this->renderAjax('viewcompany', [
             'model' => $this->findModel($id),
-            'companyName'=> $companyName,
+            'companyName' => $companyName,
             'companyDesc' => $companyDesc,
             'companyWebsite' => $companyWebsite,
         ]);
 
     }
+
     /**
      * Link to external website
      * @param $website
@@ -145,8 +148,9 @@ class CampaignController extends Controller
      */
     public function actionLinkexternal($website)
     {
-        return $this->redirect('http://'.$website);
+        return $this->redirect('http://' . $website);
     }
+
     /**
      * Create comment for a Campaign
      * @param $id
@@ -155,8 +159,8 @@ class CampaignController extends Controller
     public function actionComment($id)
     {
         $comment = new Comment();
-        if($_SERVER["REQUEST_METHOD"]=="POST"){
-            if($_POST['comment']!=null){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if ($_POST['comment'] != null) {
 
                 $comment->comment_camp_id = $id;
                 $comment->comment_user_id = Yii::$app->user->identity->getId();
@@ -164,7 +168,7 @@ class CampaignController extends Controller
                 $comment->save(false);
                 return $this->redirect(['view', 'id' => $id]);
 
-            }else{
+            } else {
 
                 Yii::$app->session->setFlash('warning', 'Comment body cannot be empty.');
                 return $this->redirect(['view', 'id' => $id]);
@@ -183,20 +187,20 @@ class CampaignController extends Controller
      */
     public function actionView($id)
     {
-        $categories= Category::find()-> all();
-        $updates = Update::find()->where(['campaign_id'=>$id])->orderBy(['id' => SORT_DESC])->all();
-        $comments = Comment::find()->where(['comment_camp_id'=>$id])->orderBy(['comment_datetime'=>SORT_DESC])->all();
-        $backed = Fund::find()->where(['fund_c_id'=>$id])->sum('fund_amt');
-        $rewards = Reward::find()->where(['c_id'=>$id])->all();
-        $faqs = Faq::find()->where(['campaign_id'=>$id])->all();
+        $categories = Category::find()->all();
+        $updates = Update::find()->where(['campaign_id' => $id])->orderBy(['id' => SORT_DESC])->all();
+        $comments = Comment::find()->where(['comment_camp_id' => $id])->orderBy(['comment_datetime' => SORT_DESC])->all();
+        $backed = Fund::find()->where(['fund_c_id' => $id])->sum('fund_amt');
+        $rewards = Reward::find()->where(['c_id' => $id])->all();
+        $faqs = Faq::find()->where(['campaign_id' => $id])->all();
 
         $checkIfBacker = $this->checkIfBacker($id);
         $checkIfGuest = $this->checkIfGuest();
 
-        if($backed!=0){
-            $progress = ($backed/$this->findModel($id)->c_goal)*100;
-        }else
-            $progress=0;
+        if ($backed != 0) {
+            $progress = ($backed / $this->findModel($id)->c_goal) * 100;
+        } else
+            $progress = 0;
 
         return $this->render('view', [
             'model' => $this->findModel($id),
@@ -207,7 +211,7 @@ class CampaignController extends Controller
             'updates' => $updates,
             'rewards' => $rewards,
             'faqs' => $faqs,
-            'checkIfBacker'=> $checkIfBacker,
+            'checkIfBacker' => $checkIfBacker,
             'checkIfGuest' => $checkIfGuest,
         ]);
     }
@@ -218,91 +222,111 @@ class CampaignController extends Controller
      * @return mixed
      */
 
-      public function actionNew()
-      {
-          $newCampaign = new Campaign();
-          $categories = Category::find()->all();
-          $countries = Location::find()->all();
+    public function actionNew()
+    {
+        $newCampaign = new Campaign();
+        $categories = Category::find()->all();
+        $countries = Location::find()->all();
 
-          if($_SERVER["REQUEST_METHOD"]=="POST"){
-              $newCampaign->c_author= Yii::$app->user->identity->getId();
-              $newCampaign->c_cat_id=$_POST['cCategory'];
-              $newCampaign->c_description=$_POST['cDesc'];
-              $newCampaign->c_location=$_POST['cLocation'];
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $newCampaign->c_author = Yii::$app->user->identity->getId();
+            $newCampaign->c_cat_id = $_POST['cCategory'];
+            $newCampaign->c_description = $_POST['cDesc'];
+            $newCampaign->c_location = $_POST['cLocation'];
 
-              if($newCampaign->save(false)){
-                  return $this->redirect(['create', 'id'=>$newCampaign->c_id]);
-              }
-          }
+            if ($newCampaign->save(false)) {
+                return $this->redirect(['create', 'id' => $newCampaign->c_id]);
+            }
+        }
 
-          return $this->render('new',[
-              'categories' =>$categories,
-              'countries' => $countries,
-          ]);
-      }
+        return $this->render('new', [
+            'categories' => $categories,
+            'countries' => $countries,
+        ]);
+    }
+
+    public function actionCreate()
+    {
+        if($this->getWallet()){
+            return $this->redirect(['new']);
+        }
+
+        Yii::$app->session->setFlash('error', 'Kindly complete your wallet setup below, to proceed with campaign creation.');
+        return $this->redirect(['wallet/index']);
+    }
+
+    protected function getWallet()
+    {
+        $wallet = Wallet::find()->where(['userId' => Yii::$app->user->identity->getId()])->one();
+        if (!empty($wallet)) {
+            return true;
+        }
+
+        return false;
+    }
 
     /**
      * @param $id
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException
      */
-    public function actionCreate($id)
-    {
-        $model = $this->findModel($id);
-        $categories = Category::find()->where(['!=', 'id', $model->c_cat_id])->all();
-        $countries = Location::find()->where(['!=', 'id', $model->c_location])->all();
-        $reward = new Reward();
-
-        if($_SERVER["REQUEST_METHOD"]=="POST"){
-            $model->c_title=$_POST['cTitle'];
-            $model->c_cat_id=$_POST['cCategory'];
-
-            if(isset($_FILES['cImage']['name']) && $_FILES['cImage']['size'] > 0){
-                $uploaddir = '/web/images/uploads/campaign/';
-                $dirpath = realpath(dirname(getcwd())).$uploaddir;
-                $uploadfile = $dirpath . basename($_FILES['cImage']['name']);
-                $model->c_image = basename($_FILES['cImage']['name']);
-                move_uploaded_file($_FILES['cImage']['tmp_name'], $uploadfile);
-            }else {
-                $model->c_image = 'default.jpg';
-            }
-
-            $model->c_description=$_POST['cDesc'];
-            $model->c_start_date=$_POST['cStartdate'];
-            $model->c_end_date=$_POST['cEnddate'];
-            $model->c_goal=$_POST['cGoal'];
-            $model->c_video=$_POST['cVideo'];
-            $model->c_description_long=$_POST['cLDesc'];
-            $model->c_display_name=$_POST['cName'];
-            $model->c_email=$_POST['cEmail'];
-            $model->c_biography=$_POST['cBio'];
-            $model->c_location=$_POST['cLocation'];
-            $model->c_social_profile=$_POST['cProfile'];
-            if ($model->save()){
-
-                $number = count($_POST['rTitle']);
-                echo("<script>console.log('PHP: ".$number."');</script>");
-                    for ($i=0; $i<$number; $i++){
-                            $reward->c_id=$model->c_id;
-                            $reward->r_title=$_POST['rTitle'][$i];
-                        echo("<script>console.log('Get Reward hereN: ".$reward->r_title."');</script>");
-                            $reward->r_pledge_amt=$number;
-                            $reward->r_description=$_POST['rDesc'][$i];
-                            $reward->r_limit_availability=$_POST['rLimit'][$i];
-                            $reward->save(false);
-                    }
-
-
-                    return $this->redirect(['view', 'id'=>$model->c_id]);
-                }
-            }
-
-            return $this->render('create',[
-                'model' => $model,
-                'categories' =>$categories,
-                'countries' => $countries,
-            ]);
-        }
+//    public function actionCreate($id)
+//    {
+//        $model = $this->findModel($id);
+//        $categories = Category::find()->where(['!=', 'id', $model->c_cat_id])->all();
+//        $countries = Location::find()->where(['!=', 'id', $model->c_location])->all();
+//        $reward = new Reward();
+//
+//        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//            $model->c_title = $_POST['cTitle'];
+//            $model->c_cat_id = $_POST['cCategory'];
+//
+//            if (isset($_FILES['cImage']['name']) && $_FILES['cImage']['size'] > 0) {
+//                $uploaddir = '/web/images/uploads/campaign/';
+//                $dirpath = realpath(dirname(getcwd())) . $uploaddir;
+//                $uploadfile = $dirpath . basename($_FILES['cImage']['name']);
+//                $model->c_image = basename($_FILES['cImage']['name']);
+//                move_uploaded_file($_FILES['cImage']['tmp_name'], $uploadfile);
+//            } else {
+//                $model->c_image = 'default.jpg';
+//            }
+//
+//            $model->c_description = $_POST['cDesc'];
+//            $model->c_start_date = $_POST['cStartdate'];
+//            $model->c_end_date = $_POST['cEnddate'];
+//            $model->c_goal = $_POST['cGoal'];
+//            $model->c_video = $_POST['cVideo'];
+//            $model->c_description_long = $_POST['cLDesc'];
+//            $model->c_display_name = $_POST['cName'];
+//            $model->c_email = $_POST['cEmail'];
+//            $model->c_biography = $_POST['cBio'];
+//            $model->c_location = $_POST['cLocation'];
+//            $model->c_social_profile = $_POST['cProfile'];
+//            if ($model->save()) {
+//
+//                $number = count($_POST['rTitle']);
+//                echo("<script>console.log('PHP: " . $number . "');</script>");
+//                for ($i = 0; $i < $number; $i++) {
+//                    $reward->c_id = $model->c_id;
+//                    $reward->r_title = $_POST['rTitle'][$i];
+//                    echo("<script>console.log('Get Reward hereN: " . $reward->r_title . "');</script>");
+//                    $reward->r_pledge_amt = $number;
+//                    $reward->r_description = $_POST['rDesc'][$i];
+//                    $reward->r_limit_availability = $_POST['rLimit'][$i];
+//                    $reward->save(false);
+//                }
+//
+//
+//                return $this->redirect(['view', 'id' => $model->c_id]);
+//            }
+//        }
+//
+//        return $this->render('create', [
+//            'model' => $model,
+//            'categories' => $categories,
+//            'countries' => $countries,
+//        ]);
+//    }
 
     public function actionPreview($id)
     {
@@ -313,54 +337,53 @@ class CampaignController extends Controller
         $company = $this->findCompany($id);
         $token = $this->findToken($id);
 
-        if($_SERVER["REQUEST_METHOD"]=="POST"){
-            $model->c_title=$_POST['cTitle'];
-            $model->c_cat_id=$_POST['cCategory'];
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $model->c_title = $_POST['cTitle'];
+            $model->c_cat_id = $_POST['cCategory'];
 
-            if(isset($_FILES['cImage']['name']) && $_FILES['cImage']['size'] > 0){
+            if (isset($_FILES['cImage']['name']) && $_FILES['cImage']['size'] > 0) {
                 $uploaddir = '/web/images/uploads/campaign/';
-                $dirpath = realpath(dirname(getcwd())).$uploaddir;
+                $dirpath = realpath(dirname(getcwd())) . $uploaddir;
                 $uploadfile = $dirpath . basename($_FILES['cImage']['name']);
                 $model->c_image = basename($_FILES['cImage']['name']);
                 move_uploaded_file($_FILES['cImage']['tmp_name'], $uploadfile);
-            }else {
+            } else {
                 $model->c_image = 'default.jpg';
             }
 
-            $model->c_description=$_POST['cDesc'];
-            $model->c_start_date=$_POST['cStartdate'];
-            $model->c_end_date=$_POST['cEnddate'];
-            $model->c_goal=$_POST['cGoal'];
-            $model->c_video=$_POST['cVideo'];
-            $model->c_description_long=$_POST['cLDesc'];
-            $model->c_location=$_POST['cLocation'];
+            $model->c_description = $_POST['cDesc'];
+            $model->c_start_date = $_POST['cStartdate'];
+            $model->c_end_date = $_POST['cEnddate'];
+            $model->c_goal = $_POST['cGoal'];
+            $model->c_video = $_POST['cVideo'];
+            $model->c_description_long = $_POST['cLDesc'];
+            $model->c_location = $_POST['cLocation'];
 
-            if ($model->save(false)){
-                $company->campaign_id=$model->c_id;
-                $company->company_name=$_POST['comName'];
-                $company->company_reg_no=$_POST['comNo'];
-                $company->company_email=$_POST['comEmail'];
-                $company->company_website=$_POST['comWebsite'];
-                $company->company_description=$_POST['comDesc'];
-                $company->company_industry=$_POST['comIndustry'];
-                $company->company_employees_count=$_POST['comEmp'];
-                $company->company_postal=$_POST['comPostal'];
-                $company->company_designation=$_POST['comPosition'];
+            if ($model->save(false)) {
+                $company->campaign_id = $model->c_id;
+                $company->company_name = $_POST['comName'];
+                $company->company_reg_no = $_POST['comNo'];
+                $company->company_email = $_POST['comEmail'];
+                $company->company_website = $_POST['comWebsite'];
+                $company->company_description = $_POST['comDesc'];
+                $company->company_industry = $_POST['comIndustry'];
+                $company->company_employees_count = $_POST['comEmp'];
+                $company->company_postal = $_POST['comPostal'];
+                $company->company_designation = $_POST['comPosition'];
                 $company->save();
 
-                $token->c_id=$model->c_id;
-                $token->t_name=$_POST['tokenName'];
-                $token->t_value=$_POST['tokenValue'];
+                $token->c_id = $model->c_id;
+                $token->t_name = $_POST['tokenName'];
+                $token->t_value = $_POST['tokenValue'];
                 $token->save();
 
                 $number = count($_POST['amount']);
-                for ($i=0; $i<$number; $i++){
-                    $reward->c_id=$model->c_id;
-                    $reward->r_pledge_amt=$_POST['amount'][$i];
-                    //echo("<script>console.log('Get Reward hereN: ".$reward->r_title."');</script>");
-                    $reward->r_discount=$number;
-                    $reward->r_description=$_POST['rewardDesc'][$i];
-                    $reward->r_validity=$_POST['expiry'][$i];
+                for ($i = 0; $i < $number; $i++) {
+                    $reward->c_id = $model->c_id;
+                    $reward->r_pledge_amt = $_POST['amount'][$i];
+                    $reward->r_discount = $number;
+                    $reward->r_description = $_POST['rewardDesc'][$i];
+                    $reward->r_validity = $_POST['expiry'][$i];
                     $reward->r_id = NULL;
                     $reward->isNewRecord = TRUE;
                     $reward->save(true);
@@ -377,30 +400,30 @@ class CampaignController extends Controller
             ]);
         }
 
-        return $this->render('create',[
+        return $this->render('create', [
             'model' => $model,
-            'categories' =>$categories,
+            'categories' => $categories,
             'countries' => $countries,
         ]);
     }
 
-        /**
-         * Updates an existing Campaign model.
-         * If update is successful, the browser will be redirected to the 'view' page.
-         * @param integer $id
-         * @return mixed
-         * @throws NotFoundHttpException if the model cannot be found
-         */
+    /**
+     * Updates an existing Campaign model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
     public function actionEdit($id)
     {
         $model = $this->findModel($id);
         $categories = Category::find()->all();
-        $mandatoryReward = Reward::find()->where(['c_id'=>$id, 'r_mandatory'=>true])->one();
-        $rewards = Reward::find()->where(['c_id'=>$id, 'r_mandatory'=>false])->all();
+        $mandatoryReward = Reward::find()->where(['c_id' => $id, 'r_mandatory' => true])->one();
+        $rewards = Reward::find()->where(['c_id' => $id, 'r_mandatory' => false])->all();
         $company = $this->findCompany($id);
         $countries = Location::find()->all();
 
-        if($rewards != null){
+        if ($rewards != null) {
             return $this->render('edit', [
                 'model' => $model,
                 'mandatoryReward' => $mandatoryReward,
@@ -421,15 +444,15 @@ class CampaignController extends Controller
 
     public function actionPublished($id)
     {
-        if($this->checkStatus($id)){
+        if ($this->checkStatus($id)) {
 
             $model = $this->findModel($id);
             $categories = Category::find()->all();
-            $reward = Reward::find()->where(['c_id'=>$id])->one();
+            $reward = Reward::find()->where(['c_id' => $id])->one();
             $company = $this->findCompany($id);
             $countries = Location::find()->all();
 
-            return $this->render('updatepublished',[
+            return $this->render('updatepublished', [
                 'model' => $model,
                 'reward' => $reward,
                 'categories' => $categories,
@@ -442,73 +465,72 @@ class CampaignController extends Controller
         return $this->redirect('mycampaign');
     }
 
-   /*public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-        $categories = Category::find()->all();
-        $reward = Reward::find()->where(['c_id'=>$id])->one();
-        $company = $this->findCompany($id);
-        $countries = Location::find()->all();
+    /*public function actionUpdate($id)
+     {
+         $model = $this->findModel($id);
+         $categories = Category::find()->all();
+         $reward = Reward::find()->where(['c_id'=>$id])->one();
+         $company = $this->findCompany($id);
+         $countries = Location::find()->all();
 
-        return $this->render('update',[
-            'model' => $model,
-            'reward' => $reward,
-            'categories' => $categories,
-            'company' => $company,
-            'countries' => $countries,
-        ]);
-    }*/
-    
+         return $this->render('update',[
+             'model' => $model,
+             'reward' => $reward,
+             'categories' => $categories,
+             'company' => $company,
+             'countries' => $countries,
+         ]);
+     }*/
+
     public function actionShow($id)
     {        
         $model = Campaign::find()->where(['c_status' => 'published'])->all();
         $categories = Category::find()->all();
 
-        if($id!='NULL'){
-            
-            $model = Campaign::find()->where(['c_cat_id'=>$id])->all();
-            return $this->render('show',[
-            'model'=>$model,
-            'categories'=>$categories,
+        if ($id != 'NULL') {
+
+            $model = Campaign::find()->where(['c_cat_id' => $id])->all();
+            return $this->render('show', [
+                'model' => $model,
+                'categories' => $categories,
             ]);
-            
-        }else{
-            return $this->render('show',[
-                'model'=>$model,
-                'categories'=>$categories,
-                ]);
+
+        } else {
+            return $this->render('show', [
+                'model' => $model,
+                'categories' => $categories,
+            ]);
         }
     }
-    
+
     public function actionFund($id)
     {
-        $rewards = Reward::find()->where(['c_id'=>$id])->all();
+        $rewards = Reward::find()->where(['c_id' => $id])->all();
         $fund = new Fund();
 
-        if($_SERVER["REQUEST_METHOD"]=="POST"){
-            $fund->fund_c_id=$id;
-            $fund->fund_user_id=Yii::$app->user->identity->getId();
-            $fund->fund_amt=$_POST['reward'];
-            if ($fund->save(false)){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $fund->fund_c_id = $id;
+            $fund->fund_user_id = Yii::$app->user->identity->getId();
+            $fund->fund_amt = $_POST['reward'];
+            if ($fund->save(false)) {
                 return $this->redirect(['mycampaign']);
             }
         }
 
-        return $this->render('fund',[
-            'rewards'=>$rewards,
-            'c_id'=>$id,
+        return $this->render('fund', [
+            'rewards' => $rewards,
+            'c_id' => $id,
         ]);
     }
 
     public function actionMycampaign()
     {
-        $campaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId()])->all();
-        $draftedCampaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId()])->all();
-        $publishedCampaigns = Campaign::find()->where(['c_author'=>Yii::$app->user->identity->getId(),'c_status'=>'published'])->all();
+        $campaigns = Campaign::find()->where(['c_author' => Yii::$app->user->identity->getId()])->all();
+        $draftedCampaigns = Campaign::find()->where(['c_author' => Yii::$app->user->identity->getId()])->all();
+        $publishedCampaigns = Campaign::find()->where(['c_author' => Yii::$app->user->identity->getId(), 'c_status' => 'published'])->all();
+        $fund = Fund::find()->where(['fund_user_id' => Yii::$app->user->getId()])->all();
 
-        $fund = Fund::find()->where(['fund_user_id'=>Yii::$app->user->id])->all();
-
-        $cIds = Fund::find()->select(['fund_c_id'])->where(['fund_user_id'=>Yii::$app->user->id])->distinct();
+        $cIds = Fund::find()->select(['fund_c_id'])->where(['fund_user_id'=>Yii::$app->user->getId()])->distinct();
         $fundedCampaigns = Campaign::find()->where(['c_id'=>$cIds])->all();
 
         return $this->render('mycampaign',[
@@ -523,12 +545,12 @@ class CampaignController extends Controller
 
     public function actionUpdatepublished($id)
     {
-        $model= $this->findModel($id);
+        $model = $this->findModel($id);
         $categories = Category::find()->all();
         $company = $this->findCompany($id);
         $countries = Location::find()->all();
 
-        return $this->render('updatepublished',[
+        return $this->render('updatepublished', [
             'model' => $model,
             'categories' => $categories,
             'company' => $company,
@@ -538,23 +560,23 @@ class CampaignController extends Controller
 
     public function actionPostupdate($id)
     {
-        $model= $this->findModel($id);
-        $updates = Update::find()->where(['campaign_id'=>$id])->all();
+        $model = $this->findModel($id);
+        $updates = Update::find()->where(['campaign_id' => $id])->all();
         $imagesName = UpdateImage::find()->all();
         $newUpdate = new Update();
 
-        if($_SERVER["REQUEST_METHOD"]=="POST"){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-            $newUpdate->campaign_id=$id;
-            $newUpdate->title=$_POST['updateTitle'];
-            $newUpdate->content=$_POST['updateContent'];
-            $newUpdate->image_id=$_POST['uImage'];
+            $newUpdate->campaign_id = $id;
+            $newUpdate->title = $_POST['updateTitle'];
+            $newUpdate->content = $_POST['updateContent'];
+            $newUpdate->image_id = $_POST['uImage'];
             $newUpdate->save();
 
-            return $this->redirect(['view', 'id'=>$id]);
+            return $this->redirect(['view', 'id' => $id]);
         }
 
-        return $this->render('postupdate',[
+        return $this->render('postupdate', [
             'model' => $model,
             'updates' => $updates,
             'imagesName' => $imagesName,
@@ -563,22 +585,22 @@ class CampaignController extends Controller
 
     public function actionPostfaq($id)
     {
-        $model= $this->findModel($id);
-        $faqs = Faq::find()->where(['campaign_id'=>$id])->all();
+        $model = $this->findModel($id);
+        $faqs = Faq::find()->where(['campaign_id' => $id])->all();
         $newFaq = new Faq();
 
-        if($_SERVER["REQUEST_METHOD"]=="POST"){
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-            $newFaq->campaign_id=$id;
-            $newFaq->user_id=Yii::$app->user->id;
-            $newFaq->question=$_POST['faqQn'];
-            $newFaq->answer=$_POST['faqAns'];
+            $newFaq->campaign_id = $id;
+            $newFaq->user_id = Yii::$app->user->id;
+            $newFaq->question = $_POST['faqQn'];
+            $newFaq->answer = $_POST['faqAns'];
             $newFaq->save();
 
-            return $this->redirect(['view', 'id'=>$id]);
+            return $this->redirect(['view', 'id' => $id]);
         }
 
-        return $this->render('postfaq',[
+        return $this->render('postfaq', [
             'model' => $model,
             'faqs' => $faqs,
         ]);
@@ -596,10 +618,10 @@ class CampaignController extends Controller
         $authorId = $model->cAuthor->id;
         $campaigns = Campaign::find()->where(['c_author'=>$authorId,'c_status'=>'published'])->all();
 
-        $cIds = Fund::find()->select(['fund_c_id'])->where(['fund_user_id'=>$authorId])->distinct();
-        $fundedCampaigns = Campaign::find()->where(['c_id'=>$cIds])->all();
+        $cIds = Fund::find()->select(['fund_c_id'])->where(['fund_user_id' => $authorId])->distinct();
+        $fundedCampaigns = Campaign::find()->where(['c_id' => $cIds])->all();
 
-        return $this->render('myintroduction',[
+        return $this->render('myintroduction', [
             'campaigns' => $campaigns,
             'cIds' => $cIds,
             'fundedCampaigns' => $fundedCampaigns,
@@ -617,24 +639,24 @@ class CampaignController extends Controller
     public function actionDelete($id)
     {
         $campaign = $this->findModel($id);
-        if($campaign->c_status!='published'){
-        $user = new LoginForm();
-        if($_SERVER["REQUEST_METHOD"]=="POST"){
+        if ($campaign->c_status != 'published') {
+            $user = new LoginForm();
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-                $user->username=Yii::$app->user->getIdentity()->username;
-                $user->password=$_POST['password'];
-                if($user->login()){
+                $user->username = Yii::$app->user->getIdentity()->username;
+                $user->password = $_POST['password'];
+                if ($user->login()) {
 
-                    if($this->countRewards($id)>0){
+                    if ($this->countRewards($id) > 0) {
                         $this->deleteRewards($id);
                     }
-                    if($this->countComments($id)>0){
+                    if ($this->countComments($id) > 0) {
                         $this->deleteComments($id);
                     }
-                    if($this->countUpdates($id)>0){
+                    if ($this->countUpdates($id) > 0) {
                         $this->deleteUpdates($id);
                     }
-                    if($this->countfaqs($id)>0){
+                    if ($this->countfaqs($id) > 0) {
                         $this->deletefaqs($id);
                     }
 
@@ -643,19 +665,19 @@ class CampaignController extends Controller
 
                     Yii::$app->session->setFlash('success', 'You have deleted successfully your project!');
                     return $this->redirect('mycampaign');
-                }else{
+                } else {
                     Yii::$app->session->setFlash('warning', 'Invalid user login and unable to delete campaign.');
-                    return $this->render('delete',[
+                    return $this->render('delete', [
                         'campaign' => $campaign,
                     ]);
                 }
             }
-        }else{
+        } else {
             Yii::$app->session->setFlash('warning', 'Published campaign cannot be deleted.');
             return $this->redirect(['view']);
         }
-        return $this->render('delete',[
-           'campaign' => $campaign,
+        return $this->render('delete', [
+            'campaign' => $campaign,
         ]);
     }
 
@@ -676,7 +698,6 @@ class CampaignController extends Controller
         return $this->render('forgotpassword', [
             'model' => $model,
         ]);
-
 
 
         /*$emailUser->email=Yii::$app->user->getIdentity()->email;
@@ -733,7 +754,7 @@ class CampaignController extends Controller
 
     protected function findReward($id)
     {
-        if(($rewards = Reward::find()->where(['c_id'=>$id])->all()) !=null){
+        if (($rewards = Reward::find()->where(['c_id' => $id])->all()) != null) {
             return $rewards;
         }
 
@@ -742,7 +763,7 @@ class CampaignController extends Controller
 
     protected function findCompany($id)
     {
-        if (($company = Company::find()->where(['campaign_id'=>$id])->one()) !== null){
+        if (($company = Company::find()->where(['campaign_id' => $id])->one()) !== null) {
             return $company;
         }
 
@@ -751,7 +772,7 @@ class CampaignController extends Controller
 
     protected function findToken($id)
     {
-        if (($token = Token::find()->where(['c_id'=>$id])->one()) !== null){
+        if (($token = Token::find()->where(['c_id' => $id])->one()) !== null) {
             return $token;
         }
 
@@ -760,8 +781,8 @@ class CampaignController extends Controller
 
     protected function checkStatus($id)
     {
-        $campaign = Campaign::find()->where(['c_id'=>$id])->one();
-        if($campaign->c_status=='published'){
+        $campaign = Campaign::find()->where(['c_id' => $id])->one();
+        if ($campaign->c_status == 'published') {
             return true;
         }
         return false;
@@ -769,15 +790,15 @@ class CampaignController extends Controller
 
     protected function countRewards($id)
     {
-        $count = Reward::find()->where(['c_id'=>$id])->count();
+        $count = Reward::find()->where(['c_id' => $id])->count();
         return $count;
     }
 
     protected function deleteRewards($id)
     {
-        $rewards = Reward::find()->where(['c_id'=>$id])->all();
-        if(!empty($rewards)){
-            foreach ($rewards as $reward){
+        $rewards = Reward::find()->where(['c_id' => $id])->all();
+        if (!empty($rewards)) {
+            foreach ($rewards as $reward) {
                 $reward->delete();
                 return true;
             }
@@ -787,15 +808,15 @@ class CampaignController extends Controller
 
     protected function countComments($id)
     {
-        $count = Comment::find()->where(['comment_camp_id'=>$id])->count();
+        $count = Comment::find()->where(['comment_camp_id' => $id])->count();
         return $count;
     }
 
     protected function deleteComments($id)
     {
-        $comments = Comment::find()->where(['comment_camp_id'=>$id])->all();
-        if(!empty($comments)){
-            foreach ($comments as $comment){
+        $comments = Comment::find()->where(['comment_camp_id' => $id])->all();
+        if (!empty($comments)) {
+            foreach ($comments as $comment) {
                 $comment->delete();
                 return true;
             }
@@ -805,15 +826,15 @@ class CampaignController extends Controller
 
     protected function countUpdates($id)
     {
-        $count = Update::find()->where(['campaign_id'=>$id])->count();
+        $count = Update::find()->where(['campaign_id' => $id])->count();
         return $count;
     }
 
     protected function deleteUpdates($id)
     {
-        $updates = Update::find()->where(['campaign_id'=>$id])->all();
-        if(!empty($updates)){
-            foreach ($updates as $update){
+        $updates = Update::find()->where(['campaign_id' => $id])->all();
+        if (!empty($updates)) {
+            foreach ($updates as $update) {
                 $update->delete();
                 return true;
             }
@@ -823,32 +844,32 @@ class CampaignController extends Controller
 
     protected function countfaqs($id)
     {
-        $count = Faq::find()->where(['campaign_id'=>$id])->count();
+        $count = Faq::find()->where(['campaign_id' => $id])->count();
         return $count;
     }
 
     protected function deleteFaqs($id)
     {
-        $faqs = Update::find()->where(['campaign_id'=>$id])->all();
-        foreach ($faqs as $faq){
+        $faqs = Update::find()->where(['campaign_id' => $id])->all();
+        foreach ($faqs as $faq) {
             $faq->delete();
             return true;
         }
         return false;
     }
-  
+
     protected function deleteCompany($id)
     {
-        $company = Company::find()->where(['campaign_id'=>$id])->one();
-        if(!empty($company)){
+        $company = Company::find()->where(['campaign_id' => $id])->one();
+        if (!empty($company)) {
             $company->delete();
         }
     }
 
     protected function checkIfBacker($id)
     {
-        $fund = Fund::find()->where(['fund_c_id'=> $id, 'fund_user_id'=>Yii::$app->user->id])->all();
-        if(!empty($fund)){
+        $fund = Fund::find()->where(['fund_c_id' => $id, 'fund_user_id' => Yii::$app->user->id])->all();
+        if (!empty($fund)) {
             return true;
         }
         return false;
@@ -856,7 +877,7 @@ class CampaignController extends Controller
 
     protected function checkIfGuest()
     {
-        if(Yii::$app->user->isGuest){
+        if (Yii::$app->user->isGuest) {
             return true;
         }
         return false;
