@@ -141,7 +141,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     ?>
                                                     <div style="margin-left: 5%;margin-top: 3%;width: 300px;height: 400px;display: inline-block;border: 1px solid #d8d8d8">
                                                         <div>
-                                                            <?= Html::img('@web/images/uploads/' . $fundCampaign->c_image) ?>
+                                                            <?= Html::img('@web/images/uploads/campaign/' . $fundCampaign->c_image) ?>
                                                             <br /><br />
                                                             <?= Html::a($fundCampaign->c_title,['campaign/view', 'id' => $fundCampaign->c_id],['target' => '_blank','style' => 'margin-left: 5%;padding-top:4%;font-size: 20px;font-weight: 300;color:#484848']) ?>
                                                             <br /><br/>
