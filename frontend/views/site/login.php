@@ -45,9 +45,20 @@ frontend\assets\LoginAsset::register($this);
                 </fieldset>
                 <br />
 
-                <?= yii\authclient\widgets\AuthChoice::widget([
-                    'baseAuthUrl' => ['site/auth']
-                ]) ?>
+                <div>
+                    <?= yii\authclient\widgets\AuthChoice::widget([
+                        'baseAuthUrl' => ['site/auth'],
+                    ]) ?>
+                    <?php /*use yii\authclient\widgets\AuthChoice; */?><!--
+                    <?php /*$authAuthChoice = AuthChoice::begin(['baseAuthUrl' => ['site/auth'], 'autoRender' => false]); */?>
+                    <ul>
+                        <?php /*foreach ($authAuthChoice->getClients() as $client): */?>
+                            <li><?/*= Html::a( 'Log in with '. $client->title, ['site/auth', 'authclient'=> $client->name, ], ['class' => "btn btn-block btn-default $client->name "]) */?></li>
+                        <?php /*endforeach; */?>
+                    </ul>
+                    --><?php /*AuthChoice::end(); */?>
+                </div>
+
                 <p class="notice-facebook">We'll never post anything on Facebook without your permission.</p>
 
                 <hr />

@@ -530,10 +530,10 @@ class CampaignController extends Controller
         $publishedCampaigns = Campaign::find()->where(['c_author' => Yii::$app->user->identity->getId(), 'c_status' => 'published'])->all();
         $fund = Fund::find()->where(['fund_user_id' => Yii::$app->user->getId()])->all();
 
-        $cIds = Fund::find()->select(['fund_c_id'])->where(['fund_user_id' => Yii::$app->user->getId()])->distinct();
-        $fundedCampaigns = Campaign::find()->where(['c_id' => $cIds])->all();
+        $cIds = Fund::find()->select(['fund_c_id'])->where(['fund_user_id'=>Yii::$app->user->getId()])->distinct();
+        $fundedCampaigns = Campaign::find()->where(['c_id'=>$cIds])->all();
 
-        return $this->render('mycampaign', [
+        return $this->render('mycampaign',[
             'campaigns' => $campaigns,
             'draftedCampaigns' => $draftedCampaigns,
             'publishedCampaigns' => $publishedCampaigns,
