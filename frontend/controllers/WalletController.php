@@ -86,9 +86,35 @@ class WalletController extends \yii\web\Controller
             $wallet->save(false);
 
             $response = $this->createAccount($wallet->brainKey, $wallet->accname);
-            return $this->render('mywallet');
+            if(!empty($response['result'])){
+                $transferRpc = $this->transferAmt($wallet->accname);
+                $balanceRpc = $this->listAccBalance($wallet->accname);
+
+                return $this->render('mywallet',[
+                    'response' => $balanceRpc->amount,
+                ]);
+            }
         }
         return $this->redirect(['index']);
+    }
+
+    protected function listAccBalance($accName)
+    {
+        $rpc = new jsonRPCClient('http://192.168.1.138:8092/rpc', true);
+        $rpc->setRPCNotification(true);
+        $response = $rpc->__call("list_account_balances", [$accName]);
+
+        return $response['result'];
+    }
+
+    protected function transferAmt($accName)
+    {
+        $rpc = new jsonRPCClient('http://192.168.1.138:8092/rpc', true);
+        $rpc->setRPCNotification(true);
+        $response = $rpc->__call("transfer", ["kiru",$accName,"5000","BTS","", true]);
+        $response = $response['result'];
+
+        return $response;
     }
 
     protected function createBrainKey()
@@ -111,15 +137,13 @@ class WalletController extends \yii\web\Controller
 
     public function actionMywallet()
     {
-        $this->getBalance();
-        return $this->render('mywallet');
-    }
+        $wallet = Wallet::find()->where(['userId' => \Yii::$app->user->id])->one();
+        $response = $this->listAccBalance($wallet->accname);
+        $response1 = $response['']['amount'];
 
-    protected function getBalance()
-    {
-        $rpc = new jsonRPCClient('http://192.168.1.138:8092/rpc', true);
-        $rpc->setRPCNotification(true);
-        $response = $rpc->__call("list_account_balances", [$brain_priv_key, $accname, "kiru", "kiru", true]);
+        return $this->render('mywallet',[
+            'response' => $response1,
+        ]);
     }
 
     protected function getWallet()

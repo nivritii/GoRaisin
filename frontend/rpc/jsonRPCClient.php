@@ -158,7 +158,7 @@ class jsonRPCClient {
             if (!is_null($response['error'])) {
                 throw new Exception('Request error: '.$response['error']);
             }
-            return $response['result'];
+            return $response;
         } else {
             //return true;
             return $response;
