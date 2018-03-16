@@ -192,7 +192,7 @@ class Campaign extends \yii\db\ActiveRecord
             ->setFrom([Yii::$app->params['supportEmail'] => 'GoRaisin'])
             ->setTo($this->cAuthor->email)
             ->setSubject('Campaign is sent to moderation!')
-            ->setHtmlBody('Dear '.$this->cAuthor->username.', <br /> Your campaign '.$this->c_title.' has been sent to moderate! Please wait for our review patiently.')
+            ->setHtmlBody('Dear '.$this->cAuthor->username.', <br /><br /> Your campaign '.$this->c_title.' has been sent to moderate! Please wait for our review patiently.')
             ->send();
     }
 }
