@@ -51,7 +51,7 @@ $campaign_draft = new Campaign();
                         <div style="width: 100%;">
                             <div style="display: inline-block;float: left;margin-left: 2%;width: 100%;margin-bottom: 20px">
                                 <p><b>What's the question?</b></p>
-                                <textarea rows="2" type="text" style="width: 100%" name="faqQn" id="faqQn"></textarea>
+                                <textarea rows="2" type="text" style="width: 100%" name="faqQn" id="faqQn" value=""></textarea>
                             </div>
                         </div>
                         <div style="width: 100%;">
