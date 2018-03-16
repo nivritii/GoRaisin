@@ -182,7 +182,7 @@ class Campaign extends \yii\db\ActiveRecord
                 ->setFrom([Yii::$app->params['supportEmail'] => 'GoRaisin'])
                 ->setTo($this->cAuthor->email)
                 ->setSubject('Your Campaign is now published!')
-                ->setHtmlBody('Dear '.$this->cAuthor->username.', <br /> Your campaign '.$this->c_title.' has been reviewed and now it is published!.')
+                ->setHtmlBody('Dear '.$this->cAuthor->username.', <br /><br /> Your campaign '.$this->c_title.' has been reviewed and now it is published!.')
                 ->send();
         }else{
             return null;
