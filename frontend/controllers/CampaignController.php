@@ -110,8 +110,9 @@ class CampaignController extends Controller
     {
         $reviewCampaign = $this->findModel($id);
         $reviewCampaign->c_status='moderation';
-        $reviewCampaign->save();
         $reviewCampaign->sendReviewEmail();
+        $reviewCampaign->save(false);
+
         return $this->redirect(['view', 'id' => $reviewCampaign->c_id]);
 
     }
