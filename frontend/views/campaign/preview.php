@@ -147,54 +147,44 @@ frontend\assets\RoadmapAsset::register($this);
                         <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:0%; background-color:#8f13a5f0;color: black;">0%
                         </div>
                     </div>
-                    <h3 style="margin-top:25px; margin-bottom:0px;">0</h3>
-                    <h3 class="title-price" style="margin-top:0px;"><small>pledged of U$S<?=$model->c_goal?> goal</small></h3>
+                    <!--<h3 style="margin-top:25px; margin-bottom:0px;">0</h3>
+                    <h3 class="title-price" style="margin-top:0px;"><small>pledged of U$S<?/*=$model->c_goal*/?> goal</small></h3>-->
+                    <?php
+                    if($model->c_goal != 0) {
+                        ?>
+                        <h3 class="title-price" style="margin-top:0px;">
+                            <small>pledged of U$S<?= $model->c_goal ?> goal</small>
+                        </h3>
+                        <?php
+                    }else{
+                        ?>
+                        <h3 class="title-price" style="margin-top:0px;">
+                            <small>pledged of U$S N.A goal</small>
+                        </h3>
+                    <?php }?>
 
                     <h3 style="margin-top:25px; margin-bottom:0px;">0</h3>
                     <h3 class="title-price" style="margin-top:0px;"><small>backers</small></h3>
 
                     <?php
                     $currectDate = date('Y-m-d');
-                    $diff = strtotime($model->c_end_date) - strtotime($currectDate);
-                    $days = ceil($diff/86400);
+                    if($model->c_start_date == null || $model->c_end_date == null){
+                        $days = 'N.A';
+                    }else{
+                        $diff = strtotime($model->c_end_date) - strtotime($currectDate);
+                        $days = ceil($diff/86400);
+                    }
                     ?>
                     <h3 style="margin-top:25px; margin-bottom:0px;" id="endDate"><?php echo $days;?></h3>
                     <h3 class="title-price" style="margin-top:0px;"><small>days to go</small></h3>
-
-                    <?php if (Yii::$app->user->isGuest || Yii::$app->user->identity->id != $model->c_author) { ?>
-                    <div class="section" style="margin-top:25px; padding-bottom:20px;">
-                        <a href="<?= Url::to(['campaign/fund','id'=>$model->c_id])?>">
-                            <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-gift" aria-hidden="true"></span>Fund this Campaign</h4></button>
-                        </a>
-                    </div>
-                    <?php }elseif(Yii::$app->user->id == $model->c_author && $model->c_status == 'publish') { ?>
-                    <div class="section" style="margin-top:25px; padding-bottom:20px;">
-                        <a href="<?= Url::to(['campaign/edit','id'=>$model->c_id])?>">
-                            <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</button>
-                        </a>
-                    </div>
-                    <?php }elseif (Yii::$app->user->id == $model->c_author && $model->c_status == 'draft'){ ?>
                         <a href="<?= Url::to(['campaign/edit','id'=>$model->c_id])?>">
                             <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</button>
                         </a>
                         <br /><br />
-
                         <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>" style="text-decoration: none">
                             <?= Html::submitButton('Submit for Review',['class' => 'btn btn-info btn-lg','value' => 'moderation','name' => 'moderation','style' => 'border-radius: 10px; width:100%']) ?>
                         </a>
                         <br /><br />
-                        <!--<a href="<?/*= Url::to(['campaign/delete','id'=>$model->c_id])*/?>">
-                            <p><span class="glyphicon glyphicon-trash"></span> Delete Project</p>
-                        </a>-->
-                    <?php }elseif (Yii::$app->user->id == $model->c_author && $model->c_status == 'moderation') { ?>
-                        <a href="<?= Url::to(['campaign/view','id'=>$model->c_id])?>">
-                            <button disabled class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Under Review</h4></button>
-                        </a>
-                        <br /><br />
-                        <!--<a href="<?/*= Url::to(['campaign/delete','id'=>$model->c_id])*/?>">
-                            <p><span class="glyphicon glyphicon-trash"></span> Delete Project</p>
-                        </a>-->
-                    <?php } ?>
                     <div class="section" style="padding-bottom:20px;">
                         <h6><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> All or nothing. This project will only be funded if it reaches its goal by <?=$model->c_end_date?>.</h6>
                     </div>
