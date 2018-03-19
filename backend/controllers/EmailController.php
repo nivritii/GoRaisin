@@ -145,7 +145,10 @@ class EmailController extends Controller
             $command = $query->createCommand();
             $enderecos = $command->queryAll();
 
-            $value = Yii::$app->mailer->compose('mailTemplate')
+            $value = Yii::$app->mailer->compose(
+                ['html' => 'mailTemplate-html','text' => 'mailTemplate-text'],
+                ['content' => $model->content]
+            )
                 ->setFrom(['cherry@webpuppies.com.sg' => 'GoRaisin'])
                 ->setTo($model->receiver_address)
                 ->setSubject($model->subject)

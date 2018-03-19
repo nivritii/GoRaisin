@@ -27,7 +27,7 @@ $model = new Email();
 
 <div style="margin-left: 30%;width: 40%; background-color: #ffffff">
     <p style="font-size: 17px;padding: 5%; line-height: 25px">
-        <?php echo $model->content ?>
+        <?= $content ?>
     </p>
 </div>
 <br /><br />
