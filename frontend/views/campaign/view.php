@@ -182,7 +182,7 @@ frontend\assets\RoadmapAsset::register($this);
                             </a>
                         </div>
                     <?php }elseif (Yii::$app->user->id == $model->c_author && $model->c_status == 'draft'){ ?>
-                        <a href="<?= Url::to(['campaign/update','id'=>$model->c_id])?>">
+                        <a href="<?= Url::to(['campaign/edit','id'=>$model->c_id])?>">
                             <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white;border-radius: 10px"><h4><span style="margin-right:15px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</h4></button>
                         </a>
                         <br /><br />

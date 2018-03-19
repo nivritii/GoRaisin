@@ -32,7 +32,7 @@ $campaign_draft = new Campaign();
             <div class="col-md-2 bhoechie-tab-menu">
                 <div class="list-group">
                     <a href="#" class="list-group-item active text-center">
-                        <h4 class="glyphicon glyphicon-tower"></h4><br/>Assests
+                        <h4 class="glyphicon glyphicon-tower"></h4><br/>Balance
                     </a>
                     <a href="#" class="list-group-item text-center">
                         <h4 class="glyphicon glyphicon-folder-open"></h4><br/>Portfolio
@@ -47,23 +47,15 @@ $campaign_draft = new Campaign();
                 <div class="bhoechie-tab-content active">
                     <form class="postFAQ" enctype="multipart/form-data" action="postfaq?id="
                           method="post" id="postFAQ" name="postFAQ">
-                        <h1 class="tabpage-title" style="margin-bottom: 20px; text-align: center">New FAQ</h1>
+                        <h1 class="tabpage-title" style="margin-bottom: 20px; text-align: center">Balance Details</h1>
+                        <hr style="no-line">
                         <div style="width: 100%;">
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 100%;margin-bottom: 20px">
-                                <p><b>What's the question?</b></p>
-                                <textarea rows="2" type="text" style="width: 100%" name="faqQn" id="faqQn" value=""></textarea>
+                            <div style="float: left;display: inline-block;width: 20%">
+                                <p class="item-title">Raisin</p>
                             </div>
-                        </div>
-                        <div style="width: 100%;">
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 100%; margin-bottom: 20px">
-                                <p><b>What's the answer?</b></p>
-                                <textarea rows="6" type="text" style="width: 100%" name="faqAns" id="faqAns"
-                                          value="<?=$amount?>"></textarea>
+                            <div style="display: inline-block;float: left;margin-left: 2%;width: 75%">
+                                <input type="text" style="width: 100%" name="cTitle" id="cTitle" value="<?=$amount?>">
                             </div>
-                        </div>
-                        <div style="clear:both; text-align: center; margin-bottom: 20px">
-                            <input onclick="validate()" class="btn btn-md btn-info" type="submit" value="Save"
-                                   style="border: 0;width: 35%">
                         </div>
                 </div>
                 <!-- train section -->

@@ -22,7 +22,8 @@ $campaign_draft = new Campaign();
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-<form class="createCampaign" enctype="multipart/form-data" action="preview?id=<?=$model->c_id?>" method="post" id="tab_logic"
+<form class="createCampaign" enctype="multipart/form-data" action="preview?id=<?= $model->c_id ?>" method="post"
+      id="tab_logic"
       name="campaignForm">
     <div class="container" style="margin-top: 10px">
         <div class="row form-group">
@@ -62,9 +63,11 @@ $campaign_draft = new Campaign();
             </div>
             <div>
                 <div class="col-xs-3" style="padding-left: 0px; ">
-                    <input class="btn btn-lg btn-default" type="submit" value="Preview" id="submit" style="width:130px;padding: 25px 20px 20px; margin-left: 3%; color: #337ab7;">
-                    <a href="<?= Url::to(['campaign/review','id'=>$model->c_id],['style' => 'background-color: #8f13a5f0'])?>">
-                        <input class="btn btn-lg btn-default" value="Submit" style="width:130px; padding: 25px 20px 20px; margin-left: 1%; background-color: #8f13a5f0;color: #ffffff">
+                    <input class="btn btn-lg btn-default" type="submit" value="Preview" id="submit"
+                           style="width:130px;padding: 25px 20px 20px; margin-left: 3%; color: #337ab7;">
+                    <a href="<?= Url::to(['campaign/review', 'id' => $model->c_id], ['style' => 'background-color: #8f13a5f0']) ?>">
+                        <input class="btn btn-lg btn-default" value="Submit"
+                               style="width:130px; padding: 25px 20px 20px; margin-left: 1%; background-color: #8f13a5f0;color: #ffffff">
                     </a>
                 </div>
             </div>
@@ -192,7 +195,8 @@ $campaign_draft = new Campaign();
                                 </div>
                             </div>
                             <hr>
-                            <input onclick="step1Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                            <input onclick="step1Next()" class="btn btn-md btn-info" value="Next"
+                                   style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
 
                         </div>
                     </div>
@@ -219,9 +223,19 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Campaign video</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                    <input type="text" style="width: 100%" name="cVideo" id="youtubeId" data-target="#myIframe" value="<?=$model->c_video?>">
-                                    <p align="left">Please upload your video to YouTube and paste video id (11 characters) here. Projects with a video have a much higher chance of success.</p>
-                                    <p style="font-weight: 600;display: inline-block;">Example:&nbsp</p><p style="font-weight: 400;display: inline-block">https://www.youtube.com/watch?v=</p><p style="display: inline-block;font-weight: 600">yNAsk4Zw2p0</p><p style="display: inline-block">.</p><p style="display: inline-block">&nbspVideo ID: </p><p style="display: inline-block;font-weight: 600">&nbsp;yNAsk4Zw2p0</p><p style="display: inline-block">&nbsp;.</p>
+                                    <input type="text" style="width: 100%" name="cVideo" id="youtubeId"
+                                           data-target="#myIframe" value="<?= $model->c_video ?>">
+                                    <p align="left">Please upload your video to YouTube and paste video id (11
+                                        characters) here. Projects with a video have a much higher chance of
+                                        success.</p>
+                                    <p style="font-weight: 600;display: inline-block;">Example:&nbsp</p>
+                                    <p style="font-weight: 400;display: inline-block">
+                                        https://www.youtube.com/watch?v=</p>
+                                    <p style="display: inline-block;font-weight: 600">yNAsk4Zw2p0</p>
+                                    <p style="display: inline-block">.</p>
+                                    <p style="display: inline-block">&nbspVideo ID: </p>
+                                    <p style="display: inline-block;font-weight: 600">&nbsp;yNAsk4Zw2p0</p>
+                                    <p style="display: inline-block">&nbsp;.</p>
                                     <div id="info" style="font-weight: 500;font-size: 15px"></div>
                                     <iframe id="myIframe" width="600" height="300" hidden></iframe>
                                 </div>
@@ -248,8 +262,10 @@ $campaign_draft = new Campaign();
                 </div>
                 <!--</form> -->
 
-                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-                <input onclick="step2Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
+                       style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                <input onclick="step2Next()" class="btn btn-md btn-info" value="Next"
+                       style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
 
             </div>
         </div>
@@ -411,7 +427,8 @@ $campaign_draft = new Campaign();
                                                 class="glyphicon glyphicon-transfer" style="padding: 7% 0 0;"></span>
                                     </div>
                                     <div style="display: inline-block;width: 60%;float: right">
-                                        <input type="text" name="tokenValue" id="tokenValue" style="width: 100%; float: right">
+                                        <input type="text" name="tokenValue" id="tokenValue"
+                                               style="width: 100%; float: right">
                                     </div>
                                     <p align="left">Please provide how many of your tokens equivalent to 1 Rasin.</p>
                                 </div>
@@ -423,123 +440,142 @@ $campaign_draft = new Campaign();
                                 <div style="display: inline-block;float: left; margin-left: 2%; width: 50%">
                                     <div style="display: inline-block;width: 100%;float: right">
                                         <input type="text" style="width: 100%;float: left" name="cGoal" id="cGoal">
-                                        <p align="left">Please provide the amount you are targeting to raise <b>in SGD</b>.</p>
+                                        <p align="left">Please provide the amount you are targeting to raise <b>in
+                                                SGD</b>.</p>
                                     </div>
                                 </div>
                             </div>
                             <hr>
-                            <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-                            <input onclick="step4Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                            <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
+                                   style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                            <input onclick="step4Next()" class="btn btn-md btn-info" value="Next"
+                                   style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
                         </div>
                     </div>
                 </div>
                 <!--</form> -->
-<!--</form>-->
-</div>
-</div>
-</div>
-<!--<div class="container">-->
-<div class="row setup-content" id="step-5">
-    <div class="col-xs-12 text-center">
-        <div class="col-md-12 well text-center">
-            <h1 class="tabpage-title">Perks</h1>
-            <p class="tabpage">Please provide the discounts that backers would get for the amounts they pledge.</p>
-        </div>
-        <!--<form>-->
-
-        <!--</form> -->
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="col-sm-3 nopadding">
-                    <div class="form-group">
-                        <p style="float: left">For the stated amount pledged & more</p>
-                        <input type="text" class="form-control" id="amount" name="amount[]" value="<?=$mandatoryReward->r_pledge_amt?>" placeholder="Amount pledged">
-                    </div>
-                </div>
-                <div class="col-sm-3 nopadding">
-                    <div class="form-group">
-                        <p style="float: left">% of discount given</p>
-                        <select class="form-control" id="discount" name="discount[]">
-                            <option value=""><?=$mandatoryReward->r_discount?></option>
-                            <option value="5">5%</option>
-                            <option value="10">10%</option>
-                            <option value="15">15%</option>
-                            <option value="20">20%</option>
-                            <option value="25">25%</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-sm-3 nopadding">
-                    <div class="form-group">
-                        <p style="float: left"># of months it is valid after launch</p>
-                        <input type="text" class="form-control" id="expiry" name="expiry[]" value="<?=$mandatoryReward->r_validity?>" placeholder="Validity">
-                    </div>
-                </div>
-                <div class="col-sm-3 nopadding">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <p style="float: left">Conditions/Description</p>
-                            <input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="<?=$mandatoryReward->r_description?>" placeholder="Conditions/Description">
-                            <div class="input-group-btn" style="vertical-align: bottom;">
-                                <button class="btn btn-success" type="button"  onclick="add_rewards();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="clear"></div>
-                <?php foreach ($rewards as $reward) {?>
-                <div class="col-sm-3 nopadding">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="amount" name="amount[]" value="<?=$reward->r_pledge_amt?>" placeholder="Amount pledged">
-                    </div>
-                </div>
-                <div class="col-sm-3 nopadding">
-                    <div class="form-group">
-                        <select class="form-control" id="discount" name="discount[]">
-                            <option value=""><?=$reward->r_discount?></option>
-                            <option value="5">5%</option>
-                            <option value="10">10%</option>
-                            <option value="15">15%</option>
-                            <option value="20">20%</option>
-                            <option value="25">25%</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-sm-3 nopadding">
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="expiry" name="expiry[]" value="<?=$reward->r_validity?>" placeholder="Validity">
-                    </div>
-                </div>
-                <div class="col-sm-3 nopadding">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="<?=$reward->r_description?>" placeholder="Conditions/Description">
-                            <div class="input-group-btn" style="vertical-align: bottom;">
-                                <button class="btn btn-danger" type="button"  onclick="remove_add_rewards();"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                    <div class="clear"></div>
-                <?php }?>
-                <div class="clear"></div>
-                <div id="add_rewards">
-
-                </div>
+                <!--</form>-->
             </div>
-
-        </div>
-
-        <div class="panel-footer"><small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another reward</small>, <small>Press <span class="glyphicon glyphicon-minus gs"></span> to remove rewards</small>
-        </div>
-        <hr/>
-        <div style="clear:both;padding-bottom: 30px">
-            <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
         </div>
     </div>
-</div>
-</div>
-<!--</div>-->
+    <!--<div class="container">-->
+    <div class="row setup-content" id="step-5">
+        <div class="col-xs-12 text-center">
+            <div class="col-md-12 well text-center">
+                <h1 class="tabpage-title">Perks</h1>
+                <p class="tabpage">Please provide the discounts that backers would get for the amounts they pledge.</p>
+            </div>
+            <!--<form>-->
+
+            <!--</form> -->
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="col-sm-3 nopadding">
+                        <div class="form-group">
+                            <p style="float: left">For the stated amount pledged & more</p>
+                            <input type="text" class="form-control" id="amount" name="amount[]"
+                                   value="<?= $mandatoryReward->r_pledge_amt ?>" placeholder="Amount pledged">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 nopadding">
+                        <div class="form-group">
+                            <p style="float: left">% of discount given</p>
+                            <select class="form-control" id="discount" name="discount[]">
+                                <option value=""><?= $mandatoryReward->r_discount ?></option>
+                                <option value="5">5%</option>
+                                <option value="10">10%</option>
+                                <option value="15">15%</option>
+                                <option value="20">20%</option>
+                                <option value="25">25%</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 nopadding">
+                        <div class="form-group">
+                            <p style="float: left"># of months it is valid after launch</p>
+                            <input type="text" class="form-control" id="expiry" name="expiry[]"
+                                   value="<?= $mandatoryReward->r_validity ?>" placeholder="Validity">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 nopadding">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <p style="float: left">Conditions/Description</p>
+                                <input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]"
+                                       value="<?= $mandatoryReward->r_description ?>"
+                                       placeholder="Conditions/Description">
+                                <div class="input-group-btn" style="vertical-align: bottom;">
+                                    <button class="btn btn-success" type="button" onclick="add_rewards();"><span
+                                                class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <?php $room = 2;
+                    foreach ($this->params['rewards'] as $reward) { ?>
+                        <div class="form-group removeclass<?= $room ?>">
+                            <div class="col-sm-3 nopadding">
+                                <input type="text" class="form-control" id="amount" name="amount[]" value="<?=$reward->r_pledge_amt?>"
+                                       placeholder="Amount pledged">
+                            </div>
+                            <div class="col-sm-3 nopadding">
+                                <div class="form-group">
+                                        <select class="form-control" id="discount"
+                                                                    name="discount[]">
+                                            <option value="<?=$reward->r_discount?>"><?=$reward->r_discount?>%</option>
+                                            <option value="2015">5%</option>
+                                            <option value="2016">10%</option>
+                                            <option value="2017">15%</option>
+                                            <option value="2018">20%</option>
+                                        </select></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3 nopadding">
+                                <div class="form-group"><input type="text" class="form-control" id="expiry"
+                                                               name="expiry[]"
+                                                               value="<?=$reward->r_validity?>" placeholder="Validity"></div>
+                            </div>
+                            <div class="col-sm-3 nopadding">
+                                <div class="form-group">
+                                    <div class="input-group"><input type="text" class="form-control" id="rewardDesc"
+                                                                    name="rewardDesc[]" value="<?=$reward->r_description?>"
+                                                                    placeholder="Reward Description">
+                                        <div class="input-group-btn">
+                                            <button class="btn btn-danger" type="button"
+                                                    onclick="remove_add_rewards(<?=$room?>);"><span
+                                                        class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <?php $room++;
+                    } ?>
+                    <div class="clear"></div>
+                    <div id="add_rewards">
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="panel-footer">
+                <small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another reward</small>
+                ,
+                <small>Press <span class="glyphicon glyphicon-minus gs"></span> to remove rewards</small>
+            </div>
+            <hr/>
+            <div style="clear:both;padding-bottom: 30px">
+                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
+                       style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+            </div>
+        </div>
+    </div>
+    </div>
+    <!--</div>-->
 </form>
 
 
@@ -591,18 +627,16 @@ $campaign_draft = new Campaign();
         });
         $('#navStep1').click();
 
-        $( "#youtubeId" ).click(function() {
+        $("#youtubeId").click(function () {
 
             var target_selector = $(this).attr('data-target');
-            var $target = $( target_selector );
+            var $target = $(target_selector);
 
-            if ($target.is(':hidden'))
-            {
-                $target.show( "slow" );
+            if ($target.is(':hidden')) {
+                $target.show("slow");
             }
-            else
-            {
-                $target.hide( "slow" );
+            else {
+                $target.hide("slow");
             }
 
             console.log($target.is(':visible'));
@@ -651,19 +685,21 @@ $campaign_draft = new Campaign();
 
     // Add , Delete row dynamically
     var room = 1;
+
     function add_rewards() {
 
         room++;
         var objTo = document.getElementById('add_rewards')
         var divtest = document.createElement("div");
-        divtest.setAttribute("class", "form-group removeclass"+room);
-        var rdiv = 'removeclass'+room;
-        divtest.innerHTML = '<div class="col-sm-3 nopadding"><input type="text" class="form-control" id="amount" name="amount[]" value="" placeholder="Amount pledged"></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="form-group"><select class="form-control" id="discount" name="discount[]"><option value="">% of discount</option><option value="2015">5%</option><option value="2016">10%</option><option value="2017">15%</option><option value="2018">20%</option></select></div></div></div><div class="col-sm-3 nopadding"><div class="form-group"><input type="text" class="form-control" id="expiry" name="expiry[]" value="" placeholder="Validity"></div></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="input-group"><input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="" placeholder="Reward Description"><div class="input-group-btn"><button class="btn btn-danger" type="button" onclick="remove_add_rewards('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div><div class="clear"></div>';
+        divtest.setAttribute("class", "form-group removeclass" + room);
+        var rdiv = 'removeclass' + room;
+        divtest.innerHTML = '<div class="col-sm-3 nopadding"><input type="text" class="form-control" id="amount" name="amount[]" value="" placeholder="Amount pledged"></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="form-group"><select class="form-control" id="discount" name="discount[]"><option value="">% of discount</option><option value="2015">5%</option><option value="2016">10%</option><option value="2017">15%</option><option value="2018">20%</option></select></div></div></div><div class="col-sm-3 nopadding"><div class="form-group"><input type="text" class="form-control" id="expiry" name="expiry[]" value="" placeholder="Validity"></div></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="input-group"><input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="" placeholder="Reward Description"><div class="input-group-btn"><button class="btn btn-danger" type="button" onclick="remove_add_rewards(' + room + ');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div><div class="clear"></div>';
 
         objTo.appendChild(divtest);
     }
+
     function remove_add_rewards(rid) {
-        $('.removeclass'+rid).remove();
+        $('.removeclass' + rid).remove();
     }
 
 </script>
