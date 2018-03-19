@@ -54,7 +54,8 @@ class WalletController extends \yii\web\Controller
         return parent::beforeAction($action);
     }
 
-    public $url = 'http://192.168.1.138:8092/rpc';
+    public $url = 'http://172.23.205.29:8092/rpc';
+    //192.168.1.138
 
 
     /**
@@ -105,12 +106,8 @@ class WalletController extends \yii\web\Controller
         $wallet = Wallet::find()->where(['userId' => \Yii::$app->user->id])->one();
         $response = $this->listAccBalance($wallet->accname);
 
-        foreach($response as $row){
-            $amount = $row['amount'];
-        }
-
         return $this->render('mywallet',[
-            'amount' => $amount,
+            'amount' => $response['result'][0]['amount'],
         ]);
     }
 
@@ -123,9 +120,9 @@ class WalletController extends \yii\web\Controller
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+            $amt = $_POST['reward'];
             $fund->fund_c_id = $id;
             $fund->fund_user_id = Yii::$app->user->identity->getId();
-            $amt = $_POST['reward'];
             $fund->fund_amt = $amt;
 
             $response = $this->fundCampaign($senderAccName->accname, $receiverAccName->accname, $amt);
@@ -159,16 +156,16 @@ class WalletController extends \yii\web\Controller
 
     protected function listAccBalance($accName)
     {
-        $rpc = new jsonRPCClient('http://192.168.1.138:8092/rpc', true);
+        $rpc = new jsonRPCClient($this->url, true);
         $rpc->setRPCNotification(true);
         $response = $rpc->__call("list_account_balances", [$accName]);
 
-        return $response['result'];
+        return $response;
     }
 
     protected function transferAmt($accName)
     {
-        $rpc = new jsonRPCClient('http://192.168.1.138:8092/rpc', true);
+        $rpc = new jsonRPCClient($this->url, true);
         $rpc->setRPCNotification(true);
         $response = $rpc->__call("transfer", ["kiru",$accName,"5000","BTS","", true]);
         $response = $response['result'];
@@ -178,7 +175,7 @@ class WalletController extends \yii\web\Controller
 
     protected function fundCampaign($senderAcc, $receiverAcc, $amount)
     {
-        $rpc = new jsonRPCClient('http://192.168.1.138:8092/rpc', true);
+        $rpc = new jsonRPCClient($this->url, true);
         $rpc->setRPCNotification(true);
         $response = $rpc->__call("transfer", [$senderAcc,$receiverAcc,$amount,"BTS","", true]);
         $response = $response['result'];
@@ -188,7 +185,7 @@ class WalletController extends \yii\web\Controller
 
     protected function createBrainKey()
     {
-        $rpc = new jsonRPCClient('http://192.168.1.138:8092/rpc', true);
+        $rpc = new jsonRPCClient($this->url, true);
         $rpc->setRPCNotification(true);
         $response = $rpc->__call("suggest_brain_key", []);
         $response1 = $response['result'];
@@ -198,7 +195,7 @@ class WalletController extends \yii\web\Controller
 
     protected function createAccount($brain_priv_key, $accname)
     {
-        $rpc = new jsonRPCClient('http://192.168.1.138:8092/rpc', true);
+        $rpc = new jsonRPCClient($this->url, true);
         $rpc->setRPCNotification(true);
         $response = $rpc->__call("create_account_with_brain_key", [$brain_priv_key, $accname, "kiru", "kiru", true]);
         return $response;
