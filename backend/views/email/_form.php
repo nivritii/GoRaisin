@@ -41,7 +41,6 @@ use yii\db\Query;
         /*$str = $str . "," . $rows[$key]['email'];*/
     }
     $str2 = rtrim($str, ',');
-    echo $str2;
     ?>
 
     <?php $form = ActiveForm::begin(); ?>

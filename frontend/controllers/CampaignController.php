@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\LoginForm;
 use frontend\models\Faq;
+use frontend\models\Question;
 use frontend\models\Reward;
 use frontend\models\Update;
 use frontend\models\UpdateImage;
@@ -737,12 +738,6 @@ class CampaignController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
-    }
-    /*
-     * Campaign FAQ to send email to the campaign publisher
-     */
-    public function actionFaq(){
-
     }
 
     /**
