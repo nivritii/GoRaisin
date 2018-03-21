@@ -738,6 +738,12 @@ class CampaignController extends Controller
             'model' => $model,
         ]);
     }
+    /*
+     * Campaign FAQ to send email to the campaign publisher
+     */
+    public function actionFaq(){
+
+    }
 
     /**
      * Finds the Campaign model based on its primary key value.
