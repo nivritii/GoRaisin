@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
 use frontend\models\Faq;
+use yii\bootstrap\Modal;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
@@ -24,9 +25,17 @@ $faq = new Faq();
     <h4>Frequently asked questions</h4>
     <p>Project creator will be glad to answer your queries.</p>
     <div class="section" style="margin-top:25px; padding-bottom:20px;">
-        <a href="#">
+        <?=Html::a('Ask a question',['..\question\create','camId' => $model->c_id,'authId' => $model->cAuthor->id],[
+            'id' => 'question_user',
+            'class' => 'question-user',
+            'data-toggle' => 'modal',
+            'data-target' => '#view-author',
+            'style' => 'color:#ffffff;padding:4px;border-radius:2px;font-size:19px;text-decoration:none;background-color:#8f13a5f0;'
+        ])
+        ?>
+        <!--<a href="#">
             <button class="btn btn-info" data-toggle="modal" data-target="#modalForm">Ask a question</button>
-        </a>
+        </a>-->
     </div>
 
     <div class="panel-group" id="accordion">
@@ -48,7 +57,7 @@ $faq = new Faq();
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="modalForm" role="dialog">
+<!--<div class="modal fade" id="modalForm" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
 
@@ -57,31 +66,29 @@ $faq = new Faq();
                     <span aria-hidden="true">&times;</span>
                     <span class="sr-only">Close</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">Ask a question about: <?=$model->c_title?></h4>
-            </div>
+                <h4 class="modal-title" id="myModalLabel">Ask a question about: <?/*=$model->c_title*/?></h4>
+            </div>-->
             <!-- Modal body -->
 
-            <div class="modal-body">
+            <!--<div class="modal-body">
                 <p class="statusMsg"></p>
-                <form role="form">
-                    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
+                <form action="questionbyuser?id=<?/*= $model->c_id*/?>,authorId=<?/*=$model->cAuthor->id */?>" method="post" role="form">
                     <div class="form-group">
-                        <p>To: <a><?=$model->cAuthor->username?></a></p>
+                        <p>To: <a><?/*=$model->cAuthor->username*/?></a></p>
                     </div>
                     <div class="form-group">
-                        <?= $form->field($faq, 'answer')->textarea(['rows' => 6])?>
+                        <input type="text" style="width: 100%" name="questioncontent" id="questioncontent" required>
                     </div>
                 </form>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <?= Html::submitButton($faq->isNewRecord ? 'Ask a question' : 'Update', ['class' => $faq->isNewRecord ? 'btn btn-info' : 'btn btn-primary','style' => 'background-color:#940094;color:#ffffff']) ?>
-                <?php ActiveForm::end(); ?>
+                <?/*= Html::submitButton($faq->isNewRecord ? 'Ask a question' : 'Update', ['class' => $faq->isNewRecord ? 'btn btn-info' : 'btn btn-primary','style' => 'background-color:#940094;color:#ffffff']) */?>
             </div>
         </div>
     </div>
-</div>
+</div>-->
 
 <script>
 $(function() {
@@ -97,3 +104,24 @@ $expand.text("+");
 });
 });
 </script>
+
+<?php
+Modal::begin([
+    'id' => 'question-user',
+
+]);
+
+$campaignId = $model->c_id;
+$requestCreateUrl = Url::toRoute('..\question\create');
+$js = <<<JS
+$('#question-user').on('click', function () {
+    $.get('{$requestCreateUrl}',
+        function (data) {
+            $('.modal-body').html(data);
+        }
+    );
+});
+JS;
+$this->registerJs($js);
+Modal::end();
+?>
