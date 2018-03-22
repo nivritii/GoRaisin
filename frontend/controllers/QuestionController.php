@@ -71,8 +71,13 @@ class QuestionController extends Controller
             $model->author_id = $authId;
             $model->user_id = Yii::$app->user->identity->id;
             $model->save();
-            $model->sendQuestionEmail();
-            return $this->redirect(['..\campaign\view', 'id' => $camId]);
+            if ($model->question != null){
+                $model->sendQuestionEmail();
+                return $this->redirect(['..\campaign\view', 'id' => $camId]);
+            }else {
+                Yii::$app->session->setFlash('warning', 'Your question is null.');
+                return $this->redirect(['..\campaign\view', 'id' => $camId]);
+            }
         }
 
         return $this->renderAjax('create', [
