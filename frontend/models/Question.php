@@ -79,11 +79,13 @@ class Question extends \yii\db\ActiveRecord
     {
         return Yii::$app
             ->mailer
-            ->compose()
+            ->compose(
+                ['html' => 'FAQtemplate-html','text' => 'FAQtemplate-text'],
+                ['content' => $this->question,'user' => $this->author->username,'questionUser' => Yii::$app->user->identity->username]
+            )
             ->setFrom([Yii::$app->params['supportEmail'] => 'GoRaisin'])
             ->setTo($this->author->email)
             ->setSubject('There is a question about your campaign!')
-            ->setHtmlBody('Dear '.$this->author->username.', <br /><br /> Your campaign '.$this->campaign->c_title.' has been sent to moderate! Please wait for our review patiently.')
             ->send();
     }
 }
