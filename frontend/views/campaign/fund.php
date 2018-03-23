@@ -9,7 +9,7 @@ use yii\helpers\Url;
 use Da\QrCode\QrCode;
 
 
-$qrCode = (new QrCode('new'))
+$qrCode = (new QrCode($wallet->accname))
     ->setSize(250)
     ->setMargin(5)
     ->useForegroundColor(51, 153, 255);
@@ -64,7 +64,6 @@ $reward = new Reward();
                                                 <img src="<?=$qrCode->writeDataUri()?>">
                                             </div>
                                         </div>
-                                        <input class="btn btn-md btn-info" type="submit" value="Generate QR Code" id="submit" style="color: #ffffff;width: 25%;background-color: #940094;border: none;float: left;margin-left: 38%">
                                     </div>
                                 </div>
                             </div>
