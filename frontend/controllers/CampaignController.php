@@ -509,6 +509,9 @@ class CampaignController extends Controller
     public function actionFund($id)
     {
         $rewards = Reward::find()->where(['c_id' => $id])->all();
+        $campaign = $this->findModel($id);
+
+        $wallet = Wallet::find()->where(['userId'=>$campaign->c_author])->one();
 /*        $fund = new Fund();
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -523,6 +526,7 @@ class CampaignController extends Controller
         return $this->render('fund', [
             'rewards' => $rewards,
             'c_id' => $id,
+            'wallet' => $wallet,
         ]);
     }
 
