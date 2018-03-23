@@ -6,22 +6,18 @@ use frontend\models\Campaign;
 use frontend\models\Reward;
 use frontend\assets\HomePageAsset;
 use yii\helpers\Url;
+use Da\QrCode\QrCode;
 
 
-$qrCode = (new \Da\QrCode\QrCode('test'))
+$qrCode = (new QrCode('new'))
     ->setSize(250)
     ->setMargin(5)
     ->useForegroundColor(51, 153, 255);
 
-// now we can display the qrcode in many ways
-// saving the result to a file:
-
-$qrCode->writeFile(__DIR__ . '/code.png'); // writer defaults to PNG when none is specified
+$qrCode->writeFile(__DIR__ . '/code.png');
 
 // display directly to the browser
 header('Content-Type: '.$qrCode->getContentType());
-$qrCode->writeString();
-
 
 
 HomePageAsset::register($this);
@@ -65,10 +61,7 @@ $reward = new Reward();
                                         <div style="alignment:center">
                                             <div style="display: inline-block;">
                                                 <p class="item-title">Use the generated QR Code to connect with your mobile wallet</p>
-                                                <?php
-                                                // or even as data:uri url
-                                                echo '<img src"'.$qrCode->writeDataUri().'">';
-                                                ?>
+                                                <img src="<?=$qrCode->writeDataUri()?>">
                                             </div>
                                         </div>
                                         <input class="btn btn-md btn-info" type="submit" value="Generate QR Code" id="submit" style="color: #ffffff;width: 25%;background-color: #940094;border: none;float: left;margin-left: 38%">
