@@ -28,7 +28,7 @@ HomePageAsset::register($this);
                                 <div class="col-xs-12">
                                     <div class="col-md-12 well text-center">
                                         <form name="basicform" id="basicform" method="post" action="index">
-                                            <h2 class="tabpage-title">Create your Bitshares wallet</h2>
+                                            <h2 class="tabpage-title">Create your e-wallet</h2>
                                             <br/>
                                             <br/>
 <!--                                            <div style="padding-top: 30px;padding-bottom: 30px; width: 100%">-->

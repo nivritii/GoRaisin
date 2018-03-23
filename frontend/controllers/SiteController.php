@@ -265,4 +265,6 @@ class SiteController extends Controller
     {
         return $this->redirect('http://' . $website);
     }
+
+
 }
