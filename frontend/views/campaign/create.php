@@ -19,8 +19,13 @@ $campaign_draft = new Campaign();
 ?>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+<!--For Validation-->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
 <form class="createCampaign" enctype="multipart/form-data" action="preview?id=<?=$model->c_id?>" method="post" id="tab_logic"
       name="campaignForm">
@@ -89,10 +94,10 @@ $campaign_draft = new Campaign();
                             <div class="form-group">
                                 <div style="width: 100%;">
                                     <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Campaign title</p>
+                                        <p class="item-title">Campaign title <abbr title="Required">*</abbr></p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <input type="text" style="width: 100%" name="cTitle" id="cTitle" required>
+                                        <input type="text" style="width: 100%" name="cTitle" id="cTitle"  required="required" aria-required="true" title="Your campaign title" spellcheck="true" onchange="validateTitle();">
                                     </div>
                                 </div>
                                 <div style="clear:both;">
@@ -274,7 +279,7 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Registration No</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                    <input type="text" style="width: 100%" name="comNo">
+                                    <input type="number" style="width: 100%" name="comNo" required="required"/>
                                 </div>
                             </div>
                             <div style="clear:both;padding: 10px">
@@ -282,7 +287,7 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Email</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                    <input type="text" style="width: 100%" name="comEmail">
+                                    <input type="email" style="width: 100%" name="comEmail" required="required"/>
                                 </div>
                             </div>
                             <div style="clear:both;padding: 10px;">
@@ -290,7 +295,7 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Website URL</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                    <input type="text" style="width: 100%" name="comWebsite">
+                                    <input type="url" style="width: 100%" name="comWebsite" required="required"/>
                                 </div>
                             </div>
                             <div style="clear:both;padding: 10px;">
@@ -381,6 +386,28 @@ $campaign_draft = new Campaign();
                                 <input type="text" style="width: 100%" name="tokenName" id="tokenName" required>
                             </div>
                         </div>
+                        <div style="clear:both;padding-top: 20px">
+                            <div style="float: left;display: inline-block;width: 20%">
+                                <p class="item-title">Target</p>
+                            </div>
+                            <div style="display: inline-block;float: left; margin-left: 2%; width: 50%">
+                                <div style="display: inline-block;width: 100%;float: right">
+                                    <input type="number" style="width: 100%;float: left" name="cGoal" id="cGoal">
+                                    <p align="left">Please provide the amount you are targeting to raise <b>in USD</b>.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="clear:both;padding-top: 20px">
+                            <div style="float: left;display: inline-block;width: 20%">
+                                <p class="item-title">Maximum supply</p>
+                            </div>
+                            <div style="display: inline-block;float: left; margin-left: 2%; width: 50%">
+                                <div style="display: inline-block;width: 100%;float: right">
+                                    <input type="number" style="width: 100%;float: left" name="cTokenSupply" id="cTokenSupply" onchange="calculate();">
+                                    <p align="left">Please provide the amount of tokens you would be generating.</p>
+                                </div>
+                            </div>
+                        </div>
                         <div style="clear:both;padding-top: 0px">
                             <div style="float: left;display: inline-block;width: 20%">
                                 <p class="item-title">Token value</p>
@@ -390,20 +417,9 @@ $campaign_draft = new Campaign();
                                     <input type="text" style="width: 18%;float: left" value="1" disabled><i class="fa fa-bitcoin fa-2x" style="float: left;padding: 3% 5% 0;"></i><span class="glyphicon glyphicon-transfer" style="padding: 7% 0 0;"></span>
                                 </div>
                                 <div style="display: inline-block;width: 60%;float: right">
-                                    <input type="text" name="tokenValue" id="tokenValue" style="width: 100%; float: right">
+                                    <input type="text" name="tokenValue" id="tokenValue" style="width: 100%; float: right" disabled>
                                     </div>
-                                    <p align="left">Please provide how many of your tokens equivalent to 1 Rasin.</p>
-                                </div>
-                            </div>
-                            <div style="clear:both;padding-top: 20px">
-                                <div style="float: left;display: inline-block;width: 20%">
-                                    <p class="item-title">Target</p>
-                                </div>
-                                <div style="display: inline-block;float: left; margin-left: 2%; width: 50%">
-                                    <div style="display: inline-block;width: 100%;float: right">
-                                        <input type="text" style="width: 100%;float: left" name="cGoal" id="cGoal">
-                                        <p align="left">Please provide the amount you are targeting to raise <b>in SGD</b>.</p>
-                                    </div>
+                                    <p align="left">Exchange rate of your tokens equivalent to 1 Rasin.</p>
                                 </div>
                             </div>
                             <div style="clear:both;padding-top: 30px">
@@ -447,6 +463,16 @@ $campaign_draft = new Campaign();
                                 <option value="15">15%</option>
                                 <option value="20">20%</option>
                                 <option value="25">25%</option>
+                                <option value="30">30%</option>
+                                <option value="35">35%</option>
+                                <option value="40">40%</option>
+                                <option value="45">45%</option>
+                                <option value="50">50%</option>
+                                <option value="55">55%</option>
+                                <option value="60">60%</option>
+                                <option value="65">65%</option>
+                                <option value="70">70%</option>
+                                <option value="75">75%</option>
                             </select>
                         </div>
                     </div>
@@ -487,16 +513,39 @@ $campaign_draft = new Campaign();
 <!--</div>-->
 </form>
 
-
 <script>
     var currentStep = 1;
     var cTitle = document.campaignForm.cTitle;
     var cCategory = document.campaignForm.cCategory;
     var cDesc = document.campaignForm.cDesc;
     var cGoal = document.campaignForm.cGoal;
+
+    var tokenValue = document.campaignForm.tokenValue;
+    var cTokenSupply = document.campaignForm.cTokenSupply;
+
     var cVideo = document.campaignForm.cVideo;
     var comName = document.campaignForm.comName;
+
     var error_message = '';
+
+    function calculate() {
+        tokenValue.value = cGoal.value/cTokenSupply.value;
+    }
+    
+    function validateTitle(){
+        if (cTitle.value == "") {
+            cTitle.focus();
+            error_message += "Please enter Campaign Title";
+        }
+        if (error_message) {
+            $('.alert-success').removeClass('hide').html(error_message);
+            error_message = '';
+            return false;
+        } else {
+            error_message = '';
+            return true;
+        }
+    }
 
     function validateStep1() {
         if (cTitle.value == "") {

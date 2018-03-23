@@ -220,7 +220,7 @@ frontend\assets\RoadmapAsset::register($this);
                             <div class="panel-heading" style="background-color: #ffffff">
                                 <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#noReward" style="text-decoration: none;">
                                     <h4 class="panel-title" style="font-size: 20px">
-                                        Pleage without a reward
+                                        Pledge an amount and be entitled to a discount
                                     </h4>
                                 </a>
                             </div>

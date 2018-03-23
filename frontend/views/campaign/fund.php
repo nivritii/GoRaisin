@@ -7,6 +7,23 @@ use frontend\models\Reward;
 use frontend\assets\HomePageAsset;
 use yii\helpers\Url;
 
+
+$qrCode = (new \Da\QrCode\QrCode('test'))
+    ->setSize(250)
+    ->setMargin(5)
+    ->useForegroundColor(51, 153, 255);
+
+// now we can display the qrcode in many ways
+// saving the result to a file:
+
+$qrCode->writeFile(__DIR__ . '/code.png'); // writer defaults to PNG when none is specified
+
+// display directly to the browser
+header('Content-Type: '.$qrCode->getContentType());
+$qrCode->writeString();
+
+
+
 HomePageAsset::register($this);
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
@@ -36,9 +53,34 @@ $reward = new Reward();
                     <div class="panel-group" id="faqAccordion" style="width: 89%">
                         <div class="panel panel-default panel-faq">
                             <div class="panel-heading" style="background-color: #ffffff">
+                                <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#noReward1" style="text-decoration: none;">
+                                    <h4 class="panel-title" style="font-size: 20px">
+                                        Use your mobile wallet pledge amount
+                                    </h4>
+                                </a>
+                            </div>
+                            <div id="noReward1" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <div style="alignment:center">
+                                            <div style="display: inline-block;">
+                                                <p class="item-title">Use the generated QR Code to connect with your mobile wallet</p>
+                                                <?php
+                                                // or even as data:uri url
+                                                echo '<img src"'.$qrCode->writeDataUri().'">';
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <input class="btn btn-md btn-info" type="submit" value="Generate QR Code" id="submit" style="color: #ffffff;width: 25%;background-color: #940094;border: none;float: left;margin-left: 38%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default panel-faq">
+                            <div class="panel-heading" style="background-color: #ffffff">
                                 <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#noReward" style="text-decoration: none;">
                                     <h4 class="panel-title" style="font-size: 20px">
-                                        Pleage without a reward
+                                        Pledge an amount and be entitled to a discount
                                     </h4>
                                 </a>
                             </div>

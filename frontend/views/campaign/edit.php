@@ -573,8 +573,6 @@ $campaign_draft = new Campaign();
                        style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
             </div>
         </div>
-    </div>
-    </div>
     <!--</div>-->
 </form>
 

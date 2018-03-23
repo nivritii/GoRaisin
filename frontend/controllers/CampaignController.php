@@ -372,12 +372,12 @@ class CampaignController extends Controller
                 $company->company_employees_count = $_POST['comEmp'];
                 $company->company_postal = $_POST['comPostal'];
                 $company->company_designation = $_POST['comPosition'];
-                $company->save();
+                $company->save(false);
 
                 $token->c_id = $model->c_id;
                 $token->t_name = $_POST['tokenName'];
                 $token->t_value = $_POST['tokenValue'];
-                $token->save();
+                $token->save(false);
 
                 $number = count($_POST['amount']);
 
@@ -429,7 +429,6 @@ class CampaignController extends Controller
         $categories = Category::find()->all();
         $mandatoryReward = Reward::find()->where(['c_id' => $id, 'r_mandatory' => true])->one();
         $rewards = Reward::find()->where(['c_id' => $id, 'r_mandatory' => false])->all();
-//        $rewards = Reward::find()->where(['c_id'=>$id])->all();
         $this->view->params['rewards']=$rewards;
 
         $company = $this->findCompany($id);
@@ -885,5 +884,10 @@ class CampaignController extends Controller
             return true;
         }
         return false;
+    }
+
+    public function actionTest()
+    {
+        return $this->render('test');
     }
 }
