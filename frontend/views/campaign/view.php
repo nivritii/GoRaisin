@@ -140,15 +140,31 @@ frontend\assets\RoadmapAsset::register($this);
                         </div>
                     </div>
                     <h3 style="margin-top:25px; margin-bottom:0px;"><?=$backed?></h3>
-                    <h3 class="title-price" style="margin-top:0px;"><small>pledged of U$S<?=$model->c_goal?> goal</small></h3>
+                    <?php
+                    if($model->c_goal != 0) {
+                        ?>
+                        <h3 class="title-price" style="margin-top:0px;">
+                            <small>pledged of U$S<?= $model->c_goal ?> goal</small>
+                        </h3>
+                        <?php
+                    }else{
+                        ?>
+                    <h3 class="title-price" style="margin-top:0px;">
+                        <small>pledged of U$S N.A goal</small>
+                    </h3>
+                    <?php }?>
 
                     <h3 style="margin-top:25px; margin-bottom:0px;">199</h3>
                     <h3 class="title-price" style="margin-top:0px;"><small>backers</small></h3>
 
                     <?php
-                    $currectDate = date('Y-m-d');
-                    $diff = strtotime($model->c_end_date) - strtotime($currectDate);
-                    $days = ceil($diff/86400);
+                    $currentDate = date('Y-m-d');
+                    if($model->c_start_date == null || $model->c_end_date == null){
+                        $days = 'N.A';
+                    }else{
+                        $diff = strtotime($model->c_end_date) - strtotime($currentDate);
+                        $days = ceil($diff/86400);
+                    }
                     ?>
                     <h3 style="margin-top:25px; margin-bottom:0px;" id="endDate"><?php echo $days;?></h3>
                     <h3 class="title-price" style="margin-top:0px;"><small>days to go</small></h3>

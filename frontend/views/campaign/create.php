@@ -519,8 +519,13 @@ $campaign_draft = new Campaign();
     var cCategory = document.campaignForm.cCategory;
     var cDesc = document.campaignForm.cDesc;
     var cGoal = document.campaignForm.cGoal;
+
     var tokenValue = document.campaignForm.tokenValue;
     var cTokenSupply = document.campaignForm.cTokenSupply;
+
+    var cVideo = document.campaignForm.cVideo;
+    var comName = document.campaignForm.comName;
+
     var error_message = '';
 
     function calculate() {
@@ -558,6 +563,14 @@ $campaign_draft = new Campaign();
         if (cGoal.value == "") {
             cGoal.focus();
             error_message += "<br>Set your Target";
+        }
+        if (cVideo.value == "") {
+            cVideo.focus();
+            error_message += "<br>Please input your campaign video ID";
+        }
+        if (comName.value == "") {
+            comName.focus();
+            error_message += "<br>Please input your company name";
         }
         if (error_message) {
             $('.alert-success').removeClass('hide').html(error_message);

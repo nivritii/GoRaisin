@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\LoginForm;
 use frontend\models\Faq;
+use frontend\models\Question;
 use frontend\models\Reward;
 use frontend\models\Update;
 use frontend\models\UpdateImage;
@@ -485,9 +486,8 @@ class CampaignController extends Controller
      }*/
 
     public function actionShow($id)
-    {
-        $model = Campaign::find()/*->where(['c_status' => 'publish'])*/
-        ->all();
+    {        
+        $model = Campaign::find()->where(['c_status' => 'published'])->all();
         $categories = Category::find()->all();
 
         if ($id != 'NULL') {
@@ -531,13 +531,12 @@ class CampaignController extends Controller
         $campaigns = Campaign::find()->where(['c_author' => Yii::$app->user->identity->getId()])->all();
         $draftedCampaigns = Campaign::find()->where(['c_author' => Yii::$app->user->identity->getId()])->all();
         $publishedCampaigns = Campaign::find()->where(['c_author' => Yii::$app->user->identity->getId(), 'c_status' => 'published'])->all();
-
         $fund = Fund::find()->where(['fund_user_id' => Yii::$app->user->getId()])->all();
 
-        $cIds = Fund::find()->select(['fund_c_id'])->where(['fund_user_id' => Yii::$app->user->getId()])->distinct();
-        $fundedCampaigns = Campaign::find()->where(['c_id' => $cIds])->all();
+        $cIds = Fund::find()->select(['fund_c_id'])->where(['fund_user_id'=>Yii::$app->user->getId()])->distinct();
+        $fundedCampaigns = Campaign::find()->where(['c_id'=>$cIds])->all();
 
-        return $this->render('mycampaign', [
+        return $this->render('mycampaign',[
             'campaigns' => $campaigns,
             'draftedCampaigns' => $draftedCampaigns,
             'publishedCampaigns' => $publishedCampaigns,
@@ -620,7 +619,7 @@ class CampaignController extends Controller
     {
         $model = $this->findModel($id);
         $authorId = $model->cAuthor->id;
-        $campaigns = Campaign::find()->where(['c_author' => $authorId, 'c_status' => 'publish'])->all();
+        $campaigns = Campaign::find()->where(['c_author'=>$authorId,'c_status'=>'published'])->all();
 
         $cIds = Fund::find()->select(['fund_c_id'])->where(['fund_user_id' => $authorId])->distinct();
         $fundedCampaigns = Campaign::find()->where(['c_id' => $cIds])->all();

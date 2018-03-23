@@ -50,7 +50,7 @@ frontend\assets\LoginAsset::register($this);
                 </fieldset>
                 <br />
 
-                <div style="text-align: center">
+                <div style="text-align: center;">
                 <?= yii\authclient\widgets\AuthChoice::widget([
                     'baseAuthUrl' => ['site/auth'],
                 ]) ?>
