@@ -52,27 +52,21 @@ $this->params['breadcrumbs'][] = $this->title;
                                             </div>
                                         </div>
                                         <?php foreach ($activities as $activity){?>
-                                            <div style="margin-top: 2%;margin-left: 1.5%">
-                                                <div>
-                                                    <div style="clear: both;display: inline-block;margin-left: 2%;width: 15%">
-                                                        <a href="view?id=<?=$activity->fundC->c_id?>">
-                                                            <p style="font-size: 15px"><?=$activity->fundC->c_title?></p>
-                                                    </div>
-                                                    <div style="clear: both;display: inline-block;width: 5%">
-                                                        <p><?=$activity->fund_amt?></p>
-                                                    </div>
-                                                    <div style="clear: both;display: inline-block;width: 20%">
-                                                        <p><?=$activity->fund_created_on?></p>
+                                                <div style="margin-top: 2%;margin-left: 1.5%">
+                                                    <div>
+                                                        <div style="clear: both;display: inline-block;margin-left: 2%;width: 15%">
+                                                            <a href="view?id=<?=$activity->fund_c_id?>">
+                                                                <p style="font-size: 15px"><?=$activity->fundC->c_title?></p>
+                                                        </div>
+                                                        <div style="clear: both;display: inline-block;width: 5%">
+                                                            <p><?=$activity->fund_amt?></p>
+                                                        </div>
+                                                        <div style="clear: both;display: inline-block;width: 20%">
+                                                            <p><?=$activity->fund_created_on?></p>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             <hr style=" height:1px;border:none;border-top:1px solid #f9f9f9;" />
-                                            <!--<div class="card">
-                                            <div class="card-block">
-                                                <h4 class="card-title">Campaign <?php /*echo $activity->fundC->c_title*/?>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspFund Amount <?/*=$activity->fund_amt*/?></h4>
-                                                <h6 class="card-subtitle mb-2 text-muted"><?/*=$activity->fund_created_on*/?></h6>
-                                            </div>
-                                        </div>-->
                                         <?php }?>
                                     </div>
 

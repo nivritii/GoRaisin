@@ -48,7 +48,7 @@ class Fund extends \yii\db\ActiveRecord
     {
         return [
             'fund_id' => 'Fund ID',
-            'fund_c_id' => 'Fund C ID',
+            'fund_c_id' => 'Fund Campaign ID',
             'fund_user_id' => 'Fund User ID',
             'fund_amt' => 'Fund Amt',
             'fund_created_on' => 'Fund Created On',
@@ -68,6 +68,6 @@ class Fund extends \yii\db\ActiveRecord
      */
     public function getFundC()
     {
-        return $this->hasOne(Campaign::className(), ['c_id' => 'fund_c_id']);
+        return $this->hasMany(Campaign::className(), ['c_id' => 'fund_c_id']);
     }
 }

@@ -74,13 +74,13 @@ $this->params['breadcrumbs'][] = $this->title;
                     'view' => function ($url) {
                         return Html::a('View', $url, [
                             'title' => 'view',
-                            'style' => 'background-color: #7348b3; color: #ffffff; padding:5%;border-radius:5px',
+                            'style' => 'background-color: #7348b3; color: #ffffff; padding:2%;border-radius:5px',
                         ]);
                     },
                     'delete' => function ($url) {
                         return Html::a('Delete', $url, [
                             'title' => 'delete',
-                            'style' => 'background-color: #ff1414; color: #ffffff; padding:5%;border-radius:5px',
+                            'style' => 'background-color: #ff1414; color: #ffffff; padding:2%;border-radius:5px;',
                             'data' => [
                                 'confirm' => 'Confirm Delete?',
                                 'method' => 'post',
