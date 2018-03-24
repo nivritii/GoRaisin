@@ -550,6 +550,8 @@ $campaign_draft = new Campaign();
             <div style="clear:both;padding-bottom: 30px">
                 <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
                        style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                <input type="submit" name="button" class="btn btn-md btn-info" value="Preview"
+                       style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
             </div>
         </div>
     </div>
