@@ -71,10 +71,24 @@ class Campaign extends \yii\db\ActiveRecord
             //attributes required
             [['c_author', 'c_title', 'c_image', 'c_cat_id', 'c_description', 'c_location', 'c_start_date', 'c_end_date', 'c_description_long'], 'required'],
             [['c_description_long'], 'string'],
-            [['c_title', 'c_image'], 'string', 'max' => 100, 'min' => 15],
+            [['c_title', 'c_image'], 'string', 'max' => 100],
             [['c_status', 'c_description'], 'string', 'max' => 255],
             ['c_video','string','max' => '11'],
+//            ['c_start_date', 'date', 'timestampAttribute'=>'c_start_date'],
+//            ['c_end_date', 'date', 'timestampAttribute'=>'c_end_date'],
+  //          ['c_start_date', 'compare', 'compareAttribute' => 'c_end_date', 'operator' => '<', 'enableClientValidation' => false],
+            ['c_start_date','validateDates'],
         ];
+    }
+
+    public function validateDates(){
+        if(strtotime($this->c_start_date) <= strtotime(date("m/d/Y"))){
+            $this->addError('c_start_date','Please ensure that the Start date is given a past date.');
+        }
+
+        if(strtotime($this->c_end_date) <= strtotime($this->c_start_date)){
+            $this->addError('c_start_date','Please ensure that the End date is later than Start date.');
+        }
     }
     /**
      * @inheritdoc
