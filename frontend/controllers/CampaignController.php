@@ -411,7 +411,11 @@ class CampaignController extends Controller
             if (!empty($_POST['tokenSupply'])) {
                 $token->t_supply = $_POST['tokenSupply'];
             }
-            $token->t_value = $model->c_goal/$token->t_supply;
+
+            if(!empty($model->c_goal)&&!empty($token->t_supply)){
+                $token->t_value = $model->c_goal/$token->t_supply;
+            }
+
 
             $number = count($_POST['amount']);
 
@@ -503,6 +507,7 @@ class CampaignController extends Controller
         $this->view->params['rewards'] = $rewards;
 
         $company = $this->findCompany($id);
+        $token = $this->findToken($id);
         $countries = Location::find()->all();
 
 
@@ -511,6 +516,7 @@ class CampaignController extends Controller
             'mandatoryReward' => $mandatoryReward,
             'categories' => $categories,
             'company' => $company,
+            'token' => $token,
             'countries' => $countries,
         ]);
 

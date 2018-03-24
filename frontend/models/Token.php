@@ -46,9 +46,9 @@ class Token extends \yii\db\ActiveRecord
         return [
             't_id' => 'T ID',
             'c_id' => 'C ID',
-            't_name' => 'T Name',
-            't_value' => 'T Value',
-            't_supply' => 'T Supply',
+            't_name' => 'Token Name',
+            't_value' => 'Token Value',
+            't_supply' => 'Token Supply',
         ];
     }
 
