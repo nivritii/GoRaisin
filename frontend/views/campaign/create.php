@@ -77,7 +77,6 @@ $campaign_draft = new Campaign();
         </div>
 
         <?php if(!empty($errors)) {?>
-
         <div class="row form-group">
             <div class="col-xs-12">
                 <div class="alert alert-danger">
@@ -312,7 +311,7 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Email</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                    <input type="email" style="width: 100%" name="comEmail"/>
+                                    <input type="text" style="width: 100%" name="comEmail"/>
                                 </div>
                             </div>
                             <div style="clear:both;padding: 10px;">
@@ -320,7 +319,7 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Website URL</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                    <input type="url" style="width: 100%" name="comWebsite"/>
+                                    <input type="text" style="width: 100%" name="comWebsite"/>
                                 </div>
                             </div>
                             <div style="clear:both;padding: 10px;">
@@ -331,7 +330,7 @@ $campaign_draft = new Campaign();
                                      textEditor
                                 ">
                                 <textarea rows="3" type="text" style="width: 100%; float: left" name="comDesc"
-                                          id="comDesc"><?= $model->c_description ?></textarea>
+                                          id="comDesc"></textarea>
                             </div>
                         </div>
                         <div style="clear:both;padding: 5px;">
@@ -421,7 +420,7 @@ $campaign_draft = new Campaign();
                                 </div>
                                 <div style="display: inline-block;float: left; margin-left: 2%; width: 50%">
                                     <div style="display: inline-block;width: 100%;float: right">
-                                        <input type="number" style="width: 100%;float: left" name="cGoal" id="cGoal">
+                                        <input type="number" style="width: 100%;float: left" name="cGoal" id="cGoal" onchange="calculate();">
                                         <p align="left">Please provide the amount you are targeting to raise <b>in
                                                 USD</b>.</p>
                                     </div>
@@ -433,8 +432,8 @@ $campaign_draft = new Campaign();
                                 </div>
                                 <div style="display: inline-block;float: left; margin-left: 2%; width: 50%">
                                     <div style="display: inline-block;width: 100%;float: right">
-                                        <input type="number" style="width: 100%;float: left" name="cTokenSupply"
-                                               id="cTokenSupply" onchange="calculate();">
+                                        <input type="number" style="width: 100%;float: left" name="tokenSupply"
+                                               id="tokenSupply" onchange="calculate();">
                                         <p align="left">Please provide the amount of tokens you would be generating.</p>
                                     </div>
                                 </div>
@@ -566,7 +565,7 @@ $campaign_draft = new Campaign();
     var cGoal = document.campaignForm.cGoal;
 
     var tokenValue = document.campaignForm.tokenValue;
-    var cTokenSupply = document.campaignForm.cTokenSupply;
+    var tokenSupply = document.campaignForm.tokenSupply;
 
     var cVideo = document.campaignForm.cVideo;
     var comName = document.campaignForm.comName;
@@ -574,7 +573,7 @@ $campaign_draft = new Campaign();
     var error_message = '';
 
     function calculate() {
-        tokenValue.value = cGoal.value / cTokenSupply.value;
+        tokenValue.value = cGoal.value / tokenSupply.value;
     }
 
     function validateTitle() {

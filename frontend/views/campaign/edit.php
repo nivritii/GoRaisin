@@ -63,22 +63,31 @@ $campaign_draft = new Campaign();
             </div>
             <div>
                 <div class="col-xs-3" style="padding-left: 0px; ">
-                    <input class="btn btn-lg btn-default" type="submit" value="Preview" id="submit"
+                    <input class="btn btn-lg btn-default" type="submit" value="Preview" name="button"
                            style="width:130px;padding: 25px 20px 20px; margin-left: 3%; color: #337ab7;">
-                    <a href="<?= Url::to(['campaign/review', 'id' => $model->c_id], ['style' => 'background-color: #8f13a5f0']) ?>">
-                        <input class="btn btn-lg btn-default" value="Submit"
-                               style="width:130px; padding: 25px 20px 20px; margin-left: 1%; background-color: #8f13a5f0;color: #ffffff">
+                    <input class="btn btn-lg btn-default" type="submit" value="Submit" name="button"
+                           style="width:130px; padding: 25px 20px 20px; margin-left: 1%; background-color: #8f13a5f0;color: #ffffff">
                     </a>
                 </div>
             </div>
         </div>
 
 
-        <div class="row form-group">
-            <div class="col-xs-12">
-                <div class="alert alert-success hide"></div>
+        <?php if(!empty($errors)) {?>
+            <div class="row form-group">
+                <div class="col-xs-12">
+                    <div class="alert alert-danger">
+                        <ul>
+                            <?php foreach ($errors as $error) {?>
+                                <?php foreach ($error as $err) {?>
+                                    <li><?=$err?></li>
+                                <?php }?>
+                            <?php }?>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
+        <?php }?>
 
 
         <!--        <div class="container">-->
@@ -296,7 +305,7 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Registration No</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                    <input type="text" style="width: 100%" name="comNo">
+                                    <input type="text" style="width: 100%" name="comNo" value="<?= $company->company_reg_no ?>">
                                 </div>
                             </div>
                             <div style="clear:both;padding: 10px">
@@ -412,7 +421,31 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Name your token</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                    <input type="text" style="width: 100%" name="tokenName" id="tokenName" required>
+                                    <input type="text" style="width: 100%" name="tokenName" id="tokenName" value="<?=$token->t_name?>">
+                                </div>
+                            </div>
+                            <div style="clear:both;padding-top: 20px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Target</p>
+                                </div>
+                                <div style="display: inline-block;float: left; margin-left: 2%; width: 50%">
+                                    <div style="display: inline-block;width: 100%;float: right">
+                                        <input type="number" style="width: 100%;float: left" name="cGoal" id="cGoal" value="<?=$model->c_goal?>" onchange="calculate();">
+                                        <p align="left">Please provide the amount you are targeting to raise <b>in
+                                                USD</b>.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="clear:both;padding-top: 20px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Maximum supply</p>
+                                </div>
+                                <div style="display: inline-block;float: left; margin-left: 2%; width: 50%">
+                                    <div style="display: inline-block;width: 100%;float: right">
+                                        <input type="number" style="width: 100%;float: left" name="tokenSupply"
+                                               id="tokenSupply" onchange="calculate();" value="<?=$token->t_supply?>">
+                                        <p align="left">Please provide the amount of tokens you would be generating.</p>
+                                    </div>
                                 </div>
                             </div>
                             <div style="clear:both;padding-top: 0px">
@@ -427,29 +460,19 @@ $campaign_draft = new Campaign();
                                                 class="glyphicon glyphicon-transfer" style="padding: 7% 0 0;"></span>
                                     </div>
                                     <div style="display: inline-block;width: 60%;float: right">
-                                        <input type="text" name="tokenValue" id="tokenValue"
-                                               style="width: 100%; float: right">
+                                        <input type="text" name="tokenValue" id="tokenValue" value="<?=$token->t_value?>"
+                                               style="width: 100%; float: right" disabled>
                                     </div>
-                                    <p align="left">Please provide how many of your tokens equivalent to 1 Rasin.</p>
+                                    <p align="left">Exchange rate of your tokens equivalent to 1 Rasin.</p>
                                 </div>
                             </div>
-                            <div style="clear:both;padding-top: 20px">
-                                <div style="float: left;display: inline-block;width: 20%">
-                                    <p class="item-title">Target</p>
-                                </div>
-                                <div style="display: inline-block;float: left; margin-left: 2%; width: 50%">
-                                    <div style="display: inline-block;width: 100%;float: right">
-                                        <input type="text" style="width: 100%;float: left" name="cGoal" id="cGoal">
-                                        <p align="left">Please provide the amount you are targeting to raise <b>in
-                                                SGD</b>.</p>
-                                    </div>
-                                </div>
+                            <div style="clear:both;padding-top: 30px">
+                                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
+                                       style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                                <input onclick="step4Next()" class="btn btn-md btn-info" value="Next"
+                                       style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
                             </div>
-                            <hr>
-                            <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
-                                   style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-                            <input onclick="step4Next()" class="btn btn-md btn-info" value="Next"
-                                   style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+
                         </div>
                     </div>
                 </div>
@@ -474,14 +497,14 @@ $campaign_draft = new Campaign();
                         <div class="form-group">
                             <p style="float: left">For the stated amount pledged & more</p>
                             <input type="text" class="form-control" id="amount" name="amount[]"
-                                   value="<?= $mandatoryReward->r_pledge_amt ?>" placeholder="Amount pledged">
+                                   value="" placeholder="Amount pledged">
                         </div>
                     </div>
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
                             <p style="float: left">% of discount given</p>
                             <select class="form-control" id="discount" name="discount[]">
-                                <option value=""><?= $mandatoryReward->r_discount ?></option>
+                                <option value=""></option>
                                 <option value="5">5%</option>
                                 <option value="10">10%</option>
                                 <option value="15">15%</option>
@@ -494,7 +517,7 @@ $campaign_draft = new Campaign();
                         <div class="form-group">
                             <p style="float: left"># of months it is valid after launch</p>
                             <input type="text" class="form-control" id="expiry" name="expiry[]"
-                                   value="<?= $mandatoryReward->r_validity ?>" placeholder="Validity">
+                                   value="" placeholder="Validity">
                         </div>
                     </div>
                     <div class="col-sm-3 nopadding">
@@ -502,7 +525,7 @@ $campaign_draft = new Campaign();
                             <div class="input-group">
                                 <p style="float: left">Conditions/Description</p>
                                 <input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]"
-                                       value="<?= $mandatoryReward->r_description ?>"
+                                       value=""
                                        placeholder="Conditions/Description">
                                 <div class="input-group-btn" style="vertical-align: bottom;">
                                     <button class="btn btn-success" type="button" onclick="add_rewards();"><span
@@ -512,18 +535,18 @@ $campaign_draft = new Campaign();
                         </div>
                     </div>
                     <div class="clear"></div>
-                    <?php $room = 2;
-                    foreach ($this->params['rewards'] as $reward) { ?>
-                        <div class="form-group removeclass<?= $room ?>">
+                    <?php /*$room = 2;
+                    foreach ($this->params['rewards'] as $reward) { */?><!--
+                        <div class="form-group removeclass<?/*= $room */?>">
                             <div class="col-sm-3 nopadding">
-                                <input type="text" class="form-control" id="amount" name="amount[]" value="<?=$reward->r_pledge_amt?>"
+                                <input type="text" class="form-control" id="amount" name="amount[]" value="<?/*=$reward->r_pledge_amt*/?>"
                                        placeholder="Amount pledged">
                             </div>
                             <div class="col-sm-3 nopadding">
                                 <div class="form-group">
                                         <select class="form-control" id="discount"
                                                                     name="discount[]">
-                                            <option value="<?=$reward->r_discount?>"><?=$reward->r_discount?>%</option>
+                                            <option value="<?/*=$reward->r_discount*/?>"><?/*=$reward->r_discount*/?>%</option>
                                             <option value="2015">5%</option>
                                             <option value="2016">10%</option>
                                             <option value="2017">15%</option>
@@ -534,16 +557,16 @@ $campaign_draft = new Campaign();
                             <div class="col-sm-3 nopadding">
                                 <div class="form-group"><input type="text" class="form-control" id="expiry"
                                                                name="expiry[]"
-                                                               value="<?=$reward->r_validity?>" placeholder="Validity"></div>
+                                                               value="<?/*=$reward->r_validity*/?>" placeholder="Validity"></div>
                             </div>
                             <div class="col-sm-3 nopadding">
                                 <div class="form-group">
                                     <div class="input-group"><input type="text" class="form-control" id="rewardDesc"
-                                                                    name="rewardDesc[]" value="<?=$reward->r_description?>"
+                                                                    name="rewardDesc[]" value="<?/*=$reward->r_description*/?>"
                                                                     placeholder="Reward Description">
                                         <div class="input-group-btn">
                                             <button class="btn btn-danger" type="button"
-                                                    onclick="remove_add_rewards(<?=$room?>);"><span
+                                                    onclick="remove_add_rewards(<?/*=$room*/?>);"><span
                                                         class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                                             </button>
                                         </div>
@@ -552,8 +575,8 @@ $campaign_draft = new Campaign();
                             </div>
                         </div>
                         <div class="clear"></div>
-                        <?php $room++;
-                    } ?>
+                        --><?php /*$room++;
+                    } */?>
                     <div class="clear"></div>
                     <div id="add_rewards">
 
@@ -583,7 +606,15 @@ $campaign_draft = new Campaign();
     var cCategory = document.campaignForm.cCategory;
     var cDesc = document.campaignForm.cDesc;
     var cGoal = document.campaignForm.cGoal;
+
+    var tokenValue = document.campaignForm.tokenValue;
+    var tokenSupply = document.campaignForm.tokenSupply;
+
     var error_message = '';
+
+    function calculate() {
+        tokenValue.value = cGoal.value / tokenSupply.value;
+    }
 
     function validateStep1() {
         if (cTitle.value == "") {
