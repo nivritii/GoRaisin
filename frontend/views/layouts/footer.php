@@ -1,4 +1,5 @@
 <?php
+
 use yii\helpers\Url;
 use yii\helpers\Html;
 use frontend\assets\HomePageAsset;
@@ -26,7 +27,8 @@ HomePageAsset::register($this);
                             <a href="content/blogger2/comments/#">Comments</a>
                         </li>
                         <li>
-                            <a href="https://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a>
+                            <a href="https://wordpress.org/"
+                               title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a>
                         </li>
                     </ul>
                 </aside>
@@ -74,7 +76,7 @@ HomePageAsset::register($this);
                     <h4>HELLO</h4>
                     <ul>
                         <li>
-                            <?= Html::a('Our Website',['site/redirect','website' => 'webpuppies.com.sg'],['target' => '_blank']) ?>
+                            <?= Html::a('Our Website', ['site/redirect', 'website' => 'webpuppies.com.sg'], ['target' => '_blank']) ?>
                         </li>
                         <li>
                             <a href="#">Entries</a>
@@ -100,7 +102,7 @@ HomePageAsset::register($this);
                     <h4>MORE</h4>
                     <ul>
                         <li>
-                            <?= Html::a('Our Website',['site/redirect','website' => 'webpuppies.com.sg'],['target' => '_blank']) ?>
+                            <?= Html::a('Our Website', ['site/redirect', 'website' => 'webpuppies.com.sg'], ['target' => '_blank']) ?>
                         </li>
                         <li>
                             <a href="#">Entries</a>
@@ -119,7 +121,8 @@ HomePageAsset::register($this);
             <div class="column one">
 
                 <div class="copyright">
-                    &copy; 2017 GoRaisin.<!-- <a target="_blank" rel="nofollow" href="http://bit.ly/1M6lijQ">BeantownThemes</a>-->
+                    &copy; 2017 GoRaisin.
+                    <!-- <a target="_blank" rel="nofollow" href="http://bit.ly/1M6lijQ">BeantownThemes</a>-->
                 </div>
                 <!--Social info area-->
                 <ul class="social"></ul>
@@ -127,5 +130,3 @@ HomePageAsset::register($this);
         </div>
     </div>
 </footer>
-</div>
-</body>
