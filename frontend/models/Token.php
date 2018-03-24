@@ -30,7 +30,7 @@ class Token extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['t_name', 't_value'], 'required'],
+            [['c_id', 't_name', 't_value'], 'required'],
             [['c_id', 't_value'], 'integer'],
             [['t_name'], 'string', 'max' => 255],
             [['c_id'], 'exist', 'skipOnError' => true, 'targetClass' => Campaign::className(), 'targetAttribute' => ['c_id' => 'c_id']],

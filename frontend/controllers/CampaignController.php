@@ -361,52 +361,52 @@ class CampaignController extends Controller
                 $model->c_description = $_POST['cDesc'];
             }
             if (!empty($_POST['cStartdate'])) {
-                $model->c_description = $_POST['cStartdate'];
+                $model->c_start_date = $_POST['cStartdate'];
             }
             if (!empty($_POST['cEnddate'])) {
-                $model->c_description = $_POST['cEnddate'];
+                $model->c_end_date = $_POST['cEnddate'];
             }
             if (!empty($_POST['cGoal'])) {
-                $model->c_description = $_POST['cGoal'];
+                $model->c_goal = $_POST['cGoal'];
             }
             if (!empty($_POST['cVideo'])) {
-                $model->c_description = $_POST['cVideo'];
+                $model->c_video = $_POST['cVideo'];
             }
             if (!empty($_POST['cLDesc'])) {
-                $model->c_description = $_POST['cLDesc'];
+                $model->c_description_long = $_POST['cLDesc'];
             }
             if (!empty($_POST['cLocation'])) {
-                $model->c_description = $_POST['cLocation'];
+                $model->c_location = $_POST['cLocation'];
             }
             if (!empty($_POST['comName'])) {
                 $company->company_name = $_POST['comName'];
             }
             if (!empty($_POST['comEmail'])) {
-                $company->company_name = $_POST['comEmail'];
+                $company->company_email = $_POST['comEmail'];
             }
             if (!empty($_POST['comWebsite'])) {
-                $company->company_name = $_POST['comWebsite'];
+                $company->company_website = $_POST['comWebsite'];
             }
             if (!empty($_POST['comDesc'])) {
-                $company->company_name = $_POST['comDesc'];
+                $company->company_description = $_POST['comDesc'];
             }
             if (!empty($_POST['comIndustry'])) {
-                $company->company_name = $_POST['comIndustry'];
+                $company->company_industry = $_POST['comIndustry'];
             }
             if (!empty($_POST['comEmp'])) {
-                $company->company_name = $_POST['comEmp'];
+                $company->company_employees_count = $_POST['comEmp'];
             }
             if (!empty($_POST['comPostal'])) {
-                $company->company_name = $_POST['comPostal'];
+                $company->company_postal = $_POST['comPostal'];
             }
             if (!empty($_POST['comPosition'])) {
-                $company->company_name = $_POST['comPosition'];
+                $company->company_designation = $_POST['comPosition'];
             }
             if (!empty($_POST['tokenName'])) {
                 $token->t_name = $_POST['tokenName'];
             }
             if (!empty($_POST['tokenValue'])) {
-                $token->t_name = $_POST['tokenValue'];
+                $token->t_value = $_POST['tokenValue'];
             }
 
             $number = count($_POST['amount']);
