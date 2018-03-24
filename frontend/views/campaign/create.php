@@ -27,7 +27,8 @@ $campaign_draft = new Campaign();
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
-<form class="createCampaign" enctype="multipart/form-data" action="preview?id=<?=$model->c_id?>" method="post" id="tab_logic"
+<form class="createCampaign" enctype="multipart/form-data" action="preview?id=<?= $model->c_id ?>" method="post"
+      id="tab_logic"
       name="campaignForm">
     <div class="container" style="margin-top: 10px">
         <div class="row form-group">
@@ -67,21 +68,30 @@ $campaign_draft = new Campaign();
             </div>
             <div>
                 <div class="col-xs-3" style="padding-left: 0px; ">
-                    <input class="btn btn-lg btn-default" type="submit" value="Preview" id="submit" style="width:130px;padding: 25px 20px 20px; margin-left: 3%; color: #337ab7;">
-                    <a href="<?= Url::to(['campaign/review','id'=>$model->c_id],['style' => 'background-color: #8f13a5f0'])?>">
-                        <input class="btn btn-lg btn-default" value="Submit" style="width:130px; padding: 25px 20px 20px; margin-left: 1%; background-color: #8f13a5f0;color: #ffffff">
-                    </a>
+                    <input class="btn btn-lg btn-default" type="submit" value="Preview" name="button"
+                           style="width:130px;padding: 25px 20px 20px; margin-left: 3%; color: #337ab7;">
+                    <input class="btn btn-lg btn-default" type="submit" value="Submit" name="button"
+                           style="width:130px; padding: 25px 20px 20px; margin-left: 1%; background-color: #8f13a5f0;color: #ffffff">
                 </div>
             </div>
         </div>
 
+        <?php if(!empty($errors)) {?>
 
         <div class="row form-group">
             <div class="col-xs-12">
-                <div class="alert alert-success hide"></div>
+                <div class="alert alert-danger">
+                   <ul>
+                       <?php foreach ($errors as $error) {?>
+                       <?php foreach ($error as $err) {?>
+                        <li><?=$err?></li>
+                       <?php }?>
+                       <?php }?>
+                   </ul>
+                </div>
             </div>
         </div>
-
+        <?php }?>
 
         <!--        <div class="container">-->
         <div class="row setup-content" id="step-1">
@@ -97,7 +107,8 @@ $campaign_draft = new Campaign();
                                         <p class="item-title">Campaign title <abbr title="Required">*</abbr></p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <input type="text" style="width: 100%" name="cTitle" id="cTitle"  required="required" aria-required="true" title="Your campaign title" spellcheck="true" onchange="validateTitle();">
+                                        <input type="text" style="width: 100%" name="cTitle" id="cTitle" aria-required="true" title="Your campaign title"
+                                               spellcheck="true">
                                     </div>
                                 </div>
                                 <div style="clear:both;">
@@ -108,7 +119,8 @@ $campaign_draft = new Campaign();
                                         <select name="cCategory" id="search_categories"
                                                 data-default-caption="Select Category"
                                                 style="border-radius: 0px;width: 100%">
-                                            <option selected value="<?= $model->cCat->id?>"><?= $model->cCat->name ?></option>
+                                            <option selected
+                                                    value="<?= $model->cCat->id ?>"><?= $model->cCat->name ?></option>
                                             <?php foreach ($categories as $category) { ?>
                                                 <option value=<?= $category->id ?>><?= $category->name ?></option>
                                             <?php } ?>
@@ -193,7 +205,8 @@ $campaign_draft = new Campaign();
                                 </div>
                             </div>
                             <hr>
-                            <input onclick="step1Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                            <input onclick="step1Next()" class="btn btn-md btn-info" value="Next"
+                                   style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
 
                         </div>
                     </div>
@@ -220,9 +233,19 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Campaign video</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                    <input type="text" style="width: 100%" name="cVideo" id="youtubeId" data-target="#myIframe">
-                                    <p align="left">Please upload your video to YouTube and paste video id (11 characters) here. Projects with a video have a much higher chance of success.</p>
-                                    <p style="font-weight: 600;display: inline-block;">Example:&nbsp</p><p style="font-weight: 400;display: inline-block">https://www.youtube.com/watch?v=</p><p style="display: inline-block;font-weight: 600">yNAsk4Zw2p0</p><p style="display: inline-block">.</p><p style="display: inline-block">&nbspVideo ID: </p><p style="display: inline-block;font-weight: 600">&nbsp;yNAsk4Zw2p0</p><p style="display: inline-block">&nbsp;.</p>
+                                    <input type="text" style="width: 100%" name="cVideo" id="youtubeId"
+                                           data-target="#myIframe">
+                                    <p align="left">Please upload your video to YouTube and paste video id (11
+                                        characters) here. Projects with a video have a much higher chance of
+                                        success.</p>
+                                    <p style="font-weight: 600;display: inline-block;">Example:&nbsp</p>
+                                    <p style="font-weight: 400;display: inline-block">
+                                        https://www.youtube.com/watch?v=</p>
+                                    <p style="display: inline-block;font-weight: 600">yNAsk4Zw2p0</p>
+                                    <p style="display: inline-block">.</p>
+                                    <p style="display: inline-block">&nbspVideo ID: </p>
+                                    <p style="display: inline-block;font-weight: 600">&nbsp;yNAsk4Zw2p0</p>
+                                    <p style="display: inline-block">&nbsp;.</p>
                                     <div id="info" style="font-weight: 500;font-size: 15px"></div>
                                     <iframe id="myIframe" width="600" height="300" hidden></iframe>
                                 </div>
@@ -248,8 +271,10 @@ $campaign_draft = new Campaign();
                 </div>
                 <!--</form> -->
 
-                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-                <input onclick="step2Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
+                       style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                <input onclick="step2Next()" class="btn btn-md btn-info" value="Next"
+                       style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
 
             </div>
         </div>
@@ -279,7 +304,7 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Registration No</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                    <input type="number" style="width: 100%" name="comNo" required="required"/>
+                                    <input type="number" style="width: 100%" name="comNo"/>
                                 </div>
                             </div>
                             <div style="clear:both;padding: 10px">
@@ -287,7 +312,7 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Email</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                    <input type="email" style="width: 100%" name="comEmail" required="required"/>
+                                    <input type="email" style="width: 100%" name="comEmail"/>
                                 </div>
                             </div>
                             <div style="clear:both;padding: 10px;">
@@ -295,16 +320,17 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Website URL</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                    <input type="url" style="width: 100%" name="comWebsite" required="required"/>
+                                    <input type="url" style="width: 100%" name="comWebsite"/>
                                 </div>
                             </div>
                             <div style="clear:both;padding: 10px;">
                                 <div style="float: left;display: inline-block;width: 20%">
                                     <p class="item-title">Description</p>
                                 </div>
-                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%;class=" textEditor
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 55%;class="
+                                     textEditor
                                 ">
-                                <textarea rows="3" type="text" style="width: 100%;" name="comDesc"
+                                <textarea rows="3" type="text" style="width: 100%; float: left" name="comDesc"
                                           id="comDesc"><?= $model->c_description ?></textarea>
                             </div>
                         </div>
@@ -322,7 +348,7 @@ $campaign_draft = new Campaign();
                                 <p class="item-title"># of employees</p>
                             </div>
                             <div style="display: inline-block;float: left;margin-left: 1.7%;width: 55.5%">
-                                <input type="text" style="width: 100%" name="comEmp">
+                                <input type="number" style="width: 100%" name="comEmp">
                             </div>
                         </div>
                         <div style="clear:both;padding: 0px;">
@@ -333,7 +359,8 @@ $campaign_draft = new Campaign();
                             <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
                                 <select name="cLocation" id="search_locations"
                                         style="border-radius: 0px;width: 100%">
-                                    <option selected value="<?= $model->cLocation->id?>"><?= $model->cLocation->country ?></option>
+                                    <option selected
+                                            value="<?= $model->cLocation->id ?>"><?= $model->cLocation->country ?></option>
                                     <?php foreach ($countries as $country) { ?>
                                         <option value=<?= $country->id ?>><?= $country->country ?></option>
                                     <?php } ?>
@@ -360,8 +387,10 @@ $campaign_draft = new Campaign();
                     </div>
                 </div>
             </div>
-            <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-            <input onclick="step3Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+            <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
+                   style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+            <input onclick="step3Next()" class="btn btn-md btn-info" value="Next"
+                   style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
 
         </div>
     </div>
@@ -373,76 +402,84 @@ $campaign_draft = new Campaign();
             <div class="col-md-12 well text-center">
                 <h1 class="tabpage-title">Token</h1>
 
-            <!--<form>-->
-            <div class="container col-xs-12">
-                <div class="container">
-                    <br/>
-                    <div class="form-group">
-                        <div style="width: 100%;">
-                            <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Name your token</p>
-                            </div>
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                <input type="text" style="width: 100%" name="tokenName" id="tokenName" required>
-                            </div>
-                        </div>
-                        <div style="clear:both;padding-top: 20px">
-                            <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Target</p>
-                            </div>
-                            <div style="display: inline-block;float: left; margin-left: 2%; width: 50%">
-                                <div style="display: inline-block;width: 100%;float: right">
-                                    <input type="number" style="width: 100%;float: left" name="cGoal" id="cGoal">
-                                    <p align="left">Please provide the amount you are targeting to raise <b>in USD</b>.</p>
+                <!--<form>-->
+                <div class="container col-xs-12">
+                    <div class="container">
+                        <br/>
+                        <div class="form-group">
+                            <div style="width: 100%;">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Name your token</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                    <input type="text" style="width: 100%" name="tokenName" id="tokenName">
                                 </div>
                             </div>
-                        </div>
-                        <div style="clear:both;padding-top: 20px">
-                            <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Maximum supply</p>
-                            </div>
-                            <div style="display: inline-block;float: left; margin-left: 2%; width: 50%">
-                                <div style="display: inline-block;width: 100%;float: right">
-                                    <input type="number" style="width: 100%;float: left" name="cTokenSupply" id="cTokenSupply" onchange="calculate();">
-                                    <p align="left">Please provide the amount of tokens you would be generating.</p>
+                            <div style="clear:both;padding-top: 20px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Target</p>
+                                </div>
+                                <div style="display: inline-block;float: left; margin-left: 2%; width: 50%">
+                                    <div style="display: inline-block;width: 100%;float: right">
+                                        <input type="number" style="width: 100%;float: left" name="cGoal" id="cGoal">
+                                        <p align="left">Please provide the amount you are targeting to raise <b>in
+                                                USD</b>.</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div style="clear:both;padding-top: 0px">
-                            <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Token value</p>
-                            </div>
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                <div style="display: inline-block;float: left;text-align: center;">
-                                    <input type="text" style="width: 18%;float: left" value="1" disabled><i class="fa fa-bitcoin fa-2x" style="float: left;padding: 3% 5% 0;"></i><span class="glyphicon glyphicon-transfer" style="padding: 7% 0 0;"></span>
+                            <div style="clear:both;padding-top: 20px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Maximum supply</p>
                                 </div>
-                                <div style="display: inline-block;width: 60%;float: right">
-                                    <input type="text" name="tokenValue" id="tokenValue" style="width: 100%; float: right" disabled>
+                                <div style="display: inline-block;float: left; margin-left: 2%; width: 50%">
+                                    <div style="display: inline-block;width: 100%;float: right">
+                                        <input type="number" style="width: 100%;float: left" name="cTokenSupply"
+                                               id="cTokenSupply" onchange="calculate();">
+                                        <p align="left">Please provide the amount of tokens you would be generating.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="clear:both;padding-top: 0px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Token value</p>
+                                </div>
+                                <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                    <div style="display: inline-block;float: left;text-align: center;">
+                                        <input type="text" style="width: 18%;float: left" value="1" disabled><i
+                                                class="fa fa-bitcoin fa-2x"
+                                                style="float: left;padding: 3% 5% 0;"></i><span
+                                                class="glyphicon glyphicon-transfer" style="padding: 7% 0 0;"></span>
+                                    </div>
+                                    <div style="display: inline-block;width: 60%;float: right">
+                                        <input type="text" name="tokenValue" id="tokenValue"
+                                               style="width: 100%; float: right" disabled>
                                     </div>
                                     <p align="left">Exchange rate of your tokens equivalent to 1 Rasin.</p>
                                 </div>
                             </div>
                             <div style="clear:both;padding-top: 30px">
-                                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-                                <input onclick="step4Next()" class="btn btn-md btn-info" value="Next" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
+                                       style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                                <input onclick="step4Next()" class="btn btn-md btn-info" value="Next"
+                                       style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
                             </div>
 
                         </div>
                     </div>
                 </div>
                 <!--</form> -->
-<!--</form>-->
-</div>
-</div>
-</div>
-<!--<div class="container">-->
-<div class="row setup-content" id="step-5">
-    <div class="col-xs-12 text-center">
-        <div class="col-md-12 well text-center">
-            <h1 class="tabpage-title">Perks</h1>
-            <p class="tabpage">Please provide the discounts that backers would get for the amounts they pledge.</p>
+                <!--</form>-->
+            </div>
         </div>
-        <!--<form>-->
+    </div>
+    <!--<div class="container">-->
+    <div class="row setup-content" id="step-5">
+        <div class="col-xs-12 text-center">
+            <div class="col-md-12 well text-center">
+                <h1 class="tabpage-title">Perks</h1>
+                <p class="tabpage">Please provide the discounts that backers would get for the amounts they pledge.</p>
+            </div>
+            <!--<form>-->
 
             <!--</form> -->
             <div class="panel panel-default">
@@ -450,7 +487,8 @@ $campaign_draft = new Campaign();
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
                             <p style="float: left">For the stated amount pledged & more</p>
-                            <input type="text" class="form-control" id="amount" name="amount[]" value="" placeholder="Amount pledged">
+                            <input type="text" class="form-control" id="amount" name="amount[]" value=""
+                                   placeholder="Amount pledged">
                         </div>
                     </div>
                     <div class="col-sm-3 nopadding">
@@ -479,16 +517,19 @@ $campaign_draft = new Campaign();
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
                             <p style="float: left"># of months it is valid after launch</p>
-                            <input type="text" class="form-control" id="expiry" name="expiry[]" value="" placeholder="Validity">
+                            <input type="text" class="form-control" id="expiry" name="expiry[]" value=""
+                                   placeholder="Validity">
                         </div>
                     </div>
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
                             <div class="input-group">
-                                    <p style="float: left">Conditions/Description</p>
-                                    <input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="" placeholder="Conditions/Description">
+                                <p style="float: left">Conditions/Description</p>
+                                <input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value=""
+                                       placeholder="Conditions/Description">
                                 <div class="input-group-btn" style="vertical-align: bottom;">
-                                    <button class="btn btn-success" type="button"  onclick="add_rewards();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+                                    <button class="btn btn-success" type="button" onclick="add_rewards();"><span
+                                                class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                                 </div>
                             </div>
                         </div>
@@ -501,16 +542,20 @@ $campaign_draft = new Campaign();
 
             </div>
 
-            <div class="panel-footer"><small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another reward</small>, <small>Press <span class="glyphicon glyphicon-minus gs"></span> to remove rewards</small>
+            <div class="panel-footer">
+                <small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another reward</small>
+                ,
+                <small>Press <span class="glyphicon glyphicon-minus gs"></span> to remove rewards</small>
             </div>
             <hr/>
             <div style="clear:both;padding-bottom: 30px">
-                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev" style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
+                       style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
             </div>
         </div>
     </div>
-</div>
-<!--</div>-->
+    </div>
+    <!--</div>-->
 </form>
 
 <script>
@@ -529,10 +574,10 @@ $campaign_draft = new Campaign();
     var error_message = '';
 
     function calculate() {
-        tokenValue.value = cGoal.value/cTokenSupply.value;
+        tokenValue.value = cGoal.value / cTokenSupply.value;
     }
-    
-    function validateTitle(){
+
+    function validateTitle() {
         if (cTitle.value == "") {
             cTitle.focus();
             error_message += "Please enter Campaign Title";
@@ -595,31 +640,28 @@ $campaign_draft = new Campaign();
         });
         $('#navStep1').click();
 
-        $('#submit').click(function(){
+        $('#submit').click(function () {
             $.ajax({
                 //url:"name.php",
-                method:"POST",
-                data:$('#amount').serialize(),
-                success:function(data)
-                {
+                method: "POST",
+                data: $('#amount').serialize(),
+                success: function (data) {
                     alert(data);
                     $('#amount')[0].reset();
                 }
             });
         });
 
-        $( "#youtubeId" ).click(function() {
+        $("#youtubeId").click(function () {
 
             var target_selector = $(this).attr('data-target');
-            var $target = $( target_selector );
+            var $target = $(target_selector);
 
-            if ($target.is(':hidden'))
-            {
-                $target.show( "slow" );
+            if ($target.is(':hidden')) {
+                $target.show("slow");
             }
-            else
-            {
-                $target.hide( "slow" );
+            else {
+                $target.hide("slow");
             }
 
             console.log($target.is(':visible'));
@@ -668,19 +710,21 @@ $campaign_draft = new Campaign();
 
     // Add , Delete row dynamically
     var room = 1;
+
     function add_rewards() {
 
         room++;
         var objTo = document.getElementById('add_rewards')
         var divtest = document.createElement("div");
-        divtest.setAttribute("class", "form-group removeclass"+room);
-        var rdiv = 'removeclass'+room;
-        divtest.innerHTML = '<div class="col-sm-3 nopadding"><input type="text" class="form-control" id="amount" name="amount[]" value="" placeholder="Amount pledged"></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="form-group"><select class="form-control" id="discount" name="discount[]"><option value="">% of discount</option><option value="2015">5%</option><option value="2016">10%</option><option value="2017">15%</option><option value="2018">20%</option></select></div></div></div><div class="col-sm-3 nopadding"><div class="form-group"><input type="text" class="form-control" id="expiry" name="expiry[]" value="" placeholder="Validity"></div></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="input-group"><input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="" placeholder="Reward Description"><div class="input-group-btn"><button class="btn btn-danger" type="button" onclick="remove_add_rewards('+ room +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div><div class="clear"></div>';
+        divtest.setAttribute("class", "form-group removeclass" + room);
+        var rdiv = 'removeclass' + room;
+        divtest.innerHTML = '<div class="col-sm-3 nopadding"><input type="text" class="form-control" id="amount" name="amount[]" value="" placeholder="Amount pledged"></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="form-group"><select class="form-control" id="discount" name="discount[]"><option value="">% of discount</option><option value="2015">5%</option><option value="2016">10%</option><option value="2017">15%</option><option value="2018">20%</option></select></div></div></div><div class="col-sm-3 nopadding"><div class="form-group"><input type="text" class="form-control" id="expiry" name="expiry[]" value="" placeholder="Validity"></div></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="input-group"><input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="" placeholder="Reward Description"><div class="input-group-btn"><button class="btn btn-danger" type="button" onclick="remove_add_rewards(' + room + ');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div><div class="clear"></div>';
 
         objTo.appendChild(divtest);
     }
+
     function remove_add_rewards(rid) {
-        $('.removeclass'+rid).remove();
+        $('.removeclass' + rid).remove();
     }
 
 </script>
