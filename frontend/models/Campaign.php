@@ -74,9 +74,9 @@ class Campaign extends \yii\db\ActiveRecord
             [['c_title', 'c_image'], 'string', 'max' => 100],
             [['c_status', 'c_description'], 'string', 'max' => 255],
             ['c_video','string','max' => '11'],
-//            ['c_start_date', 'date', 'timestampAttribute'=>'c_start_date'],
-//            ['c_end_date', 'date', 'timestampAttribute'=>'c_end_date'],
-  //          ['c_start_date', 'compare', 'compareAttribute' => 'c_end_date', 'operator' => '<', 'enableClientValidation' => false],
+/*            ['c_start_date', 'date', 'timestampAttribute'=>'c_start_date'],
+            ['c_end_date', 'date', 'timestampAttribute'=>'c_end_date'],
+            ['c_start_date', 'compare', 'compareAttribute' => 'c_end_date', 'operator' => '<', 'enableClientValidation' => false],*/
             ['c_start_date','validateDates'],
         ];
     }

@@ -381,6 +381,9 @@ class CampaignController extends Controller
             if (!empty($_POST['comName'])) {
                 $company->company_name = $_POST['comName'];
             }
+            if (!empty($_POST['comNo'])) {
+                $company->company_reg_no = $_POST['comNo'];
+            }
             if (!empty($_POST['comEmail'])) {
                 $company->company_email = $_POST['comEmail'];
             }
@@ -405,9 +408,10 @@ class CampaignController extends Controller
             if (!empty($_POST['tokenName'])) {
                 $token->t_name = $_POST['tokenName'];
             }
-            if (!empty($_POST['tokenValue'])) {
-                $token->t_value = $_POST['tokenValue'];
+            if (!empty($_POST['tokenSupply'])) {
+                $token->t_supply = $_POST['tokenSupply'];
             }
+            $token->t_value = $model->c_goal/$token->t_supply;
 
             $number = count($_POST['amount']);
 
@@ -450,28 +454,21 @@ class CampaignController extends Controller
 
                     if ($model->validate()&&$company->validate()&&$token->validate()) {
                         $model->save();
+
                         $company->campaign_id = $model->c_id;
-                        if($company->validate()){
-                            $company->save();
-                        }
-                        $errors = $company->getErrors();
+                        $company->save();
+
                         $token->c_id = $model->c_id;
-                        if($token->validate()){
-                            $token->save();
-                        }
-                        $errors += $token->getErrors();
-                        return $this->render('create', [
-                            'errors' => $errors,
-                            'model' => $model,
-                            'categories' => $categories,
-                            'countries' => $countries,
-                        ]);
+                        $token->save();
+
+                        return $this->redirect(['review', 'id' =>$model->c_id]);
                     }
 
-                    return $this->render('create', [
+                    return $this->render('edit', [
                         'errors' => $errors,
                         'model' => $model,
                         'company' => $company,
+                        'reward' => $reward,
                         'token' => $token,
                         'categories' => $categories,
                         'countries' => $countries,
