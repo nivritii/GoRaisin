@@ -65,4 +65,5 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <div style="margin-left: 15%;margin-top: 1%;margin-bottom: 3%">
     <?= Html::a('Full Profile',['campaign/myintroduction','id' => $model->c_id],['target' => '_blank','style' => 'text-decoration:none;font-size:15px;background-color:#940094;color:#ffffff;padding:7px;border-radius:7px']) ?>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 </div>
