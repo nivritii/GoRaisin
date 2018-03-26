@@ -610,18 +610,28 @@ class CampaignController extends Controller
     public function actionMycampaign()
     {
         $campaigns = Campaign::find()->where(['c_author' => Yii::$app->user->identity->getId()])->all();
-        $draftedCampaigns = Campaign::find()->where(['c_author' => Yii::$app->user->identity->getId()])->all();
+        $draftedCampaigns = Campaign::find()->where(['c_author' => Yii::$app->user->identity->getId()])->andWhere(['!=', 'c_status','published'])->all();
         $publishedCampaigns = Campaign::find()->where(['c_author' => Yii::$app->user->identity->getId(), 'c_status' => 'published'])->all();
+
         $activities = Fund::find()->where(['fund_user_id' => Yii::$app->user->identity->getId()])->all();
 
         $cIds = Fund::find()->select(['fund_c_id'])->where(['fund_user_id' => Yii::$app->user->getId()])->distinct();
+        $updatesList = array();
+
+        foreach ($cIds as $cId){
+            $updates = Update::find()->where(['campaign_id'=>$cId])->all();
+            foreach ($updates as $update){
+                $updatesList += $update;
+            }
+        }
+
         $fundedCampaigns = Campaign::find()->where(['c_id' => $cIds])->all();
 
         return $this->render('mycampaign', [
             'campaigns' => $campaigns,
             'draftedCampaigns' => $draftedCampaigns,
             'publishedCampaigns' => $publishedCampaigns,
-            'activities' => $activities,
+            'updates' => $updatesList,
             'cIds' => $cIds,
             'fundedCampaigns' => $fundedCampaigns,
         ]);
