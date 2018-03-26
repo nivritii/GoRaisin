@@ -4,10 +4,10 @@ namespace frontend\controllers;
 
 use Yii;
 use frontend\models\Question;
-use frontend\models\QuestionSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * QuestionController implements the CRUD actions for Question model.
@@ -23,7 +23,16 @@ class QuestionController extends Controller
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'delete' => ['POST'],
+                    'create' => ['POST','GET'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => 'true',
+                        'roles' => ['@'],
+                    ],
                 ],
             ],
         ];
@@ -33,7 +42,7 @@ class QuestionController extends Controller
      * Lists all Question models.
      * @return mixed
      */
-    public function actionIndex()
+    /*public function actionIndex()
     {
         $searchModel = new QuestionSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -42,7 +51,7 @@ class QuestionController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-    }
+    }*/
 
     /**
      * Displays a single Question model.
@@ -50,12 +59,12 @@ class QuestionController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    /*public function actionView($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-    }
+    }*/
 
     /**
      * Creates a new Question model.
@@ -92,7 +101,7 @@ class QuestionController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
+    /*public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
@@ -103,7 +112,7 @@ class QuestionController extends Controller
         return $this->render('update', [
             'model' => $model,
         ]);
-    }
+    }*/
 
     /**
      * Deletes an existing Question model.
@@ -112,12 +121,12 @@ class QuestionController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
+    /*public function actionDelete($id)
     {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
-    }
+    }*/
 
     /**
      * Finds the Question model based on its primary key value.

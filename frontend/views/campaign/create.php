@@ -77,7 +77,6 @@ $campaign_draft = new Campaign();
             </div>
         </div>
 
-
         <!--        <div class="container">-->
         <div class="row setup-content" id="step-1">
             <div class="col-xs-12">
@@ -91,8 +90,8 @@ $campaign_draft = new Campaign();
                                     <div style="float: left;display: inline-block;width: 20%">
                                         <p class="item-title">Campaign title</p>
                                     </div>
-                                    <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <input type="text" style="width: 100%" name="cTitle" id="cTitle" required>
+                                    <div class="form-group" style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                        <input type="text" style="width: 100%" name="cTitle" id="cTitle" class="cTitle">
                                     </div>
                                 </div>
                                 <div style="clear:both;">
@@ -575,7 +574,6 @@ $campaign_draft = new Campaign();
 
             console.log($target.is(':visible'));
 
-
         });
     });
 
@@ -631,7 +629,6 @@ $campaign_draft = new Campaign();
         objTo.appendChild(divtest);
     }
     function remove_add_rewards(rid) {
-        $('.removeclass'+rid).remove();
+        $('.removeclass' + rid).remove();
     }
-
 </script>

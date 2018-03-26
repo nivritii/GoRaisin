@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <?= Html::submitButton('Submit', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Submit', ['class' => 'btn btn-success','style' => 'background-color:#8f13a5f0;border-radius:2px;']) ?>
     </div>
     <?php ActiveForm::end(); ?>
 </div>

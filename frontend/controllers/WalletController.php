@@ -54,7 +54,7 @@ class WalletController extends \yii\web\Controller
         return parent::beforeAction($action);
     }
 
-    public $url = 'http://172.23.205.29:8092/rpc';
+    public $url = 'http://192.168.1.138:8092/rpc';
     //192.168.1.138
 
 

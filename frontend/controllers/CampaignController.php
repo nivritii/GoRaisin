@@ -4,7 +4,6 @@ namespace frontend\controllers;
 
 use common\models\LoginForm;
 use frontend\models\Faq;
-use frontend\models\Question;
 use frontend\models\Reward;
 use frontend\models\Update;
 use frontend\models\UpdateImage;
