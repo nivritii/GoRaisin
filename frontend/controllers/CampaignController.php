@@ -4,6 +4,7 @@ namespace frontend\controllers;
 
 use common\models\LoginForm;
 use frontend\models\Faq;
+use frontend\models\Industry;
 use frontend\models\Reward;
 use frontend\models\Update;
 use frontend\models\UpdateImage;
@@ -275,6 +276,7 @@ class CampaignController extends Controller
         $model = $this->findModel($id);
         $categories = Category::find()->where(['!=', 'id', $model->c_cat_id])->all();
         $countries = Location::find()->where(['!=', 'id', $model->c_location])->all();
+        $industries = Industry::find()->all();
         $reward = new Reward();
 
 //        if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -325,6 +327,7 @@ class CampaignController extends Controller
             'model' => $model,
             'categories' => $categories,
             'countries' => $countries,
+            'industries' => $industries,
         ]);
     }
 
@@ -336,6 +339,7 @@ class CampaignController extends Controller
         //$rewards = Reward::find()->where(['c_id'=>$id])->all();
         $reward = new Reward();
         $company = $this->findCompany($id);
+        $industries = Industry::find()->where(['!=', 'id', $company->company_industry])->all();
         $token = $this->findToken($id);
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -487,6 +491,7 @@ class CampaignController extends Controller
             'model' => $model,
             'categories' => $categories,
             'countries' => $countries,
+            'industries' => $industries,
         ]);
     }
 

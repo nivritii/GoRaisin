@@ -35,7 +35,7 @@ frontend\assets\LoginAsset::register($this);
                     <?= Html::a('Forgot your password?', ['site/request-password-reset'],['class' => 'forget-password','data-toggle' => 'modal','data-target' => '#forgot-password']) ?>
                 </div>
 
-                <?= Html::submitButton('Log in', ['class' => 'login-button', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('Log in', ['class' => 'login-button', 'name' => 'login-button','style' => 'width:363px']) ?>
 
                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
                 <?php ActiveForm::end(); ?>

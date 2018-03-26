@@ -84,7 +84,7 @@ return [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.gmail.com',
                 'username' => 'cherry@webpuppies.com.sg',
-                'password' => '0121difsszhV!',
+                'password' => 'cherrynus123',
                 'port' => '465',
                 'encryption' => 'ssl',
             ],
