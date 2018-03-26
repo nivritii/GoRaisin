@@ -33,10 +33,10 @@ class Reward extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['c_id', 'r_discount', 'r_pledge_amt', 'r_description', 'r_validity'], 'required'],
+            [['c_id', 'r_discount', 'r_pledge_amt', 'r_validity'], 'required'],
             [['c_id', 'r_discount', 'r_pledge_amt', 'r_validity'], 'integer'],
             [['r_description'], 'string', 'max' => 255],
-            [['r_mandatory'], 'string', 'max' => 1],
+            /*[['r_mandatory'], 'string', 'max' => 1],*/
             [['c_id'], 'exist', 'skipOnError' => true, 'targetClass' => Campaign::className(), 'targetAttribute' => ['c_id' => 'c_id']],
         ];
     }
@@ -49,10 +49,10 @@ class Reward extends \yii\db\ActiveRecord
         return [
             'r_id' => 'R ID',
             'c_id' => 'C ID',
-            'r_discount' => 'R Discount',
-            'r_pledge_amt' => 'R Pledge Amt',
-            'r_description' => 'R Description',
-            'r_validity' => 'R Validity',
+            'r_discount' => 'Reward Discount',
+            'r_pledge_amt' => 'Reward Pledge Amount',
+            'r_description' => 'Reward Description',
+            'r_validity' => 'Reward Validity',
             'r_mandatory' => 'R Mandatory',
         ];
     }

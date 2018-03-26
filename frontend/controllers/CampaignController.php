@@ -334,10 +334,12 @@ class CampaignController extends Controller
         $model = $this->findModel($id);
         $categories = Category::find()->where(['!=', 'id', $model->c_cat_id])->all();
         $countries = Location::find()->where(['!=', 'id', $model->c_location])->all();
-        //$rewards = Reward::find()->where(['c_id'=>$id])->all();
+        $mReward = new Reward();
         $reward = new Reward();
         $company = $this->findCompany($id);
         $token = $this->findToken($id);
+        $number=0;
+        $flag = false;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -411,43 +413,77 @@ class CampaignController extends Controller
             if (!empty($_POST['tokenSupply'])) {
                 $token->t_supply = $_POST['tokenSupply'];
             }
-
             if(!empty($model->c_goal)&&!empty($token->t_supply)){
                 $token->t_value = $model->c_goal/$token->t_supply;
             }
+            if(!empty($_POST['mAmount'])){
+                $mReward->r_pledge_amt=$_POST['mAmount'];
+            }
+            if(!empty($_POST['mDiscount'])){
+                $mReward->r_discount=$_POST['mDiscount'];
+            }
+            if(!empty($_POST['mRewardDesc'])){
+                $mReward->r_description=$_POST['mRewardDesc'];
+            }
+            if(!empty($_POST['mExpiry'])){
+                $mReward->r_validity=$_POST['mExpiry'];
+            }
+            if(!empty($_POST['amount'])){
+                $number = count($_POST['amount']);
+            }
 
-
-            $number = count($_POST['amount']);
+            $model->validate();
+            $errors = $model->getErrors();
 
             if ($model->save(false)) {
                 $company->campaign_id = $model->c_id;
+                $company->validate();
+                $errors += $company->getErrors();
                 $company->save(false);
 
                 $token->c_id = $model->c_id;
+                $token->validate();
+                $errors += $token->getErrors();
                 $token->save(false);
 
                 Reward::deleteAll('c_id = :c_id', [':c_id' => $id]);
 
-                $reward->c_id=$model->c_id;
-                $reward->r_pledge_amt=$_POST['mAmount'];
-                $reward->r_discount=$_POST['mDiscount'];
-                $reward->r_description=$_POST['mRewardDesc'];
-                $reward->r_validity=$_POST['mExpiry'];
-                $reward->r_mandatory=true;
-                $reward->r_id = NULL;
-                $reward->isNewRecord = TRUE;
-                $reward->save(false);
+                $mReward->c_id=$model->c_id;
+                $mReward->r_mandatory=true;
+                $mReward->validate();
+                $errors += $mReward->getErrors();
+                $mReward->save(false);
 
-                for ($i = 0; $i < $number; $i++) {
-                    $reward->c_id = $model->c_id;
-                    $reward->r_pledge_amt = $_POST['amount'][$i];
-                    $reward->r_discount = $_POST['discount'][$i];
-                    $reward->r_description = $_POST['rewardDesc'][$i];
-                    $reward->r_validity = $_POST['expiry'][$i];
-                    $reward->r_mandatory=false;
-                    $reward->r_id = NULL;
-                    $reward->isNewRecord = TRUE;
-                    $reward->save(false);
+                if($number>0){
+                    for ($i = 0; $i < $number; $i++) {
+                        $reward->c_id = $model->c_id;
+
+                        if(!empty($_POST['amount'][$i])){
+                            $reward->r_pledge_amt = $_POST['amount'][$i];
+                        }
+                        if(!empty($_POST['discount'][$i])){
+                            $reward->r_discount = $_POST['discount'][$i];
+                        }
+                        if(!empty($_POST['rewardDesc'][$i])){
+                            $reward->r_description = $_POST['rewardDesc'][$i];
+                        }
+                        if(!empty($_POST['expiry'][$i])){
+                            $reward->r_validity = $_POST['expiry'][$i];
+                        }
+                        $reward->r_mandatory=false;
+                        $reward->r_id = NULL;
+                        $reward->isNewRecord = TRUE;
+                        if($reward->validate()){
+                            $flag = true;
+                        }else{
+                            $errors += $reward->getErrors();
+                            $flag = false;
+                        }
+
+                        $reward->save(false);
+
+
+                    }
                 }
 
             }
@@ -460,15 +496,7 @@ class CampaignController extends Controller
                     break;
 
                 case 'Submit':
-                    $model->validate();
-                    $company->validate();
-                    $token->validate();
-
-                    $errors = $model->getErrors();
-                    $errors += $company->getErrors();
-                    $errors += $token->getErrors();
-
-                    if ($model->validate()&&$company->validate()&&$token->validate()) {
+                    if ($model->validate()&&$company->validate()&&$token->validate()&&$mReward->validate()&&$flag) {
                         $model->save();
 
                         $company->campaign_id = $model->c_id;
@@ -477,14 +505,45 @@ class CampaignController extends Controller
                         $token->c_id = $model->c_id;
                         $token->save();
 
+                        Reward::deleteAll('c_id = :c_id', [':c_id' => $id]);
+
+                        $mReward->c_id=$model->c_id;
+                        $mReward->r_mandatory=true;
+                        $mReward->save(true);
+
+                        if($number>0){
+                            for ($i = 0; $i < $number; $i++) {
+                                $reward->c_id = $model->c_id;
+                                if(!empty($_POST['amount'][$i])){
+                                    $reward->r_pledge_amt = $_POST['amount'][$i];
+                                }
+                                if(!empty($_POST['discount'][$i])){
+                                    $reward->r_discount = $_POST['discount'][$i];
+                                }
+                                if(!empty($_POST['rewardDesc'][$i])){
+                                    $reward->r_description = $_POST['rewardDesc'][$i];
+                                }
+                                if(!empty($_POST['expiry'][$i])){
+                                    $reward->r_validity = $_POST['expiry'][$i];
+                                }
+                                $reward->r_mandatory=false;
+                                $reward->r_id = NULL;
+                                $reward->isNewRecord = TRUE;
+                                $reward->save(true);
+                            }
+                        }
+
                         return $this->redirect(['review', 'id' =>$model->c_id]);
                     }
+
+                    $rewards = Reward::find()->where(['c_id' => $id, 'r_mandatory' => false])->all();
+                    $this->view->params['rewards'] = $rewards;
 
                     return $this->render('edit', [
                         'errors' => $errors,
                         'model' => $model,
                         'company' => $company,
-                        'reward' => $reward,
+                        'mandatoryReward' => $mReward,
                         'token' => $token,
                         'categories' => $categories,
                         'countries' => $countries,
