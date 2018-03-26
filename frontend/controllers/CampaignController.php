@@ -427,15 +427,27 @@ class CampaignController extends Controller
                 $token->save(false);
 
                 Reward::deleteAll('c_id = :c_id', [':c_id' => $id]);
+
+                $reward->c_id=$model->c_id;
+                $reward->r_pledge_amt=$_POST['mAmount'];
+                $reward->r_discount=$_POST['mDiscount'];
+                $reward->r_description=$_POST['mRewardDesc'];
+                $reward->r_validity=$_POST['mExpiry'];
+                $reward->r_mandatory=true;
+                $reward->r_id = NULL;
+                $reward->isNewRecord = TRUE;
+                $reward->save(false);
+
                 for ($i = 0; $i < $number; $i++) {
                     $reward->c_id = $model->c_id;
                     $reward->r_pledge_amt = $_POST['amount'][$i];
-                    $reward->r_discount = $number;
+                    $reward->r_discount = $_POST['discount'][$i];
                     $reward->r_description = $_POST['rewardDesc'][$i];
                     $reward->r_validity = $_POST['expiry'][$i];
+                    $reward->r_mandatory=false;
                     $reward->r_id = NULL;
                     $reward->isNewRecord = TRUE;
-                    $reward->save(true);
+                    $reward->save(false);
                 }
 
             }
@@ -503,6 +515,7 @@ class CampaignController extends Controller
         $model = $this->findModel($id);
         $categories = Category::find()->all();
         $mandatoryReward = Reward::find()->where(['c_id' => $id, 'r_mandatory' => true])->one();
+
         $rewards = Reward::find()->where(['c_id' => $id, 'r_mandatory' => false])->all();
         $this->view->params['rewards'] = $rewards;
 

@@ -605,15 +605,24 @@ $campaign_draft = new Campaign();
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
                             <p style="float: left">For the stated amount pledged & more</p>
-                            <input type="text" class="form-control" id="amount" name="amount[]"
+                            <?php if(!empty($mandatoryReward->r_pledge_amt)) {?>
+                            <input type="text" class="form-control" id="mAmount" name="mAmount"
+                                   value="<?=$mandatoryReward->r_pledge_amt?>" placeholder="Amount pledged">
+                            <?php }else{?>
+                            <input type="text" class="form-control" id="mAmount" name="mAmount"
                                    value="" placeholder="Amount pledged">
+                            <?php }?>
                         </div>
                     </div>
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
                             <p style="float: left">% of discount given</p>
-                            <select class="form-control" id="discount" name="discount[]">
-                                <option value=""></option>
+                            <select class="form-control" id="mDiscount" name="mDiscount">
+                                <?php if(!empty($mandatoryReward->r_discount)){?>
+                                <option value="<?=$mandatoryReward->r_discount?>"><?=$mandatoryReward->r_discount?>%</option>
+                                <?php } else {?>
+                                <option value="">Select Discount</option>
+                                <?php }?>
                                 <option value="5">5%</option>
                                 <option value="10">10%</option>
                                 <option value="15">15%</option>
@@ -625,17 +634,28 @@ $campaign_draft = new Campaign();
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
                             <p style="float: left"># of months it is valid after launch</p>
-                            <input type="text" class="form-control" id="expiry" name="expiry[]"
+                            <?php if(!empty($mandatoryReward->r_validity)) {?>
+                            <input type="text" class="form-control" id="mExpiry" name="mExpiry"
+                                   value="<?=$mandatoryReward->r_validity?>" placeholder="Validity">
+                            <?php }else {?>
+                            <input type="text" class="form-control" id="mExpiry" name="mExpiry"
                                    value="" placeholder="Validity">
+                            <?php }?>
                         </div>
                     </div>
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
                             <div class="input-group">
                                 <p style="float: left">Conditions/Description</p>
-                                <input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]"
+                                <?php if(!empty($mandatoryReward->r_description)){?>
+                                <input type="text" class="form-control" id="mRewardDesc" name="mRewardDesc"
+                                       value="<?=$mandatoryReward->r_description?>"
+                                       placeholder="Conditions/Description">
+                                <?php }else {?>
+                                <input type="text" class="form-control" id="mRewardDesc" name="mRewardDesc"
                                        value=""
                                        placeholder="Conditions/Description">
+                                <?php }?>
                                 <div class="input-group-btn" style="vertical-align: bottom;">
                                     <button class="btn btn-success" type="button" onclick="add_rewards();"><span
                                                 class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
@@ -647,7 +667,7 @@ $campaign_draft = new Campaign();
                     <?php $room = 2;
                     if (!empty($this->params['rewards'])) {
                         foreach ($this->params['rewards'] as $reward) { ?>
-                            <div class="form-group removeclass<?= $room ?>">
+                            <div class="form-group removeclass<?=$room?>">
                                 <div class="col-sm-3 nopadding">
                                     <input type="text" class="form-control" id="amount" name="amount[]"
                                            value="<?= $reward->r_pledge_amt ?>"
@@ -659,30 +679,30 @@ $campaign_draft = new Campaign();
                                                 name="discount[]">
                                             <option value="<?= $reward->r_discount ?>"><?= $reward->r_discount ?>%
                                             </option>
-                                            <option value="2015">5%</option>
-                                            <option value="2016">10%</option>
-                                            <option value="2017">15%</option>
-                                            <option value="2018">20%</option>
+                                            <option value="5">5%</option>
+                                            <option value="10">10%</option>
+                                            <option value="15">15%</option>
+                                            <option value="20">20%</option>
                                         </select></div>
                                 </div>
-                            </div>
-                            <div class="col-sm-3 nopadding">
-                                <div class="form-group"><input type="text" class="form-control" id="expiry"
-                                                               name="expiry[]"
-                                                               value="<?= $reward->r_validity ?>"
-                                                               placeholder="Validity"></div>
-                            </div>
-                            <div class="col-sm-3 nopadding">
-                                <div class="form-group">
-                                    <div class="input-group"><input type="text" class="form-control" id="rewardDesc"
-                                                                    name="rewardDesc[]"
-                                                                    value="<?= $reward->r_description ?>"
-                                                                    placeholder="Reward Description">
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-danger" type="button"
-                                                    onclick="remove_add_rewards(<?= $room ?>);"><span
-                                                        class="glyphicon glyphicon-minus" aria-hidden="true"></span>
-                                            </button>
+                                <div class="col-sm-3 nopadding">
+                                    <div class="form-group"><input type="text" class="form-control" id="expiry"
+                                                                   name="expiry[]"
+                                                                   value="<?= $reward->r_validity ?>"
+                                                                   placeholder="Validity"></div>
+                                </div>
+                                <div class="col-sm-3 nopadding">
+                                    <div class="form-group">
+                                        <div class="input-group"><input type="text" class="form-control" id="rewardDesc"
+                                                                        name="rewardDesc[]"
+                                                                        value="<?= $reward->r_description ?>"
+                                                                        placeholder="Reward Description">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-danger" type="button"
+                                                        onclick="remove_add_rewards(<?= $room ?>);"><span
+                                                            class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -692,7 +712,7 @@ $campaign_draft = new Campaign();
                         }
                     } ?>
                     <div class="clear"></div>
-                    <div id="add_rewards"></div>
+                    <div id="add_rewards" style="padding-top: 15px;"></div>
                 </div>
                 <div class="panel-footer">
                     <small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another reward</small>
@@ -707,13 +727,7 @@ $campaign_draft = new Campaign();
                            style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
                 </div>
             </div>
-
         </div>
-    </div>
-
-
-
-    </div>
     </div>
     <!--</div>-->
 </form>
