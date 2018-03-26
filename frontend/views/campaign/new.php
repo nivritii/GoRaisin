@@ -33,7 +33,7 @@ $this->title = 'Create Campaign - GoRaisin';
                                         <br/>
                                         <div class="row form-group">
                                             <div class="col-xs-12">
-                                                <div class="alert alert-success hide" style="padding-top: 0px"></div>
+                                                <div class="alert alert-danger hide" style="padding-top: 0px"></div>
                                             </div>
                                         </div>
                                         <div style="clear:both;height: 80px">

@@ -177,7 +177,7 @@ frontend\assets\RoadmapAsset::register($this);
                         </div>
                     <?php }elseif(Yii::$app->user->id == $model->c_author && $model->c_status == 'published') { ?>
                         <div class="section" style="margin-top:25px; padding-bottom:20px;">
-                            <a href="<?= Url::to(['campaign/update','id'=>$model->c_id])?>">
+                            <a href="<?= Url::to(['campaign/edit','id'=>$model->c_id])?>">
                                 <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><h4><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</h4></button>
                             </a>
                         </div>
@@ -220,7 +220,7 @@ frontend\assets\RoadmapAsset::register($this);
                             <div class="panel-heading" style="background-color: #ffffff">
                                 <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#noReward" style="text-decoration: none;">
                                     <h4 class="panel-title" style="font-size: 20px">
-                                        Pleage without a reward
+                                        Pledge an amount and be entitled to a discount
                                     </h4>
                                 </a>
                             </div>

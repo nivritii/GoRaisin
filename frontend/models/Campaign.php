@@ -48,7 +48,7 @@ class Campaign extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    public function rules()
+    /*public function rules()
     {
         return [
             [['c_author','c_cat_id','c_description', 'c_location'], 'required'],
@@ -63,8 +63,33 @@ class Campaign extends \yii\db\ActiveRecord
             [['c_author'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['c_author' => 'id']],
             [['c_location'], 'exist', 'skipOnError' => true, 'targetClass' => Location::className(), 'targetAttribute' => ['c_location' => 'id']],
         ];
+    }*/
+
+    public function rules()
+    {
+        return[
+            //attributes required
+            [['c_author', 'c_title', 'c_image', 'c_cat_id', 'c_description', 'c_location', 'c_start_date', 'c_end_date', 'c_description_long'], 'required'],
+            [['c_description_long'], 'string'],
+            [['c_title', 'c_image'], 'string', 'max' => 100],
+            [['c_status', 'c_description'], 'string', 'max' => 255],
+            ['c_video','string','max' => '11'],
+/*            ['c_start_date', 'date', 'timestampAttribute'=>'c_start_date'],
+            ['c_end_date', 'date', 'timestampAttribute'=>'c_end_date'],
+            ['c_start_date', 'compare', 'compareAttribute' => 'c_end_date', 'operator' => '<', 'enableClientValidation' => false],*/
+            ['c_start_date','validateDates'],
+        ];
     }
 
+    public function validateDates(){
+        if(strtotime($this->c_start_date) <= strtotime(date("m/d/Y"))){
+            $this->addError('c_start_date','Please ensure that the Start date is given a past date.');
+        }
+
+        if(strtotime($this->c_end_date) <= strtotime($this->c_start_date)){
+            $this->addError('c_start_date','Please ensure that the End date is later than Start date.');
+        }
+    }
     /**
      * @inheritdoc
      */
@@ -72,19 +97,19 @@ class Campaign extends \yii\db\ActiveRecord
     {
         return [
             'c_id' => 'C ID',
-            'c_title' => 'C Title',
-            'c_cat_id' => 'C Cat ID',
+            'c_title' => 'Campaign Title',
+            'c_cat_id' => 'Category',
             'c_status' => 'C Status',
             'c_created_at' => 'C Created At',
             'c_author' => 'C Author',
-            'c_location' => 'C Location',
-            'c_image' => 'C Image',
+            'c_location' => 'Location',
+            'c_image' => 'Image',
             'c_description' => 'C Description',
-            'c_start_date' => 'C Start Date',
-            'c_end_date' => 'C End Date',
-            'c_goal' => 'C Goal',
-            'c_video' => 'C Video',
-            'c_description_long' => 'C Description Long',
+            'c_start_date' => 'Start Date',
+            'c_end_date' => 'End Date',
+            'c_goal' => 'Target',
+            'c_video' => 'Video',
+            'c_description_long' => 'Main Description',
             'c_new_tag' => 'C New Tag',
         ];
     }

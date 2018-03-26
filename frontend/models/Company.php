@@ -16,7 +16,7 @@ use Yii;
  * @property string $company_description
  * @property string $company_industry
  * @property int $company_employees_count
- * @property int $company_postal
+ * @property string $company_postal
  * @property string $company_designation
  *
  * @property Campaign $campaign
@@ -38,9 +38,10 @@ class Company extends \yii\db\ActiveRecord
     {
         return [
             [['campaign_id', 'company_name', 'company_reg_no', 'company_email', 'company_website', 'company_description', 'company_industry', 'company_employees_count', 'company_postal', 'company_designation'], 'required'],
-            [['campaign_id', 'company_employees_count', 'company_postal'], 'integer'],
-            ['company_email', 'email'],
-            [['company_name', 'company_reg_no', 'company_email', 'company_website', 'company_description', 'company_industry', 'company_designation'], 'string', 'max' => 255],
+            [['campaign_id', 'company_employees_count'], 'integer'],
+            [['company_name', 'company_reg_no', 'company_email', 'company_website', 'company_description', 'company_industry', 'company_postal', 'company_designation'], 'string', 'max' => 255],
+            ['company_email','email'],
+            [['company_website'],'url', 'defaultScheme' => ''],
             [['campaign_id'], 'exist', 'skipOnError' => true, 'targetClass' => Campaign::className(), 'targetAttribute' => ['campaign_id' => 'c_id']],
         ];
     }

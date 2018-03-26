@@ -63,22 +63,31 @@ $campaign_draft = new Campaign();
             </div>
             <div>
                 <div class="col-xs-3" style="padding-left: 0px; ">
-                    <input class="btn btn-lg btn-default" type="submit" value="Preview" id="submit"
+                    <input class="btn btn-lg btn-default" type="submit" value="Preview" name="button"
                            style="width:130px;padding: 25px 20px 20px; margin-left: 3%; color: #337ab7;">
-                    <a href="<?= Url::to(['campaign/review', 'id' => $model->c_id], ['style' => 'background-color: #8f13a5f0']) ?>">
-                        <input class="btn btn-lg btn-default" value="Submit"
-                               style="width:130px; padding: 25px 20px 20px; margin-left: 1%; background-color: #8f13a5f0;color: #ffffff">
+                    <input class="btn btn-lg btn-default" type="submit" value="Submit" name="button"
+                           style="width:130px; padding: 25px 20px 20px; margin-left: 1%; background-color: #8f13a5f0;color: #ffffff">
                     </a>
                 </div>
             </div>
         </div>
 
 
-        <div class="row form-group">
-            <div class="col-xs-12">
-                <div class="alert alert-success hide"></div>
+        <?php if(!empty($errors)) {?>
+            <div class="row form-group">
+                <div class="col-xs-12">
+                    <div class="alert alert-danger">
+                        <ul>
+                            <?php foreach ($errors as $error) {?>
+                                <?php foreach ($error as $err) {?>
+                                    <li><?=$err?></li>
+                                <?php }?>
+                            <?php }?>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        </div>
+        <?php }?>
 
 
         <!--        <div class="container">-->
@@ -95,8 +104,12 @@ $campaign_draft = new Campaign();
                                         <p class="item-title">Campaign title</p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                        <?php if(!empty($model->c_title)){?>
                                         <input type="text" style="width: 100%" name="cTitle" id="cTitle"
-                                               value="<?= $model->c_title ?>" required>
+                                               value="<?= $model->c_title ?>" >
+                                        <?php } else {?>
+                                        <input type="text" style="width: 100%" name="cTitle" id="cTitle">
+                                        <?php }?>
                                     </div>
                                 </div>
                                 <div style="clear:both;">
@@ -152,8 +165,13 @@ $campaign_draft = new Campaign();
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 60%;class="
                                          textEditor
                                     ">
+                                    <?php if(!empty($model->c_description)){?>
                                     <textarea rows="2" type="text" style="width: 84%;" name="cDesc"
                                               id="cDesc"><?= $model->c_description ?></textarea>
+                                    <?php } else {?>
+                                    <textarea rows="2" type="text" style="width: 84%;" name="cDesc"
+                                              id="cDesc"><?= $model->c_description ?></textarea>
+                                    <?php }?>
                                 </div>
                             </div>
 
@@ -162,17 +180,29 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Start date</p>
                                 </div>
                                 <div style="float: left;display: inline-block;width: 50%;margin-left: 2%">
-                                    <?php
-                                    echo DatePicker::widget([
-                                        'name' => 'cStartdate',
-                                        'value' => $model->c_start_date,
-                                        'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                                        'pluginOptions' => [
-                                            'format' => 'yyyy-mm-dd',
-                                            'autoclose' => true,
-                                            'todayHighlight' => true,
-                                        ],
-                                    ]); ?>
+                                    <?php if (!empty($model->c_start_date)){
+                                        echo DatePicker::widget([
+                                            'name' => 'cStartdate',
+                                            'value' => $model->c_start_date,
+                                            'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                                            'pluginOptions' => [
+                                                'format' => 'yyyy-mm-dd',
+                                                'autoclose' => true,
+                                                'todayHighlight' => true,
+                                            ],
+                                        ]);
+                                    } else {
+                                        echo DatePicker::widget([
+                                            'name' => 'cStartdate',
+                                            'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                                            'pluginOptions' => [
+                                                'format' => 'yyyy-mm-dd',
+                                                'autoclose' => true,
+                                                'todayHighlight' => true,
+                                            ],
+                                        ]);
+                                    }
+                                     ?>
                                 </div>
                             </div>
 
@@ -181,17 +211,29 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">End date</p>
                                 </div>
                                 <div style="float: left;display: inline-block;width: 50%;margin-left: 2%">
-                                    <?php
-                                    echo DatePicker::widget([
-                                        'name' => 'cEnddate',
-                                        'value' => $model->c_end_date,
-                                        'type' => DatePicker::TYPE_COMPONENT_APPEND,
-                                        'pluginOptions' => [
-                                            'format' => 'yyyy-mm-dd',
-                                            'autoclose' => true,
-                                            'todayHighlight' => true,
-                                        ],
-                                    ]); ?>
+                                    <?php if(!empty($model->c_end_date)){
+                                        echo DatePicker::widget([
+                                            'name' => 'cEnddate',
+                                            'value' => $model->c_end_date,
+                                            'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                                            'pluginOptions' => [
+                                                'format' => 'yyyy-mm-dd',
+                                                'autoclose' => true,
+                                                'todayHighlight' => true,
+                                            ],
+                                        ]);
+                                    } else {
+                                        echo DatePicker::widget([
+                                            'name' => 'cEnddate',
+                                            'type' => DatePicker::TYPE_COMPONENT_APPEND,
+                                            'pluginOptions' => [
+                                                'format' => 'yyyy-mm-dd',
+                                                'autoclose' => true,
+                                                'todayHighlight' => true,
+                                            ],
+                                        ]);
+                                    }
+                                     ?>
                                 </div>
                             </div>
                             <hr>
@@ -223,8 +265,13 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Campaign video</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
+                                    <?php if(!empty($model->c_video)){?>
                                     <input type="text" style="width: 100%" name="cVideo" id="youtubeId"
                                            data-target="#myIframe" value="<?= $model->c_video ?>">
+                                    <?php } else {?>
+                                    <input type="text" style="width: 100%" name="cVideo" id="youtubeId"
+                                           data-target="#myIframe">
+                                    <?php }?>
                                     <p align="left">Please upload your video to YouTube and paste video id (11
                                         characters) here. Projects with a video have a much higher chance of
                                         success.</p>
@@ -246,14 +293,23 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Main Description</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 50%;height: 400px">
-                                    <?php
-                                    echo \artkost\yii2\trumbowyg\Trumbowyg::widget([
-                                        'name' => 'cLDesc',
-                                        'value' => $model->c_description_long,
-                                        'settings' => [
-                                            'lang' => 'en'
-                                        ]
-                                    ]);
+                                    <?php if(!empty($model->c_description_long)){
+                                        echo \artkost\yii2\trumbowyg\Trumbowyg::widget([
+                                            'name' => 'cLDesc',
+                                            'value' => $model->c_description_long,
+                                            'settings' => [
+                                                'lang' => 'en'
+                                            ]
+                                        ]);
+                                    } else {
+                                        echo \artkost\yii2\trumbowyg\Trumbowyg::widget([
+                                            'name' => 'cLDesc',
+                                            'settings' => [
+                                                'lang' => 'en'
+                                            ]
+                                        ]);
+                                    }
+
                                     ?>
                                 </div>
                             </div>
@@ -286,8 +342,13 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Company name</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
+                                    <?php if(!empty($company->company_name)) {?>
                                     <input type="text" style="width: 100%" name="comName"
                                            value="<?= $company->company_name ?>">
+                                    <?php } else {?>
+                                    <input type="text" style="width: 100%" name="comName"
+                                           value="<?= $company->company_name ?>">
+                                    <?php }?>
                                 </div>
                             </div>
                             <hr>
@@ -296,7 +357,11 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Registration No</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                    <input type="text" style="width: 100%" name="comNo">
+                                    <?php if(!empty($company->company_reg_no)) {?>
+                                    <input type="number" style="width: 100%" name="comNo" value="<?= $company->company_reg_no ?>">
+                                    <?php } else {?>
+                                    <input type="number" style="width: 100%" name="comNo">
+                                    <?php }?>
                                 </div>
                             </div>
                             <div style="clear:both;padding: 10px">
@@ -304,8 +369,12 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Email</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
+                                    <?php if(!empty($company->company_email)) {?>
                                     <input type="text" style="width: 100%" name="comEmail"
                                            value="<?= $company->company_email ?>">
+                                    <?php } else {?>
+                                    <input type="text" style="width: 100%" name="comEmail">
+                                    <?php }?>
                                 </div>
                             </div>
                             <div style="clear:both;padding: 10px;">
@@ -313,8 +382,12 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Website URL</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
+                                    <?php if(!empty($company->company_website)) {?>
                                     <input type="text" style="width: 100%" name="comWebsite"
                                            value="<?= $company->company_website ?>">
+                                    <?php } else {?>
+                                    <input type="text" style="width: 100%" name="comWebsite">
+                                    <?php }?>
                                 </div>
                             </div>
                             <div style="clear:both;padding: 10px;">
@@ -322,8 +395,13 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Description</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 55%;">
+                                    <?php if(!empty($company->company_description)) {?>
                             <textarea rows="3" type="text" style="width: 100%;" name="comDesc"
                                       id="comDesc"><?= $company->company_description ?></textarea>
+                                    <?php } else {?>
+                                    <textarea rows="3" type="text" style="width: 100%;" name="comDesc"
+                                              id="comDesc"></textarea>
+                                    <?php }?>
                                 </div>
                             </div>
                             <div style="clear:both;padding: 5px;">
@@ -332,8 +410,12 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Industry</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
+                                    <?php if(!empty($company->company_industry)) {?>
                                     <input type="text" style="width: 100%" name="comIndustry"
                                            value="<?= $company->company_industry ?>">
+                                    <?php } else {?>
+                                    <input type="text" style="width: 100%" name="comIndustry">
+                                    <?php }?>
                                 </div>
                             </div>
                             <div style="clear:both;padding: 10px;">
@@ -341,8 +423,12 @@ $campaign_draft = new Campaign();
                                     <p class="item-title"># of employees</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                    <input type="text" style="width: 100%" name="comEmp"
+                                    <?php if(!empty($company->company_employees_count)) {?>
+                                    <input type="number" style="width: 100%" name="comEmp"
                                            value="<?= $company->company_employees_count ?>">
+                                    <?php } else {?>
+                                    <input type="number" style="width: 100%" name="comEmp">
+                                    <?php }?>
                                 </div>
                             </div>
                             <div style="clear:both;padding: 0px;">
@@ -366,8 +452,12 @@ $campaign_draft = new Campaign();
                                     <p class="item-title" style="padding-left: 0px">Postal code</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 6.5%;width: 55%">
+                                    <?php if(!empty($company->company_postal)) {?>
                                     <input type="text" style="width: 100%" name="comPostal"
                                            value="<?= $company->company_postal ?>">
+                                    <?php } else {?>
+                                    <input type="text" style="width: 100%" name="comPostal">
+                                    <?php }?>
                                 </div>
                             </div>
                             <div style="clear:both;">
@@ -376,8 +466,12 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Your Position</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
+                                    <?php if(!empty($company->company_designation)) {?>
                                     <input type="text" style="width: 100%" name="comPosition"
                                            value="<?= $company->company_designation ?>">
+                                    <?php } else {?>
+                                    <input type="text" style="width: 100%" name="comPosition">
+                                    <?php }?>
                                 </div>
                             </div>
                         </div>
@@ -412,7 +506,44 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Name your token</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                    <input type="text" style="width: 100%" name="tokenName" id="tokenName" required>
+                                    <?php if(!empty($token->t_name)) {?>
+                                    <input type="text" style="width: 100%" name="tokenName" id="tokenName" value="<?=$token->t_name?>">
+                                    <?php } else {?>
+                                        <input type="text" style="width: 100%" name="tokenName" id="tokenName">
+                                    <?php }?>
+                                </div>
+                            </div>
+                            <div style="clear:both;padding-top: 20px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Target</p>
+                                </div>
+                                <div style="display: inline-block;float: left; margin-left: 2%; width: 50%">
+                                    <div style="display: inline-block;width: 100%;float: right">
+                                        <?php if (!empty($model->c_goal)){?>
+                                        <input type="number" style="width: 100%;float: left" name="cGoal" id="cGoal" value="<?=$model->c_goal?>" onchange="calculate();">
+                                        <?php } else {?>
+                                        <input type="number" style="width: 100%;float: left" name="cGoal" id="cGoal" onchange="calculate();">
+                                        <?php }?>
+                                        <p align="left">Please provide the amount you are targeting to raise <b>in
+                                                USD</b>.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="clear:both;padding-top: 20px">
+                                <div style="float: left;display: inline-block;width: 20%">
+                                    <p class="item-title">Maximum supply</p>
+                                </div>
+                                <div style="display: inline-block;float: left; margin-left: 2%; width: 50%">
+                                    <div style="display: inline-block;width: 100%;float: right">
+                                        <?php if (!empty($token->t_supply)){?>
+                                        <input type="number" style="width: 100%;float: left" name="tokenSupply"
+                                               id="tokenSupply" onchange="calculate();" value="<?=$token->t_supply?>">
+                                        <?php } else {?>
+                                        <input type="number" style="width: 100%;float: left" name="tokenSupply"
+                                               id="tokenSupply" onchange="calculate();">
+                                        <?php }?>
+                                        <p align="left">Please provide the amount of tokens you would be generating.</p>
+                                    </div>
                                 </div>
                             </div>
                             <div style="clear:both;padding-top: 0px">
@@ -427,29 +558,24 @@ $campaign_draft = new Campaign();
                                                 class="glyphicon glyphicon-transfer" style="padding: 7% 0 0;"></span>
                                     </div>
                                     <div style="display: inline-block;width: 60%;float: right">
+                                        <?php if (!empty($token->t_supply)){?>
+                                        <input type="text" name="tokenValue" id="tokenValue" value="<?=$token->t_value?>"
+                                               style="width: 100%; float: right" disabled>
+                                        <?php } else {?>
                                         <input type="text" name="tokenValue" id="tokenValue"
-                                               style="width: 100%; float: right">
+                                               style="width: 100%; float: right" disabled>
+                                        <?php }?>
                                     </div>
-                                    <p align="left">Please provide how many of your tokens equivalent to 1 Rasin.</p>
+                                    <p align="left">Exchange rate of your tokens equivalent to 1 Rasin.</p>
                                 </div>
                             </div>
-                            <div style="clear:both;padding-top: 20px">
-                                <div style="float: left;display: inline-block;width: 20%">
-                                    <p class="item-title">Target</p>
-                                </div>
-                                <div style="display: inline-block;float: left; margin-left: 2%; width: 50%">
-                                    <div style="display: inline-block;width: 100%;float: right">
-                                        <input type="text" style="width: 100%;float: left" name="cGoal" id="cGoal">
-                                        <p align="left">Please provide the amount you are targeting to raise <b>in
-                                                SGD</b>.</p>
-                                    </div>
-                                </div>
+                            <div style="clear:both;padding-top: 30px">
+                                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
+                                       style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                                <input onclick="step4Next()" class="btn btn-md btn-info" value="Next"
+                                       style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
                             </div>
-                            <hr>
-                            <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
-                                   style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-                            <input onclick="step4Next()" class="btn btn-md btn-info" value="Next"
-                                   style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+
                         </div>
                     </div>
                 </div>
@@ -474,14 +600,14 @@ $campaign_draft = new Campaign();
                         <div class="form-group">
                             <p style="float: left">For the stated amount pledged & more</p>
                             <input type="text" class="form-control" id="amount" name="amount[]"
-                                   value="<?= $mandatoryReward->r_pledge_amt ?>" placeholder="Amount pledged">
+                                   value="" placeholder="Amount pledged">
                         </div>
                     </div>
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
                             <p style="float: left">% of discount given</p>
                             <select class="form-control" id="discount" name="discount[]">
-                                <option value=""><?= $mandatoryReward->r_discount ?></option>
+                                <option value=""></option>
                                 <option value="5">5%</option>
                                 <option value="10">10%</option>
                                 <option value="15">15%</option>
@@ -494,7 +620,7 @@ $campaign_draft = new Campaign();
                         <div class="form-group">
                             <p style="float: left"># of months it is valid after launch</p>
                             <input type="text" class="form-control" id="expiry" name="expiry[]"
-                                   value="<?= $mandatoryReward->r_validity ?>" placeholder="Validity">
+                                   value="" placeholder="Validity">
                         </div>
                     </div>
                     <div class="col-sm-3 nopadding">
@@ -502,7 +628,7 @@ $campaign_draft = new Campaign();
                             <div class="input-group">
                                 <p style="float: left">Conditions/Description</p>
                                 <input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]"
-                                       value="<?= $mandatoryReward->r_description ?>"
+                                       value=""
                                        placeholder="Conditions/Description">
                                 <div class="input-group-btn" style="vertical-align: bottom;">
                                     <button class="btn btn-success" type="button" onclick="add_rewards();"><span
@@ -512,18 +638,18 @@ $campaign_draft = new Campaign();
                         </div>
                     </div>
                     <div class="clear"></div>
-                    <?php $room = 2;
-                    foreach ($this->params['rewards'] as $reward) { ?>
-                        <div class="form-group removeclass<?= $room ?>">
+                    <?php /*$room = 2;
+                    foreach ($this->params['rewards'] as $reward) { */?><!--
+                        <div class="form-group removeclass<?/*= $room */?>">
                             <div class="col-sm-3 nopadding">
-                                <input type="text" class="form-control" id="amount" name="amount[]" value="<?=$reward->r_pledge_amt?>"
+                                <input type="text" class="form-control" id="amount" name="amount[]" value="<?/*=$reward->r_pledge_amt*/?>"
                                        placeholder="Amount pledged">
                             </div>
                             <div class="col-sm-3 nopadding">
                                 <div class="form-group">
                                         <select class="form-control" id="discount"
                                                                     name="discount[]">
-                                            <option value="<?=$reward->r_discount?>"><?=$reward->r_discount?>%</option>
+                                            <option value="<?/*=$reward->r_discount*/?>"><?/*=$reward->r_discount*/?>%</option>
                                             <option value="2015">5%</option>
                                             <option value="2016">10%</option>
                                             <option value="2017">15%</option>
@@ -534,16 +660,16 @@ $campaign_draft = new Campaign();
                             <div class="col-sm-3 nopadding">
                                 <div class="form-group"><input type="text" class="form-control" id="expiry"
                                                                name="expiry[]"
-                                                               value="<?=$reward->r_validity?>" placeholder="Validity"></div>
+                                                               value="<?/*=$reward->r_validity*/?>" placeholder="Validity"></div>
                             </div>
                             <div class="col-sm-3 nopadding">
                                 <div class="form-group">
                                     <div class="input-group"><input type="text" class="form-control" id="rewardDesc"
-                                                                    name="rewardDesc[]" value="<?=$reward->r_description?>"
+                                                                    name="rewardDesc[]" value="<?/*=$reward->r_description*/?>"
                                                                     placeholder="Reward Description">
                                         <div class="input-group-btn">
                                             <button class="btn btn-danger" type="button"
-                                                    onclick="remove_add_rewards(<?=$room?>);"><span
+                                                    onclick="remove_add_rewards(<?/*=$room*/?>);"><span
                                                         class="glyphicon glyphicon-minus" aria-hidden="true"></span>
                                             </button>
                                         </div>
@@ -552,8 +678,8 @@ $campaign_draft = new Campaign();
                             </div>
                         </div>
                         <div class="clear"></div>
-                        <?php $room++;
-                    } ?>
+                        --><?php /*$room++;
+                    } */?>
                     <div class="clear"></div>
                     <div id="add_rewards">
 
@@ -573,8 +699,6 @@ $campaign_draft = new Campaign();
                        style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
             </div>
         </div>
-    </div>
-    </div>
     <!--</div>-->
 </form>
 
@@ -585,7 +709,15 @@ $campaign_draft = new Campaign();
     var cCategory = document.campaignForm.cCategory;
     var cDesc = document.campaignForm.cDesc;
     var cGoal = document.campaignForm.cGoal;
+
+    var tokenValue = document.campaignForm.tokenValue;
+    var tokenSupply = document.campaignForm.tokenSupply;
+
     var error_message = '';
+
+    function calculate() {
+        tokenValue.value = cGoal.value / tokenSupply.value;
+    }
 
     function validateStep1() {
         if (cTitle.value == "") {
