@@ -611,7 +611,7 @@ class CampaignController extends Controller
         $campaigns = Campaign::find()->where(['c_author' => Yii::$app->user->identity->getId()])->all();
         $draftedCampaigns = Campaign::find()->where(['c_author' => Yii::$app->user->identity->getId()])->all();
         $publishedCampaigns = Campaign::find()->where(['c_author' => Yii::$app->user->identity->getId(), 'c_status' => 'published'])->all();
-        $fund = Fund::find()->where(['fund_user_id' => Yii::$app->user->getId()])->all();
+        $activities = Fund::find()->where(['fund_user_id' => Yii::$app->user->identity->getId()])->all();
 
         $cIds = Fund::find()->select(['fund_c_id'])->where(['fund_user_id' => Yii::$app->user->getId()])->distinct();
         $fundedCampaigns = Campaign::find()->where(['c_id' => $cIds])->all();
@@ -620,7 +620,7 @@ class CampaignController extends Controller
             'campaigns' => $campaigns,
             'draftedCampaigns' => $draftedCampaigns,
             'publishedCampaigns' => $publishedCampaigns,
-            'activities' => $fund,
+            'activities' => $activities,
             'cIds' => $cIds,
             'fundedCampaigns' => $fundedCampaigns,
         ]);

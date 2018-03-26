@@ -68,6 +68,6 @@ class Fund extends \yii\db\ActiveRecord
      */
     public function getFundC()
     {
-        return $this->hasMany(Campaign::className(), ['c_id' => 'fund_c_id']);
+        return $this->hasOne(Campaign::className(), ['c_id' => 'fund_c_id']);
     }
 }

@@ -51,7 +51,8 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 </div>
                                             </div>
                                         </div>
-                                        <?php foreach ($activities as $activity){?>
+                                        <?php if(!empty($activities)){
+                                            foreach ($activities as $activity){?>
                                                 <div style="margin-top: 2%;margin-left: 1.5%">
                                                     <div>
                                                         <div style="clear: both;display: inline-block;margin-left: 2%;width: 15%">
@@ -67,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                     </div>
                                                 </div>
                                             <hr style=" height:1px;border:none;border-top:1px solid #f9f9f9;" />
-                                        <?php }?>
+                                        <?php }} ?>
                                     </div>
 
 
