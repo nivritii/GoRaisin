@@ -606,10 +606,10 @@ $campaign_draft = new Campaign();
                         <div class="form-group">
                             <p style="float: left">For the stated amount pledged & more</p>
                             <?php if(!empty($mandatoryReward->r_pledge_amt)) {?>
-                            <input type="text" class="form-control" id="mAmount" name="mAmount"
+                            <input type="number" class="form-control" id="mAmount" name="mAmount"
                                    value="<?=$mandatoryReward->r_pledge_amt?>" placeholder="Amount pledged">
                             <?php }else{?>
-                            <input type="text" class="form-control" id="mAmount" name="mAmount"
+                            <input type="number" class="form-control" id="mAmount" name="mAmount"
                                    value="" placeholder="Amount pledged">
                             <?php }?>
                         </div>
@@ -621,13 +621,24 @@ $campaign_draft = new Campaign();
                                 <?php if(!empty($mandatoryReward->r_discount)){?>
                                 <option value="<?=$mandatoryReward->r_discount?>"><?=$mandatoryReward->r_discount?>%</option>
                                 <?php } else {?>
-                                <option value="">Select Discount</option>
+                                <option value="">% of discount</option>
                                 <?php }?>
                                 <option value="5">5%</option>
                                 <option value="10">10%</option>
                                 <option value="15">15%</option>
                                 <option value="20">20%</option>
                                 <option value="25">25%</option>
+                                <option value="30">30%</option>
+                                <option value="35">35%</option>
+                                <option value="40">40%</option>
+                                <option value="45">45%</option>
+                                <option value="50">50%</option>
+                                <option value="55">55%</option>
+                                <option value="60">60%</option>
+                                <option value="65">65%</option>
+                                <option value="70">70%</option>
+                                <option value="75">75%</option>
+                                <option value="80">80%</option>
                             </select>
                         </div>
                     </div>
@@ -635,10 +646,10 @@ $campaign_draft = new Campaign();
                         <div class="form-group">
                             <p style="float: left"># of months it is valid after launch</p>
                             <?php if(!empty($mandatoryReward->r_validity)) {?>
-                            <input type="text" class="form-control" id="mExpiry" name="mExpiry"
+                            <input type="number" class="form-control" id="mExpiry" name="mExpiry"
                                    value="<?=$mandatoryReward->r_validity?>" placeholder="Validity">
                             <?php }else {?>
-                            <input type="text" class="form-control" id="mExpiry" name="mExpiry"
+                            <input type="number" class="form-control" id="mExpiry" name="mExpiry"
                                    value="" placeholder="Validity">
                             <?php }?>
                         </div>
@@ -669,7 +680,7 @@ $campaign_draft = new Campaign();
                         foreach ($this->params['rewards'] as $reward) { ?>
                             <div class="form-group removeclass<?=$room?>">
                                 <div class="col-sm-3 nopadding">
-                                    <input type="text" class="form-control" id="amount" name="amount[]"
+                                    <input type="number" class="form-control" id="amount" name="amount[]"
                                            value="<?= $reward->r_pledge_amt ?>"
                                            placeholder="Amount pledged">
                                 </div>
@@ -683,10 +694,22 @@ $campaign_draft = new Campaign();
                                             <option value="10">10%</option>
                                             <option value="15">15%</option>
                                             <option value="20">20%</option>
+                                            <option value="25">25%</option>
+                                            <option value="30">30%</option>
+                                            <option value="35">35%</option>
+                                            <option value="40">40%</option>
+                                            <option value="45">45%</option>
+                                            <option value="50">50%</option>
+                                            <option value="55">55%</option>
+                                            <option value="60">60%</option>
+                                            <option value="65">65%</option>
+                                            <option value="70">70%</option>
+                                            <option value="75">75%</option>
+                                            <option value="80">80%</option>
                                         </select></div>
                                 </div>
                                 <div class="col-sm-3 nopadding">
-                                    <div class="form-group"><input type="text" class="form-control" id="expiry"
+                                    <div class="form-group"><input type="number" class="form-control" id="expiry"
                                                                    name="expiry[]"
                                                                    value="<?= $reward->r_validity ?>"
                                                                    placeholder="Validity"></div>
@@ -855,7 +878,7 @@ $campaign_draft = new Campaign();
         var divtest = document.createElement("div");
         divtest.setAttribute("class", "form-group removeclass" + room);
         var rdiv = 'removeclass' + room;
-        divtest.innerHTML = '<div class="col-sm-3 nopadding"><input type="text" class="form-control" id="amount" name="amount[]" value="" placeholder="Amount pledged"></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="form-group"><select class="form-control" id="discount" name="discount[]"><option value="">% of discount</option><option value="2015">5%</option><option value="2016">10%</option><option value="2017">15%</option><option value="2018">20%</option></select></div></div></div><div class="col-sm-3 nopadding"><div class="form-group"><input type="text" class="form-control" id="expiry" name="expiry[]" value="" placeholder="Validity"></div></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="input-group"><input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="" placeholder="Reward Description"><div class="input-group-btn"><button class="btn btn-danger" type="button" onclick="remove_add_rewards(' + room + ');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div><div class="clear"></div>';
+        divtest.innerHTML = '<div class="col-sm-3 nopadding"><input type="number" class="form-control" id="amount" name="amount[]" value="" placeholder="Amount pledged"></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="form-group"><select class="form-control" id="discount" name="discount[]"><option value="">% of discount</option><option value="5">5%</option><option value="10">10%</option><option value="15">15%</option><option value="20">20%</option><option value="25">25%</option><option value="30">30%</option><option value="35">35%</option><option value="40">40%</option><option value="45">45%</option<option value="50">50%</option><option value="55">55%</option><option value="60">60%</option><option value="65">65%</option><option value="70">70%</option><option value="75">75%</option><option value="80">80%</option></select></div></div></div><div class="col-sm-3 nopadding"><div class="form-group"><input type="number" class="form-control" id="expiry" name="expiry[]" value="" placeholder="Validity"></div></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="input-group"><input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="" placeholder="Reward Description"><div class="input-group-btn"><button class="btn btn-danger" type="button" onclick="remove_add_rewards(' + room + ');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div><div class="clear"></div>';
 
         objTo.appendChild(divtest);
     }

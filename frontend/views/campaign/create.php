@@ -492,14 +492,14 @@ $campaign_draft = new Campaign();
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
                             <p style="float: left">For the stated amount pledged & more</p>
-                            <input type="text" class="form-control" id="amount" name="amount[]" value=""
+                            <input type="number" class="form-control" id="amount" name="mAmount" value=""
                                    placeholder="Amount pledged">
                         </div>
                     </div>
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
                             <p style="float: left">% of discount given</p>
-                            <select class="form-control" id="discount" name="discount[]">
+                            <select class="form-control" id="discount" name="mDiscount">
                                 <option value="">% of discount</option>
                                 <option value="5">5%</option>
                                 <option value="10">10%</option>
@@ -516,13 +516,14 @@ $campaign_draft = new Campaign();
                                 <option value="65">65%</option>
                                 <option value="70">70%</option>
                                 <option value="75">75%</option>
+                                <option value="80">80%</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
                             <p style="float: left"># of months it is valid after launch</p>
-                            <input type="text" class="form-control" id="expiry" name="expiry[]" value=""
+                            <input type="number" class="form-control" id="expiry" name="mExpiry" value=""
                                    placeholder="Validity">
                         </div>
                     </div>
@@ -530,7 +531,7 @@ $campaign_draft = new Campaign();
                         <div class="form-group">
                             <div class="input-group">
                                 <p style="float: left">Conditions/Description</p>
-                                <input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value=""
+                                <input type="text" class="form-control" id="rewardDesc" name="mRewardDesc" value=""
                                        placeholder="Conditions/Description">
                                 <div class="input-group-btn" style="vertical-align: bottom;">
                                     <button class="btn btn-success" type="button" onclick="add_rewards();"><span
@@ -540,9 +541,7 @@ $campaign_draft = new Campaign();
                         </div>
                     </div>
                     <div class="clear"></div>
-                    <div id="add_rewards">
-
-                    </div>
+                    <div id="add_rewards" style="padding-top: 10px"></div>
                 </div>
 
             </div>
@@ -725,7 +724,7 @@ $campaign_draft = new Campaign();
         var divtest = document.createElement("div");
         divtest.setAttribute("class", "form-group removeclass" + room);
         var rdiv = 'removeclass' + room;
-        divtest.innerHTML = '<div class="col-sm-3 nopadding"><input type="text" class="form-control" id="amount" name="amount[]" value="" placeholder="Amount pledged"></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="form-group"><select class="form-control" id="discount" name="discount[]"><option value="">% of discount</option><option value="2015">5%</option><option value="2016">10%</option><option value="2017">15%</option><option value="2018">20%</option></select></div></div></div><div class="col-sm-3 nopadding"><div class="form-group"><input type="text" class="form-control" id="expiry" name="expiry[]" value="" placeholder="Validity"></div></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="input-group"><input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="" placeholder="Reward Description"><div class="input-group-btn"><button class="btn btn-danger" type="button" onclick="remove_add_rewards(' + room + ');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div><div class="clear"></div>';
+        divtest.innerHTML = '<div class="col-sm-3 nopadding"><input type="number" class="form-control" id="amount" name="amount[]" value="" placeholder="Amount pledged"></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="form-group"><select class="form-control" id="discount" name="discount[]"><option value="">% of discount</option><option value="5">5%</option><option value="10">10%</option><option value="15">15%</option><option value="20">20%</option><option value="25">25%</option><option value="30">30%</option><option value="35">35%</option><option value="40">40%</option><option value="45">45%</option<option value="50">50%</option><option value="55">55%</option><option value="60">60%</option><option value="65">65%</option><option value="70">70%</option><option value="75">75%</option><option value="80">80%</option></select></div></div></div><div class="col-sm-3 nopadding"><div class="form-group"><input type="number" class="form-control" id="expiry" name="expiry[]" value="" placeholder="Validity"></div></div><div class="col-sm-3 nopadding"><div class="form-group"><div class="input-group"><input type="text" class="form-control" id="rewardDesc" name="rewardDesc[]" value="" placeholder="Reward Description"><div class="input-group-btn"><button class="btn btn-danger" type="button" onclick="remove_add_rewards(' + room + ');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button></div></div></div></div><div class="clear"></div>';
 
         objTo.appendChild(divtest);
     }
