@@ -13,6 +13,7 @@ use Yii;
  * @property int $r_pledge_amt
  * @property string $r_description
  * @property int $r_validity
+ * @property int $r_mandatory
  *
  * @property Campaign $c
  */
@@ -35,6 +36,7 @@ class Reward extends \yii\db\ActiveRecord
             [['c_id', 'r_discount', 'r_pledge_amt', 'r_description', 'r_validity'], 'required'],
             [['c_id', 'r_discount', 'r_pledge_amt', 'r_validity'], 'integer'],
             [['r_description'], 'string', 'max' => 255],
+            [['r_mandatory'], 'string', 'max' => 1],
             [['c_id'], 'exist', 'skipOnError' => true, 'targetClass' => Campaign::className(), 'targetAttribute' => ['c_id' => 'c_id']],
         ];
     }
@@ -51,6 +53,7 @@ class Reward extends \yii\db\ActiveRecord
             'r_pledge_amt' => 'R Pledge Amt',
             'r_description' => 'R Description',
             'r_validity' => 'R Validity',
+            'r_mandatory' => 'R Mandatory',
         ];
     }
 
