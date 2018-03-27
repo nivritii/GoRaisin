@@ -54,7 +54,7 @@ $campaign_draft = new Campaign();
                                 <p class="item-title">Raisin</p>
                             </div>
                             <div style="display: inline-block;float: left;margin-left: 2%;width: 75%">
-                                <input type="text" style="width: 100%" name="cTitle" id="cTitle" value="<?=$amount?>">
+                                <input type="text" style="width: 100%" name="cTitle" id="cTitle" value="<?=$balance?>">
                             </div>
                         </div>
                 </div>
@@ -172,14 +172,16 @@ $campaign_draft = new Campaign();
                                                     </TR>
                                                     </THEAD>
                                                     <TBODY>
+                                                    <?php for ($i=count($descriptions)-1; $i>=0; $i--) {?>
                                                     <TR>
-                                                        <TD>Season Subscription (Winter)</TD>
-                                                        <TD>Downtown Theater</TD>
+                                                        <TD><?=$descriptions[$i]?></TD>
+                                                        <TD><?=$amountTransferred[$i]?></TD>
                                                         <TD>1/1/2015 12:00 PM</TD>
                                                         <TD>8</TD>
                                                         <TD>Season Winter</TD>
                                                         <TD>Winter</TD>
                                                     </TR>
+                                                    <?php }?>
                                                     </TBODY>
                                                 </TABLE>
                                                 Select events and click below<BR><BR>

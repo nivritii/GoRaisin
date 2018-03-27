@@ -83,7 +83,8 @@ $campaign_draft = new Campaign();
                 <!-- train section -->
                 <div class="bhoechie-tab-content">
                     <section id="cd-timeline" class="cd-container">
-                        <?php foreach ($updates as $update) { ?>
+                        <?php foreach ($updates as $update) {
+                            $small = substr($update->content, 0, 1000)?>
                             <div class="cd-timeline-block">
                                 <div class="cd-timeline-img <?= $update->image->r_background_color ?>">
                                     <?= Html::img('@web/images/roadmap/' . $update->image->r_image) ?>
@@ -91,7 +92,7 @@ $campaign_draft = new Campaign();
 
                                 <div class="cd-timeline-content">
                                     <h2><?= $update->title ?></h2>
-                                    <p><?= $update->content ?></p>
+                                    <p><?=$small?></p>
                                     <a href="<?= Url::to('campaign/view', ['updateId' => $update->id]) ?>"
                                        class="cd-read-more">Read
                                         more</a>
