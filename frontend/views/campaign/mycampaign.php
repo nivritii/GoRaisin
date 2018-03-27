@@ -48,45 +48,73 @@ $this->params['breadcrumbs'][] = $this->title;
                                         <h3>Activity</h3>
                                         <p>Recent updates from your backed projects</p>
                                         <br/>
-                                        <div style="margin-top: 2%;margin-left: 1.5%">
-                                            <div>
-                                                <div class="col-xs-2"
-                                                     style="display: inline-block; align-content: center">
-                                                    <h4>Fund Campaign</h4>
-                                                </div>
-                                                <div style="clear: both;display: inline-block;width: 12%">
-                                                    <h4>Fund Amount</h4>
-                                                </div>
-                                                <div style="clear: both;display: inline-block;width: 15%">
-                                                    <h4>Done on</h4>
-                                                </div>
+
+                                        <div class="column one column_blog">
+                                            <div class="blog_wrapper isotope_wrapper">
+                                                <?php if (!empty($updates)) {
+                                                    foreach ($updates as $update) {
+                                                        $small = substr($update->content, 0, 1000); ?>
+                                                        <div class="posts_group lm_wrapper classic col-3">
+                                                            <div class="post-item isotope-item clearfix post-2277 post  format-standard has-post-thumbnail  category-lifestyle  tag-video">
+                                                                <div class="date_label">
+                                                                    <?= $update->timestamp ?>
+                                                                </div>
+                                                                <div class="image_frame post-photo-wrapper scale-with-grid">
+                                                                    <div class="image_wrapper">
+                                                                        <a href="<?= Url::to(['campaign/view', 'id' => $update->campaign_id]) ?>">
+                                                                            <div class="mask"></div>
+                                                                            <?= Html::img(Url::to('@web/images/uploads/campaign/' . $update->campaign->c_image), ['class' => 'scale-with-grid wp-post-image'], ['alt' => 'Image'], ['align' => 'left'], ['width' => '1200'], ['height' => '480']) ?>
+                                                                        </a>
+                                                                        <div class="image_links single">
+                                                                            <a href="<?= Url::to(['campaign/view', 'id' => $update->campaign_id]) ?>"
+                                                                               class="zoom"><i class="glyphicon glyphicon-eye-open"></i></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="post-desc-wrapper">
+                                                                    <div class="post-desc">
+                                                                        <div class="post-head">
+                                                                            <div class="post-meta clearfix">
+                                                                                <div class="author-date">
+                                                                            <span class="vcard author post-author"><i
+                                                                                        class="glyphicon glyphicon-time"></i><span
+                                                                                        class="post-date updated"><?= $update->timestamp ?></span></span>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="post-title">
+                                                                            <h2 class="entry-title" itemprop="headline">
+                                                                                <a
+                                                                                        href="<?= Url::to(['campaign/view', 'id' => $update->campaign->c_id]) ?>"><?= $update->title ?></a>
+                                                                            </h2>
+                                                                        </div>
+                                                                        <div class="post-excerpt">
+                                                                            <p class="big"><?=$small?></p><p>...</p>
+                                                                        </div>
+                                                                        <div class="post-footer">
+                                                                            <div class="post-links">
+                                                                                <i class="glyphicon glyphicon-link"
+                                                                                   style="color: #337ab7"></i>&nbsp<a
+                                                                                        href="<?= Url::to(['campaign/view', 'id' => $update->campaign_id]) ?>"
+                                                                                        class="post-more">Read more</a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    <?php }
+                                                } else { ?>
+                                                    <br/>
+                                                    <p>You haven't backed any projects! Check out our <a
+                                                                href="show?id=NULL">Projects</a>.
+                                                        We like it and think you might too.</p>
+                                                <?php } ?>
+                                                <!-- One full width row-->
                                             </div>
                                         </div>
-                                        <?php if(!empty($updates)){
-                                        foreach ($updates as $update){
-                                        if(!empty($update)){?>
-                                        <div style="margin-top: 2%;margin-left: 1.5%">
-                                            <div>
-                                                <div style="clear: both;display: inline-block;margin-left: 2%;width: 15%">
-                                                    <a href="view?id=<?= $update->campaign_id ?>">
-                                                        <p style="font-size: 15px"><?= $update->title ?></p>
-                                                    </a>
-                                                </div>
-                                                <div style="clear: both;display: inline-block;width: 5%">
-                                                    <p><?= $update->content ?></p>
-                                                </div>
-                                                <div style="clear: both;display: inline-block;width: 20%">
-                                                    <p><?= $update->id ?></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr style=" height:1px;border:none;border-top:1px solid #f9f9f9;"/>
-                                        <?php }}} else { ?>
-                                        <br/>
-                                        <p>You haven't backed any projects! Check out our <a href="show?id=NULL">Projects</a>.
-                                            We like it and think you might too.</p>
-                                        <?php }?>
                                     </div>
+                                    <!--End of first ta-->
 
 
                                     <div id="menu1" class="tab-pane fade">
