@@ -76,7 +76,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <div style="text-align: center">
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary','style' => 'background-color: #7348b3; color: #ffffff;border:0']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'style' => 'border: 0',
