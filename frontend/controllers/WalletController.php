@@ -106,9 +106,27 @@ class WalletController extends \yii\web\Controller
     {
         $wallet = Wallet::find()->where(['userId' => \Yii::$app->user->id])->one();
         $response = $this->listAccBalance($wallet->accname);
+        $balance = $response['result'][0]['amount']/100000;
+        $descriptions = array();
+        $amountTransferred = array();
+
+        $accountHistory = $this->getAccHistory($wallet->accname);
+
+        for ($i=0; $i<(count($accountHistory['result'])-1); $i++)
+        {
+            $descriptions[$i] = $accountHistory['result'][$i]['description'];
+        }
+
+        for ($i=0; $i<(count($accountHistory['result'])-1); $i++)
+        {
+            $amountTransferred[$i] = $accountHistory['result'][$i]['op']['op'][1]['amount']['amount']/100000;
+        }
+
 
         return $this->render('mywallet',[
-            'amount' => $response['result'][0]['amount'],
+            'balance' => $balance,
+            'descriptions' => $descriptions,
+            'amountTransferred' => $amountTransferred,
         ]);
     }
 
@@ -153,6 +171,15 @@ class WalletController extends \yii\web\Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
+    protected function getAccHistory($accName)
+    {
+        $rpc = new jsonRPCClient($this->url, true);
+        $rpc->setRPCNotification(true);
+        $response = $rpc->__call("get_account_history", [$accName, 10000]);
+
+        return $response;
     }
 
     protected function listAccBalance($accName)
