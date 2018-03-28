@@ -93,7 +93,7 @@ $campaign_draft = new Campaign();
                                 <div class="cd-timeline-content">
                                     <h2><?= $update->title ?></h2>
                                     <p><?=$small?></p>
-                                    <a href="<?= Url::to('campaign/view', ['updateId' => $update->id]) ?>"
+                                    <a href="<?= Url::to(['site/index']) ?>">
                                        class="cd-read-more">Read
                                         more</a>
                                     <span class="cd-date"><?= $update->timestamp ?></span>

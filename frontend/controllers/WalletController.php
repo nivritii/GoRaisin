@@ -105,8 +105,10 @@ class WalletController extends \yii\web\Controller
     public function actionMywallet()
     {
         $wallet = Wallet::find()->where(['userId' => \Yii::$app->user->id])->one();
+
         $response = $this->listAccBalance($wallet->accname);
         $balance = $response['result'][0]['amount']/100000;
+
         $descriptions = array();
         $amountTransferred = array();
 

@@ -28,30 +28,9 @@ HomePageAsset::register($this);
                                 <div class="col-xs-12">
                                     <div class="col-md-12 well text-center">
                                         <form name="basicform" id="basicform" method="post" action="index">
-                                            <h2 class="tabpage-title">Create your Bitshares wallet</h2>
+                                            <h2 class="tabpage-title">Create your e-wallet</h2>
                                             <br/>
                                             <br/>
-                                            <!--                                            <div style="padding-top: 30px;padding-bottom: 30px; width: 100%">-->
-                                            <!--                                                <input class="btn btn-md btn-info" type="submit" id="submit"-->
-                                            <!--                                                       value="Generate brain key of the wallet" id="submit"-->
-                                            <!--                                                       disabled>-->
-                                            <!--                                            </div>-->
-<!--                                            <div style="width: 100%; float: left;">-->
-<!--                                                <div style="display: inline-block;padding-top: 10px; margin-right: 3%">-->
-<!--                                                    <div class="item-title">Account name:</div>-->
-<!--                                                </div>-->
-<!--                                                <div style="display: inline-block; padding-left: 5%;width: 58%">-->
-<!--                                                    <input type="text" style="width: 100%" name="accname" value="--><?//=$response?><!--">-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-                                            <!--                                            <div style="width: 100%;float: left;">-->
-                                            <!--                                                <div style="display: inline-block;padding-top: 10px">-->
-                                            <!--                                                    <div class="item-title">Generated Brain key:</div>-->
-                                            <!--                                                </div>-->
-                                            <!--                                                <div style="display: inline-block; padding-left: 2%;width: 55%">-->
-                                            <!--                                                    <input type="text" style="width: 100%" name="#">-->
-                                            <!--                                                </div>-->
-                                            <!--                                            </div>-->
                                             <div style="padding-top: 30px;padding-bottom: 30px; width: 100%; float: left">
                                                 <input class="btn btn-md btn-info" type="submit" value="Proceed with wallet creation" id="submit">
                                             </div>
