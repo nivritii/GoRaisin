@@ -18,6 +18,10 @@ WalletAsset::register($this);
 /* @var $model frontend\models\Campaign */
 frontend\assets\RoadmapAsset::register($this);
 $campaign_draft = new Campaign();
+
+$this->title = 'My wallet - GoRaisin';
+$this->params['breadcrumbs'][] = ['label' => 'Wallets', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"
       xmlns="http://www.w3.org/1999/html">
@@ -50,11 +54,14 @@ $campaign_draft = new Campaign();
                         <h1 class="tabpage-title" style="margin-bottom: 20px; text-align: center">Balance Details</h1>
                         <hr style="no-line">
                         <div style="width: 100%;">
-                            <div style="float: left;display: inline-block;width: 20%">
-                                <p class="item-title">Raisin</p>
+                            <div style="float: left;display: inline-block;width: 25%; padding-top: 8px;">
+                                <p class="item-title">Balance Amount</p>
                             </div>
-                            <div style="display: inline-block;float: left;margin-left: 2%;width: 75%">
+                            <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
                                 <input type="text" style="width: 100%" name="cTitle" id="cTitle" value="<?=$balance?>">
+                            </div>
+                            <div style="float: left;display: inline-block;width: 20%; padding-top: 8px;">
+                                <p class="item-title">Raisins</p>
                             </div>
                         </div>
                 </div>
@@ -129,21 +136,6 @@ $campaign_draft = new Campaign();
 								</ul>
 
 								</div>
-
-<!--								<div class="btn-group pull-right">-->
-<!--									<div class="btn-group">-->
-<!--										<a href="#" class="btn  dropdown-toggle" data-toggle="dropdown">-->
-<!--											<span class="glyphicon glyphicon-cog"></span>-->
-<!--										</a>-->
-<!--										<ul class="dropdown-menu" role="menu">-->
-<!--											<li><a href="#">Action 1</a></li>-->
-<!--											<li><a href="#">Action 2</a></li>-->
-<!--											<li class="divider"></li>-->
-<!--											<li><a href="#">Another Action</a></li>-->
-<!--										</ul>-->
-<!--									</div>-->
-<!--								</div>-->
-
 								<div class="clearfix"></div>
 
 							</span>
@@ -157,18 +149,14 @@ $campaign_draft = new Campaign();
 
 
                                         <div class="tab-pane fade in active" id="letters">
-                                            <h3>Letters</h3>
+                                            <h3>All Transactions</h3>
                                             <FORM ACTION="" METHOD="post">
                                                 <INPUT TYPE="hidden" NAME="FormName" VALUE="PrintLetters">
                                                 <TABLE class="table table-striped" >
                                                     <THEAD>
                                                     <TR>
-                                                        <TH style="text-align:left">Date</TH>
-                                                        <TH style="text-align:left">Type</TH>
-                                                        <TH style="text-align:left">Name</TH>
-                                                        <TH style="text-align:left">Sender</TH>
-                                                        <TH style="text-align:left">Recipient</TH>
-                                                        <TH style="text-align:left">Amount</TH>
+                                                        <TH style="text-align:center">Transaction description</TH>
+                                                        <TH style="text-align:center">Amount</TH>
                                                     </TR>
                                                     </THEAD>
                                                     <TBODY>
@@ -176,16 +164,10 @@ $campaign_draft = new Campaign();
                                                     <TR>
                                                         <TD><?=$descriptions[$i]?></TD>
                                                         <TD><?=$amountTransferred[$i]?></TD>
-                                                        <TD>1/1/2015 12:00 PM</TD>
-                                                        <TD>8</TD>
-                                                        <TD>Season Winter</TD>
-                                                        <TD>Winter</TD>
                                                     </TR>
                                                     <?php }?>
                                                     </TBODY>
                                                 </TABLE>
-                                                Select events and click below<BR><BR>
-                                                <INPUT TYPE="submit" CLASS="btn btn-outline btn-default" VALUE="Submit">
                                             </FORM>
                                         </div>
 
