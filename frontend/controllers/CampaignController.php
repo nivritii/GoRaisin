@@ -342,7 +342,7 @@ class CampaignController extends Controller
         $industries = Industry::find()->where(['!=', 'id', $company->company_industry])->all();
         $token = $this->findToken($id);
         $number=0;
-        $flag = false;
+        $flag = true;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -515,6 +515,7 @@ class CampaignController extends Controller
                         $mReward->save(true);
 
                         if($number>0){
+                            $flag = false;
                             for ($i = 0; $i < $number; $i++) {
                                 $reward->c_id = $model->c_id;
                                 if(!empty($_POST['amount'][$i])){
