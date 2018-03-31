@@ -30,7 +30,7 @@ HomePageAsset::register($this);
                                         <form name="basicform" id="basicform" method="post" action="create">
                                             <h2 class="tabpage-title">Create your Bitshares wallet</h2>
                                             <br/>
-                                            <br/>
+                                            <br/><?=$brainKey?>
 <!--                                            <div style="padding-top: 30px;padding-bottom: 30px; width: 100%">-->
 <!--                                                <input class="btn btn-md btn-info" type="submit" id="submit"-->
 <!--                                                       value="Generate brain key of the wallet" id="submit"-->
