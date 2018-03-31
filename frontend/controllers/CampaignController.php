@@ -199,7 +199,7 @@ class CampaignController extends Controller
         $checkIfGuest = $this->checkIfGuest();
 
         if ($backed != 0) {
-            $progress = ($backed / $this->findModel($id)->c_goal) * 100;
+            $progress = floor($backed / $this->findModel($id)->c_goal * 100);
         } else
             $progress = 0;
 

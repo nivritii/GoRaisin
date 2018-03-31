@@ -136,7 +136,9 @@ frontend\assets\RoadmapAsset::register($this);
             <div class="sidebar sidebar-1 four columns" style="width: 25%;float: left; margin-right: 8%;">
                 <div class="widget-area clearfix" style="padding: 9px 0px 0px;">
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:<?=$progress?>%; background-color:#8f13a5f0;color: black;"><?=$progress?>%
+                        <div class="progress-bar" role="progressbar"
+                             aria-valuemin="0" aria-valuemax="100"
+                             style="width:<?= $progress ?>%; background-color:#7d109152; color: black"><b><?= $progress ?>%</b>
                         </div>
                     </div>
                     <h3 style="margin-top:25px; margin-bottom:0px;"><?=$backed?></h3>
