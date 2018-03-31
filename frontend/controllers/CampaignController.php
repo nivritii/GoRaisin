@@ -111,6 +111,9 @@ class CampaignController extends Controller
     public function actionReview($id)
     {
         $reviewCampaign = $this->findModel($id);
+        if($reviewCampaign->c_status=='published'){
+            return $this->redirect(['view', 'id' => $reviewCampaign->c_id]);
+        }
         $reviewCampaign->c_status = 'moderation';
         $reviewCampaign->sendReviewEmail();
         $reviewCampaign->save(false);
