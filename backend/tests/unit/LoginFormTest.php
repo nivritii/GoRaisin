@@ -2,6 +2,9 @@
 namespace backend\tests;
 
 use backend\models\LoginForm;
+use Yii;
+use PHPUnit\Framework\TestResult;
+use common\fixtures\UserFixture;
 
 class LoginFormTest extends \Codeception\Test\Unit
 {
@@ -59,18 +62,26 @@ class LoginFormTest extends \Codeception\Test\Unit
         $login->login();
     }
 
-    /*
-     * Test validate password
-     */
-    public function testValidatePassword()
+    public function testLoginNoUser()
     {
-        $login = new LoginForm();
-
-        $login->setAttributes([
-            "username" => "username",
-            "password" => "password",
-            "rememberMe" => true,
+        $model = new LoginForm([
+            'username' => 'not_existing_username',
+            'password' => 'not_existing_password',
         ]);
-        $login->validatePassword($login);
+
+        expect('model should not login user', $model->login())->false();
+        expect('user should not be logged in', Yii::$app->user->isGuest)->true();
+    }
+
+    public function testLoginWrongPassword()
+    {
+        $model = new LoginForm([
+            'username' => 'bayer.hudson',
+            'password' => 'wrong_password',
+        ]);
+
+        expect('model should not login user', $model->login())->false();
+        expect('error message should be set', $model->errors)->hasKey('password');
+        expect('user should not be logged in', Yii::$app->user->isGuest)->true();
     }
 }
