@@ -7,6 +7,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use frontend\models\Category;
 use frontend\models\Campaign;
+use frontend\models\Fund;
 
 
 HomePageAsset::register($this);
@@ -43,6 +44,11 @@ $this->title = 'GoRaisin';
                                                 <h6>FEATURED CAMPAIGN</h6>
                                                 <?php
                                                 $featured_campaign = Campaign::find()->where(['c_id' => $category->featured_campaign_id, 'c_status'=>'published'])->one();
+                                                $backed = Fund::find()->where(['fund_c_id' => $featured_campaign->c_id])->sum('fund_amt');
+                                                if ($backed != 0) {
+                                                    $progress = floor($backed / $featured_campaign->c_goal * 100);
+                                                } else
+                                                    $progress = 0;
                                                 $new_campaigns = Campaign::find()->where(['c_cat_id' => $category->id, 'c_new_tag' => 1,'c_status'=>'published'])->limit(4)->all();
                                                 ?>
 
@@ -52,7 +58,7 @@ $this->title = 'GoRaisin';
                                                     <p style="margin-top: 1%; font-size: 17px; color: #2c2c2c;"><?= $featured_campaign->c_title ?></p>
                                                 </a>
                                                 <p class="campaign-fund-progress"
-                                                   style="color: #858585;font-size: 15px;">90% FUNDED</p>
+                                                   style="color: #858585;font-size: 15px;"><?=$progress?>% FUNDED</p>
                                             </div>
 
                                             <div class="featured-campaign-container2"
@@ -60,7 +66,12 @@ $this->title = 'GoRaisin';
                                                 <p class="featured-campaign-text-right"
                                                    style="margin-left: 4%;color: #2c2c2c;font-size: 17px;margin-top: 52px">
                                                     NEW</p>
-                                                <?php foreach ($new_campaigns as $new) { ?>
+                                                <?php foreach ($new_campaigns as $new) {
+                                                    $backed = Fund::find()->where(['fund_c_id' => $new->c_id])->sum('fund_amt');
+                                                    if ($backed != 0) {
+                                                        $progress = floor($backed / $new->c_goal * 100);
+                                                    } else
+                                                        $progress = 0;?>
                                                     <div class="featured-campaign-image-container"
                                                          style="display: inline-block;width: 40%;height: 20%;margin-left: 4%;vertical-align: top;">
                                                         <a href="<?= Url::to(['campaign/view', 'id' => $new->c_id]) ?>"><?= Html::img('@web/images/uploads/campaign/' . $new->c_image, ['class' => 'featured-campaign-image-right']) ?></a>
@@ -72,7 +83,7 @@ $this->title = 'GoRaisin';
                                                                style="font-size: 15px;color: #2c2c2c;"><?= $new->c_title ?></p>
                                                         </a>
                                                         <p class="campaign-fund-progress-right"
-                                                           style="color: #858585;font-size: 12px;">30% funded</p>
+                                                           style="color: #858585;font-size: 12px;"><?=$progress?>% funded</p>
                                                     </div>
                                                     <br/>
                                                     <br/>

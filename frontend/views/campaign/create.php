@@ -22,10 +22,6 @@ $campaign_draft = new Campaign();
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<!--For Validation-->
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
 <form class="createCampaign" enctype="multipart/form-data" action="preview?id=<?= $model->c_id ?>" method="post"
       id="tab_logic"
@@ -544,20 +540,21 @@ $campaign_draft = new Campaign();
                     <div id="add_rewards" style="padding-top: 10px"></div>
                 </div>
 
+                <div class="panel-footer">
+                    <small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another reward</small>
+                    ,
+                    <small>Press <span class="glyphicon glyphicon-minus gs"></span> to remove rewards</small>
+                </div>
+                <hr/>
+                <div style="clear:both;padding-bottom: 30px">
+                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
+                           style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                    <input type="submit" name="button" class="btn btn-md btn-info" value="Preview"
+                           style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                </div>
             </div>
 
-            <div class="panel-footer">
-                <small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another reward</small>
-                ,
-                <small>Press <span class="glyphicon glyphicon-minus gs"></span> to remove rewards</small>
-            </div>
-            <hr/>
-            <div style="clear:both;padding-bottom: 30px">
-                <button onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
-                       style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-                <input type="submit" name="button" class="btn btn-md btn-info" value="Preview"
-                       style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-            </div>
+
         </div>
     </div>
     </div>
@@ -717,6 +714,7 @@ $campaign_draft = new Campaign();
         if (true) {
             //$('#navStep4').removeClass('disabled');
             $('#navStep5').click();
+            window.scrollTo(0,0);
         }
     }
 
