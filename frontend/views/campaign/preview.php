@@ -100,8 +100,9 @@ frontend\assets\RoadmapAsset::register($this);
                         <div class="section the_content has_content">
                             <div class="section_wrapper">
                                 <div class="the_content_wrapper">
-                                    <div class="mcb-column one-second column_tabs ">
+                                    <div class="mcb-column one-second column_tabs "><?=$this->render('campaign_content',['model' => $model])?>
                                         <?php
+
                                         $items = [
                                             [
                                                 'label'=>'<i class="glyphicon glyphicon-picture"></i> Story',
@@ -124,13 +125,13 @@ frontend\assets\RoadmapAsset::register($this);
                                         ];
 
                                         // Tab Below Centered
-                                        echo TabsX::widget([
+                                        /*echo TabsX::widget([
                                             'items'=>$items,
                                             'position'=>TabsX::POS_ABOVE,
                                             'align'=>TabsX::ALIGN_CENTER,
                                             'bordered'=>false,
                                             'encodeLabels'=>false
-                                        ]);
+                                        ]);*/
 
                                         ?>
                                     </div>
