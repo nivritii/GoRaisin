@@ -43,7 +43,7 @@ class CompanyTest extends \Codeception\Test\Unit
         $this->assertFalse($company->validate(['company_email']));
         $this->assertFalse($company->validate(['company_website']));
         $this->assertFalse($company->validate(['company_description']));
-        $this->assertFalse($company->validate(['company_industry']));
+        $this->assertTrue($company->validate(['company_industry']));
         $this->assertFalse($company->validate(['company_designation']));
         $this->assertFalse($company->validate(['company_reg_no']));
         $this->assertFalse($company->validate(['company_employees_count']));
@@ -62,7 +62,7 @@ class CompanyTest extends \Codeception\Test\Unit
         $company->company_email = "email@gmail.com";
         $company->company_website = "webpuppies.com.sg";
         $company->company_description = 'company description';
-        $company->company_industry = 'comics';
+        $company->company_industry = '1';
         $company->company_designation = 'design';
         $company->company_reg_no = 'dshjks3128391';
         $company->company_postal = 123344;
@@ -71,7 +71,7 @@ class CompanyTest extends \Codeception\Test\Unit
         $this->assertTrue($company->company_email == 'email@gmail.com');
         $this->assertTrue($company->company_website == 'webpuppies.com.sg');
         $this->assertTrue($company->company_description == 'company description');
-        $this->assertTrue($company->company_industry == 'comics');
+        $this->assertTrue($company->company_industry == '1');
         $this->assertTrue($company->company_designation == 'design');
         $this->assertTrue($company->company_reg_no == 'dshjks3128391');
         $this->assertTrue($company->company_employees_count == 10);
@@ -86,9 +86,9 @@ class CompanyTest extends \Codeception\Test\Unit
         $company = new Company();
 
         Yii::$app->db->createCommand('set foreign_key_checks=0')->execute();
-        $company->setAttributes(['campaign_id' => 1,'company_name' => 'name','company_email' => 'email@gamil.com','company_website' => 'webpuppies.com.sg','company_description' => 'company description','company_industry' => 'comics','company_employees_count' => 10,'company_designation' => 'design','company_reg_no' => 'dshjks3128391','company_postal' => 122333]);
+        $company->setAttributes(['campaign_id' => 1,'company_name' => 'name','company_email' => 'email@gamil.com','company_website' => 'webpuppies.com.sg','company_description' => 'company description','company_industry' => '1','company_employees_count' => 10,'company_designation' => 'design','company_reg_no' => 'dshjks3128391','company_postal' => 122333]);
         $company->save(false);
-        $this->tester->canSeeRecord('frontend\models\Company',array('campaign_id' => 1,'company_name' => 'name','company_email' => 'email@gamil.com','company_website' => 'webpuppies.com.sg','company_description' => 'company description','company_industry' => 'comics','company_employees_count' => 10,'company_designation' => 'design','company_reg_no' => 'dshjks3128391','company_postal' => 122333));
+        $this->tester->canSeeRecord('frontend\models\Company',array('campaign_id' => 1,'company_name' => 'name','company_email' => 'email@gamil.com','company_website' => 'webpuppies.com.sg','company_description' => 'company description','company_industry' => '1','company_employees_count' => 10,'company_designation' => 'design','company_reg_no' => 'dshjks3128391','company_postal' => 122333));
         Yii::$app->db->createCommand('set foreign_key_checks=1')->execute();
     }
 
@@ -100,7 +100,7 @@ class CompanyTest extends \Codeception\Test\Unit
         $company = new Company();
 
         Yii::$app->db->createCommand('set foreign_key_checks=0')->execute();
-        $company->setAttributes(['campaign_id' => 1,'company_name' => 'name','company_email' => 'email@gamil.com','company_website' => 'webpuppies.com.sg','company_description' => 'company description','company_industry' => 'comics','company_employees_count' => 10,'company_designation' => 'design','company_reg_no' => 'dshjks3128391','company_postal' => 122333]);
+        $company->setAttributes(['campaign_id' => 1,'company_name' => 'name','company_email' => 'email@gamil.com','company_website' => 'webpuppies.com.sg','company_description' => 'company description','company_employees_count' => 10,'company_designation' => 'design','company_reg_no' => 'dshjks3128391','company_postal' => 122333]);
         $company->save();
         $company->delete();
         $this->assertFalse($company == null);

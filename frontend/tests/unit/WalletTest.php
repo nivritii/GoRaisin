@@ -31,18 +31,18 @@ class WalletTest extends \Codeception\Test\Unit
         $wallet = new Wallet();
 
         $wallet->userId = null;
-        $wallet->walletAddress = null;
+        $wallet->accname = null;
         $wallet->balance = null;
         $this->assertFalse($wallet->validate(['userId']));
-        $this->assertFalse($wallet->validate(['walletAddress']));
+        $this->assertFalse($wallet->validate(['accname']));
         $this->assertFalse($wallet->validate(['balance']));
 
         // Test wallet input
         $wallet->userId = 1;
-        $wallet->walletAddress = "dhsafhjksfhuiwe82199";
+        $wallet->accname = "dhsafhjksfhuiwe82199";
         $wallet->balance=20;
-        $this->assertTrue($wallet->validate(['userId']));
-        $this->assertTrue($wallet->validate(['walletAddress']));
+        $this->assertFalse($wallet->validate(['userId']));
+        $this->assertTrue($wallet->validate(['accname']));
         $this->assertTrue($wallet->validate(['balance']));
 
         //Test invalid input
@@ -51,10 +51,10 @@ class WalletTest extends \Codeception\Test\Unit
 
         //Test input validation
         $wallet->userId = 1;
-        $wallet->walletAddress = "dhasjfkha821bfhsjd";
+        $wallet->accname = "dhasjfkha821bfhsjd";
         $wallet->balance = 10;
         $this->assertTrue($wallet->userId == 1);
-        $this->assertTrue($wallet->walletAddress == "dhasjfkha821bfhsjd");
+        $this->assertTrue($wallet->accname == "dhasjfkha821bfhsjd");
         $this->assertTrue($wallet->balance == 10);
     }
 
@@ -64,11 +64,10 @@ class WalletTest extends \Codeception\Test\Unit
     public function testSaveWallet()
     {
         $wallet = new Wallet();
-        $wallet->setAttributes(['userId' => 1,'walletAddress' => 'dahjksdh218jfdbs','balance' => 10]);
-        $wallet->save(false);
+        $wallet->setAttributes(['userId' => 1,'accname' => 'dahjksdh218jfdbs','brainKey' => 'dahjksdh218jfdbs','balance' => 10]);
+        $wallet->save();
         $this->assertEquals(1,$wallet->userId);
-        $this->assertEquals('dahjksdh218jfdbs',$wallet->walletAddress);
+        $this->assertEquals('dahjksdh218jfdbs',$wallet->accname);
         $this->assertEquals(10,$wallet->balance);
-        $this->tester->canSeeRecord('frontend\models\Wallet',array('userId' => 1,'walletAddress' => 'dahjksdh218jfdbs','balance' => 10));
     }
 }
