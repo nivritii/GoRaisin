@@ -1,14 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\DetailView;
 use yii\helpers\Url;
-use frontend\models\Category;
-use frontend\assets\HomePageAsset;
-use yii\widgets\ListView;
 use kartik\tabs\TabsX;
-use frontend\models\User;
-use yii\bootstrap\Modal;
+
 
 /*HomePageAsset::register($this);*/
 
@@ -40,15 +35,7 @@ frontend\assets\RoadmapAsset::register($this);
                         <div style="display: inline-block;vertical-align: middle;padding-top:5%">
                             <?= Html::img('@web/'.$model->cAuthor->image,['style' => 'height:40px;width:40px;border-radius:10px;margin-bottom:10%']) ?>
                             <br />
-                            <?=
-                            Html::a($model->cAuthor->username,['viewcompany','id' => $model->c_id],[
-                                'id' => 'view-company',
-                                'class' => 'view-author',
-                                'data-toggle' => 'modal',
-                                'data-target' => '#view-author',
-                                'style' => 'color:#494949;padding:3px;border-radius:5px;font-size:15px;'
-                            ])
-                            ?>
+                            <p style="color:#494949;padding:3px;border-radius:5px;font-size:15px;"><?php echo $model->cAuthor->username ?></p>
                         </div>
                         <div style="clear:both; display: inline-block;vertical-align: middle;margin-left: 10%;width: 75%;">
                         <h1 class="title" style="color: #6b0d7ce8;font-size: 35px"><?=$model->c_title?></h1>
@@ -181,10 +168,6 @@ frontend\assets\RoadmapAsset::register($this);
                             <button class="btn btn-default" style="width:100%; background-color:#8f13a5f0; color: white"><span style="margin-right:20px" class="glyphicon glyphicon-edit" aria-hidden="true"></span>Edit</button>
                         </a>
                         <br /><br />
-                        <a href="<?= Url::to(['campaign/review','id'=>$model->c_id])?>" style="text-decoration: none">
-                            <?= Html::submitButton('Submit for Review',['class' => 'btn btn-info btn-lg','value' => 'moderation','name' => 'moderation','style' => 'border-radius: 10px; width:100%']) ?>
-                        </a>
-                        <br /><br />
                     <div class="section" style="padding-bottom:20px;">
                         <h6><span class="glyphicon glyphicon-heart-empty" style="cursor:pointer;"></span> All or nothing. This project will only be funded if it reaches its goal by <?=$model->c_end_date?>.</h6>
                     </div>
@@ -193,25 +176,33 @@ frontend\assets\RoadmapAsset::register($this);
         </div>
     </div>
 </div>
+<script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime();
 
-<?php
-Modal::begin([
-    'id' => 'view-author',
-    'header' => '<h4 class="modal-title">About the author</h4>',
-]);
+    // Update the count down every 1 second
+    var x = setInterval(function() {
 
-$campaignId = $model->c_id;
-$requestCreateUrl = Url::toRoute('viewcompany');
-$js = <<<JS
-$('#view-author').on('click', function () {
-    $('.modal-title').html('About the author');
-    $.get('{$requestCreateUrl}',{id: $model->c_id},
-        function (data) {
-            $('.modal-body').html(data);
-        }  
-    );
-});
-JS;
-$this->registerJs($js);
-Modal::end();
-?>
+        // Get todays date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now an the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Output the result in an element with id="demo"
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+        // If the count down is over, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("endDate").innerHTML = "EXPIRED";
+        }
+    }, 1000);
+</script>

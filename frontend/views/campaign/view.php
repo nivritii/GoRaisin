@@ -234,9 +234,9 @@ frontend\assets\RoadmapAsset::register($this);
                         </a>
                         <br/><br/>
 
-                        <?= Html::a('<span class="glyphicon glyphicon-cloud-upload"></span>Submit for Review', ['campaign/review', 'id' => $model->c_id], ['style' => 'text-decoration: none;width: 100%;border-radius:10px', 'class' => 'btn btn-info']) ?>
-                        <!--<a href="<? /*= Url::to(['campaign/review','id'=>$model->c_id])*/ ?>" style="text-decoration: none">
-                            <? /*= Html::submitButton('<span class="glyphicon glyphicon-cloud-upload"></span> Submit for Review',['class' => 'btn btn-info','value' => 'moderation','name' => 'moderation','style' => 'width: 100%;border-radius:10px']) */ ?>
+                        <?/*=Html::a('<span class="glyphicon glyphicon-cloud-upload"></span>Submit for Review',['campaign/review','id'=>$model->c_id],['style' => 'text-decoration: none;width: 100%;border-radius:10px','class' => 'btn btn-info']) */?>
+                        <!--<a href="<?/*= Url::to(['campaign/review','id'=>$model->c_id])*/?>" style="text-decoration: none">
+                            <?/*= Html::submitButton('<span class="glyphicon glyphicon-cloud-upload"></span> Submit for Review',['class' => 'btn btn-info','value' => 'moderation','name' => 'moderation','style' => 'width: 100%;border-radius:10px']) */?>
                         </a>-->
                         <br/><br/>
                         <div style="text-align: center">
