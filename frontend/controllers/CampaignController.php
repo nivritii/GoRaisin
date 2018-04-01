@@ -111,12 +111,12 @@ class CampaignController extends Controller
     public function actionReview($id)
     {
         $reviewCampaign = $this->findModel($id);
-        $reviewCampaign->c_status = 'moderation';
-        $reviewCampaign->sendReviewEmail();
-        $reviewCampaign->save(false);
-
+        if($reviewCampaign->c_status=='draft'){
+            $reviewCampaign->c_status = 'moderation';
+            $reviewCampaign->sendReviewEmail();
+            $reviewCampaign->save(false);
+        }
         return $this->redirect(['view', 'id' => $reviewCampaign->c_id]);
-
     }
 
     /**
@@ -192,6 +192,8 @@ class CampaignController extends Controller
         $updates = Update::find()->where(['campaign_id' => $id])->orderBy(['id' => SORT_DESC])->all();
         $comments = Comment::find()->where(['comment_camp_id' => $id])->orderBy(['comment_datetime' => SORT_DESC])->all();
         $backed = Fund::find()->where(['fund_c_id' => $id])->sum('fund_amt');
+        $noOfBackers = Fund::find()->where(['fund_c_id' => $id])->groupBy('fund_user_id')->all();
+
         $rewards = Reward::find()->where(['c_id' => $id])->all();
         $faqs = Faq::find()->where(['campaign_id' => $id])->all();
 
@@ -199,13 +201,14 @@ class CampaignController extends Controller
         $checkIfGuest = $this->checkIfGuest();
 
         if ($backed != 0) {
-            $progress = ($backed / $this->findModel($id)->c_goal) * 100;
+            $progress = floor($backed / $this->findModel($id)->c_goal * 100);
         } else
             $progress = 0;
 
         return $this->render('view', [
             'model' => $this->findModel($id),
             'backed' => $backed,
+            'noOfBackers'=> count($noOfBackers),
             'progress' => $progress,
             'categories' => $categories,
             'comments' => $comments,
@@ -342,7 +345,7 @@ class CampaignController extends Controller
         $industries = Industry::find()->where(['!=', 'id', $company->company_industry])->all();
         $token = $this->findToken($id);
         $number=0;
-        $flag = false;
+        $flag = true;
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -515,6 +518,7 @@ class CampaignController extends Controller
                         $mReward->save(true);
 
                         if($number>0){
+                            $flag = false;
                             for ($i = 0; $i < $number; $i++) {
                                 $reward->c_id = $model->c_id;
                                 if(!empty($_POST['amount'][$i])){

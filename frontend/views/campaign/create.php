@@ -22,10 +22,6 @@ $campaign_draft = new Campaign();
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<!--For Validation-->
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
 <form class="createCampaign" enctype="multipart/form-data" action="preview?id=<?= $model->c_id ?>" method="post"
       id="tab_logic"
@@ -103,10 +99,10 @@ $campaign_draft = new Campaign();
                             <div class="form-group">
                                 <div style="width: 100%;">
                                     <div style="float: left;display: inline-block;width: 20%">
-                                        <p class="item-title">Campaign title <abbr title="Required">*</abbr></p>
+                                        <p class="item-title" title="Campaign Title required">Campaign title *</p>
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
-                                        <input type="text" style="width: 100%" name="cTitle" id="cTitle" aria-required="true" title="Your campaign title"
+                                        <input type="text" style="width: 100%" placeholder="Campaign Title" name="cTitle" id="cTitle" aria-required="true" title="Your campaign title"
                                                spellcheck="true">
                                     </div>
                                 </div>
@@ -544,20 +540,21 @@ $campaign_draft = new Campaign();
                     <div id="add_rewards" style="padding-top: 10px"></div>
                 </div>
 
+                <div class="panel-footer">
+                    <small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another reward</small>
+                    ,
+                    <small>Press <span class="glyphicon glyphicon-minus gs"></span> to remove rewards</small>
+                </div>
+                <hr/>
+                <div style="clear:both;padding-bottom: 30px">
+                    <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
+                           style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                    <input type="submit" name="button" class="btn btn-md btn-info" value="Preview"
+                           style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
+                </div>
             </div>
 
-            <div class="panel-footer">
-                <small>Press <span class="glyphicon glyphicon-plus gs"></span> to add another reward</small>
-                ,
-                <small>Press <span class="glyphicon glyphicon-minus gs"></span> to remove rewards</small>
-            </div>
-            <hr/>
-            <div style="clear:both;padding-bottom: 30px">
-                <input onclick="prevStep()" class="btn btn-md btn-info" value="Prev"
-                       style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-                <input type="submit" name="button" class="btn btn-md btn-info" value="Preview"
-                       style="color: #ffffff;background-color: #940094;border: 0;width: 10%">
-            </div>
+
         </div>
     </div>
     </div>
@@ -583,7 +580,7 @@ $campaign_draft = new Campaign();
         tokenValue.value = cGoal.value / tokenSupply.value;
     }
 
-    function validateTitle() {
+    /*function validateTitle() {
         if (cTitle.value == "") {
             cTitle.focus();
             error_message += "Please enter Campaign Title";
@@ -631,7 +628,7 @@ $campaign_draft = new Campaign();
             error_message = '';
             return true;
         }
-    }
+    }*/
 
     $(document).ready(function () {
         $('.li-nav').click(function () {
@@ -681,8 +678,11 @@ $campaign_draft = new Campaign();
         if (true) {//Insert here your validation of the first step
             if (/*validateStep1()*/ true) {
                 currentStep += 1;
+
+                //cVideo.focus();
                 //$('#navStep' + currentStep).removeClass('disabled');
                 $('#navStep' + currentStep).click();
+                window.scrollTo(0,0);
             }
         }
     }
@@ -691,12 +691,14 @@ $campaign_draft = new Campaign();
         //Notice that the btn prev not exist in the first step
         currentStep -= 1;
         $('#navStep' + currentStep).click();
+        window.scrollTo(0,0);
     }
 
     function step2Next() {
         if (true) {
             //$('#navStep3').removeClass('disabled');
             $('#navStep3').click();
+            window.scrollTo(0,0);
         }
     }
 
@@ -704,6 +706,7 @@ $campaign_draft = new Campaign();
         if (true) {
             //$('#navStep4').removeClass('disabled');
             $('#navStep4').click();
+            window.scrollTo(0,0);
         }
     }
 
@@ -711,6 +714,7 @@ $campaign_draft = new Campaign();
         if (true) {
             //$('#navStep4').removeClass('disabled');
             $('#navStep5').click();
+            window.scrollTo(0,0);
         }
     }
 

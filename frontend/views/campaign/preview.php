@@ -97,16 +97,16 @@ frontend\assets\RoadmapAsset::register($this);
                                             ],
                                             [
                                                 'label'=>'<i class="glyphicon glyphicon-bell"></i> Updates',
-                                                //'content'=>$this->render('campaign_update',['updates'=>$updates]),
+                                                'content'=>'',
                                                 //'linkOptions'=>['data-url'=>\yii\helpers\Url::to(['/campaign/form'])]
                                             ],
                                             [
                                                 'label'=>'<i class="glyphicon glyphicon-comment"></i> Comments',
-                                                //'content'=>$this->render('campaign_comments',['comments'=>$comments, 'model'=>$model]),
+                                                'content'=>'',
                                             ],
                                             [
                                                 'label'=>'<i class="glyphicon glyphicon-question-sign"></i> FAQ',
-                                                //'content'=>$this->render('campaign_faq',['model'=>$model]),
+                                                'content'=>'',
                                             ],
                                         ];
 
@@ -176,7 +176,6 @@ frontend\assets\RoadmapAsset::register($this);
         </div>
     </div>
 </div>
-
 <script>
     // Set the date we're counting down to
     var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime();
