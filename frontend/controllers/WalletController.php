@@ -140,7 +140,9 @@ class WalletController extends \yii\web\Controller
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-            $amt = $_POST['reward'];
+            $fields = explode(',', $_POST['reward']);
+            $amt = $fields[0];
+            $fund->r_id = $fields[1];
             $fund->fund_c_id = $id;
             $fund->fund_user_id = Yii::$app->user->identity->getId();
             $fund->fund_amt = $amt;
