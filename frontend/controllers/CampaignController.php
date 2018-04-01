@@ -111,15 +111,12 @@ class CampaignController extends Controller
     public function actionReview($id)
     {
         $reviewCampaign = $this->findModel($id);
-        if($reviewCampaign->c_status=='published'){
-            return $this->redirect(['view', 'id' => $reviewCampaign->c_id]);
+        if($reviewCampaign->c_status=='draft'){
+            $reviewCampaign->c_status = 'moderation';
+            $reviewCampaign->sendReviewEmail();
+            $reviewCampaign->save(false);
         }
-        $reviewCampaign->c_status = 'moderation';
-        $reviewCampaign->sendReviewEmail();
-        $reviewCampaign->save(false);
-
         return $this->redirect(['view', 'id' => $reviewCampaign->c_id]);
-
     }
 
     /**
@@ -195,6 +192,8 @@ class CampaignController extends Controller
         $updates = Update::find()->where(['campaign_id' => $id])->orderBy(['id' => SORT_DESC])->all();
         $comments = Comment::find()->where(['comment_camp_id' => $id])->orderBy(['comment_datetime' => SORT_DESC])->all();
         $backed = Fund::find()->where(['fund_c_id' => $id])->sum('fund_amt');
+        $noOfBackers = Fund::find()->where(['fund_c_id' => $id])->groupBy('fund_user_id')->all();
+
         $rewards = Reward::find()->where(['c_id' => $id])->all();
         $faqs = Faq::find()->where(['campaign_id' => $id])->all();
 
@@ -209,6 +208,7 @@ class CampaignController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
             'backed' => $backed,
+            'noOfBackers'=> count($noOfBackers),
             'progress' => $progress,
             'categories' => $categories,
             'comments' => $comments,
