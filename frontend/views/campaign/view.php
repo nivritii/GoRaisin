@@ -142,6 +142,7 @@ frontend\assets\RoadmapAsset::register($this);
             <!-- Sidebar area-->
             <div class="sidebar sidebar-1 four columns" style="width: 25%;float: left; margin-right: 8%;">
                 <div class="widget-area clearfix" style="padding: 9px 0px 0px;">
+                    <p>Target achieved:</p>
                     <div class="progress">
                         <div class="progress-bar" role="progressbar"
                              aria-valuemin="0" aria-valuemax="100"
@@ -154,7 +155,7 @@ frontend\assets\RoadmapAsset::register($this);
                     if ($model->c_goal != 0) {
                         ?>
                         <h3 class="title-price" style="margin-top:0px;">
-                            <small>pledged of U$S<?= $model->c_goal ?> goal</small>
+                            <small>Target U$S<?= $model->c_goal ?></small>
                         </h3>
                         <?php
                     } else {
@@ -166,7 +167,7 @@ frontend\assets\RoadmapAsset::register($this);
 
                     <h3 style="margin-top:25px; margin-bottom:0px;"><?= $noOfBackers ?></h3>
                     <h3 class="title-price" style="margin-top:0px;">
-                        <small>backers</small>
+                        <small>Number of backers</small>
                     </h3>
 
                     <?php
