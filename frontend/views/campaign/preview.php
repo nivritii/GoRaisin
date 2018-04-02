@@ -4,31 +4,18 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use kartik\tabs\TabsX;
 
-
-/*HomePageAsset::register($this);*/
-
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
 
 $this->title = $model->c_title.' - GoRaisin';
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-/*frontend\assets\HomePageAsset::register($this);*/
-frontend\assets\RoadmapAsset::register($this);
+frontend\assets\HomePageAsset::register($this);
 ?>
-<div class="campaign-view">
+<div class="campaign-review">
     <!-- Main Content -->
     <div id="Content" style="padding: 0px">
         <div class="content_wrapper clearfix">
-            <!--<div class="sidebar sidebar-1 four columns" style="width: 0%;float: left; margin-left: 9%; border-right: .5px solid #f0f0f0; padding-top: 4%">
-                <div style="padding-left: 20%">
-                    <div style="width: 35px; height: 42px;margin-left: 10%">
-                        <?/*= Html::img('@web/'.$model->cAuthor->image,['style' => 'margin-left:55%']) */?>
-                        <?/*=Html::img(Url::to('@web/'.$model->cAuthor->image))*/?>
-                    </div>
-                    <p style="margin-left: 55%"><?/*=$model->cAuthor->username*/?></p>
-                </div>
-            </div>-->
             <div class="sections_group" style="width: 55%;float: left;margin-left: 10%">
                 <div style="border-right: .5px solid #f0f0f0; padding-top: 3%">
                     <div class="column zero" style="width: 100%">
@@ -115,7 +102,7 @@ frontend\assets\RoadmapAsset::register($this);
                                             'items'=>$items,
                                             'position'=>TabsX::POS_ABOVE,
                                             'align'=>TabsX::ALIGN_CENTER,
-                                            'bordered'=>false,
+                                            'bordered'=>true,
                                             'encodeLabels'=>false
                                         ]);
 
@@ -176,34 +163,3 @@ frontend\assets\RoadmapAsset::register($this);
         </div>
     </div>
 </div>
-
-<script>
-    // Set the date we're counting down to
-    var countDownDate = new Date("Sep 5, 2018 15:37:25").getTime();
-
-    // Update the count down every 1 second
-    var x = setInterval(function() {
-
-        // Get todays date and time
-        var now = new Date().getTime();
-
-        // Find the distance between now an the count down date
-        var distance = countDownDate - now;
-
-        // Time calculations for days, hours, minutes and seconds
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        // Output the result in an element with id="demo"
-        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-            + minutes + "m " + seconds + "s ";
-
-        // If the count down is over, write some text
-        if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("endDate").innerHTML = "EXPIRED";
-        }
-    }, 1000);
-</script>

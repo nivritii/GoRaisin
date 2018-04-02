@@ -358,7 +358,9 @@ class CampaignController extends Controller
                 $uploadfile = $dirpath . basename($_FILES['cImage']['name']);
                 $model->c_image = basename($_FILES['cImage']['name']);
                 move_uploaded_file($_FILES['cImage']['tmp_name'], $uploadfile);
-            } else {
+            } else if (Campaign::find()->where(['c_image' => $model->c_image])->all() != 'default.jpg') {
+                $model->c_image = $model->c_image;
+            }else{
                 $model->c_image = 'default.jpg';
             }
 
