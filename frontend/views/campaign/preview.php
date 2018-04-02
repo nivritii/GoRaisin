@@ -4,19 +4,15 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use kartik\tabs\TabsX;
 
-
-/*HomePageAsset::register($this);*/
-
 /* @var $this yii\web\View */
 /* @var $model frontend\models\Campaign */
 
 $this->title = $model->c_title . ' - GoRaisin';
 $this->params['breadcrumbs'][] = ['label' => 'Campaigns', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-/*frontend\assets\HomePageAsset::register($this);*/
-frontend\assets\RoadmapAsset::register($this);
+frontend\assets\HomePageAsset::register($this);
 ?>
-<div class="campaign-view">
+<div class="campaign-review">
     <!-- Main Content -->
     <div id="Content" style="padding: 0px">
         <div class="content_wrapper clearfix">
