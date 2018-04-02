@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use common\models\LoginForm;
+use frontend\models\LoginForm;
 use frontend\models\Faq;
 use frontend\models\Industry;
 use frontend\models\Reward;
