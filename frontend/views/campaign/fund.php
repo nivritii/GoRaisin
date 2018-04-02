@@ -9,7 +9,7 @@ use yii\helpers\Url;
 use Da\QrCode\QrCode;
 
 
-$qrCode = (new QrCode($wallet->accname))
+$qrCode = (new QrCode($myJSON))
     ->setSize(250)
     ->setMargin(5)
     ->useForegroundColor(51, 153, 255);
