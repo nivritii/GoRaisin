@@ -837,6 +837,7 @@ $campaign_draft = new Campaign();
                 currentStep += 1;
                 //$('#navStep' + currentStep).removeClass('disabled');
                 $('#navStep' + currentStep).click();
+                window.scrollTo(0,0);
             }
         }
     }
@@ -845,12 +846,14 @@ $campaign_draft = new Campaign();
         //Notice that the btn prev not exist in the first step
         currentStep -= 1;
         $('#navStep' + currentStep).click();
+        window.scrollTo(0,0);
     }
 
     function step2Next() {
         if (true) {
             //$('#navStep3').removeClass('disabled');
             $('#navStep3').click();
+            window.scrollTo(0,0);
         }
     }
 
@@ -858,6 +861,7 @@ $campaign_draft = new Campaign();
         if (true) {
             //$('#navStep4').removeClass('disabled');
             $('#navStep4').click();
+            window.scrollTo(0,0);
         }
     }
 
@@ -865,6 +869,7 @@ $campaign_draft = new Campaign();
         if (true) {
             //$('#navStep4').removeClass('disabled');
             $('#navStep5').click();
+            window.scrollTo(0,0);
         }
     }
 

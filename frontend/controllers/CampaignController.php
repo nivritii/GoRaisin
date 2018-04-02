@@ -667,10 +667,24 @@ class CampaignController extends Controller
 
     public function actionFund($id)
     {
+        $mReward = Reward::find()->where(['c_id'=>$id, 'r_mandatory'=>1])->one();
         $rewards = Reward::find()->where(['c_id' => $id])->all();
         $campaign = $this->findModel($id);
 
-        $wallet = Wallet::find()->where(['userId' => $campaign->c_author])->one();
+        if($this->checkForWallet()){
+            $wallet = Wallet::find()->where(['userId' => $campaign->c_author])->one();
+
+            return $this->render('fund', [
+                'mReward' =>$mReward,
+                'rewards' => $rewards,
+                'c_id' => $id,
+                'wallet' => $wallet,
+            ]);
+        }
+
+        Yii::$app->session->setFlash('warning', 'Please proceed to create your e-wallet before funding a campaign.');
+        return $this->redirect(['wallet/index']);
+
         /*        $fund = new Fund();
 
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -682,11 +696,7 @@ class CampaignController extends Controller
                     }
                 }
         */
-        return $this->render('fund', [
-            'rewards' => $rewards,
-            'c_id' => $id,
-            'wallet' => $wallet,
-        ]);
+
     }
 
     public function actionMycampaign()
@@ -1055,4 +1065,15 @@ class CampaignController extends Controller
     {
         return $this->render('test');
     }
+
+    protected function checkForWallet()
+    {
+        $wallet = Wallet::find()->where(['userId' => \Yii::$app->user->id])->one();
+        if (!empty($wallet)) {
+            return true;
+        }
+
+        return false;
+    }
+
 }

@@ -488,8 +488,7 @@ $campaign_draft = new Campaign();
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
                             <p style="float: left">For the stated amount pledged & more</p>
-                            <input type="number" class="form-control" id="amount" name="mAmount" value=""
-                                   placeholder="Amount pledged">
+                            <input type="number" class="form-control" id="amount" name="mAmount" placeholder="Amount pledged">
                         </div>
                     </div>
                     <div class="col-sm-3 nopadding">
@@ -519,8 +518,7 @@ $campaign_draft = new Campaign();
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
                             <p style="float: left"># of months it is valid after launch</p>
-                            <input type="number" class="form-control" id="expiry" name="mExpiry" value=""
-                                   placeholder="Validity">
+                            <input type="number" class="form-control" id="expiry" name="mExpiry" placeholder="Validity">
                         </div>
                     </div>
                     <div class="col-sm-3 nopadding">

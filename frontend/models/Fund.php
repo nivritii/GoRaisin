@@ -10,11 +10,13 @@ use Yii;
  * @property int $fund_id
  * @property int $fund_c_id
  * @property int $fund_user_id
+ * @property int $r_id
  * @property double $fund_amt
  * @property string $fund_created_on
  *
  * @property User $fundUser
  * @property Campaign $fundC
+ * @property Reward $r
  */
 class Fund extends \yii\db\ActiveRecord
 {
@@ -32,12 +34,13 @@ class Fund extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['fund_c_id', 'fund_user_id', 'fund_amt'], 'required'],
-            [['fund_c_id', 'fund_user_id'], 'integer'],
+            [['fund_c_id', 'fund_user_id', 'r_id', 'fund_amt'], 'required'],
+            [['fund_c_id', 'fund_user_id', 'r_id'], 'integer'],
             [['fund_amt'], 'number'],
             [['fund_created_on'], 'safe'],
             [['fund_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['fund_user_id' => 'id']],
             [['fund_c_id'], 'exist', 'skipOnError' => true, 'targetClass' => Campaign::className(), 'targetAttribute' => ['fund_c_id' => 'c_id']],
+            [['r_id'], 'exist', 'skipOnError' => true, 'targetClass' => Reward::className(), 'targetAttribute' => ['r_id' => 'r_id']],
         ];
     }
 
@@ -48,8 +51,9 @@ class Fund extends \yii\db\ActiveRecord
     {
         return [
             'fund_id' => 'Fund ID',
-            'fund_c_id' => 'Fund Campaign ID',
+            'fund_c_id' => 'Fund C ID',
             'fund_user_id' => 'Fund User ID',
+            'r_id' => 'R ID',
             'fund_amt' => 'Fund Amt',
             'fund_created_on' => 'Fund Created On',
         ];
@@ -69,5 +73,13 @@ class Fund extends \yii\db\ActiveRecord
     public function getFundC()
     {
         return $this->hasOne(Campaign::className(), ['c_id' => 'fund_c_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getR()
+    {
+        return $this->hasOne(Reward::className(), ['r_id' => 'r_id']);
     }
 }
