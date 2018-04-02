@@ -674,11 +674,15 @@ class CampaignController extends Controller
         if($this->checkForWallet()){
             $wallet = Wallet::find()->where(['userId' => $campaign->c_author])->one();
 
+            $qr = array('accname' => $wallet->accname, 'id' => $id);
+            $myJSON = json_encode($qr);
+
             return $this->render('fund', [
                 'mReward' =>$mReward,
                 'rewards' => $rewards,
                 'c_id' => $id,
                 'wallet' => $wallet,
+                'myJSON'=>$myJSON,
             ]);
         }
 
