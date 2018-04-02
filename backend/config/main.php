@@ -26,17 +26,6 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
         ],
-        'view' => [
-            /*'theme' => [
-                // 'basePath' => '@app/themes/spring',
-                // 'baseUrl' => '@web/themes/spring',
-                'pathMap' => [
-                    '@app/views' => [
-                        '@app/themes/spring',
-                    ]
-                ],
-            ],*/
-        ],
 
 
         'assetManager' => [
@@ -135,11 +124,6 @@ return [
             'class' => 'yii\caching\FileCache',
         ],
 
-    ],
-
-    //for theme dynamic switch
-    'as theme' => [
-        'class' => 'backend\components\ThemeControl',
     ],
 
     'as access' => [
