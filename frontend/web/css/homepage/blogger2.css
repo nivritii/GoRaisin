@@ -1015,7 +1015,7 @@ ul.clients.clients_tiles li .client_wrapper:after {
     background: #8f13a5f0;
 }
 table tr:hover td {
-    background: #8f13a5f0;
+    background: #ffffff00;
 }
 .pricing-box .plan-header .price sup.currency, .pricing-box .plan-header .price>span {
     color: #8f13a5f0;
