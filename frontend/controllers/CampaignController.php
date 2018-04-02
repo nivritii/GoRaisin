@@ -674,7 +674,7 @@ class CampaignController extends Controller
         if($this->checkForWallet()){
             $wallet = Wallet::find()->where(['userId' => $campaign->c_author])->one();
 
-            $qr = array('accname' => $wallet->accname, 'id' => $id);
+            $qr = array('userId'=> Yii::$app->user->getId(), 'accname' => $wallet->accname, 'id' => $id);
             $myJSON = json_encode($qr);
 
             return $this->render('fund', [

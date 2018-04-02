@@ -10,6 +10,7 @@ use Yii;
  * @property int $fund_id
  * @property int $fund_c_id
  * @property int $fund_user_id
+ * @property int $r_id
  * @property double $fund_amt
  * @property string $fund_created_on
  *
@@ -33,7 +34,7 @@ class Fund extends \yii\db\ActiveRecord
     {
         return [
             [['fund_c_id', 'fund_user_id', 'fund_amt'], 'required'],
-            [['fund_c_id', 'fund_user_id'], 'integer'],
+            [['fund_c_id', 'fund_user_id', 'r_id'], 'integer'],
             [['fund_amt'], 'number'],
             [['fund_created_on'], 'safe'],
             [['fund_user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['fund_user_id' => 'id']],
@@ -50,6 +51,7 @@ class Fund extends \yii\db\ActiveRecord
             'fund_id' => 'Fund ID',
             'fund_c_id' => 'Fund C ID',
             'fund_user_id' => 'Fund User ID',
+            'r_id' => 'R ID',
             'fund_amt' => 'Fund Amt',
             'fund_created_on' => 'Fund Created On',
         ];
