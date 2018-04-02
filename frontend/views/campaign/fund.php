@@ -51,7 +51,7 @@ $reward = new Reward();
                                     <a data-toggle="collapse" data-parent="#accordion-cat-1" href="#noReward1"
                                        style="text-decoration: none;">
                                         <h4 class="panel-title" style="font-size: 20px">
-                                            Use your mobile wallet pledge amount
+                                            Use your mobile wallet to pledge amount.
                                         </h4>
                                     </a>
                                 </div>
