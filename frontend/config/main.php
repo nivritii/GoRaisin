@@ -63,6 +63,12 @@ return [
                 'password' => 'cherrynus123',
                 'port' => '465',
                 'encryption' => 'ssl',
+                'streamOptions' => [
+                    'ssl' => [ 'allow_self_signed' => true,
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                    ],
+                ],
             ],
             'messageConfig'=>[
                 'charset'=>'UTF-8',

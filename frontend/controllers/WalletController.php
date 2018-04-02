@@ -10,6 +10,7 @@ use frontend\rpc\jsonRPCClient;
 use Yii;
 use frontend\models\Fund;
 use frontend\models\Campaign;
+use yii\helpers\BaseJson;
 
 class WalletController extends \yii\web\Controller
 {
@@ -32,7 +33,7 @@ class WalletController extends \yii\web\Controller
                         'roles' => ['@'],
                     ],
                     [
-                        'actions' => ['index','create','mywallet'],
+                        'actions' => ['index', 'create', 'mywallet'],
                         'allow' => true,
                         'roles' => ['?'],
                     ],
@@ -54,7 +55,7 @@ class WalletController extends \yii\web\Controller
         return parent::beforeAction($action);
     }
 
-    public $url = 'http://192.168.1.138:8092/rpc';
+    public $url = 'http://52.74.110.127:8092/rpc';
     //192.168.1.138 - webpuppies
     //172.23.205.29 - utown
     //172.17.254.127 - iss
@@ -90,11 +91,11 @@ class WalletController extends \yii\web\Controller
             $wallet->save(false);
 
             $response = $this->createAccount($wallet->brainKey, $wallet->accname);
-            if(!empty($response['result'])){
+            if (!empty($response['result'])) {
                 $transferRpc = $this->transferAmt($wallet->accname);
                 $balanceRpc = $this->listAccBalance($wallet->accname);
 
-                return $this->render('mywallet',[
+                return $this->render('mywallet', [
                     'response' => $balanceRpc,
                 ]);
             }
@@ -107,25 +108,23 @@ class WalletController extends \yii\web\Controller
         $wallet = Wallet::find()->where(['userId' => \Yii::$app->user->id])->one();
 
         $response = $this->listAccBalance($wallet->accname);
-        $balance = $response['result'][0]['amount']/100000;
+        $balance = $response['result'][0]['amount'] / 100000;
 
         $descriptions = array();
         $amountTransferred = array();
 
         $accountHistory = $this->getAccHistory($wallet->accname);
 
-        for ($i=0; $i<(count($accountHistory['result'])-1); $i++)
-        {
+        for ($i = 0; $i < (count($accountHistory['result']) - 1); $i++) {
             $descriptions[$i] = $accountHistory['result'][$i]['description'];
         }
 
-        for ($i=0; $i<(count($accountHistory['result'])-1); $i++)
-        {
-            $amountTransferred[$i] = $accountHistory['result'][$i]['op']['op'][1]['amount']['amount']/100000;
+        for ($i = 0; $i < (count($accountHistory['result']) - 1); $i++) {
+            $amountTransferred[$i] = $accountHistory['result'][$i]['op']['op'][1]['amount']['amount'] / 100000;
         }
 
 
-        return $this->render('mywallet',[
+        return $this->render('mywallet', [
             'balance' => $balance,
             'descriptions' => $descriptions,
             'amountTransferred' => $amountTransferred,
@@ -158,7 +157,7 @@ class WalletController extends \yii\web\Controller
 
     protected function getWallet($userId)
     {
-        $wallet = Wallet::find()->where(['userId'=>$userId])->one();
+        $wallet = Wallet::find()->where(['userId' => $userId])->one();
         if (!empty($wallet)) {
             return $wallet;
         }
@@ -197,7 +196,7 @@ class WalletController extends \yii\web\Controller
     {
         $rpc = new jsonRPCClient($this->url, true);
         $rpc->setRPCNotification(true);
-        $response = $rpc->__call("transfer", ["kiru",$accName,"5000","BTS","", true]);
+        $response = $rpc->__call("transfer", ["kiru", $accName, "5000", "BTS", "", true]);
         $response = $response['result'];
 
         return $response;
@@ -207,7 +206,7 @@ class WalletController extends \yii\web\Controller
     {
         $rpc = new jsonRPCClient($this->url, true);
         $rpc->setRPCNotification(true);
-        $response = $rpc->__call("transfer", [$senderAcc,$receiverAcc,$amount,"BTS","", true]);
+        $response = $rpc->__call("transfer", [$senderAcc, $receiverAcc, $amount, "BTS", "", true]);
         $response = $response['result'];
 
         return $response;
@@ -215,12 +214,34 @@ class WalletController extends \yii\web\Controller
 
     protected function createBrainKey()
     {
-        $rpc = new jsonRPCClient($this->url, true);
+/*        $rpc = new jsonRPCClient($this->url, true);
         $rpc->setRPCNotification(true);
         $response = $rpc->__call("suggest_brain_key", []);
         $response1 = $response['result'];
 
-        return $response1['brain_priv_key'];
+        return $response1['brain_priv_key'];*/
+        $client = new \GuzzleHttp\Client([
+            'headers' => [ 'Content-Type' => 'application/json',
+                'Access-Control-Allow-Origin' => '*',
+                'Access-Control-Allow-Methods' => 'POST, GET, PUT, DELETE, OPTIONS',
+                'Access-Control-Allow-Credentials' => false,
+                'Access-Control-Allow-Headers' => 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept'],
+        ]);
+
+        $url = 'http://52.74.110.127:8092/rpc';
+        $data = array(
+            'method' => "suggest_brain_key",
+            'id' => 1,
+            'jsonrpc' => "2.0",
+        );
+
+        $response = $client->post($url,
+            ['body' => json_encode(
+                $data
+            )]
+        );
+        $response = BaseJson::decode($response->getBody()->getContents(),true);
+        return $response['result']['brain_priv_key'];
     }
 
     protected function createAccount($brain_priv_key, $accname)
