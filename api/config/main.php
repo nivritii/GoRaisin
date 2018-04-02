@@ -9,7 +9,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-api',
-    'basePath' => dirname(__DIR__),    
+    'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'modules' => [
         'v1' => [
@@ -17,7 +17,7 @@ return [
             'class' => 'api\modules\v1\Module'
         ]
     ],
-    'components' => [        
+    'components' => [
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => false,
@@ -37,12 +37,12 @@ return [
             'showScriptName' => false,
             'rules' => [
                 [
-                    'class' => 'yii\rest\UrlRule', 
+                    'class' => 'yii\rest\UrlRule',
                     'controller' => 'v1/wallet',
                     'tokens' => [
                         '{id}' => '<id:\\w+>'
                     ]
-                    
+
                 ],
                 [
                     'class' => 'yii\rest\UrlRule',
@@ -59,8 +59,22 @@ return [
                         '{id}' => '<id:\\w+>'
                     ]
 
-                ]
-            ],        
+                ],
+                [
+                'class' => 'yii\rest\UrlRule',
+                'controller' => 'v1/campaign',
+                'tokens' => [
+                    '{id}' => '<id:\\w+>'
+                ],
+                ],
+                [
+                'class' => 'yii\rest\UrlRule',
+                'controller' => 'v1/reward',
+                'tokens' => [
+                    '{id}' => '<id:\\w+>'
+                ],
+            ]
+            ],
         ]
     ],
     'params' => $params,

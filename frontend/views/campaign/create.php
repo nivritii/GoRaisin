@@ -446,16 +446,15 @@ $campaign_draft = new Campaign();
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
                                     <div style="display: inline-block;float: left;text-align: center;">
-                                        <input type="text" style="width: 18%;float: left" value="1" disabled><i
-                                                class="fa fa-bitcoin fa-2x"
-                                                style="float: left;padding: 3% 5% 0;"></i><span
+                                        <input type="text" style="width: 18%;float: left" value="1" disabled><img src="<?=Url::to('@web/images/raisin.png')?>"
+                                                style="float: left;padding: 1% 5% 0;"></img><span
                                                 class="glyphicon glyphicon-transfer" style="padding: 7% 0 0;"></span>
                                     </div>
                                     <div style="display: inline-block;width: 60%;float: right">
                                         <input type="text" name="tokenValue" id="tokenValue"
                                                style="width: 100%; float: right" disabled>
                                     </div>
-                                    <p align="left">Exchange rate of your tokens equivalent to 1 Rasin.</p>
+                                    <p align="left">Exchange rate of your tokens equivalent to 1 Raisin.</p>
                                 </div>
                             </div>
                             <div style="clear:both;padding-top: 30px">
@@ -487,13 +486,13 @@ $campaign_draft = new Campaign();
                 <div class="panel-body">
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
-                            <p style="float: left">For the stated amount pledged & more</p>
+                            <p style="float: left">Amount Pledged</p>
                             <input type="number" class="form-control" id="amount" name="mAmount" placeholder="Amount pledged">
                         </div>
                     </div>
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
-                            <p style="float: left">% of discount given</p>
+                            <p style="float: left">% discount offered</p>
                             <select class="form-control" id="discount" name="mDiscount">
                                 <option value="">% of discount</option>
                                 <option value="5">5%</option>
@@ -517,7 +516,7 @@ $campaign_draft = new Campaign();
                     </div>
                     <div class="col-sm-3 nopadding">
                         <div class="form-group">
-                            <p style="float: left"># of months it is valid after launch</p>
+                            <p style="float: left">Validity of discount</p>
                             <input type="number" class="form-control" id="expiry" name="mExpiry" placeholder="Validity">
                         </div>
                     </div>
