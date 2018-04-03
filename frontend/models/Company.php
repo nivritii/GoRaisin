@@ -20,7 +20,6 @@ use Yii;
  * @property string $company_designation
  *
  * @property Campaign $campaign
- * @property Industry $industry
  */
 class Company extends \yii\db\ActiveRecord
 {
@@ -38,13 +37,10 @@ class Company extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['campaign_id', 'company_name', 'company_reg_no', 'company_email', 'company_website', 'company_description', 'company_employees_count', 'company_postal', 'company_designation'], 'required'],
+            [['campaign_id', 'company_name', 'company_reg_no', 'company_email', 'company_website', 'company_description', 'company_industry', 'company_employees_count', 'company_postal', 'company_designation'], 'required'],
             [['campaign_id', 'company_employees_count'], 'integer'],
-            [['company_name', 'company_reg_no', 'company_email', 'company_website', 'company_description', 'company_postal', 'company_designation'], 'string', 'max' => 255],
-            ['company_email','email'],
-            [['company_website'],'url', 'defaultScheme' => ''],
+            [['company_name', 'company_reg_no', 'company_email', 'company_website', 'company_description', 'company_industry', 'company_postal', 'company_designation'], 'string', 'max' => 255],
             [['campaign_id'], 'exist', 'skipOnError' => true, 'targetClass' => Campaign::className(), 'targetAttribute' => ['campaign_id' => 'c_id']],
-            [['company_industry'], 'exist', 'skipOnError' => true, 'targetClass' => Industry::className(), 'targetAttribute' => ['company_industry' => 'id']],
         ];
     }
 
@@ -74,13 +70,5 @@ class Company extends \yii\db\ActiveRecord
     public function getCampaign()
     {
         return $this->hasOne(Campaign::className(), ['c_id' => 'campaign_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getIndustry()
-    {
-        return $this->hasOne(Industry::className(), ['id' => 'company_industry']);
     }
 }

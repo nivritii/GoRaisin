@@ -172,14 +172,11 @@ frontend\assets\RoadmapAsset::register($this);
 
                     <?php
                     $currentDate = date('Y-m-d');
-                    if ($model->c_start_date == null || $model->c_end_date == null) {
+                    if ($model->c_start_date == null && $model->c_end_date == null) {
                         $days = 'N.A';
                     } else {
                         $diff = strtotime($model->c_start_date) - strtotime($currentDate);
                         $days = ceil($diff / 86400);
-
-                        $diffEndDate = strtotime($model->c_end_date) - strtotime($currentDate);
-                        $tillDays = ceil($diffEndDate / 86400);
                     }
                     if ($days > 0) {
                         ?>
@@ -191,6 +188,12 @@ frontend\assets\RoadmapAsset::register($this);
                         </h3>
                         <!--                    <h3 class="title-price" style="margin-top:0px;"><small>more days to go</small></h3>-->
                     <?php }
+                    if($model->c_end_date ==null){
+                        $tillDays = 'N.A';
+                    }else{
+                        $diffEndDate = strtotime($model->c_end_date) - strtotime($currentDate);
+                        $tillDays = ceil($diffEndDate / 86400);
+                    }
                     if ($days <= 0 && $tillDays > 0) {
                         ?>
                         <h3 class="title-price" style="margin-top:25px;">
@@ -233,12 +236,6 @@ frontend\assets\RoadmapAsset::register($this);
                                 <h4><span style="margin-right:15px" class="glyphicon glyphicon-edit"
                                           aria-hidden="true"></span>Edit</h4></button>
                         </a>
-                        <br/><br/>
-
-                        <?/*=Html::a('<span class="glyphicon glyphicon-cloud-upload"></span>Submit for Review',['campaign/review','id'=>$model->c_id],['style' => 'text-decoration: none;width: 100%;border-radius:10px','class' => 'btn btn-info']) */?>
-                        <!--<a href="<?/*= Url::to(['campaign/review','id'=>$model->c_id])*/?>" style="text-decoration: none">
-                            <?/*= Html::submitButton('<span class="glyphicon glyphicon-cloud-upload"></span> Submit for Review',['class' => 'btn btn-info','value' => 'moderation','name' => 'moderation','style' => 'width: 100%;border-radius:10px']) */?>
-                        </a>-->
                         <br/><br/>
                         <div style="text-align: center">
                             <?= Html::a('<span class="glyphicon glyphicon-remove"></span>Delete Campaign', ['campaign/delete', 'id' => $model->c_id], ['style' => 'font-size:15px;color:#000000']) ?>

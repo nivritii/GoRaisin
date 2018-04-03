@@ -439,6 +439,9 @@ class CampaignController extends Controller
             if(!empty($_POST['amount'])){
                 $number = count($_POST['amount']);
             }
+            if(!empty($_POST['comIndustry'])){
+                $company->company_industry = $_POST['comIndustry'];
+            }
 
             $model->validate();
             $errors = $model->getErrors();
