@@ -38,9 +38,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     <a href="#" class="list-group-item active text-center">
                         <h4 class="glyphicon glyphicon-tower"></h4><br/>Balance
                     </a>
-                    <a href="#" class="list-group-item text-center">
+                    <!--<a href="#" class="list-group-item text-center">
                         <h4 class="glyphicon glyphicon-folder-open"></h4><br/>Portfolio
-                    </a>
+                    </a>-->
                     <a href="#" class="list-group-item text-center">
                         <h4 class="glyphicon glyphicon-credit-card"></h4><br/>Transactions
                     </a>
@@ -66,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </div>
                 </div>
                 <!-- train section -->
-                <div class="bhoechie-tab-content">
+                <!--<div class="bhoechie-tab-content">
                     <div class="method">
                         <div class="row margin-0 list-header hidden-sm hidden-xs">
                             <div class="col-md-3">
@@ -114,7 +114,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <!--third tab-->
                 <div class="bhoechie-tab-content">
 <!--                    <div class="container">-->
@@ -131,8 +131,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 								<ul class="nav nav-tabs">
 									<li class="active"><a href="#letters" data-toggle="tab"><i                                                  class="glyphicon glyphicon-print"></i> All</a></li>
-									<li><a href="#emails" data-toggle="tab"><i class="glyphicon glyphicon-send"></i> Sent</a></li>
-									<li><a href="#loglist" data-toggle="tab"><i class="glyphicon glyphicon-list"></i> Received</a></li>
+									<!--<li><a href="#emails" data-toggle="tab"><i class="glyphicon glyphicon-send"></i> Sent</a></li>
+									<li><a href="#loglist" data-toggle="tab"><i class="glyphicon glyphicon-list"></i> Received</a></li>-->
 								</ul>
 
 								</div>
@@ -172,7 +172,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         </div>
 
 
-                                        <div class="tab-pane fade" id="emails">
+                                        <!--<div class="tab-pane fade" id="emails">
                                             <h3>Emails</h3>
                                             <FORM ACTION="" METHOD="post">
                                                 <INPUT TYPE="hidden" NAME="FormName" VALUE="PrintLetters">
@@ -220,9 +220,9 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 Select events and click below<BR><BR>
                                                 <INPUT TYPE="submit" CLASS="btn btn-outline btn-default" VALUE="Submit">
                                             </FORM>
-                                        </div>
+                                        </div>-->
 
-                                        <div class="tab-pane fade" id="loglist">
+                                        <!--<div class="tab-pane fade" id="loglist">
                                             <h3>Logs</h3>
                                             <FORM ACTION="" METHOD="post">
                                                 <INPUT TYPE="hidden" NAME="FormName" VALUE="PrintLetters">
@@ -270,7 +270,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                                 Select events and click below<BR><BR>
                                                 <INPUT TYPE="submit" CLASS="btn btn-outline btn-default" VALUE="Submit">
                                             </FORM>
-                                        </div>
+                                        </div>-->
 
                                     </div>
 
