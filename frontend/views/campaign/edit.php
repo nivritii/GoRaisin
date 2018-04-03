@@ -411,12 +411,15 @@ $campaign_draft = new Campaign();
                                     <p class="item-title">Industry</p>
                                 </div>
                                 <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
-                                    <?php if (!empty($company->company_industry)) { ?>
-                                        <input type="text" style="width: 100%" name="comIndustry"
-                                               value="<?= $company->company_industry ?>">
-                                    <?php } else { ?>
-                                        <input type="text" style="width: 100%" name="comIndustry">
-                                    <?php } ?>
+                                    <select name="comIndustry" id="search_categories"
+                                            data-default-caption="Select Category"
+                                            style="border-radius: 0px;width: 100%">
+                                        <option selected
+                                                value="<?= $company->company_industry ?>"><?= $company->companyIndustry->name ?></option>
+                                        <?php foreach ($industries as $industry) { ?>
+                                            <option value=<?= $industry->id ?>><?= $industry->name ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                             <div style="clear:both;padding: 10px;">
