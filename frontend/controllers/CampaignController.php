@@ -439,6 +439,9 @@ class CampaignController extends Controller
             if(!empty($_POST['amount'])){
                 $number = count($_POST['amount']);
             }
+            if(!empty($_POST['comIndustry'])){
+                $company->company_industry = $_POST['comIndustry'];
+            }
 
             $model->validate();
             $errors = $model->getErrors();
@@ -582,19 +585,23 @@ class CampaignController extends Controller
     public function actionEdit($id)
     {
         $model = $this->findModel($id);
-        $categories = Category::find()->all();
+        $categories = Category::find()->where(['!=', 'id', $model->c_cat_id])->all();
+
         $mandatoryReward = Reward::find()->where(['c_id' => $id, 'r_mandatory' => true])->one();
 
         $rewards = Reward::find()->where(['c_id' => $id, 'r_mandatory' => false])->all();
         $this->view->params['rewards'] = $rewards;
 
         $company = $this->findCompany($id);
+        $industries = Industry::find()->where(['!=', 'id', $company->company_industry])->all();
+
         $token = $this->findToken($id);
         $countries = Location::find()->all();
 
 
         return $this->render('edit', [
             'model' => $model,
+            'industries' => $industries,
             'mandatoryReward' => $mandatoryReward,
             'categories' => $categories,
             'company' => $company,

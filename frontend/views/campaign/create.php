@@ -336,7 +336,7 @@ $campaign_draft = new Campaign();
                             </div>
                             <div style="display: inline-block;float: left;margin-left: 2%;width: 55%">
                                 <select name="comIndustry" style="width: 100%">
-                                    <option selected value="">Select Industry</option>
+                                    <option selected value="77" >Select Industry</option>
                                     <?php foreach ($industries as $industry) { ?>
                                         <option value=<?=$industry->id?>><?= $industry->name ?></option>
                                     <?php } ?>
