@@ -105,8 +105,7 @@ $campaign_draft = new Campaign();
                                     </div>
                                     <div style="display: inline-block;float: left;margin-left: 2%;width: 50%">
                                         <?php if (!empty($model->c_title)) { ?>
-                                            <input type="text" style="width: 100%" name="cTitle" id="cTitle"
-                                                   value="<?= $model->c_title ?>">
+                                            <input type="text" style="width: 100%" name="cTitle" id="cTitle" value="<?=$model->c_title?>">
                                         <?php } else { ?>
                                             <input type="text" style="width: 100%" name="cTitle" id="cTitle">
                                         <?php } ?>

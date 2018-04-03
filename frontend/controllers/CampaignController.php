@@ -192,7 +192,15 @@ class CampaignController extends Controller
         $updates = Update::find()->where(['campaign_id' => $id])->orderBy(['id' => SORT_DESC])->all();
         $comments = Comment::find()->where(['comment_camp_id' => $id])->orderBy(['comment_datetime' => SORT_DESC])->all();
         $backed = Fund::find()->where(['fund_c_id' => $id])->sum('fund_amt');
-        $noOfBackers = Fund::find()->where(['fund_c_id' => $id])->groupBy('fund_user_id')->all();
+        //$backerNum = 0;
+        $noOfBackers = 0;
+
+        if($backed!=0){
+            $backerNum = Fund::find()->where(['fund_c_id' => $id])->groupBy('fund_user_id')->all();
+        if(!empty($backerNum)){
+            $noOfBackers = count($backerNum);
+        }
+        }
 
         $rewards = Reward::find()->where(['c_id' => $id])->all();
         $faqs = Faq::find()->where(['campaign_id' => $id])->all();
@@ -208,7 +216,7 @@ class CampaignController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
             'backed' => $backed,
-            'noOfBackers'=> count($noOfBackers),
+            'noOfBackers'=> $noOfBackers,
             'progress' => $progress,
             'categories' => $categories,
             'comments' => $comments,
@@ -559,6 +567,7 @@ class CampaignController extends Controller
                         'token' => $token,
                         'categories' => $categories,
                         'countries' => $countries,
+                        'industries' => $industries,
                     ]);
                     break;
 
@@ -634,23 +643,6 @@ class CampaignController extends Controller
         return $this->redirect('mycampaign');
     }
 
-    /*public function actionUpdate($id)
-     {
-         $model = $this->findModel($id);
-         $categories = Category::find()->all();
-         $reward = Reward::find()->where(['c_id'=>$id])->one();
-         $company = $this->findCompany($id);
-         $countries = Location::find()->all();
-
-         return $this->render('update',[
-             'model' => $model,
-             'reward' => $reward,
-             'categories' => $categories,
-             'company' => $company,
-             'countries' => $countries,
-         ]);
-     }*/
-
     public function actionShow($id)
     {
         $model = Campaign::find()->where(['c_status' => 'published'])->all();
@@ -695,18 +687,6 @@ class CampaignController extends Controller
 
         Yii::$app->session->setFlash('warning', 'Please proceed to create your e-wallet before funding a campaign.');
         return $this->redirect(['wallet/index']);
-
-        /*        $fund = new Fund();
-
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    $fund->fund_c_id = $id;
-                    $fund->fund_user_id = Yii::$app->user->identity->getId();
-                    $fund->fund_amt = $_POST['reward'];
-                    if ($fund->save(false)) {
-                        return $this->redirect(['mycampaign']);
-                    }
-                }
-        */
 
     }
 
