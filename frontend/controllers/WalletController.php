@@ -93,11 +93,12 @@ class WalletController extends \yii\web\Controller
             $response = $this->createAccount($wallet->brainKey, $wallet->accname);
             if (!empty($response['result'])) {
                 $transferRpc = $this->transferAmt($wallet->accname);
-                $balanceRpc = $this->listAccBalance($wallet->accname);
+                /*$balanceRpc = $this->listAccBalance($wallet->accname);*/
 
-                return $this->render('mywallet', [
+                /*return $this->render('mywallet', [
                     'response' => $balanceRpc,
-                ]);
+                ]);*/
+                return $this->redirect(['mywallet']);
             }
         }
         return $this->redirect(['index']);
@@ -216,13 +217,13 @@ class WalletController extends \yii\web\Controller
 
     protected function createBrainKey()
     {
-/*        $rpc = new jsonRPCClient($this->url, true);
+        $rpc = new jsonRPCClient($this->url, true);
         $rpc->setRPCNotification(true);
         $response = $rpc->__call("suggest_brain_key", []);
         $response1 = $response['result'];
 
-        return $response1['brain_priv_key'];*/
-        $client = new \GuzzleHttp\Client([
+        return $response1['brain_priv_key'];
+        /*$client = new \GuzzleHttp\Client([
             'headers' => [ 'Content-Type' => 'application/json',
                 'Access-Control-Allow-Origin' => '*',
                 'Access-Control-Allow-Methods' => 'POST, GET, PUT, DELETE, OPTIONS',
@@ -243,7 +244,7 @@ class WalletController extends \yii\web\Controller
             )]
         );
         $response = BaseJson::decode($response->getBody()->getContents(),true);
-        return $response['result']['brain_priv_key'];
+        return $response['result']['brain_priv_key'];*/
     }
 
     protected function createAccount($brain_priv_key, $accname)
